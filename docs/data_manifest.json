@@ -1,0 +1,205 @@
+{
+  "livecareer": {
+    "name": "LiveCareer Resume Dataset",
+    "source_url": "https://huggingface.co/datasets/opensporks/resumes",
+    "revision": "ed4cb5f3fd1ce7e0a0e74e1a09c1a3b702c2c2eb",
+    "download_date": "2026-11-02T17:47:15.191225+00:00",
+    "license": "cc0-1.0",
+    "files": [
+      {
+        "path": "data/raw/livecareer/train.parquet",
+        "rows": 2484,
+        "columns": [
+          "ID",
+          "Resume_str",
+          "Resume_html",
+          "Category"
+        ],
+        "sha256": "7c67499fb7aa1cb18333d77ddc7c2a544df9a4e8bbfa12cad1feb4fbc2270222"
+      }
+    ]
+  },
+  "ner_synthetic": {
+    "name": "AuraATS Synthetic Resume NER 12K v2",
+    "source_url": "https://huggingface.co/datasets/sanaullah7964/AuraATS-Synthetic-Resume-NER-12K-v2",
+    "revision": "d878412716a4d6bda378e1e0f60a6e422ff0062b",
+    "download_date": "2026-11-02T17:47:20.016089+00:00",
+    "license": "NOT STATED",
+    "files": [
+      {
+        "path": "data/raw/ner_synthetic/train.parquet",
+        "split": "train",
+        "rows": 9600,
+        "columns": [
+          "id",
+          "candidate_id",
+          "template_family",
+          "split",
+          "industry",
+          "country",
+          "experience_count",
+          "text",
+          "entities",
+          "tokens",
+          "bio_labels",
+          "token_offsets"
+        ],
+        "sha256": "7760a5c58f468301d3cd6a0e1e61ea644ca3f10418a164d5486ba621ebc55e1e"
+      },
+      {
+        "path": "data/raw/ner_synthetic/validation.parquet",
+        "split": "validation",
+        "rows": 1200,
+        "columns": [
+          "id",
+          "candidate_id",
+          "template_family",
+          "split",
+          "industry",
+          "country",
+          "experience_count",
+          "text",
+          "entities",
+          "tokens",
+          "bio_labels",
+          "token_offsets"
+        ],
+        "sha256": "da14abf01bd24273333bf3a7502e124d34e52c4ccf43e2a9e3270c1405ad8fc4"
+      },
+      {
+        "path": "data/raw/ner_synthetic/test.parquet",
+        "split": "test",
+        "rows": 1200,
+        "columns": [
+          "id",
+          "candidate_id",
+          "template_family",
+          "split",
+          "industry",
+          "country",
+          "experience_count",
+          "text",
+          "entities",
+          "tokens",
+          "bio_labels",
+          "token_offsets"
+        ],
+        "sha256": "bf689c1e44e0aad2c972ea2d1b9922e297aab9ce57806ce38e3cfaf94dde2771"
+      }
+    ]
+  },
+  "ner_real_skills": {
+    "name": "Annotated NER PDF Resumes (IT Skills)",
+    "source_url": "https://huggingface.co/datasets/Mehyaar/Annotated_NER_PDF_Resumes",
+    "revision": "1f1be3de47defbd77c1ca65e40e3bb9c7d01e63f",
+    "download_date": "2026-11-02T17:47:20.987830+00:00",
+    "license": "mit",
+    "files": [
+      {
+        "path": "data/raw/ner_real_skills/ner_real_skills.parquet",
+        "rows": 5029,
+        "columns": [
+          "id",
+          "text",
+          "annotations"
+        ],
+        "sha256": "12f81d06ebb3eafc50d5f7c3cd7e99b82c925b4ee93d9ec39d30c189d0daed6f"
+      }
+    ]
+  },
+  "job_resume_fit": {
+    "name": "Resume-Job Fit Dataset",
+    "source_url": "https://huggingface.co/datasets/batuhanmtl/job_resume_fit",
+    "revision": "fd536486a5e99db00716b6fbe58e6368d2d038ef",
+    "download_date": "2026-11-02T17:47:23.607517+00:00",
+    "license": "other",
+    "files": [
+      {
+        "path": "data/raw/job_resume_fit/train.parquet",
+        "rows": 2385,
+        "columns": [
+          "ID",
+          "resume_text",
+          "job_text",
+          "category",
+          "job_required_skills",
+          "resume_skill_list",
+          "ai_matched_skills",
+          "ai_match_score",
+          "skill_string_match_score",
+          "fuzzy_match_score"
+        ],
+        "sha256": "cb57c04dc62388b7155f068b9b811f638c724718ec78fc3d62c5b592f9ef79e1"
+      }
+    ]
+  },
+  "linkedin_sample": {
+    "name": "LinkedIn Job Listings (5K Postings Sample)",
+    "source_url": "https://huggingface.co/datasets/datastax/linkedin_job_listings",
+    "revision": "cb54240684b6ae7c847330765886b6d48e753e6b",
+    "download_date": "2026-11-02T17:48:43.337575+00:00",
+    "license": "NOT STATED",
+    "sampling": {
+      "seed": 42,
+      "sample_size": 5000,
+      "min_description_chars": 200
+    },
+    "files": [
+      {
+        "path": "data/raw/linkedin_sample/postings_5k.parquet",
+        "rows": 5000,
+        "columns": [
+          "title",
+          "description",
+          "skills_desc",
+          "formatted_experience_level",
+          "location"
+        ],
+        "sha256": "c47e4112a52b613cf9cea8a3412ccb7fc43ac168c166774b8cce7d76fe481ecd"
+      }
+    ]
+  },
+  "onet": {
+    "name": "O*NET 31.0 Database (Software Skills & Occupation Data)",
+    "source_url": "https://www.onetcenter.org/dl_files/database/db_31_0_csv/",
+    "revision": "db_31_0_csv",
+    "download_date": "2026-11-02T17:49:20.896131+00:00",
+    "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+    "files": [
+      {
+        "path": "data/raw/onet/software_skills.csv",
+        "rows": 31821,
+        "columns": [
+          "O*NET-SOC Code",
+          "Title",
+          "Workplace Example",
+          "Element ID",
+          "Element Name",
+          "Hot Technology",
+          "In Demand"
+        ],
+        "sha256": "6aabb96b464288db849580e6510530efff3f80e25dde2bb23f1fc36bb526b016"
+      },
+      {
+        "path": "data/raw/onet/occupation_data.csv",
+        "rows": 1016,
+        "columns": [
+          "O*NET-SOC Code",
+          "Title",
+          "Description"
+        ],
+        "sha256": "a09eae1d6609686e44e05b7290993a1c8b523d8ca224bc0eedc194c855c3ee02"
+      }
+    ]
+  },
+  "esco": {
+    "name": "ESCO Skills Taxonomy",
+    "source_url": "https://esco.ec.europa.eu/en/use-esco/download",
+    "revision": "v1.2.1",
+    "download_date": "2026-11-02T17:49:20.898743+00:00",
+    "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
+    "status": "manual_download_required",
+    "instructions": "Visit https://esco.ec.europa.eu/en/use-esco/download, select v1.2.1 Skills CSV (en), export package, and extract skills_en.csv into data/raw/esco/",
+    "files": []
+  }
+}

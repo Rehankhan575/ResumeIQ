@@ -149,3 +149,20 @@ Target: Standardized skill ontologies (ESCO and/or O*NET) with exact file names,
      - ESCO provides 13,890 standardized functional competencies and comprehensive alternative synonym phrases (`altLabels`).
   3. **Clean Fusion into `data/taxonomies/skills.csv`:** Merging O*NET technology tools with ESCO preferred/alt labels creates an authoritative, deduplicated dictionary covering both technical tools (Python, Docker, PyTorch) and transversal competencies (project management, data analysis).
   4. **Open Permissive Licensing:** Both frameworks are licensed under **CC BY 4.0**, permitting free academic and commercial adaptation with attribution.
+
+---
+
+## 4. Final Choices Summary Table
+
+The approved datasets for ingestion and raw storage under `data/raw/`:
+
+| Dataset Identifier | Destination Directory | License | PII Risk | Role in Project | Known Limitations |
+|---|---|---|---|---|---|
+| **`opensporks/resumes`** (LiveCareer) | `data/raw/livecareer/` | `cc0-1.0` | **High** (real candidate profiles with names, emails, phones, addresses) | Stage 3: Multi-class resume job category classification (2,484 resumes, 24 job categories) | Imbalanced category distributions; OCR/formatting noise; requires PII anonymization in Stage 1 before storage or inference. |
+| **`sanaullah7964/AuraATS-Synthetic-Resume-NER-12K-v2`** | `data/raw/ner_synthetic/` | `NOT STATED` | **None** (100% synthetically generated resumes and candidate identities) | Stage 2: Token classification / NER model training (9,600 train / 1,200 val / 1,200 test) across 13 entity types with pre-aligned BIO labels | Synthetic text distribution may underrepresent idiosyncratic human resume typos, diverse tabular column structures, or domain-specific jargon. |
+| **`Mehyaar/Annotated_NER_PDF_Resumes`** | `data/raw/ner_real_skills/` | `mit` | **High** (scraped real candidate CV texts) | Stage 2: Specialized technical and IT skill extraction benchmarking on real-world CVs (5,029 annotated samples) | Dense technical annotations cover only the `SKILL` entity type (no degree, institution, or company tags); contains PDF unicode artifacts (e.g. lone surrogate emojis) requiring sanitization. |
+| **`batuhanmtl/job_resume_fit`** | `data/raw/job_resume_fit/` | `other` | **Moderate / High** (contains candidate resume text) | Stage 4: Resume-to-Job matching evaluation and Siamese/Cross-Encoder training (2,385 pairs across 23 categories) | Match scores generated via proprietary heuristic/AI models rather than human recruiter hiring outcomes; restricted to 23 job domains. |
+| **`datastax/linkedin_job_listings`** (5K Sample) | `data/raw/linkedin_sample/` | `NOT STATED` | **None** (public corporate job postings) | Stage 4: Corpus retrieval pool for job matching evaluation (MRR, nDCG@10) and dense vector search indexing | Scraped postings contain HTML markup and corporate boilerplate; sample restricted to postings with non-empty titles and descriptions ≥ 200 characters. |
+| **`O*NET 31.0 Database`** (`software_skills.csv`, `occupation_data.csv`) | `data/raw/onet/` | `CC BY 4.0` | **None** (governmental occupational taxonomy) | Taxonomy: Software tools and technology dictionary with `Hot Technology` and `In Demand` priority weighting for ATS scoring | US-centric occupational taxonomy; emphasis on software products rather than transversal interpersonal competences. |
+| **`ESCO Skills Taxonomy`** (`skills_en.csv`) | `data/raw/esco/` | `CC BY 4.0` | **None** (official European multilingual classification) | Taxonomy: Canonical transversal skills and comprehensive synonym mapping (`altLabels`) | Requires manual export from the official EU ESCO portal form; bureaucratic phrasing occasionally diverges from colloquial tech job descriptions. |
+
