@@ -112,7 +112,7 @@
     "source_url": "https://huggingface.co/datasets/batuhanmtl/job_resume_fit",
     "revision": "fd536486a5e99db00716b6fbe58e6368d2d038ef",
     "download_date": "2026-11-02T17:47:23.607517+00:00",
-    "license": "other",
+    "license": "other (no terms given on card)",
     "files": [
       {
         "path": "data/raw/job_resume_fit/train.parquet",
@@ -139,6 +139,7 @@
     "revision": "cb54240684b6ae7c847330765886b6d48e753e6b",
     "download_date": "2026-11-02T17:48:43.337575+00:00",
     "license": "NOT STATED",
+    "license_note": "datastax repo has no dataset card. The Kaggle original arshkon/linkedin-job-postings lists CC BY-SA 4.0 per its page; NOT confirmed that this copy has the same terms.",
     "sampling": {
       "seed": 42,
       "sample_size": 5000,
@@ -195,11 +196,12 @@
   "esco": {
     "name": "ESCO Skills Taxonomy",
     "source_url": "https://esco.ec.europa.eu/en/use-esco/download",
-    "revision": "v1.2.1",
+    "revision": "UNVERIFIED",
     "download_date": "2026-11-02T17:49:20.898743+00:00",
     "license": "Creative Commons Attribution 4.0 International (CC BY 4.0)",
     "status": "manual_download_required",
-    "instructions": "Visit https://esco.ec.europa.eu/en/use-esco/download, select v1.2.1 Skills CSV (en), export package, and extract skills_en.csv into data/raw/esco/",
+    "instructions": "Visit https://esco.ec.europa.eu/en/use-esco/download, select v1.2.1 Skills CSV (en), export package, and extract skills_en.csv into data/raw/esco/ (instructions are unverified)",
+    "instructions_note": "instructions are unverified",
     "files": []
   }
 }
