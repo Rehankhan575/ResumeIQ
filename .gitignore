@@ -15,12 +15,18 @@ ENV/
 .env
 *.env.local
 
-# ── Data (may be large / contain PII) ───────────────────────────────────────
-data/raw/
-data/processed/
+# ── Lock files / Local dev artifacts ─────────────────────────────────────────
+requirements-lock.txt
 
-# ── Model artifacts (large binary files) ────────────────────────────────────
-artifacts/models/
+# ── Data (raw & processed content ignored, .gitkeep preserved) ───────────────
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# ── Model artifacts (binary checkpoints ignored, .gitkeep preserved) ─────────
+artifacts/models/*
+!artifacts/models/.gitkeep
 
 # ── Jupyter ──────────────────────────────────────────────────────────────────
 .ipynb_checkpoints/

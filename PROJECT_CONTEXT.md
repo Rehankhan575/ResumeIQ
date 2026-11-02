@@ -19,9 +19,10 @@ validated (NER F1, classifier accuracy/F1, ranking MRR/nDCG, baseline vs. SBERT 
 | Python | 3.11.15 (venv at `venv/`) |
 | Compute | CPU + MPS (Apple GPU via PyTorch MPS backend) |
 | CUDA | Not available |
-| Tesseract | **Not installed** — install with `brew install tesseract` before OCR features |
+| Tesseract | **Installed** via `brew install tesseract` (v5.5.4) |
 
 Device selection order in code: **CUDA → MPS → CPU** (see `app/config.py`).
+Execution rule: Always run commands via `source venv/bin/activate` or `venv/bin/python -m ...`.
 
 ---
 
@@ -100,11 +101,11 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
 │   ├── api/               ← FastAPI routes
 │   └── ui/                ← Streamlit pages
 ├── data/
-│   ├── raw/               ← Original Kaggle/LinkedIn datasets (gitignored)
-│   ├── processed/         ← Tokenised, split datasets (gitignored)
+│   ├── raw/               ← Original Kaggle/LinkedIn datasets (gitignored content)
+│   ├── processed/         ← Tokenised, split datasets (gitignored content)
 │   └── taxonomies/        ← ESCO / O*NET skill lists
 ├── artifacts/
-│   ├── models/            ← Saved checkpoints (gitignored)
+│   ├── models/            ← Saved checkpoints (gitignored content)
 │   ├── metrics/           ← Eval JSON files (F1, accuracy, MRR, nDCG)
 │   └── reports/           ← SHAP plots, confusion matrices
 ├── scripts/               ← Training, eval, data-prep scripts
@@ -117,7 +118,9 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
 ├── deploy/                ← Dockerfile, HuggingFace Spaces config
 ├── PROJECT_CONTEXT.md     ← THIS FILE
 ├── app/config.py
-├── requirements.txt
+├── requirements.txt       ← Direct runtime dependencies only (pinned)
+├── requirements-dev.txt   ← Test & development dependencies
+├── pytest.ini             ← pytest configuration
 ├── .env.example
 └── .gitignore
 ```
@@ -137,6 +140,8 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
    never stored in a database. All uploads processed in-memory and discarded after response.
 9. **File-size limit** — enforce `Settings.max_file_bytes` at API ingress.
 10. **`import pymupdf`** — not `import fitz` (deprecated in PyMuPDF 2.0).
+11. **Environment execution** — Always run commands via `source venv/bin/activate` or `venv/bin/python -m ...`.
+12. **Dependency management** — Each step adds its own new dependencies to `requirements.txt`, pinned, in the same commit.
 
 ---
 
@@ -182,10 +187,11 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
 | 2 | 2026-11-02 | Drop `spacy-transformers` from active use | Pins `transformers<4.53.3`, conflicts with `transformers 5.22.1`; HuggingFace pipeline used for NER instead |
 | 3 | 2026-11-02 | CPU-only PyTorch installed; MPS enabled via M4 chip | No CUDA on MacBook Air M4; MPS backend available for acceleration |
 | 4 | 2026-11-02 | Device order: CUDA → MPS → CPU | Ensures code runs on any hardware without modification |
-| 5 | 2026-11-02 | Tesseract binary NOT installed yet | OCR fallback deferred; install with `brew install tesseract` before Stage 1 OCR work |
+| 5 | 2026-11-02 | Tesseract installed via `brew install tesseract` | OCR fallback available for Stage 1 parser |
 | 6 | 2026-11-02 | `SCHEMA_VERSION = "1.0.0"` established | Baseline; any schema change increments this and triggers test + context updates |
 | 7 | 2026-11-02 | All stubs return valid dummy data typed to schemas | Enables end-to-end pytest validation before any model is trained |
 | 8 | 2026-11-02 | Resume text never logged or stored | Privacy rule; enforced at pipeline and API layer |
+| 9 | 2026-11-02 | `extractor.py` is the extraction orchestrator; Steps 3a/3b add `skills.py` and `ner.py` next to it | Modular design separating rule-based and neural extraction under a unified orchestrator |
 
 ---
 
@@ -202,3 +208,4 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
 - `tests/test_pipeline.py`: end-to-end pipeline smoke test
 - `requirements.txt` pinned, `.gitignore`, `.env.example` added
 - Initial git commit
+- Scaffolding hygiene update: `.gitignore` refined to preserve `.gitkeep` files, `requirements.txt` trimmed to direct imports, `requirements-dev.txt` & `pytest.ini` created, Tesseract installed and documented, tagged `step-00`
