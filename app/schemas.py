@@ -15,7 +15,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-SCHEMA_VERSION: str = "1.0.0"
+SCHEMA_VERSION: str = "1.1.0"
 
 
 # ---------------------------------------------------------------------------
@@ -25,6 +25,7 @@ SCHEMA_VERSION: str = "1.0.0"
 class ContactInfo(BaseModel):
     """Structured contact details extracted from a résumé."""
 
+    name: str = ""
     email: str = ""
     phone: str = ""
     linkedin: str = ""
@@ -47,6 +48,8 @@ class LayoutMeta(BaseModel):
     is_multi_column: bool = False
     font_count: int = 0
     ocr_used: bool = False
+    needs_ocr: bool = False
+    extraction_method: str = ""
 
 
 # ---------------------------------------------------------------------------

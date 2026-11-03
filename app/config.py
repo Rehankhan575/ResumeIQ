@@ -94,9 +94,12 @@ class Settings(BaseSettings):
     # ── Device ─────────────────────────────────────────────────────────────
     device: str = "cpu"  # overridden at runtime by detect_device()
 
-    # ── File ingestion ─────────────────────────────────────────────────────
+    # ── File ingestion & parsing ───────────────────────────────────────────
     max_file_bytes: int = 10 * 1024 * 1024   # 10 MB
     allowed_extensions: list[str] = [".pdf", ".docx", ".png", ".jpg", ".jpeg"]
+    max_pages: int = 10                      # extra pages ignored with a warning
+    min_chars_per_page: int = 50             # OCR fallback if chars/page < this
+    ocr_dpi: int = 300                       # rasterization DPI for OCR rendering
 
     # ── Paths ───────────────────────────────────────────────────────────────
     data_dir: Path = DATA_DIR

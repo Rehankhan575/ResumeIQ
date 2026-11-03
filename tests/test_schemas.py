@@ -47,6 +47,7 @@ def test_schema_version_is_string() -> None:
     """SCHEMA_VERSION must be a non-empty string."""
     assert isinstance(SCHEMA_VERSION, str)
     assert len(SCHEMA_VERSION) > 0
+    assert SCHEMA_VERSION == "1.1.0"
 
 
 # ---------------------------------------------------------------------------
@@ -55,14 +56,33 @@ def test_schema_version_is_string() -> None:
 
 def test_contact_info_defaults() -> None:
     c = ContactInfo()
+    assert c.name == ""
     assert c.email == ""
+    assert c.phone == ""
+    assert c.linkedin == ""
+    assert c.github == ""
     assert c.other_links == []
 
 
 def test_contact_info_valid() -> None:
-    c = ContactInfo(email="a@b.com", phone="123", linkedin="li", github="gh", other_links=["x"])
+    c = ContactInfo(name="Jane Doe", email="a@b.com", phone="123", linkedin="li", github="gh", other_links=["x"])
+    assert c.name == "Jane Doe"
     assert c.email == "a@b.com"
     assert c.other_links == ["x"]
+
+
+def test_contact_info_round_trip() -> None:
+    data = {"name": "Jane Doe", "email": "a@b.com", "phone": "123", "linkedin": "li", "github": "gh", "other_links": ["x"]}
+    c = ContactInfo.model_validate(data)
+    assert c.model_dump() == data
+
+
+def test_contact_info_old_payload_validates() -> None:
+    """Payload from schema v1.0.0 without name must still validate with name default."""
+    v1_data = {"email": "a@b.com", "phone": "123", "linkedin": "li", "github": "gh", "other_links": ["x"]}
+    c = ContactInfo.model_validate(v1_data)
+    assert c.name == ""
+    assert c.email == "a@b.com"
 
 
 # ---------------------------------------------------------------------------
@@ -74,6 +94,59 @@ def test_layout_meta_defaults() -> None:
     assert lm.file_type == ""
     assert lm.page_count == 0
     assert lm.ocr_used is False
+    assert lm.needs_ocr is False
+    assert lm.extraction_method == ""
+
+
+def test_layout_meta_valid() -> None:
+    lm = LayoutMeta(
+        file_type="pdf",
+        page_count=2,
+        word_count=500,
+        has_tables=True,
+        has_images=True,
+        is_multi_column=True,
+        font_count=3,
+        ocr_used=True,
+        needs_ocr=True,
+        extraction_method="tesseract",
+    )
+    assert lm.needs_ocr is True
+    assert lm.extraction_method == "tesseract"
+
+
+def test_layout_meta_round_trip() -> None:
+    data = {
+        "file_type": "pdf",
+        "page_count": 1,
+        "word_count": 200,
+        "has_tables": False,
+        "has_images": False,
+        "is_multi_column": False,
+        "font_count": 2,
+        "ocr_used": False,
+        "needs_ocr": False,
+        "extraction_method": "pymupdf",
+    }
+    lm = LayoutMeta.model_validate(data)
+    assert lm.model_dump() == data
+
+
+def test_layout_meta_old_payload_validates() -> None:
+    """Payload from schema v1.0.0 without needs_ocr/extraction_method still validates."""
+    v1_data = {
+        "file_type": "pdf",
+        "page_count": 1,
+        "word_count": 200,
+        "has_tables": False,
+        "has_images": False,
+        "is_multi_column": False,
+        "font_count": 2,
+        "ocr_used": False,
+    }
+    lm = LayoutMeta.model_validate(v1_data)
+    assert lm.needs_ocr is False
+    assert lm.extraction_method == ""
 
 
 # ---------------------------------------------------------------------------

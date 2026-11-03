@@ -1,0 +1,408 @@
+{
+  "timestamp": "2026-11-03T16:42:29Z",
+  "fixtures": {
+    "ds_clean.pdf": {
+      "duration_ms": 120.14,
+      "sections_precision": 1.0,
+      "sections_recall": 1.0,
+      "sections_found": [
+        "education",
+        "experience",
+        "skills",
+        "summary"
+      ],
+      "sections_expected": [
+        "education",
+        "experience",
+        "skills",
+        "summary"
+      ],
+      "contact": {
+        "name": {
+          "expected": "Alex Mercer",
+          "extracted": "Alex Mercer",
+          "pass": true
+        },
+        "email": {
+          "expected": "alex.mercer@example.com",
+          "extracted": "alex.mercer@example.com",
+          "pass": true
+        },
+        "phone": {
+          "expected": "555-0142",
+          "extracted": "555-0142",
+          "pass": true
+        }
+      },
+      "layout": {
+        "page_count": {
+          "expected": 1,
+          "extracted": 1,
+          "pass": true
+        },
+        "is_multi_column": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        },
+        "has_tables": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        },
+        "has_images": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        },
+        "needs_ocr": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        }
+      }
+    },
+    "swe_two_column.pdf": {
+      "duration_ms": 87.27,
+      "sections_precision": 1.0,
+      "sections_recall": 1.0,
+      "sections_found": [
+        "education",
+        "experience",
+        "skills"
+      ],
+      "sections_expected": [
+        "education",
+        "experience",
+        "skills"
+      ],
+      "contact": {
+        "name": {
+          "expected": "Jordan Lee",
+          "extracted": "Jordan Lee",
+          "pass": true
+        },
+        "email": {
+          "expected": "jordan.lee@example.com",
+          "extracted": "jordan.lee@example.com",
+          "pass": true
+        },
+        "phone": {
+          "expected": "555-0187",
+          "extracted": "555-0187",
+          "pass": true
+        }
+      },
+      "layout": {
+        "page_count": {
+          "expected": 1,
+          "extracted": 1,
+          "pass": true
+        },
+        "is_multi_column": {
+          "expected": true,
+          "extracted": true,
+          "pass": true
+        },
+        "has_tables": {
+          "expected": true,
+          "extracted": true,
+          "pass": true
+        },
+        "has_images": {
+          "expected": true,
+          "extracted": true,
+          "pass": true
+        },
+        "needs_ocr": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        }
+      }
+    },
+    "accountant_table.pdf": {
+      "duration_ms": 137.68,
+      "sections_precision": 1.0,
+      "sections_recall": 1.0,
+      "sections_found": [
+        "education",
+        "experience",
+        "skills",
+        "summary"
+      ],
+      "sections_expected": [
+        "education",
+        "experience",
+        "skills",
+        "summary"
+      ],
+      "contact": {
+        "name": {
+          "expected": "Morgan Vance",
+          "extracted": "Morgan Vance",
+          "pass": true
+        },
+        "email": {
+          "expected": "morgan.vance@example.com",
+          "extracted": "morgan.vance@example.com",
+          "pass": true
+        },
+        "phone": {
+          "expected": "555-0193",
+          "extracted": "555-0193",
+          "pass": true
+        }
+      },
+      "layout": {
+        "page_count": {
+          "expected": 1,
+          "extracted": 1,
+          "pass": true
+        },
+        "is_multi_column": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        },
+        "has_tables": {
+          "expected": true,
+          "extracted": true,
+          "pass": true
+        },
+        "has_images": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        },
+        "needs_ocr": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        }
+      }
+    },
+    "chef_plain.docx": {
+      "duration_ms": 10.56,
+      "sections_precision": 1.0,
+      "sections_recall": 1.0,
+      "sections_found": [
+        "certifications",
+        "education",
+        "experience",
+        "summary"
+      ],
+      "sections_expected": [
+        "certifications",
+        "education",
+        "experience",
+        "summary"
+      ],
+      "contact": {
+        "name": {
+          "expected": "Marcus Bennett",
+          "extracted": "Marcus Bennett",
+          "pass": true
+        },
+        "email": {
+          "expected": "marcus.bennett@example.com",
+          "extracted": "marcus.bennett@example.com",
+          "pass": true
+        },
+        "phone": {
+          "expected": "555-0164",
+          "extracted": "555-0164",
+          "pass": true
+        }
+      },
+      "layout": {
+        "page_count": {
+          "expected": 1,
+          "extracted": 1,
+          "pass": true
+        },
+        "is_multi_column": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        },
+        "has_tables": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        },
+        "has_images": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        },
+        "needs_ocr": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        }
+      }
+    },
+    "nurse_scanned.pdf": {
+      "duration_ms": 2690.62,
+      "sections_precision": 1.0,
+      "sections_recall": 1.0,
+      "sections_found": [
+        "education",
+        "experience",
+        "summary"
+      ],
+      "sections_expected": [
+        "education",
+        "experience",
+        "summary"
+      ],
+      "contact": {
+        "name": {
+          "expected": "Elena Rostova",
+          "extracted": "Elena Rostova",
+          "pass": true
+        },
+        "email": {
+          "expected": "elena.rostova@example.com",
+          "extracted": "elena.rostova@example.com",
+          "pass": true
+        },
+        "phone": {
+          "expected": "555-0176",
+          "extracted": "555-0176",
+          "pass": true
+        }
+      },
+      "layout": {
+        "page_count": {
+          "expected": 1,
+          "extracted": 1,
+          "pass": true
+        },
+        "is_multi_column": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        },
+        "has_tables": {
+          "expected": false,
+          "extracted": false,
+          "pass": true
+        },
+        "has_images": {
+          "expected": true,
+          "extracted": true,
+          "pass": true
+        },
+        "needs_ocr": {
+          "expected": true,
+          "extracted": true,
+          "pass": true
+        }
+      }
+    }
+  },
+  "summary": {
+    "mean_sections_precision": 1.0,
+    "mean_sections_recall": 1.0,
+    "contact_all_pass": true,
+    "nurse_ocr_skill_recall": 1.0,
+    "swe_non_interleaving": true,
+    "edge_cases_all_pass": true
+  },
+  "nurse_scanned_skill_recall": {
+    "expected": [
+      "patient care",
+      "vital signs",
+      "basic life support",
+      "triage",
+      "wound care"
+    ],
+    "found_count": 5,
+    "total_count": 5,
+    "recall": 1.0,
+    "status": "PASS",
+    "details": [
+      {
+        "skill": "patient care",
+        "found": true,
+        "matched": "patient care"
+      },
+      {
+        "skill": "vital signs",
+        "found": true,
+        "matched": "vital signs"
+      },
+      {
+        "skill": "basic life support",
+        "found": true,
+        "matched": "bls"
+      },
+      {
+        "skill": "triage",
+        "found": true,
+        "matched": "triage"
+      },
+      {
+        "skill": "wound care",
+        "found": true,
+        "matched": "wound care"
+      }
+    ]
+  },
+  "swe_two_column_interleaving": {
+    "has_senior_backend_engineer": true,
+    "has_cloudscale_systems": true,
+    "has_frontend_developer": true,
+    "has_websphere_digital": true,
+    "free_of_sidebar_interleaving": true,
+    "status": "PASS"
+  },
+  "edge_cases": [
+    {
+      "case": "empty bytes",
+      "expected": "EmptyDocumentError",
+      "status": "PASS"
+    },
+    {
+      "case": "truncated PDF",
+      "expected": "CorruptedFileError",
+      "status": "PASS"
+    },
+    {
+      "case": "password-protected PDF",
+      "expected": "PasswordProtectedError",
+      "status": "PASS"
+    },
+    {
+      "case": "oversize file",
+      "expected": "FileTooLargeError",
+      "status": "PASS"
+    },
+    {
+      "case": "over max_pages",
+      "expected": "Degrades with warning",
+      "status": "PASS"
+    },
+    {
+      "case": "PDF bytes named .docx",
+      "expected": "Detects magic bytes -> pdf",
+      "status": "PASS"
+    },
+    {
+      "case": "DOCX bytes named .pdf",
+      "expected": "Detects magic bytes -> docx",
+      "status": "PASS"
+    },
+    {
+      "case": "unsupported extension",
+      "expected": "UnsupportedFileTypeError",
+      "status": "PASS"
+    }
+  ],
+  "livecareer_sample": {
+    "sampled": 0,
+    "status": "none_found"
+  }
+}

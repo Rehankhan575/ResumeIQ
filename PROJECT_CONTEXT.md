@@ -155,6 +155,19 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
 
 ---
 
+## Schemas
+
+`SCHEMA_VERSION = "1.1.0"`
+
+Core models defined in `app/schemas.py`:
+- `ContactInfo`: `name`, `email`, `phone`, `linkedin`, `github`, `other_links`
+- `LayoutMeta`: `file_type`, `page_count`, `word_count`, `has_tables`, `has_images`, `is_multi_column`, `font_count`, `ocr_used`, `needs_ocr`, `extraction_method`
+- `EducationEntry`, `ExperienceEntry`, `ProjectEntry`, `Entity`
+- `ParsedResume`: `raw_text`, `sections`, `contact`, `layout`, `skills`, `entities`, `education`, `experience`, `projects`, `certifications`, `total_years_experience`, `warnings`
+- `CategoryPrediction`, `JobDescription`, `MatchResult`, `Issue`, `Highlight`, `Suggestion`, `ScoreResult`
+
+---
+
 ## Datasets & Licenses (to be verified before use)
 
 | Dataset | Source | License | Status |
@@ -199,10 +212,26 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
 | 14 | 2026-11-03 | Classifier reports results with and without the leading title header | LiveCareer resumes begin with job title (div.PARAGRAPH_NAME); masking it removes the dominant signal to measure label leak. |
 | 15 | 2026-11-03 | `title_category_map` is frozen, labels are title-rule weak labels | Precedence rules establish domain keyword priority over generic role words; frozen to preserve split stability. |
 | 16 | 2026-11-03 | O*NET skills are kept in taxonomy but flagged inactive when unused in train text, not deleted | Preserves occupational taxonomy integrity while cleanly separating active vocabulary (DF > 0 or curated) from unobserved tools. |
+| 17 | 2026-11-03 | `SCHEMA_VERSION` bumped to 1.1.0 (additive: `ContactInfo.name`, `LayoutMeta.needs_ocr`, `LayoutMeta.extraction_method`) | Stage 1 parser requires extracted contact name and layout OCR/method signals |
+| 18 | 2026-11-03 | OCR triggered when chars/page < 50; rasterised at 300 DPI with grayscale + autocontrast | Prevents silent blank extraction on scanned or image-based résumés while maintaining high character recognition accuracy |
+| 19 | 2026-11-03 | Two-column layout detected via x0 clustering (gutter ≥ 50pt, vertical overlap ≥ 20%); read left then right | Prevents interleaving of sidebar metadata (contact, skills, education) into main work experience streams |
+| 20 | 2026-11-03 | Typed parser errors subclassing `ParseError` (empty, oversize, corrupted, locked, unsupported) | Prevents unhandled bare library exceptions from leaking through the ingestion boundary |
 
 ---
 
 ## CHANGELOG
+
+### v0.4.0 — 2026-11-03
+- `app/parsing/`: implemented Stage 1 parser orchestrator (`parser.py`), format detection (`detect_file_type` via magic bytes first, extension second), column-aware layout ordering (`_order_page_blocks`), table extraction, Tesseract OCR fallback (`min_chars_per_page=50`, 300 DPI, grayscale + autocontrast), text cleaning (`cleaner.py`), canonical section splitting (`sections.py`, 11 sections, exact + rapidfuzz >= 92), and contact info extraction (`contact.py`)
+- `app/parsing/errors.py`: typed parsing exception hierarchy (`ParseError`, `UnsupportedFileTypeError`, `FileTooLargeError`, `CorruptedFileError`, `PasswordProtectedError`, `EmptyDocumentError`)
+- `data/taxonomies/section_headings.csv`: 97 heading synonym rules mapping to 11 canonical sections
+- `app/config.py`: added Stage 1 parsing configurations (`min_chars_per_page=50`, `max_pages=10`, `ocr_dpi=300`)
+- `app/schemas.py`: bumped `SCHEMA_VERSION` to 1.1.0 with additive fields (`ContactInfo.name`, `LayoutMeta.needs_ocr`, `LayoutMeta.extraction_method`)
+- `tests/test_schemas.py`: updated schema tests for v1.1.0 defaults, valid payloads, round-trip, and v1.0.0 backward compatibility
+- `tests/test_parsing.py`: 23 comprehensive tests covering cleaning, sectioning, contact extraction, in-memory edge cases (empty bytes, truncated PDF, encrypted PDF, oversize, max pages, mime swap, unsupported format), and all 5 test fixtures
+- `scripts/eval_parsing.py`: benchmark evaluation suite testing all 5 fixtures and 8 edge cases, saving metrics to `artifacts/metrics/parsing_eval.json` (100% precision/recall across all sections, 100% contact extraction accuracy, 100% layout detection accuracy, 100% OCR skill recall on nurse_scanned, 0 interleaving on swe_two_column)
+- `docs/parsing.md`: comprehensive Stage 1 documentation detailing architecture, thresholds, design, and known limitations
+- `requirements.txt`: pinned `rapidfuzz==3.14.6`, `pdfplumber==0.11.10`, `pytesseract==0.3.13`
 
 ### v0.3.0 — 2026-11-03
 - `data/taxonomies/title_category_map.csv`: frozen title precedence rules (243 rules), `scripts/build_jd_pool.py` updated (1,796 mapped JDs, 26 ambiguous, 3,011 unmapped), `docs/splits.md` updated
