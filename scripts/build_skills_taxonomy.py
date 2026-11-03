@@ -615,6 +615,8 @@ AMBIGUOUS_TERMS: List[Tuple[str, str]] = [
     ("communication", "exclude_standalone"),
     ("leadership", "exclude_standalone"),
     ("teamwork", "exclude_standalone"),
+    ("carpentry", "exclude_standalone"),
+    ("grading", "exclude_standalone"),
 ]
 
 
@@ -983,3 +985,4 @@ def build_taxonomy() -> None:
 
 if __name__ == "__main__":
     build_taxonomy()
+

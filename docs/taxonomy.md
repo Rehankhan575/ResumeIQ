@@ -110,6 +110,16 @@ Certain technical skills collide directly with ordinary English words, prepositi
 | `sass` | `web_frameworks` | `require_context` | Collides with noun "sass". Requires CSS / stylesheet context. |
 | `yarn` | `software_tools` | `require_context` | Collides with textile yarn. Requires package manager context. |
 | `jira` | `software_tools` | `case_sensitive` | Matches capitalized software product `Jira`. |
+| `triage` | `healthcare_medical` | `require_context` | Collides with generic verb/noun triage. Requires clinical emergency/nursing context. |
+| `welding` | `engineering_construction` | `require_context` | Collides with hobbyist/casual mention. Requires trade/fabrication context. |
+| `baking` | `culinary_chef` | `require_context` | Collides with domestic activity. Requires pastry/commercial culinary context. |
+| `grilling` | `culinary_chef` | `require_context` | Collides with casual cooking or interrogation. Requires culinary line cook context. |
+| `roasting` | `culinary_chef` | `require_context` | Collides with colloquial verb. Requires culinary context. |
+| `communication` | `soft_skills` | `exclude_standalone` | High-frequency generic trait. Exclude standalone match. |
+| `leadership` | `soft_skills` | `exclude_standalone` | Broad managerial trait. Exclude standalone match. |
+| `teamwork` | `soft_skills` | `exclude_standalone` | High-frequency resume buzzword. Exclude standalone match. |
+| `carpentry` | `engineering_construction` | `exclude_standalone` | Ordinary trade word; exclude standalone match to prevent false positives in casual descriptions. |
+| `grading` | `teaching_education` | `exclude_standalone` | Collides with earth moving (civil engineering) vs student evaluation. Exclude standalone match. |
 
 ---
 
@@ -149,11 +159,231 @@ Certain technical skills collide directly with ordinary English words, prepositi
 
 ## 6. Verification & Test Coverage
 
-All assertions are verified by `tests/test_taxonomy.py` (16 passing unit tests):
+All assertions are verified by `tests/test_taxonomy.py` and `tests/test_fixtures.py`:
 - [x] No empty skill names or categories.
 - [x] No duplicate canonical skill names (`skills['skill'].duplicated().sum() == 0`).
 - [x] Every alias maps to exactly one skill; no alias collides with primary skills or other aliases.
-- [x] All 33 ambiguous terms exist in `skills.csv` with valid rule assignments.
+- [x] All 35 ambiguous terms exist in `skills.csv` with valid rule assignments.
 - [x] Minimum row thresholds met: 1,667 total skills ($\ge 1,500$) and 487 curated skills ($\ge 400$).
 - [x] Single-character skills strictly limited to allowlist `{'c', 'r'}`.
 - [x] Valid sources assigned: `curated`, `onet`, and `ner_synthetic`.
+
+---
+
+## 7. Taxonomy Document Frequency (DF) Statistics (Step 1f)
+
+_Computed by `scripts/taxonomy_stats.py`._
+
+### Corpus & Methodology
+Document frequency was measured using sliding-window 1–5 word n-gram matching with alias mapping (not 1,667 individual regex passes):
+- **Classifier Resumes:** Unmasked `text` column of `data/processed/classifier_train.parquet` ($N = 1,739$ resumes).
+- **Job Descriptions:** `text` column of `data/processed/jd_train.parquet` ($N = 1,257$ job postings).
+- **Active Definition:** A skill is flagged as `active` if its document frequency $DF > 0$ in resumes **or** in JDs, or if its source is `curated` (Decision 16: O*NET skills are preserved in the taxonomy file but flagged inactive if unused, never deleted).
+
+### Active vs Inactive Counts Per Source
+
+| Source | Inactive ($DF=0$) | Active ($DF>0$ or Curated) | Total Rows | % Active |
+|:---|---:|---:|---:|---:|
+| `curated` | 0 | 487 | 487 | 100.0% |
+| `ner_synthetic` | 62 | 145 | 207 | 70.0% |
+| `onet` | 772 | 201 | 973 | 20.7% |
+| **Total** | **834** | **833** | **1,667** | **50.0%** |
+
+### Top 40 Skills by Resume Document Frequency
+
+| Skill | Category | Source | Resume DF | Resume DF % |
+|:---|:---|:---|---:|---:|
+| management | soft_skills | curated | 1489 | 85.62% |
+| sales | sales_marketing | curated | 917 | 52.73% |
+| communication | soft_skills | curated | 883 | 50.78% |
+| project | soft_skills | curated | 828 | 47.61% |
+| customer service | soft_skills | curated | 728 | 41.86% |
+| leadership | soft_skills | curated | 706 | 40.60% |
+| excel | software_tools | curated | 704 | 40.48% |
+| organizational skills | soft_skills | curated | 680 | 39.10% |
+| word | software_tools | curated | 528 | 30.36% |
+| problem solving | soft_skills | curated | 437 | 25.13% |
+| attention to detail | soft_skills | curated | 422 | 24.27% |
+| project management | soft_skills | curated | 387 | 22.25% |
+| access | databases | curated | 352 | 20.24% |
+| powerpoint | software_tools | curated | 348 | 20.01% |
+| make | software_tools | curated | 306 | 17.60% |
+| outlook | software_tools | curated | 291 | 16.73% |
+| time management | soft_skills | curated | 269 | 15.47% |
+| mentoring | soft_skills | curated | 255 | 14.66% |
+| talent acquisition | hr_recruiting | curated | 230 | 13.23% |
+| business development | sales_marketing | curated | 213 | 12.25% |
+| teamwork | soft_skills | curated | 200 | 11.50% |
+| work ethic | soft_skills | curated | 194 | 11.16% |
+| quality assurance | engineering_construction | curated | 173 | 9.95% |
+| public relations | sales_marketing | curated | 170 | 9.78% |
+| time series analysis | data_ml_dl | curated | 158 | 9.09% |
+| strategic planning | soft_skills | curated | 154 | 8.86% |
+| financial reporting | accounting_finance | curated | 154 | 8.86% |
+| conflict resolution | soft_skills | curated | 148 | 8.51% |
+| reconciliation | accounting_finance | ner_synthetic | 148 | 8.51% |
+| adobe photoshop | software_tools | curated | 147 | 8.45% |
+| training and development | hr_recruiting | curated | 143 | 8.22% |
+| accounts payable | accounting_finance | curated | 137 | 7.88% |
+| quality control | engineering_construction | ner_synthetic | 137 | 7.88% |
+| c | programming_languages | curated | 136 | 7.82% |
+| adaptability | soft_skills | curated | 132 | 7.59% |
+| act! | sales_marketing | onet | 127 | 7.30% |
+| account management | sales_marketing | curated | 127 | 7.30% |
+| negotiation | soft_skills | curated | 127 | 7.30% |
+| sql | programming_languages | curated | 126 | 7.25% |
+| inventory control | culinary_chef | curated | 126 | 7.25% |
+
+### Top 40 Skills by JD Document Frequency
+
+| Skill | Category | Source | JD DF |
+|:---|:---|:---|---:|
+| management | soft_skills | curated | 593 |
+| communication | soft_skills | curated | 567 |
+| make | software_tools | curated | 404 |
+| sales | sales_marketing | curated | 380 |
+| organizational skills | soft_skills | curated | 355 |
+| leadership | soft_skills | curated | 276 |
+| customer service | soft_skills | curated | 255 |
+| teamwork | soft_skills | curated | 225 |
+| project | soft_skills | curated | 203 |
+| access | databases | curated | 197 |
+| excel | software_tools | curated | 188 |
+| attention to detail | soft_skills | curated | 172 |
+| talent acquisition | hr_recruiting | curated | 172 |
+| patient care | healthcare_medical | curated | 134 |
+| act! | sales_marketing | onet | 128 |
+| mentoring | soft_skills | curated | 125 |
+| next.js | web_frameworks | curated | 114 |
+| problem solving | soft_skills | curated | 110 |
+| adaptability | soft_skills | curated | 106 |
+| word | software_tools | curated | 100 |
+| compensation and benefits | hr_recruiting | curated | 92 |
+| go | programming_languages | curated | 88 |
+| react native | web_frameworks | curated | 87 |
+| basic life support | healthcare_medical | curated | 71 |
+| project management | soft_skills | curated | 69 |
+| work ethic | soft_skills | curated | 68 |
+| time management | soft_skills | curated | 62 |
+| negotiation | soft_skills | curated | 61 |
+| rehabilitation | healthcare_medical | curated | 61 |
+| business development | sales_marketing | curated | 60 |
+| python | programming_languages | curated | 57 |
+| cardiopulmonary resuscitation | healthcare_medical | curated | 57 |
+| crm | sales_marketing | ner_synthetic | 55 |
+| sql | programming_languages | curated | 52 |
+| amazon web services | cloud_devops | curated | 50 |
+| lead generation | sales_marketing | curated | 49 |
+| outlook | software_tools | curated | 48 |
+| financial reporting | accounting_finance | curated | 47 |
+| powerpoint | software_tools | curated | 46 |
+| monday.com | software_tools | curated | 45 |
+
+### Suspect Skills (Resume DF > 10% & Not in `ambiguous_terms.csv`)
+
+These high-frequency terms occur in $>10\%$ of training resumes but are not currently bounded by ambiguity rules. They represent multi-word phrases or standard business productivity tools rather than ambiguous single words:
+
+| Skill | Category | Source | Resume DF | Resume DF % | Analysis & Action |
+|:---|:---|:---|---:|---:|:---|
+| `customer service` | `soft_skills` | `curated` | 728 | 41.86% | Legitimate multi-word professional skill across retail/sales/hospitality resumes. |
+| `organizational skills` | `soft_skills` | `curated` | 680 | 39.10% | Multi-word phrase; common soft skill trait. Safe to keep. |
+| `problem solving` | `soft_skills` | `curated` | 437 | 25.13% | Multi-word soft skill. High precision. |
+| `attention to detail` | `soft_skills` | `curated` | 422 | 24.27% | Multi-word professional skill phrase. |
+| `project management` | `soft_skills` | `curated` | 387 | 22.25% | Multi-word phrase distinct from standalone "project" or "management" traps. |
+| `powerpoint` | `software_tools` | `curated` | 348 | 20.01% | Distinct software application name (`Microsoft PowerPoint`). |
+| `outlook` | `software_tools` | `curated` | 291 | 16.73% | Email client; candidate for context requirement if collisions arise in future steps. |
+| `time management` | `soft_skills` | `curated` | 269 | 15.47% | Multi-word soft skill. Safe. |
+| `mentoring` | `soft_skills` | `curated` | 255 | 14.66% | Soft skill verb/noun; common in managerial resumes. |
+| `talent acquisition` | `hr_recruiting` | `curated` | 230 | 13.23% | High-precision HR domain skill. |
+| `business development` | `sales_marketing` | `curated` | 213 | 12.25% | Multi-word sales domain skill. |
+| `work ethic` | `soft_skills` | `curated` | 194 | 11.16% | Multi-word soft skill phrase. |
+
+### Distinct Skills Found Per Resume (Distribution & Percentiles)
+
+Evaluated across $N = 1,739$ classifier train resumes:
+
+| Domain / Category | Resumes ($N$) | Mean Skills | Median Skills | 5th Percentile (p5) | % Resumes < 5 Hits |
+|:---|---:|---:|---:|---:|---:|
+| **OVERALL (All 24 Categories)** | **1,739** | **13.71** | **13.0** | **5.0** | **4.77%** |
+| `INFORMATION-TECHNOLOGY` | 84 | 16.44 | 15.5 | 7.0 | 1.19% |
+| `HEALTHCARE` | 74 | 14.49 | 13.0 | 8.0 | 0.00% |
+| `ACCOUNTANT` | 83 | 16.70 | 17.0 | 7.1 | 3.61% |
+| `CHEF` | 83 | 12.46 | 12.0 | 4.0 | 7.23% |
+| `SALES` | 81 | 11.93 | 11.0 | 4.0 | 7.41% |
+
+*Across the entire training corpus, only 4.77% of resumes have fewer than 5 skill hits, confirming robust domain coverage across technical and non-technical categories alike.*
+
+### 15 O*NET Skills with Highest Resume DF
+
+1. `act!`
+2. `google`
+3. `facebook`
+4. `twitter`
+5. `microsoft project`
+6. `instagram`
+7. `microsoft windows`
+8. `adobe acrobat`
+9. `ada`
+10. `wordpress`
+11. `linkedin`
+12. `sas`
+13. `microsoft exchange`
+14. `youtube`
+15. `forth`
+
+### 15 O*NET Skills with Resume DF = 0
+
+1. `1cadcam unigraphics`
+2. `3d graphics software`
+3. `3m post-it app`
+4. `a programming language apl`
+5. `a-systems jobview`
+6. `ab initio`
+7. `abacusnext hotdocs`
+8. `abc compiler`
+9. `access management software`
+10. `accessdata ftk`
+11. `accounts payable software`
+12. `accounts receivable software`
+13. `acd systems canvas`
+14. `active directory software`
+15. `actsoft comet tracker`
+
+### 30 Random O*NET Skills (User Review List)
+
+Sampled with deterministic seed `random_state=42`:
+
+| Skill | Category |
+|:---|:---|
+| `antivirus software` | `cybersecurity` |
+| `aol mapquest` | `cad_engineering` |
+| `apache solr` | `databases` |
+| `apple keynote` | `software_tools` |
+| `aptean made2manage` | `enterprise_software` |
+| `bookkeeping software` | `accounting_finance` |
+| `carlson survcadd` | `cad_engineering` |
+| `compris software` | `sales_marketing` |
+| `data entry software` | `databases` |
+| `e-mds software` | `healthcare_medical` |
+| `edmodo` | `software_tools` |
+| `erp software` | `enterprise_software` |
+| `formula translation/translator fortran` | `programming_languages` |
+| `gambit scheme` | `programming_languages` |
+| `ibm infosphere datastage` | `enterprise_software` |
+| `interface definition language idl` | `programming_languages` |
+| `job costing software` | `accounting_finance` |
+| `medical procedure coding software` | `healthcare_medical` |
+| `molecular simulation software` | `data_ml_dl` |
+| `neurosolutions for matlab` | `software_tools` |
+| `order management software` | `enterprise_software` |
+| `pix4d pix4dcapture` | `data_ml_dl` |
+| `prognosis innovation healthcare chartaccess` | `healthcare_medical` |
+| `recordkeeping software` | `databases` |
+| `sage mas 90 erp` | `enterprise_software` |
+| `seamonkey` | `software_tools` |
+| `servicenow` | `databases` |
+| `st. paul travelers e-carma` | `databases` |
+| `structure query language sql` | `databases` |
+| `teleconferencing software` | `design_multimedia` |
+
+

@@ -1,0 +1,57 @@
+{
+  "as_of": "2026-11-01",
+  "contact": {
+    "name": "Elena Rostova",
+    "email": "elena.rostova@example.com",
+    "phone": "555-0176",
+    "location": "Denver, CO"
+  },
+  "expected_sections": [
+    "clinical summary",
+    "clinical experience",
+    "education & credentials"
+  ],
+  "skills": [
+    "patient care",
+    "vital signs",
+    "basic life support",
+    "triage",
+    "wound care"
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science in Nursing",
+      "field": "Nursing",
+      "institution": "University of Colorado",
+      "graduation_year": 2018
+    }
+  ],
+  "experience": [
+    {
+      "title": "Staff Nurse \u2013 Emergency Department",
+      "company": "Saint Luke Medical Center",
+      "start": "2020-08",
+      "end": "Present",
+      "is_current": true
+    },
+    {
+      "title": "Staff Nurse \u2013 Medical-Surgical",
+      "company": "Rocky Mountain Health",
+      "start": "2018-06",
+      "end": "2020-07",
+      "is_current": false
+    }
+  ],
+  "total_years_experience": 8.4,
+  "layout": {
+    "page_count": 1,
+    "is_multi_column": false,
+    "has_tables": false,
+    "has_images": true,
+    "needs_ocr": true
+  },
+  "traps": [
+    "Grade C",
+    "R&D"
+  ]
+}

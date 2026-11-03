@@ -1,0 +1,16 @@
+{
+  "as_of": "2026-11-01",
+  "title": "Senior Data Scientist",
+  "required_skills": [
+    "python",
+    "sql",
+    "machine learning",
+    "scikit-learn"
+  ],
+  "preferred_skills": [
+    "pytorch",
+    "spark",
+    "power bi"
+  ],
+  "min_years": 4
+}

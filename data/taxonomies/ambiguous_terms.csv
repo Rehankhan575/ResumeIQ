@@ -32,3 +32,5 @@ roasting,require_context
 communication,exclude_standalone
 leadership,exclude_standalone
 teamwork,exclude_standalone
+carpentry,exclude_standalone
+grading,exclude_standalone

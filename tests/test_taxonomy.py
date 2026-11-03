@@ -196,3 +196,4 @@ class TestAmbiguousTerms:
         actual_terms = set(ambiguous_df["term"].str.strip().str.lower().tolist())
         missing = prompt_terms - actual_terms
         assert not missing, f"Prompt-mandated collision terms missing from ambiguous_terms.csv: {missing}"
+

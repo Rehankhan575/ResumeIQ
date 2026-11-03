@@ -197,10 +197,21 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
 | 12 | 2026-11-03 | `job_resume_fit` (23 JDs) NOT used for matcher training | Only 23 distinct JDs; used solely as external validation (Spearman vs ai_match_score on test-split resumes). Training/eval JDs come from `linkedin_sample` mapped by title rules. |
 | 13 | 2026-11-03 | One shared resume split keyed on LiveCareer ID, group-aware | Groups defined by exact-duplicate Resume_str OR TF-IDF cosine ≥ 0.90. Split serves classifier, matcher, and NER gold selection. |
 | 14 | 2026-11-03 | Classifier reports results with and without the leading title header | LiveCareer resumes begin with job title (div.PARAGRAPH_NAME); masking it removes the dominant signal to measure label leak. |
+| 15 | 2026-11-03 | `title_category_map` is frozen, labels are title-rule weak labels | Precedence rules establish domain keyword priority over generic role words; frozen to preserve split stability. |
+| 16 | 2026-11-03 | O*NET skills are kept in taxonomy but flagged inactive when unused in train text, not deleted | Preserves occupational taxonomy integrity while cleanly separating active vocabulary (DF > 0 or curated) from unobserved tools. |
 
 ---
 
 ## CHANGELOG
+
+### v0.3.0 — 2026-11-03
+- `data/taxonomies/title_category_map.csv`: frozen title precedence rules (243 rules), `scripts/build_jd_pool.py` updated (1,796 mapped JDs, 26 ambiguous, 3,011 unmapped), `docs/splits.md` updated
+- `scripts/build_skills_taxonomy.py`: built unified taxonomy (`data/taxonomies/skills.csv`, 1,667 rows), curated non-IT skills (`data/taxonomies/skills_curated.csv`, 487 rows), ambiguity rules (`data/taxonomies/ambiguous_terms.csv`, 35 rows), unit tests (`tests/test_taxonomy.py`, 16 tests), and documentation (`docs/taxonomy.md`)
+- `scripts/make_fixtures.py`: generated 5 synthetic resume fixtures (`ds_clean.pdf`, `swe_two_column.pdf`, `accountant_table.pdf`, `chef_plain.docx`, `nurse_scanned.pdf`), 3 synthetic JDs, and 8 `.expected.json` sidecars in `tests/fixtures/`
+- `scripts/taxonomy_stats.py`: fast 1-5 n-gram taxonomy stats over unmasked train text -> `data/taxonomies/skills_stats.csv`, reporting 833 active skills, distribution percentiles, suspects, and O*NET breakdown in `docs/taxonomy.md`
+- `scripts/make_eda_notebook.py`: programmatic build and execution of `notebooks/01_eda.ipynb` via `nbformat` and `nbclient` using `dl_project_venv`, producing figures in `artifacts/reports/eda_*.png`
+- `tests/test_fixtures.py`: comprehensive fixture tests verifying file integrity, scanned PDF zero-text layer (<20 chars, >=1 image), sidecar schema compliance, taxonomy skill validation, and `@example.com` domain isolation
+- `requirements.txt`: pinned `reportlab==5.1.0`, `python-docx==1.2.0`, `pymupdf==2.0`, `Pillow==13.0.0`, `nbformat==5.11.1`, `nbclient==0.11.0`, `ipykernel==7.4.0`, `matplotlib==3.11.2`
 
 ### v0.2.0 — 2026-11-03
 - `scripts/make_splits.py`: group-aware 70/15/15 resume split (seed 42), TF-IDF dedup,

@@ -1,0 +1,1668 @@
+skill,category,source,df_resume,df_jd,df_resume_pct,active
+1cadcam unigraphics,cad_engineering,onet,0,0,0.0,False
+3d graphics software,design_multimedia,onet,0,0,0.0,False
+3m post-it app,software_tools,onet,0,0,0.0,False
+5g networks,networking,ner_synthetic,0,0,0.0,False
+a programming language apl,programming_languages,onet,0,0,0.0,False
+a-systems jobview,accounting_finance,onet,0,0,0.0,False
+ab initio,enterprise_software,onet,0,0,0.0,False
+ab testing,data_ml_dl,curated,12,2,0.69,True
+abacusnext hotdocs,software_tools,onet,0,0,0.0,False
+abc compiler,programming_languages,onet,0,0,0.0,False
+academic research,teaching_education,curated,1,1,0.06,True
+access,databases,curated,352,197,20.24,True
+access management software,software_tools,onet,0,0,0.0,False
+accessdata ftk,networking,onet,0,0,0.0,False
+accessibility,design_multimedia,ner_synthetic,11,22,0.63,True
+account management,sales_marketing,curated,127,43,7.3,True
+accounts payable,accounting_finance,curated,137,32,7.88,True
+accounts payable software,accounting_finance,onet,0,0,0.0,False
+accounts receivable,accounting_finance,curated,100,27,5.75,True
+accounts receivable software,accounting_finance,onet,0,0,0.0,False
+acd systems canvas,design_multimedia,onet,0,0,0.0,False
+act!,sales_marketing,onet,127,128,7.3,True
+active directory software,software_tools,onet,0,0,0.0,False
+active listening,soft_skills,curated,51,7,2.93,True
+actsoft comet tracker,databases,onet,0,0,0.0,False
+acute care,healthcare_medical,curated,14,42,0.81,True
+ada,programming_languages,onet,27,18,1.55,True
+adaptability,soft_skills,curated,132,106,7.59,True
+ado.net,databases,onet,4,1,0.23,True
+adobe acrobat,software_tools,onet,30,0,1.73,True
+adobe acrobat reader,software_tools,onet,0,0,0.0,False
+adobe actionscript,programming_languages,onet,0,0,0.0,False
+adobe after effects,design_multimedia,onet,3,0,0.17,True
+adobe audition,design_multimedia,onet,1,0,0.06,True
+adobe captivate,software_tools,onet,1,0,0.06,True
+adobe coldfusion,web_frameworks,onet,0,0,0.0,False
+adobe creative cloud software,design_multimedia,onet,0,0,0.0,False
+adobe director,design_multimedia,onet,0,0,0.0,False
+adobe distiller,design_multimedia,onet,0,0,0.0,False
+adobe dreamweaver,web_frameworks,onet,10,0,0.58,True
+adobe experience manager (aem),web_frameworks,onet,1,0,0.06,True
+adobe flex,web_frameworks,onet,0,0,0.0,False
+adobe framemaker,design_multimedia,onet,0,0,0.0,False
+adobe freehand mx,design_multimedia,onet,0,0,0.0,False
+adobe illustrator,software_tools,curated,94,3,5.41,True
+adobe imageready,design_multimedia,onet,0,0,0.0,False
+adobe indesign,design_multimedia,onet,15,0,0.86,True
+adobe livemotion,design_multimedia,onet,0,0,0.0,False
+adobe pagemaker,design_multimedia,onet,1,0,0.06,True
+adobe photoshop,software_tools,curated,147,3,8.45,True
+adobe premiere pro,design_multimedia,onet,2,0,0.12,True
+adobe presenter,software_tools,onet,1,0,0.06,True
+adobe xd,software_tools,curated,1,0,0.06,True
+adp enterprise hr,hr_recruiting,onet,1,0,0.06,True
+adp workforce now,hr_recruiting,onet,2,2,0.12,True
+advanced cardiac life support,healthcare_medical,curated,8,36,0.46,True
+aec software fasttrack schedule,project_management,onet,0,0,0.0,False
+aeronautical charts,software_tools,onet,0,1,0.0,True
+aestiva purchase order,enterprise_software,onet,0,0,0.0,False
+after effects,design_multimedia,ner_synthetic,6,2,0.35,True
+agricultural machinery,agriculture,ner_synthetic,0,0,0.0,False
+airdata,project_management,onet,0,0,0.0,False
+airflow,data_ml_dl,curated,0,3,0.0,True
+airtable,databases,onet,0,0,0.0,False
+ajax,web_frameworks,onet,7,0,0.4,True
+algorithmic language algol,programming_languages,onet,0,0,0.0,False
+allscripts healthcare automation software,healthcare_medical,onet,0,0,0.0,False
+allscripts pm,healthcare_medical,onet,0,0,0.0,False
+allscripts professional ehr,healthcare_medical,onet,0,0,0.0,False
+allscripts sunrise,healthcare_medical,onet,0,0,0.0,False
+alpha software alpha five,databases,onet,0,0,0.0,False
+alteryx software,data_ml_dl,onet,0,0,0.0,False
+amazing charts,healthcare_medical,onet,0,0,0.0,False
+amazon kinesis,databases,onet,0,0,0.0,False
+amazon web services,cloud_devops,curated,14,50,0.81,True
+american medical association codemanager,software_tools,onet,0,0,0.0,False
+american sign language browser,databases,onet,0,0,0.0,False
+amkai amkaicharts,healthcare_medical,onet,0,0,0.0,False
+analyse-it,data_ml_dl,onet,0,0,0.0,False
+analyzerxl,data_ml_dl,onet,0,0,0.0,False
+angular,web_frameworks,curated,6,11,0.35,True
+ansible,cloud_devops,curated,0,8,0.0,True
+ansible software,software_tools,onet,0,0,0.0,False
+ansys fluent,data_ml_dl,onet,1,0,0.06,True
+ansys multiphysics,data_ml_dl,onet,0,0,0.0,False
+ansys simulation software,data_ml_dl,onet,0,0,0.0,False
+anti-money laundering,legal_compliance,curated,12,2,0.69,True
+anti-spyware software,cybersecurity,onet,0,0,0.0,False
+antivirus software,cybersecurity,onet,0,0,0.0,False
+aol mapquest,cad_engineering,onet,0,0,0.0,False
+apache ant,programming_languages,onet,0,0,0.0,False
+apache avro,software_tools,onet,0,0,0.0,False
+apache flume,databases,onet,0,0,0.0,False
+apache hive,databases,onet,0,0,0.0,False
+apache http server,cloud_devops,curated,2,0,0.12,True
+apache jmeter,programming_languages,onet,0,0,0.0,False
+apache maven,programming_languages,onet,0,0,0.0,False
+apache oozie,databases,onet,0,0,0.0,False
+apache pig,databases,onet,0,0,0.0,False
+apache solr,databases,onet,0,0,0.0,False
+apache sqoop,databases,onet,0,0,0.0,False
+apache struts,web_frameworks,onet,1,0,0.06,True
+apache subversion svn,cloud_devops,onet,0,0,0.0,False
+apache tomcat,web_frameworks,onet,4,0,0.23,True
+apple appleworks,software_tools,onet,0,0,0.0,False
+apple cocoa,programming_languages,onet,0,0,0.0,False
+apple final cut pro,design_multimedia,onet,0,0,0.0,False
+apple imovie,design_multimedia,onet,1,0,0.06,True
+apple ios,cloud_devops,onet,3,0,0.17,True
+apple iwork keynote,software_tools,onet,0,0,0.0,False
+apple iwork pages,software_tools,onet,0,0,0.0,False
+apple keynote,software_tools,onet,0,0,0.0,False
+apple macos,cloud_devops,onet,0,0,0.0,False
+apple quicktime,design_multimedia,onet,0,0,0.0,False
+apple safari,software_tools,onet,0,0,0.0,False
+appletree,software_tools,onet,0,0,0.0,False
+applicant tracking software,hr_recruiting,onet,0,1,0.0,True
+applicant tracking systems,hr_recruiting,curated,1,1,0.06,True
+application management software,cloud_devops,onet,0,0,0.0,False
+appointment scheduling software,project_management,onet,1,0,0.06,True
+aptean made2manage,enterprise_software,onet,0,0,0.0,False
+aptech systems gauss,data_ml_dl,onet,0,0,0.0,False
+ardupilot mission planner,software_tools,onet,0,0,0.0,False
+argo cd,cloud_devops,curated,0,1,0.0,True
+articulate rapid e-learning studio,software_tools,onet,0,0,0.0,False
+artificial intelligence,data_ml_dl,curated,6,37,0.35,True
+as/400 database,databases,onet,0,0,0.0,False
+asana,software_tools,curated,0,2,0.0,True
+asp.net,web_frameworks,curated,17,2,0.98,True
+assay development,healthcare_medical,ner_synthetic,1,0,0.06,True
+assembly,programming_languages,curated,85,14,4.89,True
+asset management,operations_logistics,ner_synthetic,32,9,1.84,True
+asset monitoring,engineering_construction,ner_synthetic,0,0,0.0,False
+athenahealth athenacollector,healthcare_medical,onet,0,0,0.0,False
+athletic conditioning,fitness_wellness,curated,0,0,0.0,True
+atlas construction business forms,software_tools,onet,0,0,0.0,False
+atlassian bamboo,enterprise_software,onet,0,0,0.0,False
+attention to detail,soft_skills,curated,422,172,24.27,True
+atx total accounting office,accounting_finance,onet,0,0,0.0,False
+audacity,design_multimedia,onet,0,0,0.0,False
+audience research,sales_marketing,ner_synthetic,0,0,0.0,False
+audio editing,design_multimedia,ner_synthetic,2,0,0.12,True
+audion laboratories voxpro,design_multimedia,onet,0,0,0.0,False
+autocad,engineering_construction,curated,66,9,3.8,True
+autocrit editing wizard,software_tools,onet,0,0,0.0,False
+autodesk 3ds max,design_multimedia,onet,1,0,0.06,True
+autodesk 3ds max design,cad_engineering,onet,0,0,0.0,False
+autodesk autocad civil 3d,cad_engineering,onet,0,0,0.0,False
+autodesk autocad map 3d,cad_engineering,onet,0,0,0.0,False
+autodesk autocad mechanical,cad_engineering,onet,1,0,0.06,True
+autodesk inventor,cad_engineering,onet,5,0,0.29,True
+autodesk land desktop,cad_engineering,onet,0,0,0.0,False
+autodesk maya,design_multimedia,onet,1,0,0.06,True
+autodesk mudbox,design_multimedia,onet,0,0,0.0,False
+autodesk navisworks,cad_engineering,onet,0,0,0.0,False
+autodesk sketchbook pro,design_multimedia,onet,0,0,0.0,False
+autodessys form z,cad_engineering,onet,0,0,0.0,False
+automated installation software,cloud_devops,onet,0,0,0.0,False
+automated inventory software,enterprise_software,onet,0,0,0.0,False
+aveva intouch hmi,software_tools,onet,0,0,0.0,False
+avid pro tools,design_multimedia,onet,0,0,0.0,False
+avid technology inews,design_multimedia,onet,0,0,0.0,False
+avid technology media composer,design_multimedia,onet,0,0,0.0,False
+avid technology pro tools,design_multimedia,onet,0,0,0.0,False
+avid technology sibelius,design_multimedia,onet,0,0,0.0,False
+avidian technologies prophet,sales_marketing,onet,0,0,0.0,False
+awk,programming_languages,onet,1,0,0.06,True
+axxya systems nutritionist pro,data_ml_dl,onet,0,0,0.0,False
+aya associates comp-u-floor,databases,onet,0,0,0.0,False
+b-method,programming_languages,onet,0,0,0.0,False
+b2b sales,sales_marketing,curated,4,15,0.23,True
+b2c sales,sales_marketing,curated,1,0,0.06,True
+backbone.js,web_frameworks,onet,0,0,0.0,False
+background checks,hr_recruiting,curated,47,12,2.7,True
+backup and archival software,software_tools,onet,0,0,0.0,False
+baking,culinary_chef,curated,19,2,1.09,True
+balance sheet,accounting_finance,curated,59,21,3.39,True
+bank reconciliation,accounting_finance,curated,59,6,3.39,True
+basecamp,project_management,onet,4,0,0.23,True
+bash,programming_languages,curated,10,7,0.58,True
+basic life support,healthcare_medical,curated,17,71,0.98,True
+behavioral health,healthcare_medical,curated,10,20,0.58,True
+belmar & associates mortware,databases,onet,0,0,0.0,False
+bentley geopak bridge,design_multimedia,onet,0,0,0.0,False
+bentley inroads suite,cad_engineering,onet,0,0,0.0,False
+bentley microstation,cad_engineering,onet,0,0,0.0,False
+bentley staad,cad_engineering,onet,0,0,0.0,False
+bentley systems inroads suite,cad_engineering,onet,0,0,0.0,False
+bentley systems projectwise,project_management,onet,0,0,0.0,False
+bgp,networking,ner_synthetic,1,1,0.06,True
+bigloo scheme,programming_languages,onet,0,0,0.0,False
+bigquery,databases,curated,0,0,0.0,True
+bilingual education,teaching_education,curated,13,3,0.75,True
+bill of lading software,enterprise_software,onet,0,0,0.0,False
+bill of materials software,enterprise_software,onet,0,0,0.0,False
+billing software,accounting_finance,onet,3,0,0.17,True
+bioex systems exercise pro,healthcare_medical,onet,0,0,0.0,False
+bioinformatics,healthcare_medical,ner_synthetic,2,0,0.12,True
+bitbucket,software_tools,curated,0,1,0.0,True
+bizbench,data_ml_dl,onet,0,0,0.0,False
+bizmatics prognocis emr,healthcare_medical,onet,0,0,0.0,False
+blackbaud etapestry,sales_marketing,onet,0,0,0.0,False
+blackbaud the raiser's edge,sales_marketing,onet,0,0,0.0,False
+blackboard,teaching_education,curated,11,0,0.63,True
+blackboard software,databases,onet,1,0,0.06,True
+blender,software_tools,curated,0,1,0.0,True
+blink,software_tools,onet,0,1,0.0,True
+blogging software,web_frameworks,onet,0,0,0.0,False
+bloomberg professional,data_ml_dl,onet,0,0,0.0,False
+bloomz,software_tools,onet,0,0,0.0,False
+blueprint reading,engineering_construction,curated,8,1,0.46,True
+bmc software control-m,enterprise_software,onet,0,0,0.0,False
+body composition assessment,fitness_wellness,curated,0,0,0.0,True
+bookkeeping software,accounting_finance,onet,2,1,0.12,True
+bootstrap,web_frameworks,curated,9,0,0.52,True
+border gateway protocol bgp,networking,onet,0,0,0.0,False
+braintrain captain's log,healthcare_medical,onet,0,0,0.0,False
+brand management,sales_marketing,curated,51,5,2.93,True
+budget forecasting,accounting_finance,ner_synthetic,17,0,0.98,True
+budget monitoring,culinary_chef,ner_synthetic,2,0,0.12,True
+budgeting software,accounting_finance,onet,1,0,0.06,True
+bugzilla,programming_languages,onet,0,0,0.0,False
+building codes,engineering_construction,curated,16,4,0.92,True
+business development,sales_marketing,curated,213,60,12.25,True
+business intelligence software,data_ml_dl,onet,1,0,0.06,True
+business software applications,software_tools,onet,1,0,0.06,True
+butchery,culinary_chef,curated,4,0,0.23,True
+c,programming_languages,curated,136,22,7.82,True
+c#,programming_languages,curated,30,16,1.73,True
+c++,programming_languages,curated,48,19,2.76,True
+cad,engineering_construction,ner_synthetic,41,10,2.36,True
+cadence pspice,data_ml_dl,onet,0,0,0.0,False
+calendar software,project_management,onet,1,0,0.06,True
+calibration software,data_ml_dl,onet,0,0,0.0,False
+caliper maptitude,cad_engineering,onet,0,0,0.0,False
+call-processing language cpl,programming_languages,onet,0,0,0.0,False
+camera operation,design_multimedia,ner_synthetic,0,0,0.0,False
+camfit data limited microfit,data_ml_dl,onet,0,0,0.0,False
+campaign attribution,sales_marketing,ner_synthetic,1,0,0.06,True
+candidate sourcing,hr_recruiting,curated,3,1,0.17,True
+canu,programming_languages,onet,0,0,0.0,False
+canva,design_multimedia,onet,1,1,0.06,True
+canvas lms,teaching_education,curated,6,0,0.35,True
+capacity planning,networking,ner_synthetic,14,1,0.81,True
+capital budgeting,accounting_finance,curated,16,5,0.92,True
+cardiopulmonary resuscitation,healthcare_medical,curated,115,57,6.61,True
+cardiovascular conditioning,fitness_wellness,curated,7,0,0.4,True
+carecloud central,healthcare_medical,onet,0,0,0.0,False
+carlson survcadd,cad_engineering,onet,0,0,0.0,False
+carpentry,engineering_construction,curated,24,3,1.38,True
+cascading style sheets css,web_frameworks,onet,0,1,0.0,True
+case management,legal_compliance,curated,51,20,2.93,True
+case management software,project_management,onet,0,1,0.0,True
+cash flow analysis,accounting_finance,ner_synthetic,10,0,0.58,True
+cash flow statement,accounting_finance,curated,11,2,0.63,True
+cassandra,databases,curated,0,4,0.0,True
+catering,culinary_chef,curated,81,10,4.66,True
+catheterization,healthcare_medical,curated,5,1,0.29,True
+cell culture,healthcare_medical,ner_synthetic,3,0,0.17,True
+ceridian dayforce enterprise hcm,hr_recruiting,onet,0,0,0.0,False
+cerner,healthcare_medical,curated,3,1,0.17,True
+cerner millennium,healthcare_medical,onet,1,0,0.06,True
+cerner powerworks practice management,healthcare_medical,onet,0,0,0.0,False
+cerner profile,healthcare_medical,onet,0,0,0.0,False
+cfa,accounting_finance,curated,1,1,0.06,True
+cgi-ams bureaulink enterprise,software_tools,onet,0,0,0.0,False
+chart of accounts,accounting_finance,curated,12,3,0.69,True
+chartware emr,healthcare_medical,onet,0,0,0.0,False
+chatbot software,software_tools,onet,0,0,0.0,False
+chef,cloud_devops,curated,90,13,5.18,True
+chemotherapy administration,healthcare_medical,curated,1,1,0.06,True
+children's educational software,software_tools,onet,0,0,0.0,False
+chromatography,healthcare_medical,ner_synthetic,6,1,0.35,True
+ci/cd,cloud_devops,curated,3,25,0.17,True
+circleci,cloud_devops,curated,0,2,0.0,True
+circuit simulation software,data_ml_dl,onet,0,0,0.0,False
+cisco ios,cloud_devops,onet,3,0,0.17,True
+cisco systems ciscoworks,software_tools,onet,0,0,0.0,False
+cisco webex,design_multimedia,onet,0,0,0.0,False
+citrix cloud computing software,software_tools,onet,0,0,0.0,False
+civil engineering,engineering_construction,curated,24,9,1.38,True
+classdojo,software_tools,onet,0,0,0.0,False
+classroom management,teaching_education,curated,45,5,2.59,True
+clickhouse,databases,curated,0,0,0.0,True
+client counseling,legal_compliance,curated,0,0,0.0,True
+client fitness assessment,fitness_wellness,curated,0,0,0.0,True
+clinical audit,healthcare_medical,ner_synthetic,0,0,0.0,False
+clinical documentation,healthcare_medical,curated,36,18,2.07,True
+clinical research,healthcare_medical,curated,13,15,0.75,True
+clinical trial management software,databases,onet,0,0,0.0,False
+clojure,programming_languages,curated,0,0,0.0,True
+cloud infrastructure,programming_languages,ner_synthetic,1,2,0.06,True
+cloud security,cybersecurity,ner_synthetic,2,2,0.12,True
+cloudcompare,data_ml_dl,onet,0,0,0.0,False
+cloudformation,cloud_devops,curated,0,2,0.0,True
+clover technology galena,data_ml_dl,onet,0,0,0.0,False
+clustalw,data_ml_dl,onet,0,0,0.0,False
+cnc mastercam,cad_engineering,onet,0,0,0.0,False
+cobol,programming_languages,curated,8,0,0.46,True
+cold calling,sales_marketing,curated,47,27,2.7,True
+collaborative editing software,software_tools,onet,0,0,0.0,False
+color grading,design_multimedia,ner_synthetic,0,0,0.0,False
+commissioning,engineering_construction,curated,15,3,0.86,True
+common curriculum,software_tools,onet,0,0,0.0,False
+common gateway interface cgi,enterprise_software,onet,0,0,0.0,False
+communication,soft_skills,curated,883,567,50.78,True
+compensation and benefits,hr_recruiting,curated,18,92,1.04,True
+compris software,sales_marketing,onet,0,0,0.0,False
+computer aided dispatch software,software_tools,onet,0,0,0.0,False
+computer assisted design software,cad_engineering,onet,0,0,0.0,False
+computer imaging software,design_multimedia,onet,0,0,0.0,False
+computer vision,data_ml_dl,curated,9,14,0.52,True
+computer-aided design,engineering_construction,curated,5,0,0.29,True
+computer-aided engineering cae software,data_ml_dl,onet,0,0,0.0,False
+computerease construction accounting software,accounting_finance,onet,0,0,0.0,False
+concrete work,engineering_construction,curated,1,0,0.06,True
+conflict resolution,soft_skills,curated,148,11,8.51,True
+confluence,software_tools,curated,5,3,0.29,True
+constant contact,sales_marketing,onet,9,0,0.52,True
+construction management software proest,data_ml_dl,onet,0,0,0.0,False
+construction software center easyest,project_management,onet,0,0,0.0,False
+consultative sales,sales_marketing,curated,19,9,1.09,True
+consultative selling,sales_marketing,curated,10,8,0.58,True
+contact management software,project_management,onet,0,0,0.0,False
+content management systems cms,web_frameworks,onet,4,1,0.23,True
+content marketing,sales_marketing,curated,22,1,1.27,True
+content scheduling,design_multimedia,ner_synthetic,0,0,0.0,False
+contract administration,engineering_construction,ner_synthetic,8,1,0.46,True
+contract drafting,legal_compliance,curated,8,0,0.46,True
+contract lifecycle management,legal_compliance,ner_synthetic,0,0,0.0,False
+contract negotiation,sales_marketing,curated,22,7,1.27,True
+control systems,engineering_construction,ner_synthetic,28,13,1.61,True
+conversion optimization,sales_marketing,ner_synthetic,0,0,0.0,False
+coordinate geometry cogo software,data_ml_dl,onet,0,0,0.0,False
+copywriting,sales_marketing,curated,11,4,0.63,True
+core conditioning,fitness_wellness,curated,1,0,0.06,True
+corel coreldraw graphics suite,design_multimedia,onet,0,0,0.0,False
+corel paint shop pro,design_multimedia,onet,0,0,0.0,False
+corel painter,design_multimedia,onet,1,0,0.06,True
+corel quattropro,software_tools,onet,0,0,0.0,False
+corel wordperfect office suite,software_tools,onet,0,0,0.0,False
+corporate governance,legal_compliance,curated,3,7,0.17,True
+corporate tax,accounting_finance,curated,11,2,0.63,True
+cost accounting,accounting_finance,curated,56,7,3.22,True
+cost accounting software,accounting_finance,onet,0,0,0.0,False
+cost estimating,engineering_construction,curated,8,4,0.46,True
+cost estimating software,project_management,onet,0,0,0.0,False
+cost estimation,engineering_construction,ner_synthetic,7,2,0.4,True
+cost reduction,accounting_finance,curated,43,7,2.47,True
+couchdb,databases,curated,0,0,0.0,True
+course management system software,software_tools,onet,0,0,0.0,False
+cpa,accounting_finance,curated,45,36,2.59,True
+cpr certification,fitness_wellness,curated,24,27,1.38,True
+cpr international generalcost estimator,accounting_finance,onet,0,0,0.0,False
+cpr visual estimator,data_ml_dl,onet,0,0,0.0,False
+cpsi cpsi system,healthcare_medical,onet,0,0,0.0,False
+cpt coding,healthcare_medical,curated,2,2,0.12,True
+craftsman cd estimator,project_management,onet,0,0,0.0,False
+credit analysis,accounting_finance,curated,4,2,0.23,True
+crime mapping software,cad_engineering,onet,0,0,0.0,False
+critical thinking,soft_skills,curated,112,36,6.44,True
+crm,sales_marketing,ner_synthetic,87,55,5.0,True
+crm segmentation,sales_marketing,ner_synthetic,0,0,0.0,False
+crop monitoring,agriculture,ner_synthetic,0,0,0.0,False
+crystalmaker,data_ml_dl,onet,0,0,0.0,False
+css3,web_frameworks,curated,47,10,2.7,True
+culinary arts,culinary_chef,curated,45,3,2.59,True
+culinary nutrition,culinary_chef,curated,6,0,0.35,True
+culinary software services cheftec,databases,onet,0,0,0.0,False
+curriculum development,teaching_education,curated,32,5,1.84,True
+customer information databases,sales_marketing,onet,0,0,0.0,False
+customer journey mapping,sales_marketing,curated,4,0,0.23,True
+customer relationship management,sales_marketing,curated,35,10,2.01,True
+customer service,soft_skills,curated,728,255,41.86,True
+dart,programming_languages,curated,1,0,0.06,True
+dartware intermapper,networking,onet,0,0,0.0,False
+dassault systemes abaqus,data_ml_dl,onet,0,0,0.0,False
+dassault systemes catia,cad_engineering,onet,0,0,0.0,False
+dassault systemes solidworks,cad_engineering,onet,0,0,0.0,False
+data acquisition software,data_ml_dl,onet,0,0,0.0,False
+data acquisition systems,data_ml_dl,onet,0,0,0.0,False
+data analysis,healthcare_medical,ner_synthetic,90,30,5.18,True
+data analysis software,data_ml_dl,onet,0,0,0.0,False
+data definition language ddl,databases,onet,0,0,0.0,False
+data entry software,databases,onet,0,0,0.0,False
+data governance,data_ml_dl,ner_synthetic,2,4,0.12,True
+data logging software,databases,onet,0,0,0.0,False
+data manipulation language dml,databases,onet,0,0,0.0,False
+data modeling,data_ml_dl,curated,3,10,0.17,True
+data modeling software,databases,onet,0,0,0.0,False
+data pipelines,data_ml_dl,curated,0,8,0.0,True
+data privacy,legal_compliance,ner_synthetic,3,12,0.17,True
+data privacy compliance,legal_compliance,curated,1,3,0.06,True
+data quality,data_ml_dl,ner_synthetic,11,5,0.63,True
+data visualization,data_ml_dl,curated,5,6,0.29,True
+data visualization software,data_ml_dl,onet,1,0,0.06,True
+data warehousing,data_ml_dl,curated,6,8,0.35,True
+database management software,databases,onet,1,1,0.06,True
+database management systems,databases,onet,2,1,0.12,True
+database reporting software,databases,onet,0,0,0.0,False
+database software,databases,onet,8,1,0.46,True
+databricks,databases,curated,0,5,0.0,True
+datadog,cloud_devops,curated,0,0,0.0,True
+datavision,databases,onet,1,0,0.06,True
+dataworks plus digital crimescene,databases,onet,0,0,0.0,False
+daysmart software appointment-plus,project_management,onet,0,0,0.0,False
+dbase,databases,onet,3,0,0.17,True
+dbase plus,databases,onet,0,0,0.0,False
+dbt,data_ml_dl,curated,2,0,0.12,True
+debugging software,programming_languages,onet,0,0,0.0,False
+decision making,soft_skills,curated,96,31,5.52,True
+decisioneering crystal ball,data_ml_dl,onet,0,0,0.0,False
+deep learning,data_ml_dl,curated,1,2,0.06,True
+defect tracking software,programming_languages,onet,0,0,0.0,False
+delcam powermill,cad_engineering,onet,0,0,0.0,False
+delphi discovery,data_ml_dl,onet,0,0,0.0,False
+delphi technology,data_ml_dl,onet,0,0,0.0,False
+deltek costpoint,accounting_finance,onet,2,0,0.12,True
+demand planning,operations_logistics,ner_synthetic,1,3,0.06,True
+deployment software,cloud_devops,onet,1,0,0.06,True
+deposition preparation,legal_compliance,curated,0,0,0.0,True
+derivicom finoptions xl,data_ml_dl,onet,0,0,0.0,False
+design systems,design_multimedia,ner_synthetic,5,2,0.29,True
+designware 3d eyewitness,design_multimedia,onet,0,0,0.0,False
+desire2learn lms software,software_tools,onet,0,0,0.0,False
+desmos,data_ml_dl,onet,0,0,0.0,False
+devsecops,cloud_devops,curated,1,7,0.06,True
+diagramming software,software_tools,onet,0,0,0.0,False
+dialysis,healthcare_medical,curated,8,9,0.46,True
+differentiated instruction,teaching_education,curated,13,2,0.75,True
+digital forensics,cybersecurity,ner_synthetic,0,0,0.0,False
+digital marketing,sales_marketing,curated,59,8,3.39,True
+disassembler software,programming_languages,onet,0,0,0.0,False
+discovery process,legal_compliance,curated,5,1,0.29,True
+dispatch software,operations_logistics,ner_synthetic,0,0,0.0,False
+distance learning,teaching_education,curated,13,0,0.75,True
+distributed control system dcs,software_tools,onet,0,0,0.0,False
+diversity equity inclusion,hr_recruiting,curated,2,9,0.12,True
+django,web_frameworks,curated,0,2,0.0,True
+dm2 bills of lading,data_ml_dl,onet,0,0,0.0,False
+doc cop,software_tools,onet,0,0,0.0,False
+docker,cloud_devops,curated,1,21,0.06,True
+document management system software,software_tools,onet,0,0,0.0,False
+domain name system dns,software_tools,onet,0,0,0.0,False
+dp technology esprit,cad_engineering,onet,0,0,0.0,False
+drawing and drafting software,cad_engineering,onet,0,0,0.0,False
+drawing software,design_multimedia,onet,0,0,0.0,False
+driver scheduling,operations_logistics,ner_synthetic,0,0,0.0,False
+dropbox,cloud_devops,onet,2,0,0.12,True
+drupal,web_frameworks,onet,5,0,0.29,True
+due diligence,legal_compliance,curated,41,6,2.36,True
+dynamic analysis software,programming_languages,onet,0,0,0.0,False
+dynamodb,databases,curated,0,3,0.0,True
+e++ pattern language,programming_languages,onet,0,0,0.0,False
+e-commerce operations,sales_marketing,ner_synthetic,0,1,0.0,True
+e-learning,teaching_education,ner_synthetic,6,2,0.35,True
+e-mds software,healthcare_medical,onet,0,0,0.0,False
+early childhood education,teaching_education,curated,11,1,0.63,True
+earthsoft equis geology,databases,onet,0,0,0.0,False
+easycbm,software_tools,onet,0,0,0.0,False
+eclinicalworks ehr software,healthcare_medical,onet,0,0,0.0,False
+eclipse,software_tools,curated,18,0,1.04,True
+econometric software limdep,data_ml_dl,onet,0,0,0.0,False
+editcnc,software_tools,onet,0,0,0.0,False
+editorial research,design_multimedia,ner_synthetic,0,0,0.0,False
+edmodo,software_tools,onet,0,0,0.0,False
+edpuzzle,software_tools,onet,0,0,0.0,False
+educational leadership,teaching_education,curated,18,1,1.04,True
+educational research,teaching_education,ner_synthetic,0,0,0.0,False
+educational software,software_tools,onet,3,1,0.17,True
+educational technology,teaching_education,curated,17,3,0.98,True
+edulastic,software_tools,onet,0,0,0.0,False
+egs calcmenu,databases,onet,0,0,0.0,False
+eiffel,programming_languages,onet,0,0,0.0,False
+eko,software_tools,onet,0,0,0.0,False
+elasticsearch,databases,curated,3,8,0.17,True
+electrical engineering,engineering_construction,curated,53,23,3.05,True
+electrical testing,engineering_construction,ner_synthetic,0,0,0.0,False
+electrical wiring,engineering_construction,curated,5,0,0.29,True
+electron,web_frameworks,curated,1,1,0.06,True
+electronic health records,healthcare_medical,curated,11,9,0.63,True
+electronic medical records,healthcare_medical,curated,28,21,1.61,True
+electronic time clock etc,accounting_finance,onet,0,0,0.0,False
+element management software,software_tools,onet,0,0,0.0,False
+elisa,healthcare_medical,ner_synthetic,4,0,0.23,True
+elixir,programming_languages,curated,0,0,0.0,True
+email marketing,sales_marketing,curated,33,2,1.9,True
+email software,software_tools,onet,4,0,0.23,True
+embarcadero delphi,programming_languages,onet,0,0,0.0,False
+embarcadero jbuilder,programming_languages,onet,0,0,0.0,False
+embedded systems development software,programming_languages,onet,0,0,0.0,False
+emc documentum,software_tools,onet,0,0,0.0,False
+emc networker,software_tools,onet,1,0,0.06,True
+emds medisoft,healthcare_medical,onet,0,0,0.0,False
+emotional intelligence,soft_skills,curated,19,27,1.09,True
+employee engagement,hr_recruiting,curated,33,9,1.9,True
+employee onboarding,hr_recruiting,curated,35,5,2.01,True
+employee relations,hr_recruiting,curated,86,15,4.95,True
+employee scheduling software,project_management,onet,0,0,0.0,False
+employer branding,hr_recruiting,curated,2,0,0.12,True
+encoded archival system ead,databases,onet,0,0,0.0,False
+encryption software,cybersecurity,onet,0,0,0.0,False
+energy auditing,engineering_construction,ner_synthetic,0,0,0.0,False
+energy modeling,engineering_construction,ner_synthetic,0,0,0.0,False
+enterprise javabeans,web_frameworks,onet,1,0,0.06,True
+eos systems photomodeler,design_multimedia,onet,0,0,0.0,False
+epic practice management,healthcare_medical,onet,0,0,0.0,False
+epic systems,healthcare_medical,curated,0,0,0.0,True
+epicor vantage erp,enterprise_software,onet,0,0,0.0,False
+epocrates,healthcare_medical,onet,0,0,0.0,False
+equipment calibration,engineering_construction,ner_synthetic,4,0,0.23,True
+equipment reliability,engineering_construction,ner_synthetic,4,0,0.23,True
+equity research,accounting_finance,curated,2,1,0.12,True
+erlang,programming_languages,curated,0,0,0.0,True
+erp software,enterprise_software,onet,4,1,0.23,True
+erp systems,operations_logistics,ner_synthetic,10,10,0.58,True
+esri arcgis,cad_engineering,onet,0,1,0.0,True
+esri arcgis geostatistical analyst,cad_engineering,onet,0,0,0.0,False
+esri arcgis software,cad_engineering,onet,0,1,0.0,True
+esri arcgis spatial analyst,cad_engineering,onet,0,0,0.0,False
+esri arcims,cad_engineering,onet,0,0,0.0,False
+esri arcinfo,cad_engineering,onet,0,0,0.0,False
+esri arcmap,cad_engineering,onet,0,0,0.0,False
+esri arcpad,cad_engineering,onet,0,0,0.0,False
+esri arcview,cad_engineering,onet,1,0,0.06,True
+esri arcview 3d analyst,cad_engineering,onet,0,0,0.0,False
+esri software,cad_engineering,onet,0,1,0.0,True
+estimating software,project_management,onet,1,1,0.06,True
+ethereal,networking,onet,0,0,0.0,False
+ethics compliance,legal_compliance,curated,0,2,0.0,True
+etl,data_ml_dl,curated,9,6,0.52,True
+etl pipelines,data_ml_dl,ner_synthetic,0,1,0.0,True
+event planning,culinary_chef,ner_synthetic,68,8,3.91,True
+event-driven state-machines programming,programming_languages,onet,0,0,0.0,False
+evernote,software_tools,onet,2,0,0.12,True
+evidence management,legal_compliance,ner_synthetic,0,0,0.0,False
+exact max,enterprise_software,onet,0,0,0.0,False
+exact software macola es,enterprise_software,onet,0,0,0.0,False
+excel,software_tools,curated,704,188,40.48,True
+exercise physiology,fitness_wellness,curated,5,0,0.29,True
+exit interviews,hr_recruiting,curated,23,1,1.32,True
+expediting,culinary_chef,curated,17,3,0.98,True
+experian credinomics,data_ml_dl,onet,0,0,0.0,False
+experimental design,healthcare_medical,ner_synthetic,1,0,0.06,True
+express.js,web_frameworks,curated,51,27,2.93,True
+ext js,web_frameworks,onet,0,0,0.0,False
+extensible markup language xml,enterprise_software,onet,0,0,0.0,False
+extensible stylesheet language xsl,enterprise_software,onet,0,0,0.0,False
+facebook,web_frameworks,onet,82,22,4.72,True
+facetime,design_multimedia,onet,0,1,0.0,True
+fannie mae desktop underwriter,data_ml_dl,onet,0,0,0.0,False
+farm budgeting,agriculture,ner_synthetic,0,0,0.0,False
+fastapi,web_frameworks,curated,0,1,0.0,True
+fastify,web_frameworks,curated,0,0,0.0,True
+feature engineering,data_ml_dl,curated,0,0,0.0,True
+fertilizer planning,agriculture,ner_synthetic,0,0,0.0,False
+fiber optics,networking,ner_synthetic,4,0,0.23,True
+field trials,agriculture,ner_synthetic,1,0,0.06,True
+fifth walk billingtracker,accounting_finance,onet,0,0,0.0,False
+figma,software_tools,curated,0,3,0.0,True
+file server software,software_tools,onet,0,0,0.0,False
+filemaker pro,databases,onet,2,0,0.12,True
+filing system software,software_tools,onet,0,0,0.0,False
+financial accounting software,accounting_finance,onet,1,0,0.06,True
+financial analysis,accounting_finance,curated,75,20,4.31,True
+financial auditing,accounting_finance,curated,24,16,1.38,True
+financial modeling,accounting_finance,curated,19,6,1.09,True
+financial planning software,data_ml_dl,onet,0,0,0.0,False
+financial reporting,accounting_finance,curated,154,47,8.86,True
+financial reporting software,accounting_finance,onet,1,0,0.06,True
+finite element analysis software,data_ml_dl,onet,0,0,0.0,False
+fire incident reporting systems,databases,onet,0,0,0.0,False
+firestore,databases,curated,0,0,0.0,True
+firewall administration,cybersecurity,ner_synthetic,1,0,0.06,True
+firewall software,networking,onet,0,0,0.0,False
+first aid,healthcare_medical,curated,84,10,4.83,True
+fixed asset accounting,accounting_finance,curated,5,0,0.29,True
+flask,web_frameworks,curated,1,3,0.06,True
+fleet management software,enterprise_software,onet,0,0,0.0,False
+fleet operations,operations_logistics,ner_synthetic,2,0,0.12,True
+flexibility training,fitness_wellness,curated,2,0,0.12,True
+flink,data_ml_dl,curated,0,1,0.0,True
+flipgrid,design_multimedia,onet,0,0,0.0,False
+flir thermal studio suite,data_ml_dl,onet,0,0,0.0,False
+flooring technologies qfloors,databases,onet,0,0,0.0,False
+flow chart software,software_tools,onet,0,0,0.0,False
+flutter,web_frameworks,curated,0,1,0.0,True
+food plating,culinary_chef,curated,21,1,1.21,True
+food preparation,culinary_chef,curated,55,7,3.16,True
+food safety,culinary_chef,curated,64,14,3.68,True
+food waste reduction,culinary_chef,curated,6,1,0.35,True
+foodman home-delivery,sales_marketing,onet,0,0,0.0,False
+forensic accounting,accounting_finance,curated,1,0,0.06,True
+formula translation/translator fortran,programming_languages,onet,0,0,0.0,False
+forth,programming_languages,onet,16,5,0.92,True
+fortran,programming_languages,curated,7,0,0.4,True
+fpa software maccs,databases,onet,0,0,0.0,False
+freight coordination,operations_logistics,ner_synthetic,0,0,0.0,False
+front office operations,culinary_chef,ner_synthetic,0,0,0.0,False
+fuel efficiency,operations_logistics,ner_synthetic,1,0,0.06,True
+functional fitness,fitness_wellness,curated,5,1,0.29,True
+functional testing software,programming_languages,onet,0,0,0.0,False
+fund accounting software,accounting_finance,onet,1,0,0.06,True
+g-code,programming_languages,onet,0,1,0.0,True
+gaap,accounting_finance,curated,43,28,2.47,True
+gaea technologies winsieve,software_tools,onet,0,0,0.0,False
+gait analysis software,healthcare_medical,onet,0,0,0.0,False
+galactek eclipse,healthcare_medical,onet,0,0,0.0,False
+gambit scheme,programming_languages,onet,0,0,0.0,False
+gaussian software,data_ml_dl,onet,0,0,0.0,False
+ge healthcare centricity emr,healthcare_medical,onet,0,0,0.0,False
+gene codes sequencher,data_ml_dl,onet,0,0,0.0,False
+general ledger,accounting_finance,curated,112,36,6.44,True
+general ledger software,accounting_finance,onet,0,0,0.0,False
+generative ai,data_ml_dl,curated,0,2,0.0,True
+geogebra,data_ml_dl,onet,0,0,0.0,False
+geometric camworks,cad_engineering,onet,0,0,0.0,False
+geriatric care,healthcare_medical,curated,2,2,0.12,True
+gibbscam,cad_engineering,onet,0,0,0.0,False
+gis mapping,agriculture,ner_synthetic,3,0,0.17,True
+git,software_tools,curated,5,14,0.29,True
+github,software_tools,curated,8,5,0.46,True
+github actions,cloud_devops,curated,0,1,0.0,True
+gitlab,software_tools,curated,1,5,0.06,True
+gitlab ci,cloud_devops,curated,0,4,0.0,True
+glp,healthcare_medical,ner_synthetic,2,0,0.12,True
+gmp,healthcare_medical,ner_synthetic,8,2,0.46,True
+gnu octave,data_ml_dl,onet,0,0,0.0,False
+gnuplot,data_ml_dl,onet,0,0,0.0,False
+go,programming_languages,curated,63,88,3.62,True
+golden software surfer,cad_engineering,onet,0,0,0.0,False
+google,databases,onet,95,37,5.46,True
+google ads,sales_marketing,curated,10,2,0.58,True
+google analytics,sales_marketing,curated,44,2,2.53,True
+google android,cloud_devops,onet,0,0,0.0,False
+google angular,web_frameworks,onet,0,0,0.0,False
+google chrome,software_tools,onet,3,0,0.17,True
+google classroom,teaching_education,curated,2,0,0.12,True
+google cloud platform,cloud_devops,curated,1,24,0.06,True
+google cloud software,cloud_devops,onet,0,0,0.0,False
+google docs,software_tools,onet,5,0,0.29,True
+google drive,cloud_devops,onet,5,3,0.29,True
+google earth pro,cad_engineering,onet,0,0,0.0,False
+google gmail,software_tools,onet,0,0,0.0,False
+google looker analytics,data_ml_dl,onet,0,0,0.0,False
+google meet,design_multimedia,onet,0,0,0.0,False
+google sheets,software_tools,onet,2,2,0.12,True
+google sites,web_frameworks,onet,0,0,0.0,False
+google slides,software_tools,onet,0,0,0.0,False
+google workspace software,software_tools,onet,0,0,0.0,False
+gps tracking,operations_logistics,ner_synthetic,2,1,0.12,True
+grading,teaching_education,curated,34,0,1.96,True
+grafana,cloud_devops,curated,0,0,0.0,True
+grafana labs grafana cloud,software_tools,onet,0,0,0.0,False
+graphic presentation software,design_multimedia,onet,0,0,0.0,False
+graphics creation software,design_multimedia,onet,0,0,0.0,False
+graphics software,design_multimedia,onet,0,1,0.0,True
+graphisoft archicad,cad_engineering,onet,0,0,0.0,False
+graphpad software graphpad prism,data_ml_dl,onet,0,0,0.0,False
+graphql,web_frameworks,curated,0,2,0.0,True
+greenplum database,databases,onet,0,0,0.0,False
+greenway medical technologies primesuite,healthcare_medical,onet,0,0,0.0,False
+grid integration,engineering_construction,ner_synthetic,0,0,0.0,False
+grilling,culinary_chef,curated,4,2,0.23,True
+groovy,programming_languages,curated,0,3,0.0,True
+groundwater modeling system gms,data_ml_dl,onet,0,0,0.0,False
+groundwater vistas,data_ml_dl,onet,0,0,0.0,False
+group fitness instruction,fitness_wellness,curated,8,1,0.46,True
+groupme,software_tools,onet,0,0,0.0,False
+grpc,web_frameworks,curated,0,0,0.0,True
+guest service,culinary_chef,ner_synthetic,12,5,0.69,True
+guidance software encase enterprise,data_ml_dl,onet,0,0,0.0,False
+haccp,culinary_chef,curated,9,2,0.52,True
+hadoop,data_ml_dl,curated,2,7,0.12,True
+hand held spell checkers,software_tools,onet,0,0,0.0,False
+handheld computer device software,cloud_devops,onet,0,0,0.0,False
+hardware description language hdl,programming_languages,onet,0,0,0.0,False
+harland financial solutions decisionpro,data_ml_dl,onet,0,0,0.0,False
+harvest logistics,agriculture,ner_synthetic,0,0,0.0,False
+haskell,programming_languages,curated,0,0,0.0,True
+hbase,databases,curated,0,1,0.0,True
+hcss heavybid,project_management,onet,0,0,0.0,False
+hcss heavyjob,project_management,onet,0,0,0.0,False
+health and safety,engineering_construction,ner_synthetic,35,14,2.01,True
+health data reporting,healthcare_medical,ner_synthetic,0,0,0.0,False
+healthfusion meditouch,healthcare_medical,onet,0,0,0.0,False
+heat software goldmine,sales_marketing,onet,0,0,0.0,False
+heavy machinery operation,engineering_construction,curated,41,5,2.36,True
+hec-1,data_ml_dl,onet,0,0,0.0,False
+hec-hms,data_ml_dl,onet,0,0,0.0,False
+hec-ras,data_ml_dl,onet,0,1,0.0,True
+helm,cloud_devops,curated,1,0,0.06,True
+help desk software,software_tools,onet,0,1,0.0,True
+henry schein dentrix,healthcare_medical,onet,0,0,0.0,False
+hewlett packard hp-ux,cloud_devops,onet,0,0,0.0,False
+hewlett packard loadrunner,programming_languages,onet,0,0,0.0,False
+hewlett-packard hp openvms,cloud_devops,onet,0,0,0.0,False
+hibernate orm,databases,onet,0,0,0.0,False
+high intensity interval training,fitness_wellness,curated,2,0,0.12,True
+higher education instruction,teaching_education,curated,0,0,0.0,True
+hipaa compliance,healthcare_medical,curated,19,2,1.09,True
+hmis advantage,databases,onet,0,0,0.0,False
+hms,healthcare_medical,onet,1,0,0.06,True
+hospitality analytics,culinary_chef,ner_synthetic,0,0,0.0,False
+hr analytics,hr_recruiting,curated,2,1,0.12,True
+hr policies,hr_recruiting,curated,23,3,1.32,True
+html5,web_frameworks,curated,99,16,5.69,True
+hubspot,sales_marketing,curated,3,6,0.17,True
+hubspot software,sales_marketing,onet,0,0,0.0,False
+hugging face,data_ml_dl,curated,8,4,0.46,True
+human modeling software,data_ml_dl,onet,0,0,0.0,False
+human resources information systems,hr_recruiting,curated,2,1,0.12,True
+hvac systems,engineering_construction,curated,6,1,0.35,True
+hydrosolve aqtesolv,data_ml_dl,onet,0,0,0.0,False
+hyland software onbase,software_tools,onet,0,0,0.0,False
+hypertext markup language html,web_frameworks,onet,0,0,0.0,False
+hypertext preprocessor php,web_frameworks,onet,0,0,0.0,False
+iam,cybersecurity,ner_synthetic,1,7,0.06,True
+ibm aix,cloud_devops,onet,1,0,0.06,True
+ibm cognos business intelligence,data_ml_dl,onet,0,0,0.0,False
+ibm cognos impromptu,data_ml_dl,onet,0,0,0.0,False
+ibm db2,databases,onet,6,0,0.35,True
+ibm domino,software_tools,onet,0,0,0.0,False
+ibm informix,databases,onet,0,0,0.0,False
+ibm infosphere datastage,enterprise_software,onet,0,0,0.0,False
+ibm lotus 1-2-3,software_tools,onet,0,0,0.0,False
+ibm lotus notes,software_tools,onet,0,0,0.0,False
+ibm maximo asset management,enterprise_software,onet,0,0,0.0,False
+ibm middleware,software_tools,onet,0,0,0.0,False
+ibm notes,software_tools,onet,0,0,0.0,False
+ibm power systems software,enterprise_software,onet,0,0,0.0,False
+ibm qradar siem,networking,onet,0,0,0.0,False
+ibm rational clearcase,cloud_devops,onet,0,0,0.0,False
+ibm rational clearquest,programming_languages,onet,0,0,0.0,False
+ibm rational purifyplus,programming_languages,onet,0,0,0.0,False
+ibm rational requisitepro,software_tools,onet,0,0,0.0,False
+ibm rational rose xde,programming_languages,onet,0,0,0.0,False
+ibm spss statistics,data_ml_dl,onet,0,0,0.0,False
+ibm terraform,cloud_devops,onet,0,0,0.0,False
+ibm tivoli software,software_tools,onet,0,0,0.0,False
+ibm websphere,cloud_devops,onet,3,0,0.17,True
+ibm websphere mq,cloud_devops,onet,1,0,0.06,True
+icanotes,healthcare_medical,onet,0,0,0.0,False
+icd-10,healthcare_medical,curated,9,5,0.52,True
+icims talent cloud software,hr_recruiting,onet,0,0,0.0,False
+icon programming language,programming_languages,onet,0,0,0.0,False
+iea software emerald,databases,onet,0,0,0.0,False
+ifrs,accounting_finance,curated,5,2,0.29,True
+ihs petra,data_ml_dl,onet,0,0,0.0,False
+image analysis software,data_ml_dl,onet,0,0,0.0,False
+image editing software,design_multimedia,onet,0,0,0.0,False
+image enhancement software,design_multimedia,onet,0,0,0.0,False
+image processing software,design_multimedia,onet,0,0,0.0,False
+image scanning software,software_tools,onet,0,0,0.0,False
+imsi turbocad,cad_engineering,onet,0,0,0.0,False
+incident response,cybersecurity,ner_synthetic,3,1,0.17,True
+income statement,accounting_finance,curated,81,10,4.66,True
+infection control,healthcare_medical,curated,15,18,0.86,True
+infection prevention,healthcare_medical,ner_synthetic,0,1,0.0,True
+infor erp baan,enterprise_software,onet,0,0,0.0,False
+infor erp syteline,enterprise_software,onet,0,0,0.0,False
+informatica corporation powercenter,enterprise_software,onet,0,0,0.0,False
+informatica software,databases,onet,0,0,0.0,False
+information architecture,design_multimedia,ner_synthetic,1,1,0.06,True
+information systems integration software,software_tools,onet,0,0,0.0,False
+infrastructure as code,cloud_devops,curated,0,2,0.0,True
+injury rehabilitation,fitness_wellness,curated,1,0,0.06,True
+inquiry-based learning,teaching_education,curated,2,1,0.12,True
+inscribe,software_tools,onet,0,0,0.0,False
+inside sales,sales_marketing,curated,25,19,1.44,True
+insight direct serviceceo,databases,onet,0,0,0.0,False
+insightful s-plus,data_ml_dl,onet,0,0,0.0,False
+instagram,web_frameworks,onet,39,21,2.24,True
+instructional design,teaching_education,curated,18,2,1.04,True
+instructure canvas,software_tools,onet,0,0,0.0,False
+integration testing software,programming_languages,onet,0,0,0.0,False
+intellectual property,legal_compliance,curated,4,2,0.23,True
+intellij idea,software_tools,curated,1,1,0.06,True
+interaction design,design_multimedia,ner_synthetic,2,0,0.12,True
+interface definition language idl,programming_languages,onet,0,0,0.0,False
+interoperability testing software,programming_languages,onet,0,0,0.0,False
+interstate connection icon,programming_languages,onet,0,0,0.0,False
+interviewing,design_multimedia,ner_synthetic,85,33,4.89,True
+intrado schoolmessenger,software_tools,onet,0,0,0.0,False
+intravenous therapy,healthcare_medical,curated,4,6,0.23,True
+intrusion detection system ids,networking,onet,0,0,0.0,False
+intrusion prevention system ips,networking,onet,0,0,0.0,False
+intuit turbotax,accounting_finance,onet,0,0,0.0,False
+inventory control,culinary_chef,curated,126,7,7.25,True
+inventory control software,enterprise_software,onet,1,0,0.06,True
+inventory control system software,enterprise_software,onet,0,0,0.0,False
+inventory management,sales_marketing,ner_synthetic,75,12,4.31,True
+inventory management systems,enterprise_software,onet,2,0,0.12,True
+inventory optimization,operations_logistics,ner_synthetic,1,1,0.06,True
+inventory software,enterprise_software,onet,0,0,0.0,False
+inventory tracking software,enterprise_software,onet,0,0,0.0,False
+investment banking,accounting_finance,curated,27,4,1.55,True
+invision software,software_tools,onet,0,0,0.0,False
+iparadigms turnitin,software_tools,onet,0,0,0.0,False
+ipro,databases,onet,1,0,0.06,True
+irrigation scheduling,agriculture,ner_synthetic,1,0,0.06,True
+iso 9001,engineering_construction,ner_synthetic,13,4,0.75,True
+jamboard,design_multimedia,onet,0,0,0.0,False
+java,programming_languages,curated,52,43,2.99,True
+javascript,programming_languages,curated,47,23,2.7,True
+javascript object notation json,web_frameworks,onet,0,0,0.0,False
+jenkins,cloud_devops,curated,7,18,0.4,True
+jira,software_tools,curated,24,5,1.38,True
+job control language jcl,cloud_devops,onet,0,0,0.0,False
+job costing software,accounting_finance,onet,0,0,0.0,False
+job descriptions,hr_recruiting,curated,32,7,1.84,True
+journal entries,accounting_finance,curated,75,33,4.31,True
+journey mapping,design_multimedia,ner_synthetic,0,0,0.0,False
+jquery,web_frameworks,curated,16,3,0.92,True
+julia,programming_languages,curated,1,0,0.06,True
+junit,programming_languages,onet,2,2,0.12,True
+jupyter,software_tools,curated,0,2,0.0,True
+kafka,data_ml_dl,curated,0,11,0.0,True
+kahoot!,software_tools,onet,0,1,0.0,True
+kaizen,engineering_construction,ner_synthetic,16,2,0.92,True
+kali linux,programming_languages,onet,0,0,0.0,False
+kanban,soft_skills,curated,13,1,0.75,True
+kapwing,design_multimedia,onet,0,0,0.0,False
+kareo practice management,healthcare_medical,onet,0,0,0.0,False
+keras,data_ml_dl,curated,1,0,0.06,True
+kettlebell training,fitness_wellness,curated,0,0,0.0,True
+kitchen equipment operation,culinary_chef,curated,11,2,0.63,True
+kitchen sanitation,culinary_chef,curated,14,0,0.81,True
+kitty hawk,data_ml_dl,onet,0,0,0.0,False
+knife skills,culinary_chef,curated,11,1,0.63,True
+kornshell,cloud_devops,onet,0,0,0.0,False
+kotlin,programming_languages,curated,0,1,0.0,True
+kronos workforce payroll,accounting_finance,onet,0,0,0.0,False
+kronos workforce timekeeper,accounting_finance,onet,0,0,0.0,False
+kubernetes,cloud_devops,curated,1,23,0.06,True
+labor law compliance,hr_recruiting,curated,33,30,1.9,True
+laboratory information system lis,healthcare_medical,onet,0,1,0.0,True
+laboratory safety,healthcare_medical,ner_synthetic,0,1,0.0,True
+ladder logic,programming_languages,onet,1,0,0.06,True
+lambda,cloud_devops,curated,15,17,0.86,True
+lamp stack,web_frameworks,onet,1,0,0.06,True
+landmark graphics geographix,data_ml_dl,onet,0,0,0.0,False
+langchain,data_ml_dl,curated,0,3,0.0,True
+laravel,web_frameworks,curated,0,0,0.0,True
+large language models,data_ml_dl,curated,0,3,0.0,True
+latex,design_multimedia,onet,2,1,0.12,True
+law enforcement information databases,databases,onet,0,0,0.0,False
+lawson human resource management,hr_recruiting,onet,0,0,0.0,False
+lead generation,sales_marketing,curated,60,49,3.45,True
+leadership,soft_skills,curated,706,276,40.6,True
+leading market technologies expo,data_ml_dl,onet,0,0,0.0,False
+lean construction,engineering_construction,curated,0,0,0.0,True
+lean manufacturing,engineering_construction,ner_synthetic,26,4,1.5,True
+lean operations,operations_logistics,ner_synthetic,1,0,0.06,True
+learning analytics,teaching_education,ner_synthetic,0,1,0.0,True
+learning assessment,teaching_education,ner_synthetic,0,1,0.0,True
+learning management system lms,software_tools,onet,0,1,0.0,True
+legal research,legal_compliance,curated,8,11,0.46,True
+legal writing,legal_compliance,curated,1,0,0.06,True
+leica geosystems erdas imagine,cad_engineering,onet,0,0,0.0,False
+lesson planning,teaching_education,curated,32,0,1.84,True
+lexisnexis,legal_compliance,curated,9,2,0.52,True
+lexisnexis casemap,databases,onet,0,0,0.0,False
+lightgbm,data_ml_dl,curated,0,0,0.0,True
+linkedin,web_frameworks,onet,23,40,1.32,True
+linux,cloud_devops,curated,62,17,3.57,True
+linux security,cybersecurity,ner_synthetic,0,0,0.0,False
+list processing language lisp,programming_languages,onet,0,0,0.0,False
+litchi,data_ml_dl,onet,0,0,0.0,False
+literacy instruction,teaching_education,curated,4,0,0.23,True
+litigation support,legal_compliance,curated,2,2,0.12,True
+load forecasting,engineering_construction,ner_synthetic,0,0,0.0,False
+load testing software,programming_languages,onet,0,0,0.0,False
+logistics analytics,operations_logistics,ner_synthetic,0,0,0.0,False
+logmein gotomeeting,design_multimedia,onet,0,0,0.0,False
+logmein gotowebinar,networking,onet,0,0,0.0,False
+looker,software_tools,curated,2,2,0.12,True
+loom,design_multimedia,onet,0,0,0.0,False
+lp360,data_ml_dl,onet,0,0,0.0,False
+lsa visual easy lean,enterprise_software,onet,0,0,0.0,False
+lte,networking,ner_synthetic,4,2,0.23,True
+lua,programming_languages,curated,1,0,0.06,True
+m-code,programming_languages,onet,0,0,0.0,False
+mac helpmate,software_tools,onet,0,0,0.0,False
+machine control software,software_tools,onet,0,0,0.0,False
+machine learning,data_ml_dl,curated,8,21,0.46,True
+magellan firmware,cloud_devops,onet,0,0,0.0,False
+maintenance management software,software_tools,onet,0,0,0.0,False
+maintenance planning,engineering_construction,ner_synthetic,2,1,0.12,True
+maintenance record software,software_tools,onet,0,0,0.0,False
+make,software_tools,curated,306,404,17.6,True
+makemusic finale,design_multimedia,onet,0,0,0.0,False
+management,soft_skills,curated,1489,593,85.62,True
+management information systems mis,enterprise_software,onet,0,0,0.0,False
+mapinfo,cad_engineering,onet,2,0,0.12,True
+mapinfo professional,cad_engineering,onet,0,0,0.0,False
+maplesoft maple,data_ml_dl,onet,0,0,0.0,False
+mapping software,cad_engineering,onet,1,0,0.06,True
+maptek vulcan,data_ml_dl,onet,0,0,0.0,False
+mariadb,databases,curated,0,1,0.0,True
+market research,sales_marketing,curated,80,12,4.6,True
+marketing automation,sales_marketing,curated,5,1,0.29,True
+marketo marketing automation,sales_marketing,onet,0,0,0.0,False
+materials testing,engineering_construction,curated,4,1,0.23,True
+mathematical software,data_ml_dl,onet,0,0,0.0,False
+mathsoft mathcad,cad_engineering,onet,0,0,0.0,False
+mathworks simulink,data_ml_dl,onet,0,0,0.0,False
+matlab,programming_languages,curated,26,1,1.5,True
+maximizer software maximizer enterprise,sales_marketing,onet,0,0,0.0,False
+maxon cinema 4d,design_multimedia,onet,0,0,0.0,False
+maya nastran,data_ml_dl,onet,0,0,0.0,False
+mcafee,cybersecurity,onet,8,0,0.46,True
+mckesson practice plus,healthcare_medical,onet,0,0,0.0,False
+mcneel rhinoceros 3d,design_multimedia,onet,0,0,0.0,False
+measure square floorestimate pro,project_management,onet,0,0,0.0,False
+mechanical engineering,engineering_construction,curated,35,12,2.01,True
+medcomsoft record,healthcare_medical,onet,0,0,0.0,False
+media analytics,design_multimedia,ner_synthetic,2,2,0.12,True
+medical billing,healthcare_medical,curated,24,1,1.38,True
+medical condition coding software,healthcare_medical,onet,0,0,0.0,False
+medical procedure coding software,healthcare_medical,onet,0,0,0.0,False
+medical reference software,software_tools,onet,0,0,0.0,False
+medical terminology,healthcare_medical,curated,41,14,2.36,True
+medication administration,healthcare_medical,curated,9,9,0.52,True
+medicware emr,healthcare_medical,onet,0,0,0.0,False
+meditech software,healthcare_medical,onet,0,0,0.0,False
+medscribbler enterprise,healthcare_medical,onet,0,0,0.0,False
+mentimeter,software_tools,onet,0,0,0.0,False
+mentor graphics pads,cad_engineering,onet,0,0,0.0,False
+mentoring,soft_skills,curated,255,125,14.66,True
+menu planning,culinary_chef,curated,16,1,0.92,True
+merchandising,sales_marketing,curated,112,41,6.44,True
+mergers and acquisitions,accounting_finance,curated,18,7,1.04,True
+metasploit,cybersecurity,onet,0,0,0.0,False
+microfocus groupwise,software_tools,onet,0,0,0.0,False
+microfour practicestudio.net emr,healthcare_medical,onet,0,0,0.0,False
+microscopic image capturing software,healthcare_medical,onet,0,0,0.0,False
+microservices,cloud_devops,curated,1,12,0.06,True
+microservices architecture,software_tools,onet,0,1,0.0,True
+microsoft .net framework,programming_languages,onet,0,0,0.0,False
+microsoft active directory,software_tools,onet,9,0,0.52,True
+microsoft activex,programming_languages,onet,0,0,0.0,False
+microsoft asp.net,web_frameworks,onet,0,0,0.0,False
+microsoft asp.net core mvc,web_frameworks,onet,0,0,0.0,False
+microsoft azure,cloud_devops,curated,6,30,0.35,True
+microsoft azure devops services,programming_languages,onet,0,0,0.0,False
+microsoft azure software,programming_languages,onet,0,0,0.0,False
+microsoft business contact manager,sales_marketing,onet,0,0,0.0,False
+microsoft directx,software_tools,onet,0,0,0.0,False
+microsoft dynamics,enterprise_software,onet,14,2,0.81,True
+microsoft dynamics ax,enterprise_software,onet,3,0,0.17,True
+microsoft dynamics crm,sales_marketing,onet,3,0,0.17,True
+microsoft dynamics gp,enterprise_software,onet,1,0,0.06,True
+microsoft dynamics nav,enterprise_software,onet,1,0,0.06,True
+microsoft dynamics sl,enterprise_software,onet,0,0,0.0,False
+microsoft edge,software_tools,onet,0,1,0.0,True
+microsoft esp sdk,programming_languages,onet,0,0,0.0,False
+microsoft exchange,software_tools,onet,19,0,1.09,True
+microsoft frontpage,web_frameworks,onet,0,0,0.0,False
+microsoft frx,data_ml_dl,onet,0,0,0.0,False
+microsoft internet explorer,software_tools,onet,0,0,0.0,False
+microsoft mappoint,cad_engineering,onet,0,0,0.0,False
+microsoft netmeeting,design_multimedia,onet,0,0,0.0,False
+microsoft office software,software_tools,onet,7,3,0.4,True
+microsoft onenote,software_tools,onet,0,0,0.0,False
+microsoft paint,design_multimedia,onet,0,0,0.0,False
+microsoft power automate,enterprise_software,onet,0,0,0.0,False
+microsoft power bi,data_ml_dl,onet,0,0,0.0,False
+microsoft power platform software,enterprise_software,onet,0,0,0.0,False
+microsoft powershell,programming_languages,onet,0,0,0.0,False
+microsoft project,project_management,onet,40,1,2.3,True
+microsoft publisher,design_multimedia,onet,6,0,0.35,True
+microsoft sentinel,cybersecurity,ner_synthetic,0,0,0.0,False
+microsoft sharepoint,software_tools,onet,15,0,0.86,True
+microsoft sharepoint server,software_tools,onet,1,0,0.06,True
+microsoft sql server,databases,curated,48,9,2.76,True
+microsoft team foundation server,project_management,onet,2,0,0.12,True
+microsoft teams,project_management,onet,2,3,0.12,True
+microsoft visio,software_tools,onet,11,0,0.63,True
+microsoft visual basic,programming_languages,onet,4,0,0.23,True
+microsoft visual basic.net,programming_languages,onet,0,0,0.0,False
+microsoft visual c# .net,programming_languages,onet,0,0,0.0,False
+microsoft visual foxpro,databases,onet,0,0,0.0,False
+microsoft visual sourcesafe,programming_languages,onet,0,0,0.0,False
+microsoft visual studio,programming_languages,onet,6,0,0.35,True
+microsoft windows,cloud_devops,onet,36,3,2.07,True
+microsoft windows server,cloud_devops,onet,6,0,0.35,True
+microsoft windows xp,cloud_devops,onet,4,0,0.23,True
+microstrategy,data_ml_dl,onet,4,0,0.23,True
+migration software,networking,onet,0,0,0.0,False
+migration testing software,programming_languages,onet,0,0,0.0,False
+millennium software atrex,sales_marketing,onet,0,0,0.0,False
+minesight,cad_engineering,onet,0,0,0.0,False
+minitab,data_ml_dl,onet,11,3,0.63,True
+mitre att&ck software,programming_languages,onet,0,0,0.0,False
+mlflow,data_ml_dl,curated,0,2,0.0,True
+modeling software,data_ml_dl,onet,0,1,0.0,True
+modernizing medicine practice management,healthcare_medical,onet,0,0,0.0,False
+modula,programming_languages,onet,0,0,0.0,False
+molecular simulation software,data_ml_dl,onet,0,0,0.0,False
+monday.com,software_tools,curated,6,45,0.35,True
+mongodb,databases,curated,2,7,0.12,True
+monte carlo simulation software,data_ml_dl,onet,0,0,0.0,False
+moodle,software_tools,onet,5,0,0.29,True
+moody's kmv creditedge,data_ml_dl,onet,0,0,0.0,False
+motion analysis software,data_ml_dl,onet,0,0,0.0,False
+motion graphics,design_multimedia,ner_synthetic,0,0,0.0,False
+mozilla firefox,software_tools,onet,0,0,0.0,False
+msc software adams,data_ml_dl,onet,0,0,0.0,False
+msc software nastran,data_ml_dl,onet,0,0,0.0,False
+msc software patran,data_ml_dl,onet,0,0,0.0,False
+mumps m,programming_languages,onet,0,0,0.0,False
+mutation testing software,programming_languages,onet,0,0,0.0,False
+muthen & muthen mplus,data_ml_dl,onet,0,0,0.0,False
+mysql,databases,curated,30,9,1.73,True
+nagios,networking,onet,2,0,0.12,True
+national instruments labview,programming_languages,onet,0,0,0.0,False
+national instruments multisim,cad_engineering,onet,0,0,0.0,False
+natural language processing,data_ml_dl,curated,1,4,0.06,True
+navisworks jetstream,cad_engineering,onet,0,0,0.0,False
+ncr advanced checkout solution,sales_marketing,onet,0,0,0.0,False
+ncr neighborhoodpos,sales_marketing,onet,0,0,0.0,False
+nearpod,software_tools,onet,0,0,0.0,False
+negotiation,soft_skills,curated,127,61,7.3,True
+neo4j,databases,curated,0,4,0.0,True
+netscape navigator,software_tools,onet,2,0,0.12,True
+netsuite erp,enterprise_software,onet,0,1,0.0,True
+netsuite netcrm,sales_marketing,onet,0,0,0.0,False
+network directory services software,software_tools,onet,0,0,0.0,False
+network forensics,cybersecurity,ner_synthetic,0,0,0.0,False
+network intrusion detection software,networking,onet,0,0,0.0,False
+network monitoring,networking,ner_synthetic,7,4,0.4,True
+network troubleshooting,networking,ner_synthetic,2,0,0.12,True
+neural network modeling software,data_ml_dl,onet,0,0,0.0,False
+neurosolutions for matlab,software_tools,onet,0,0,0.0,False
+next.js,web_frameworks,curated,74,114,4.26,True
+nginx,cloud_devops,curated,0,0,0.0,True
+nltk,data_ml_dl,curated,1,2,0.06,True
+node.js,web_frameworks,curated,7,20,0.4,True
+norton antivirus,cybersecurity,onet,1,0,0.06,True
+nortonlifelock cybersecurity software,cybersecurity,onet,0,0,0.0,False
+nosql,databases,onet,2,11,0.12,True
+notion,software_tools,curated,0,1,0.0,True
+nuance dragon naturallyspeaking,software_tools,onet,0,0,0.0,False
+nuesoft technologies nuemd,healthcare_medical,onet,0,0,0.0,False
+numpy,data_ml_dl,curated,0,1,0.0,True
+nutrition counseling,fitness_wellness,curated,1,0,0.06,True
+nuxt.js,web_frameworks,curated,0,1,0.0,True
+o*net online,databases,onet,0,0,0.0,False
+oberon,programming_languages,onet,0,0,0.0,False
+objective caml,programming_languages,onet,0,0,0.0,False
+objective-c,programming_languages,curated,2,1,0.12,True
+observability,programming_languages,ner_synthetic,0,0,0.0,False
+omnirim records management suite,software_tools,onet,0,0,0.0,False
+on center quick bid,project_management,onet,0,0,0.0,False
+online databases,databases,onet,0,0,0.0,False
+open dental,healthcare_medical,onet,1,0,0.06,True
+open graphics library opengl,design_multimedia,onet,0,0,0.0,False
+openai chatgpt,programming_languages,onet,0,0,0.0,False
+opencv,data_ml_dl,curated,0,1,0.0,True
+opendronemap,cad_engineering,onet,0,0,0.0,False
+openoffice.org,software_tools,onet,0,0,0.0,False
+openroads designer,cad_engineering,onet,0,0,0.0,False
+openstack,cloud_devops,curated,0,0,0.0,True
+operational databases,databases,onet,0,0,0.0,False
+operational excellence,engineering_construction,ner_synthetic,20,22,1.15,True
+operations reporting,operations_logistics,ner_synthetic,1,0,0.06,True
+optimization software,data_ml_dl,onet,3,0,0.17,True
+oracle application server,software_tools,onet,0,0,0.0,False
+oracle business intelligence discoverer,databases,onet,0,0,0.0,False
+oracle business intelligence suite,databases,onet,0,0,0.0,False
+oracle cloud software,cloud_devops,onet,0,0,0.0,False
+oracle database,databases,curated,22,5,1.27,True
+oracle e-business suite,enterprise_software,onet,2,0,0.12,True
+oracle e-business suite financials,data_ml_dl,onet,0,0,0.0,False
+oracle eloqua,sales_marketing,onet,0,0,0.0,False
+oracle fusion applications,enterprise_software,onet,0,0,0.0,False
+oracle fusion middleware,enterprise_software,onet,0,0,0.0,False
+oracle hris,hr_recruiting,onet,0,0,0.0,False
+oracle hyperion,enterprise_software,onet,3,0,0.17,True
+oracle java,programming_languages,onet,1,0,0.06,True
+oracle javaserver pages jsp,web_frameworks,onet,0,0,0.0,False
+oracle jd edwards enterpriseone,enterprise_software,onet,0,0,0.0,False
+oracle jdbc,databases,onet,0,0,0.0,False
+oracle netsuite,accounting_finance,curated,5,11,0.29,True
+oracle peoplesoft,enterprise_software,onet,6,0,0.35,True
+oracle peoplesoft financials,enterprise_software,onet,0,0,0.0,False
+oracle pl/sql,databases,onet,5,1,0.29,True
+oracle primavera systems,project_management,onet,0,0,0.0,False
+oracle reports,databases,onet,1,0,0.06,True
+oracle siebel server sync,sales_marketing,onet,0,0,0.0,False
+oracle solaris,cloud_devops,onet,0,0,0.0,False
+oracle sql developer,programming_languages,onet,2,0,0.12,True
+oracle sql loader,databases,onet,0,0,0.0,False
+oracle taleo,hr_recruiting,onet,0,0,0.0,False
+oracle weblogic server,software_tools,onet,0,0,0.0,False
+orcad capture,cad_engineering,onet,0,0,0.0,False
+order fulfillment,operations_logistics,ner_synthetic,14,1,0.81,True
+order management,sales_marketing,ner_synthetic,12,5,0.69,True
+order management software,enterprise_software,onet,1,0,0.06,True
+organizational skills,soft_skills,curated,680,355,39.1,True
+originlab origin,data_ml_dl,onet,0,0,0.0,False
+osha compliance,engineering_construction,curated,31,2,1.78,True
+ospf,networking,ner_synthetic,3,1,0.17,True
+outlook,software_tools,curated,291,48,16.73,True
+pacific solutions floorright,project_management,onet,0,0,0.0,False
+packet filter software,cybersecurity,onet,0,0,0.0,False
+padlet,software_tools,onet,0,0,0.0,False
+paid search,sales_marketing,ner_synthetic,5,0,0.29,True
+palisade @risk,data_ml_dl,onet,0,0,0.0,False
+palisade stattools,data_ml_dl,onet,0,0,0.0,False
+palliative care,healthcare_medical,curated,6,7,0.35,True
+pandas,data_ml_dl,curated,2,2,0.12,True
+paralegal support,legal_compliance,curated,0,0,0.0,True
+parent communication,teaching_education,curated,17,1,0.98,True
+parentsquare,software_tools,onet,0,0,0.0,False
+pascal,programming_languages,onet,4,0,0.23,True
+password management software,cybersecurity,onet,0,0,0.0,False
+pastry arts,culinary_chef,curated,8,0,0.46,True
+patch management software,cloud_devops,onet,0,0,0.0,False
+patient advocacy,healthcare_medical,curated,10,11,0.58,True
+patient assessment,healthcare_medical,curated,7,7,0.4,True
+patient care,healthcare_medical,curated,71,134,4.08,True
+patient education,healthcare_medical,curated,13,18,0.75,True
+patient management software,healthcare_medical,onet,0,0,0.0,False
+patient scheduling,healthcare_medical,ner_synthetic,4,0,0.23,True
+patient tracking software,healthcare_medical,onet,0,0,0.0,False
+pattern recognition software,data_ml_dl,onet,0,0,0.0,False
+payroll administration,hr_recruiting,curated,10,1,0.58,True
+payroll processing,accounting_finance,curated,37,6,2.13,True
+payroll software,accounting_finance,onet,2,1,0.12,True
+pcc ehr,healthcare_medical,onet,0,0,0.0,False
+pcc pediatric partner,healthcare_medical,onet,0,0,0.0,False
+pcr,healthcare_medical,ner_synthetic,5,0,0.29,True
+pear deck,software_tools,onet,0,0,0.0,False
+pedagogical methods,teaching_education,curated,2,5,0.12,True
+pediatric care,healthcare_medical,curated,8,15,0.46,True
+peer mentoring,teaching_education,curated,1,0,0.06,True
+pentaho kettle,databases,onet,0,0,0.0,False
+perforce helix software,cloud_devops,onet,0,0,0.0,False
+perforce software,databases,onet,0,0,0.0,False
+performance management,hr_recruiting,curated,84,22,4.83,True
+perl,programming_languages,curated,7,3,0.4,True
+personal computer diagnostic software,programming_languages,onet,0,0,0.0,False
+personal training,fitness_wellness,curated,25,1,1.44,True
+personnel scheduling software,hr_recruiting,onet,0,0,0.0,False
+pest management,agriculture,ner_synthetic,0,2,0.0,True
+pharmacology,healthcare_medical,curated,8,2,0.46,True
+phlebotomy,healthcare_medical,curated,16,23,0.92,True
+photogrammetric software,design_multimedia,onet,0,0,0.0,False
+php,programming_languages,curated,28,6,1.61,True
+phylip,data_ml_dl,onet,0,0,0.0,False
+pilates instruction,fitness_wellness,curated,1,0,0.06,True
+ping identity,cybersecurity,onet,0,1,0.0,True
+pinterest,software_tools,onet,14,3,0.81,True
+pix4d pix4dcapture,data_ml_dl,onet,0,0,0.0,False
+pix4d pix4dmapper,data_ml_dl,onet,0,0,0.0,False
+pixologic zbrush,design_multimedia,onet,0,0,0.0,False
+plc programming,engineering_construction,ner_synthetic,5,1,0.29,True
+pleadings,legal_compliance,curated,13,27,0.75,True
+plexis software plexis pos,sales_marketing,onet,0,0,0.0,False
+plumbing systems,engineering_construction,curated,1,1,0.06,True
+podcast production,design_multimedia,ner_synthetic,0,0,0.0,False
+point of sale,sales_marketing,curated,42,12,2.42,True
+pointclickcare healthcare software,healthcare_medical,onet,0,0,0.0,False
+policy analysis,legal_compliance,ner_synthetic,4,0,0.23,True
+poll everywhere,software_tools,onet,0,0,0.0,False
+portfolio management,accounting_finance,curated,16,5,0.92,True
+portfolio management software,data_ml_dl,onet,0,0,0.0,False
+portswigger burp suite,cybersecurity,onet,0,0,0.0,False
+postgresql,databases,curated,3,9,0.17,True
+postman,software_tools,curated,1,0,0.06,True
+power bi,software_tools,curated,2,11,0.12,True
+power distribution,engineering_construction,ner_synthetic,4,3,0.23,True
+power query,accounting_finance,ner_synthetic,1,0,0.06,True
+power systems,engineering_construction,ner_synthetic,7,2,0.4,True
+powerpoint,software_tools,curated,348,46,20.01,True
+powershell,programming_languages,curated,4,5,0.23,True
+practice management software pms,healthcare_medical,onet,0,0,0.0,False
+precision agriculture,agriculture,ner_synthetic,0,1,0.0,True
+presentation skills,soft_skills,curated,90,20,5.18,True
+preventive maintenance,engineering_construction,ner_synthetic,23,8,1.32,True
+pricing software,data_ml_dl,onet,0,0,0.0,False
+primavera p6,engineering_construction,ner_synthetic,2,2,0.12,True
+primer3,data_ml_dl,onet,0,0,0.0,False
+problem solving,soft_skills,curated,437,110,25.13,True
+process mapping,engineering_construction,ner_synthetic,5,0,0.29,True
+procore software,data_ml_dl,onet,0,0,0.0,False
+procurement analytics,operations_logistics,ner_synthetic,0,0,0.0,False
+product assortment,sales_marketing,ner_synthetic,1,0,0.06,True
+production planning,engineering_construction,ner_synthetic,7,2,0.4,True
+productivity software,project_management,onet,0,0,0.0,False
+prognosis innovation healthcare chartaccess,healthcare_medical,onet,0,0,0.0,False
+programming language one pl/i,programming_languages,onet,0,0,0.0,False
+project,soft_skills,curated,828,203,47.61,True
+project management,soft_skills,curated,387,69,22.25,True
+project scheduling,engineering_construction,curated,18,2,1.04,True
+prolog,programming_languages,onet,1,0,0.06,True
+prometheus,cloud_devops,curated,0,2,0.0,True
+promodel,software_tools,onet,0,0,0.0,False
+promotional planning,sales_marketing,ner_synthetic,2,0,0.12,True
+property management systems,culinary_chef,ner_synthetic,0,0,0.0,False
+propertyware,databases,onet,0,0,0.0,False
+prototyping,design_multimedia,ner_synthetic,9,6,0.52,True
+ptc creo parametric,cad_engineering,onet,0,0,0.0,False
+ptc pro/pipe,cad_engineering,onet,0,0,0.0,False
+public relations,sales_marketing,curated,170,15,9.78,True
+puppet,cloud_devops,curated,4,1,0.23,True
+purchase orders,operations_logistics,ner_synthetic,85,5,4.89,True
+purchasing software,enterprise_software,onet,0,0,0.0,False
+pycharm,software_tools,curated,0,1,0.0,True
+python,programming_languages,curated,24,57,1.38,True
+pytorch,data_ml_dl,curated,2,7,0.12,True
+pyxis medstation software,enterprise_software,onet,0,0,0.0,False
+qgis,cad_engineering,onet,0,0,0.0,False
+qlik tech qlikview,data_ml_dl,onet,0,0,0.0,False
+qsm slim suite,data_ml_dl,onet,0,0,0.0,False
+quality assurance,engineering_construction,curated,173,27,9.95,True
+quality audits,culinary_chef,ner_synthetic,6,1,0.35,True
+quality control,engineering_construction,ner_synthetic,137,25,7.88,True
+quality control software,healthcare_medical,onet,0,0,0.0,False
+quality documentation,healthcare_medical,ner_synthetic,3,3,0.17,True
+quality inspections,engineering_construction,ner_synthetic,3,1,0.17,True
+qualtrics insight,project_management,onet,0,0,0.0,False
+quantitative micro software eviews,data_ml_dl,onet,0,0,0.0,False
+quantity takeoff,engineering_construction,ner_synthetic,0,0,0.0,False
+quark enterprise publishing software,design_multimedia,onet,0,0,0.0,False
+quarkxpress,design_multimedia,onet,6,0,0.35,True
+quest erwin data modeler,databases,onet,0,0,0.0,False
+quickbase business management software,databases,onet,0,0,0.0,False
+quickbooks,accounting_finance,curated,118,8,6.79,True
+quicken,accounting_finance,onet,11,0,0.63,True
+quizlet,software_tools,onet,0,0,0.0,False
+quota attainment,sales_marketing,curated,21,26,1.21,True
+r,programming_languages,curated,51,9,2.93,True
+radiology,healthcare_medical,curated,24,5,1.38,True
+rapid prototyping software,cad_engineering,onet,0,0,0.0,False
+react,web_frameworks,curated,3,19,0.17,True
+react native,web_frameworks,curated,16,87,0.92,True
+recipe development,culinary_chef,curated,5,0,0.29,True
+reconciliation,accounting_finance,ner_synthetic,148,31,8.51,True
+recordkeeping software,databases,onet,0,0,0.0,False
+records management,legal_compliance,ner_synthetic,24,0,1.38,True
+records management software,software_tools,onet,0,0,0.0,False
+recovery testing software,programming_languages,onet,0,0,0.0,False
+recrystallize crystal reports,databases,onet,0,0,0.0,False
+red hat ansible engine,cloud_devops,onet,0,0,0.0,False
+red hat enterprise linux,cloud_devops,onet,2,0,0.12,True
+red hat openshift,software_tools,onet,0,0,0.0,False
+red hat wildfly,software_tools,onet,0,0,0.0,False
+redis,databases,curated,0,1,0.0,True
+redshift,databases,curated,0,7,0.0,True
+redux,web_frameworks,curated,0,2,0.0,True
+regression testing software,programming_languages,onet,0,0,0.0,False
+regulatory compliance,legal_compliance,curated,45,17,2.59,True
+rehabilitation,healthcare_medical,curated,27,61,1.55,True
+reinforcement learning,data_ml_dl,curated,0,2,0.0,True
+relational database management software,databases,onet,0,0,0.0,False
+relational database software,databases,onet,0,0,0.0,False
+reliability analysis software,data_ml_dl,onet,0,0,0.0,False
+reliasoft weibull++ 6,data_ml_dl,onet,0,0,0.0,False
+remote control software,software_tools,onet,1,0,0.06,True
+repairtrax,databases,onet,0,0,0.0,False
+report generation software,software_tools,onet,0,0,0.0,False
+reporting software,databases,onet,6,0,0.35,True
+requirements management software,software_tools,onet,0,0,0.0,False
+reservation systems,culinary_chef,ner_synthetic,0,0,0.0,False
+responsive design,design_multimedia,ner_synthetic,1,0,0.06,True
+rest,web_frameworks,curated,25,28,1.44,True
+rest apis,programming_languages,ner_synthetic,1,2,0.06,True
+restaurantplus pro,sales_marketing,onet,0,0,0.0,False
+restful api,web_frameworks,onet,1,1,0.06,True
+restructured extended executor rexx,programming_languages,onet,0,0,0.0,False
+retail analytics,sales_marketing,ner_synthetic,1,0,0.06,True
+retail sales,sales_marketing,curated,106,35,6.1,True
+rethink ed,software_tools,onet,0,0,0.0,False
+returns handling,sales_marketing,ner_synthetic,0,0,0.0,False
+revenue management,culinary_chef,ner_synthetic,4,1,0.23,True
+revit,engineering_construction,curated,11,4,0.63,True
+rf planning,networking,ner_synthetic,0,0,0.0,False
+risk assessment,cybersecurity,ner_synthetic,21,8,1.21,True
+risk controls,accounting_finance,ner_synthetic,1,0,0.06,True
+risk management,accounting_finance,curated,100,33,5.75,True
+risk registers,legal_compliance,ner_synthetic,1,0,0.06,True
+rivermorph,databases,onet,0,0,0.0,False
+roasting,culinary_chef,curated,1,0,0.06,True
+rockware arcmap,cad_engineering,onet,0,0,0.0,False
+rockware modflow,data_ml_dl,onet,0,0,0.0,False
+rockwell automation arena,data_ml_dl,onet,0,0,0.0,False
+rockwell rslogix,programming_languages,onet,0,0,0.0,False
+root cause analysis,engineering_construction,ner_synthetic,27,15,1.55,True
+root cause analysis software,data_ml_dl,onet,0,0,0.0,False
+root kit detection software,cybersecurity,onet,0,0,0.0,False
+route mapping software,software_tools,onet,0,0,0.0,False
+route optimization,operations_logistics,ner_synthetic,0,0,0.0,False
+route planning,operations_logistics,ner_synthetic,2,0,0.12,True
+routing protocols,networking,ner_synthetic,3,0,0.17,True
+rsi envi,data_ml_dl,onet,0,0,0.0,False
+rubric design,teaching_education,ner_synthetic,0,0,0.0,False
+ruby,programming_languages,curated,2,5,0.12,True
+ruby on rails,web_frameworks,curated,3,1,0.17,True
+rust,programming_languages,curated,1,1,0.06,True
+s&op,operations_logistics,ner_synthetic,0,0,0.0,False
+safety compliance,engineering_construction,ner_synthetic,4,2,0.23,True
+safety inspections,engineering_construction,ner_synthetic,5,0,0.29,True
+sage 100 contractor,databases,onet,0,0,0.0,False
+sage 100 erp,enterprise_software,onet,0,0,0.0,False
+sage 50 accounting,accounting_finance,onet,0,0,0.0,False
+sage erp accpac,enterprise_software,onet,0,0,0.0,False
+sage hrms,hr_recruiting,onet,0,0,0.0,False
+sage mas 200 erp,enterprise_software,onet,1,0,0.06,True
+sage mas 90 erp,enterprise_software,onet,0,0,0.0,False
+sakai cle,software_tools,onet,0,0,0.0,False
+sale processing software,sales_marketing,onet,0,0,0.0,False
+sales,sales_marketing,curated,917,380,52.73,True
+sales enablement,sales_marketing,curated,7,5,0.4,True
+sales force automation software,sales_marketing,onet,0,0,0.0,False
+sales forecasting,sales_marketing,curated,8,3,0.46,True
+sales pipeline management,sales_marketing,curated,8,5,0.46,True
+salesforce,sales_marketing,curated,42,25,2.42,True
+salesforce software,sales_marketing,onet,2,0,0.12,True
+salesforce visualforce,software_tools,onet,0,0,0.0,False
+salesforce.com salesforce crm,sales_marketing,onet,0,0,0.0,False
+sample preparation,healthcare_medical,ner_synthetic,2,0,0.12,True
+sap adaptive server enterprise,databases,onet,0,0,0.0,False
+sap business objects,enterprise_software,onet,2,0,0.12,True
+sap business one,enterprise_software,onet,1,0,0.06,True
+sap businessobjects crystal reports,databases,onet,0,0,0.0,False
+sap businessobjects data integrator,enterprise_software,onet,0,0,0.0,False
+sap concur,accounting_finance,onet,1,1,0.06,True
+sap crystal reports,databases,onet,0,0,0.0,False
+sap erp,accounting_finance,curated,4,0,0.23,True
+sap fi,accounting_finance,ner_synthetic,2,0,0.12,True
+sap mm,operations_logistics,ner_synthetic,2,0,0.12,True
+sap netweaver,enterprise_software,onet,0,0,0.0,False
+sap netweaver bw,databases,onet,0,0,0.0,False
+sap powerbuilder,programming_languages,onet,0,0,0.0,False
+sap software,enterprise_software,onet,5,0,0.29,True
+sas,data_ml_dl,onet,19,4,1.09,True
+sas jmp,data_ml_dl,onet,0,0,0.0,False
+sass,web_frameworks,curated,1,3,0.06,True
+sauce making,culinary_chef,curated,10,1,0.58,True
+sautéing,culinary_chef,curated,1,2,0.06,True
+sbs international maestro suite,project_management,onet,0,0,0.0,False
+scada,engineering_construction,ner_synthetic,7,3,0.4,True
+scala,programming_languages,curated,2,7,0.12,True
+scanning software,software_tools,onet,1,0,0.06,True
+scheduling software,project_management,onet,5,3,0.29,True
+scheme,programming_languages,onet,7,2,0.4,True
+schlumberger petrel e&p,data_ml_dl,onet,0,0,0.0,False
+schoology,software_tools,onet,1,0,0.06,True
+scientific software international hlm,data_ml_dl,onet,0,0,0.0,False
+scientific writing,healthcare_medical,ner_synthetic,1,0,0.06,True
+scikit-learn,data_ml_dl,curated,2,0,0.12,True
+scipy,data_ml_dl,curated,0,0,0.0,True
+screen magnification software,software_tools,onet,0,0,0.0,False
+screen reader software,software_tools,onet,0,0,0.0,False
+screencast-o-matic,design_multimedia,onet,0,0,0.0,False
+screencastify,design_multimedia,onet,0,0,0.0,False
+scriptwriting,design_multimedia,ner_synthetic,1,1,0.06,True
+scrum,soft_skills,curated,30,12,1.73,True
+seafood preparation,culinary_chef,curated,1,0,0.06,True
+seamonkey,software_tools,onet,0,0,0.0,False
+search engine marketing,sales_marketing,curated,34,3,1.96,True
+search engine optimization,sales_marketing,curated,43,5,2.47,True
+security incident management software,networking,onet,0,0,0.0,False
+security monitoring,cybersecurity,ner_synthetic,1,1,0.06,True
+security testing software,programming_languages,onet,0,0,0.0,False
+seesaw,software_tools,onet,0,0,0.0,False
+selenium,programming_languages,onet,2,3,0.12,True
+service recovery,culinary_chef,ner_synthetic,1,2,0.06,True
+servicenow,databases,onet,3,2,0.17,True
+shell,programming_languages,curated,19,6,1.09,True
+shell script,cloud_devops,onet,1,0,0.06,True
+shift scheduling,culinary_chef,ner_synthetic,0,0,0.0,False
+shopify,sales_marketing,ner_synthetic,1,1,0.06,True
+siem,cybersecurity,ner_synthetic,0,0,0.0,False
+siemens modelsim,data_ml_dl,onet,0,0,0.0,False
+siemens nx,cad_engineering,onet,0,0,0.0,False
+siemens solid edge,cad_engineering,onet,0,0,0.0,False
+siemens teamcenter,project_management,onet,0,0,0.0,False
+simplifymd,healthcare_medical,onet,0,0,0.0,False
+simulation software,data_ml_dl,onet,3,2,0.17,True
+single sign-on sso,cybersecurity,onet,1,1,0.06,True
+site inspection,engineering_construction,ner_synthetic,2,0,0.12,True
+site reliability engineering,cloud_devops,curated,0,2,0.0,True
+six sigma,engineering_construction,ner_synthetic,59,11,3.39,True
+skype,software_tools,onet,10,1,0.58,True
+slack,software_tools,curated,4,4,0.23,True
+slido interaction software,networking,onet,0,0,0.0,False
+smalltalk,programming_languages,onet,0,0,0.0,False
+smartcamcnc smartcam,cad_engineering,onet,0,0,0.0,False
+smartdraw legal,design_multimedia,onet,0,0,0.0,False
+smugmug flickr,design_multimedia,onet,0,0,0.0,False
+snapchat,software_tools,onet,6,0,0.35,True
+snort,networking,onet,3,0,0.17,True
+snowflake,databases,curated,0,7,0.0,True
+snyk,cloud_devops,curated,1,1,0.06,True
+soapware emr,healthcare_medical,onet,0,0,0.0,False
+social emotional learning,teaching_education,curated,0,2,0.0,True
+social media analytics,sales_marketing,ner_synthetic,2,2,0.12,True
+social media marketing,sales_marketing,curated,27,3,1.55,True
+social media sites,web_frameworks,onet,10,1,0.58,True
+social media software,web_frameworks,onet,0,0,0.0,False
+social solutions eto,healthcare_medical,onet,0,0,0.0,False
+social storytelling,design_multimedia,ner_synthetic,0,0,0.0,False
+softcafe menupro,design_multimedia,onet,0,0,0.0,False
+softech cadra,cad_engineering,onet,0,0,0.0,False
+software development tools,programming_languages,onet,0,0,0.0,False
+software libraries,programming_languages,onet,0,0,0.0,False
+soil sampling,agriculture,ner_synthetic,2,0,0.12,True
+solar pv design,engineering_construction,ner_synthetic,0,0,0.0,False
+solarwinds,cloud_devops,onet,7,0,0.4,True
+solidworks,engineering_construction,curated,22,2,1.27,True
+sonarqube,cloud_devops,curated,3,0,0.17,True
+sonography,healthcare_medical,curated,5,1,0.29,True
+source code editor software,programming_languages,onet,0,0,0.0,False
+sous vide cooking,culinary_chef,curated,1,0,0.06,True
+sox compliance,accounting_finance,curated,42,13,2.42,True
+spacy,data_ml_dl,curated,0,2,0.0,True
+spark,data_ml_dl,curated,8,15,0.46,True
+sparta systems trackwise,software_tools,onet,0,0,0.0,False
+special education,teaching_education,curated,36,5,2.07,True
+spectrophotometry,healthcare_medical,ner_synthetic,0,0,0.0,False
+speech recognition software,software_tools,onet,0,0,0.0,False
+splunk,cloud_devops,curated,2,5,0.12,True
+sports nutrition,fitness_wellness,curated,1,0,0.06,True
+spring,web_frameworks,curated,64,19,3.68,True
+spring boot,web_frameworks,curated,1,7,0.06,True
+sql,programming_languages,curated,126,52,7.25,True
+sqlite,databases,curated,2,0,0.12,True
+squeegee,cloud_devops,onet,0,0,0.0,False
+st. paul travelers e-carma,databases,onet,0,0,0.0,False
+staff training,culinary_chef,ner_synthetic,72,4,4.14,True
+stakeholder management,soft_skills,curated,8,1,0.46,True
+standardized testing,teaching_education,curated,8,0,0.46,True
+starlims,healthcare_medical,onet,0,0,0.0,False
+stat! systems qd clinical,healthcare_medical,onet,0,0,0.0,False
+statacorp stata,data_ml_dl,onet,0,0,0.0,False
+statgraphics,data_ml_dl,onet,0,0,0.0,False
+static analysis software,programming_languages,onet,0,0,0.0,False
+station management,culinary_chef,curated,1,0,0.06,True
+statistica,data_ml_dl,onet,0,0,0.0,False
+statistical analysis,data_ml_dl,curated,26,7,1.5,True
+statistical analysis software,data_ml_dl,onet,1,1,0.06,True
+statistical process control,engineering_construction,ner_synthetic,6,3,0.35,True
+statistical software,data_ml_dl,onet,3,1,0.17,True
+statistics,data_ml_dl,ner_synthetic,96,17,5.52,True
+statsmodels,data_ml_dl,curated,0,0,0.0,True
+stem education,teaching_education,curated,0,0,0.0,True
+stock reconciliation,operations_logistics,ner_synthetic,0,0,0.0,False
+storage management software,software_tools,onet,0,0,0.0,False
+store scheduling,sales_marketing,ner_synthetic,0,0,0.0,False
+storyboarding,design_multimedia,ner_synthetic,5,0,0.29,True
+strategic planning,soft_skills,curated,154,27,8.86,True
+strength training,fitness_wellness,curated,9,0,0.52,True
+stress testing software,programming_languages,onet,0,0,0.0,False
+structural analysis,engineering_construction,curated,11,2,0.63,True
+structure query language sql,databases,onet,0,0,0.0,False
+structured interviewing,hr_recruiting,curated,3,0,0.17,True
+structured query language sql,databases,onet,1,0,0.06,True
+structured query report sqr,databases,onet,1,0,0.06,True
+student advising,teaching_education,curated,3,1,0.17,True
+student assessment,teaching_education,curated,1,0,0.06,True
+student engagement,teaching_education,curated,13,4,0.75,True
+succession planning,hr_recruiting,curated,21,11,1.21,True
+sumtotal systems toolbook,software_tools,onet,0,0,0.0,False
+sun microsystems java,programming_languages,onet,0,0,0.0,False
+supabase,databases,curated,0,0,0.0,True
+supplier management,operations_logistics,ner_synthetic,6,0,0.35,True
+surgical preparation,healthcare_medical,curated,2,2,0.12,True
+survey software,data_ml_dl,onet,0,0,0.0,False
+surveying,engineering_construction,curated,14,1,0.81,True
+sustainability reporting,agriculture,ner_synthetic,0,0,0.0,False
+svelte,web_frameworks,curated,0,0,0.0,True
+swift,programming_languages,curated,12,3,0.69,True
+syllabus design,teaching_education,curated,0,0,0.0,True
+symantec pcanywhere,software_tools,onet,0,0,0.0,False
+symantec visual cafe,programming_languages,onet,0,0,0.0,False
+symfony,web_frameworks,curated,0,0,0.0,True
+synamed emr,healthcare_medical,onet,0,0,0.0,False
+synergy software kaleidagraph,data_ml_dl,onet,0,0,0.0,False
+syspro business software,enterprise_software,onet,0,0,0.0,False
+systat software sigmaplot,data_ml_dl,onet,0,0,0.0,False
+systat software sigmastat,data_ml_dl,onet,0,0,0.0,False
+system administration,cloud_devops,curated,17,3,0.98,True
+system design,programming_languages,ner_synthetic,17,12,0.98,True
+system testing software,programming_languages,onet,0,0,0.0,False
+systemverilog,programming_languages,onet,0,0,0.0,False
+tableau,software_tools,curated,17,11,0.98,True
+tadpoles,software_tools,onet,0,0,0.0,False
+tailwind css,web_frameworks,curated,0,2,0.0,True
+talend big data integration,databases,onet,0,0,0.0,False
+talend data fabric,databases,onet,0,0,0.0,False
+talent acquisition,hr_recruiting,curated,230,172,13.23,True
+tax preparation,accounting_finance,curated,56,13,3.22,True
+tax software,accounting_finance,onet,7,1,0.4,True
+tcp/ip,networking,ner_synthetic,30,3,1.73,True
+tcpdump,networking,onet,1,1,0.06,True
+teamwork,soft_skills,curated,200,225,11.5,True
+technical manual database software,software_tools,onet,0,0,0.0,False
+techsmith camtasia,design_multimedia,onet,0,0,0.0,False
+teleconferencing software,design_multimedia,onet,0,0,0.0,False
+telemetry,healthcare_medical,curated,9,13,0.52,True
+tenable nessus,cybersecurity,onet,0,0,0.0,False
+tensorflow,data_ml_dl,curated,2,5,0.12,True
+teradata database,databases,onet,1,0,0.06,True
+terminal emulation software,networking,onet,0,0,0.0,False
+terraform,cloud_devops,curated,0,8,0.0,True
+territory management,sales_marketing,curated,10,3,0.58,True
+test automation,programming_languages,ner_synthetic,3,4,0.17,True
+test automation software,data_ml_dl,onet,0,0,0.0,False
+test design software,programming_languages,onet,0,0,0.0,False
+test implementation software,programming_languages,onet,0,0,0.0,False
+testing software,data_ml_dl,onet,3,0,0.17,True
+testng,programming_languages,onet,0,0,0.0,False
+text to speech software,software_tools,onet,0,0,0.0,False
+the general store,sales_marketing,onet,1,0,0.06,True
+the mathworks matlab,data_ml_dl,onet,1,0,0.06,True
+thomson reuters westlaw,software_tools,onet,0,0,0.0,False
+thomson reuters westlaw edge,software_tools,onet,0,0,0.0,False
+threat intelligence,cybersecurity,ner_synthetic,0,0,0.0,False
+threat modeling,cybersecurity,ner_synthetic,0,0,0.0,False
+three-dimensional modeling software,cad_engineering,onet,0,0,0.0,False
+tibco s-plus,data_ml_dl,onet,0,0,0.0,False
+tibco spotfire,data_ml_dl,onet,0,0,0.0,False
+tiktok,design_multimedia,onet,0,10,0.0,True
+time and attendance software,accounting_finance,onet,2,0,0.12,True
+time management,soft_skills,curated,269,62,15.47,True
+time reporting software,accounting_finance,onet,0,0,0.0,False
+time series analysis,data_ml_dl,curated,158,43,9.09,True
+time tracking software,accounting_finance,onet,0,0,0.0,False
+timekeeping software,accounting_finance,onet,0,0,0.0,False
+tool command language tcl,programming_languages,onet,0,0,0.0,False
+trademark law,legal_compliance,curated,0,0,0.0,True
+tradesman's software master estimator,project_management,onet,0,0,0.0,False
+traffic analysis,operations_logistics,ner_synthetic,2,0,0.12,True
+training and development,hr_recruiting,curated,143,33,8.22,True
+training facilitation,teaching_education,ner_synthetic,1,1,0.06,True
+trancite logic systems scenepd,design_multimedia,onet,0,0,0.0,False
+transact-sql,databases,onet,0,0,0.0,False
+transport scheduling,operations_logistics,ner_synthetic,0,0,0.0,False
+traverse pc,cad_engineering,onet,0,0,0.0,False
+treasury management,accounting_finance,curated,5,1,0.29,True
+trello,software_tools,curated,5,2,0.29,True
+triage,healthcare_medical,curated,11,14,0.63,True
+trimble geomatics office,data_ml_dl,onet,0,0,0.0,False
+trimble pathfinder office,cad_engineering,onet,0,0,0.0,False
+trimble sketchup pro,design_multimedia,onet,0,0,0.0,False
+trimble terramodel,cad_engineering,onet,0,0,0.0,False
+tumbleweed securetransport,software_tools,onet,0,0,0.0,False
+turtle creek software goldenseal,project_management,onet,0,0,0.0,False
+tutoring,teaching_education,curated,31,5,1.78,True
+twitter,software_tools,onet,60,20,3.45,True
+typescript,programming_languages,curated,2,11,0.12,True
+typography,design_multimedia,ner_synthetic,7,2,0.4,True
+ugcs,data_ml_dl,onet,0,0,0.0,False
+ugs solid edge,cad_engineering,onet,0,0,0.0,False
+ultimate software ultipro workplace,hr_recruiting,onet,0,0,0.0,False
+unified modeling language uml,software_tools,onet,0,0,0.0,False
+union relations,hr_recruiting,curated,28,9,1.61,True
+unistat statistical package,data_ml_dl,onet,0,0,0.0,False
+unit testing software,programming_languages,onet,2,0,0.12,True
+unity technologies unity,programming_languages,onet,0,0,0.0,False
+unix,cloud_devops,curated,44,4,2.53,True
+unix shell,cloud_devops,onet,4,0,0.23,True
+unreal technology unreal engine,programming_languages,onet,0,0,0.0,False
+upselling,sales_marketing,curated,20,3,1.15,True
+usability testing,design_multimedia,ner_synthetic,4,0,0.23,True
+usability testing software,programming_languages,onet,0,0,0.0,False
+user interface design software,programming_languages,onet,0,0,0.0,False
+user research,design_multimedia,ner_synthetic,2,0,0.12,True
+vagrant,cloud_devops,curated,0,0,0.0,True
+valuation,accounting_finance,curated,14,5,0.81,True
+value stream mapping,engineering_construction,ner_synthetic,8,1,0.46,True
+valusoft mastercook,databases,onet,0,0,0.0,False
+variance analysis,accounting_finance,curated,27,8,1.55,True
+vba,programming_languages,curated,15,2,0.86,True
+vector databases,databases,curated,0,1,0.0,True
+vehicle maintenance,operations_logistics,ner_synthetic,0,2,0.0,True
+vehicle management software,databases,onet,0,0,0.0,False
+vendor coordination,culinary_chef,ner_synthetic,0,0,0.0,False
+vendor evaluation,operations_logistics,ner_synthetic,1,0,0.06,True
+verilog,programming_languages,onet,3,0,0.17,True
+veritas netbackup,software_tools,onet,2,0,0.12,True
+vero software edgecam,cad_engineering,onet,0,0,0.0,False
+vero software surfcam,cad_engineering,onet,0,0,0.0,False
+version control software,cloud_devops,onet,0,0,0.0,False
+vertafore imageright,databases,onet,0,0,0.0,False
+video analysis software,data_ml_dl,onet,0,0,0.0,False
+video editing software,design_multimedia,onet,8,0,0.46,True
+video production,design_multimedia,ner_synthetic,7,0,0.4,True
+videoconferencing software,design_multimedia,onet,0,0,0.0,False
+virus scanning software,cybersecurity,onet,0,0,0.0,False
+visual basic,programming_languages,curated,35,1,2.01,True
+visual storytelling,design_multimedia,ner_synthetic,1,0,0.06,True
+visual studio,software_tools,curated,26,1,1.5,True
+visual studio code,software_tools,curated,0,0,0.0,True
+vital signs,healthcare_medical,curated,31,30,1.78,True
+vite,web_frameworks,curated,0,0,0.0,True
+vmware,cloud_devops,curated,28,5,1.61,True
+vmware esx server,software_tools,onet,0,0,0.0,False
+voice activated software,software_tools,onet,0,0,0.0,False
+voip,networking,ner_synthetic,22,1,1.27,True
+vue.js,web_frameworks,curated,2,3,0.12,True
+vulnerability management,cybersecurity,ner_synthetic,0,1,0.0,True
+wam software,data_ml_dl,onet,0,0,0.0,False
+ward systems group genehunter,data_ml_dl,onet,0,0,0.0,False
+warehouse management system wms,enterprise_software,onet,1,0,0.06,True
+warehouse operations,operations_logistics,ner_synthetic,7,1,0.4,True
+water flow modeling software,data_ml_dl,onet,0,0,0.0,False
+water management,agriculture,ner_synthetic,1,0,0.06,True
+watir,programming_languages,onet,0,0,0.0,False
+wavefunction spartan,data_ml_dl,onet,0,0,0.0,False
+web application software,programming_languages,onet,0,0,0.0,False
+web browser software,software_tools,onet,0,0,0.0,False
+web conferencing software,design_multimedia,onet,0,0,0.0,False
+web server software,software_tools,onet,0,0,0.0,False
+webpack,web_frameworks,curated,0,0,0.0,True
+website development software,web_frameworks,onet,0,0,0.0,False
+websocket,web_frameworks,curated,1,0,0.06,True
+weight management,fitness_wellness,curated,11,1,0.63,True
+welding,engineering_construction,curated,25,6,1.44,True
+wellness coaching,fitness_wellness,curated,0,0,0.0,True
+westlaw,legal_compliance,curated,5,1,0.29,True
+wevideo,design_multimedia,onet,0,0,0.0,False
+whitesmoke,software_tools,onet,0,0,0.0,False
+wilhelm publishing threshold,software_tools,onet,0,0,0.0,False
+wind flow modeling software,data_ml_dl,onet,0,0,0.0,False
+winestimator winest,data_ml_dl,onet,0,0,0.0,False
+wintac pro,databases,onet,0,0,0.0,False
+wireframing,design_multimedia,ner_synthetic,1,0,0.06,True
+wireless optimization,networking,ner_synthetic,0,0,0.0,False
+wireshark,networking,onet,4,1,0.23,True
+wolfram research mathematica,data_ml_dl,onet,0,0,0.0,False
+wonderware software,software_tools,onet,0,0,0.0,False
+word,software_tools,curated,528,100,30.36,True
+wordpress,web_frameworks,onet,24,4,1.38,True
+work ethic,soft_skills,curated,194,68,11.16,True
+work order software,databases,onet,0,0,0.0,False
+work scheduling software,project_management,onet,0,0,0.0,False
+work technology worktech time,accounting_finance,onet,0,0,0.0,False
+workday hcm,hr_recruiting,curated,1,0,0.06,True
+workday software,enterprise_software,onet,0,0,0.0,False
+workflow software,software_tools,onet,0,0,0.0,False
+workforce planning,hr_recruiting,curated,6,3,0.35,True
+working capital management,accounting_finance,curated,9,2,0.52,True
+workout program design,fitness_wellness,curated,3,0,0.17,True
+worktech maximo,enterprise_software,onet,0,0,0.0,False
+worldcat,software_tools,onet,0,0,0.0,False
+wound care,healthcare_medical,curated,16,11,0.92,True
+wrshealth emr,healthcare_medical,onet,0,0,0.0,False
+xactware xactimate,databases,onet,0,0,0.0,False
+xara designer pro,design_multimedia,onet,0,0,0.0,False
+xcode,programming_languages,onet,1,0,0.06,True
+xero,accounting_finance,curated,0,0,0.0,True
+xgboost,data_ml_dl,curated,1,0,0.06,True
+xp software xpswmm,data_ml_dl,onet,0,0,0.0,False
+yardi software,databases,onet,0,1,0.0,True
+yardi systems yardi enterprise,databases,onet,0,0,0.0,False
+yarn,software_tools,curated,2,1,0.12,True
+yield forecasting,agriculture,ner_synthetic,0,0,0.0,False
+yoga instruction,fitness_wellness,curated,0,0,0.0,True
+youtube,design_multimedia,onet,17,5,0.98,True
+zabbix,networking,onet,0,0,0.0,False
+zero trust,cybersecurity,ner_synthetic,0,0,0.0,False
+zoom,design_multimedia,onet,2,8,0.12,True

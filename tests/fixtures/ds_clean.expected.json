@@ -1,0 +1,64 @@
+{
+  "as_of": "2026-11-01",
+  "contact": {
+    "name": "Alex Mercer",
+    "email": "alex.mercer@example.com",
+    "phone": "555-0142",
+    "location": "San Francisco, CA"
+  },
+  "expected_sections": [
+    "summary",
+    "experience",
+    "education",
+    "skills"
+  ],
+  "skills": [
+    "python",
+    "scikit-learn",
+    "pytorch",
+    "sql",
+    "power bi"
+  ],
+  "education": [
+    {
+      "degree": "Master of Science",
+      "field": "Computer Science",
+      "institution": "Stanford University",
+      "graduation_year": 2019
+    },
+    {
+      "degree": "Bachelor of Science",
+      "field": "Statistics",
+      "institution": "UC Berkeley",
+      "graduation_year": 2017
+    }
+  ],
+  "experience": [
+    {
+      "title": "Lead Data Scientist",
+      "company": "Apex Analytics Corp",
+      "start": "2021-03",
+      "end": "Present",
+      "is_current": true
+    },
+    {
+      "title": "Data Scientist",
+      "company": "BluePeak Insights",
+      "start": "2019-06",
+      "end": "2021-02",
+      "is_current": false
+    }
+  ],
+  "total_years_experience": 7.4,
+  "layout": {
+    "page_count": 1,
+    "is_multi_column": false,
+    "has_tables": false,
+    "has_images": false,
+    "needs_ocr": false
+  },
+  "traps": [
+    "excelled at",
+    "R&D"
+  ]
+}

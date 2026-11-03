@@ -1,0 +1,17 @@
+{
+  "as_of": "2026-11-01",
+  "title": "Executive Chef",
+  "required_skills": [
+    "culinary arts",
+    "food safety",
+    "haccp",
+    "menu planning"
+  ],
+  "preferred_skills": [
+    "recipe development",
+    "inventory control",
+    "knife skills",
+    "baking"
+  ],
+  "min_years": 5
+}

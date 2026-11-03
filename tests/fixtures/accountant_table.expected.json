@@ -1,0 +1,57 @@
+{
+  "as_of": "2026-11-01",
+  "contact": {
+    "name": "Morgan Vance",
+    "email": "morgan.vance@example.com",
+    "phone": "555-0193",
+    "location": "Chicago, IL"
+  },
+  "expected_sections": [
+    "personal information",
+    "professional profile",
+    "professional experience",
+    "technical skills & competencies",
+    "education"
+  ],
+  "skills": [
+    "excel",
+    "quickbooks",
+    "gaap"
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science",
+      "field": "Accounting",
+      "institution": "University of Illinois Urbana-Champaign",
+      "graduation_year": 2010
+    }
+  ],
+  "experience": [
+    {
+      "title": "Senior Accountant",
+      "company": "Highland Financial Group",
+      "start": "2018-05",
+      "end": "Present",
+      "is_current": true
+    },
+    {
+      "title": "Staff Accountant",
+      "company": "Prairie View Associates",
+      "start": "2014-06",
+      "end": "2018-04",
+      "is_current": false
+    }
+  ],
+  "total_years_experience": 12.4,
+  "layout": {
+    "page_count": 1,
+    "is_multi_column": false,
+    "has_tables": true,
+    "has_images": false,
+    "needs_ocr": false
+  },
+  "traps": [
+    "excelled at",
+    "Grade C"
+  ]
+}

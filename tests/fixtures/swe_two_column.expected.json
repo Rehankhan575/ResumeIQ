@@ -1,0 +1,57 @@
+{
+  "as_of": "2026-11-01",
+  "contact": {
+    "name": "Jordan Lee",
+    "email": "jordan.lee@example.com",
+    "phone": "555-0187",
+    "location": "Seattle, WA"
+  },
+  "expected_sections": [
+    "academics",
+    "tech stack",
+    "work history"
+  ],
+  "skills": [
+    "javascript",
+    "react",
+    "docker",
+    "git",
+    "go"
+  ],
+  "education": [
+    {
+      "degree": "Bachelor of Science",
+      "field": "Software Engineering",
+      "institution": "University of Washington",
+      "graduation_year": null
+    }
+  ],
+  "experience": [
+    {
+      "title": "Senior Backend Engineer",
+      "company": "CloudScale Systems",
+      "start": "2022-04",
+      "end": "Present",
+      "is_current": true
+    },
+    {
+      "title": "Frontend Developer",
+      "company": "WebSphere Digital",
+      "start": "2019-08",
+      "end": "2022-03",
+      "is_current": false
+    }
+  ],
+  "total_years_experience": 7.2,
+  "layout": {
+    "page_count": 1,
+    "is_multi_column": true,
+    "has_tables": true,
+    "has_images": true,
+    "needs_ocr": false
+  },
+  "traps": [
+    "go-to-market",
+    "Grade C"
+  ]
+}

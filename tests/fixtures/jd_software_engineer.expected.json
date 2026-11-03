@@ -1,0 +1,17 @@
+{
+  "as_of": "2026-11-01",
+  "title": "Full Stack Software Engineer",
+  "required_skills": [
+    "javascript",
+    "react",
+    "node.js",
+    "git"
+  ],
+  "preferred_skills": [
+    "docker",
+    "kubernetes",
+    "go",
+    "typescript"
+  ],
+  "min_years": 3
+}

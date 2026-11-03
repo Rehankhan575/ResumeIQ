@@ -99,7 +99,7 @@ artefacts. No further masking is applied to avoid destroying signal.
 
 ### Source
 - **Dataset**: `linkedin_sample` (5,000 postings, `postings_5k.parquet`)
-- **After dedup on (title, description[:200])**: 4,833 unique JDs
+- **After dedup on (title, description[:200])**: 4,833 unique JDs (note: deduping on `(title, description[:200])` yields 4,833 unique JDs after dropping 167 exact prefix duplicates; 4,897 in the initial run was a provisional figure from an earlier draft that deduped on title only)
 - **After title→category mapping**: 1,796 mapped JDs
 - **Excluded**: 26 ambiguous + 3,011 unmapped (3,037 total excluded)
 

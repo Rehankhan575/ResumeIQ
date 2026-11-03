@@ -1,0 +1,56 @@
+{
+  "as_of": "2026-11-01",
+  "contact": {
+    "name": "Marcus Bennett",
+    "email": "marcus.bennett@example.com",
+    "phone": "555-0164",
+    "location": "Austin, TX"
+  },
+  "expected_sections": [
+    "professional summary",
+    "work experience",
+    "certifications",
+    "education"
+  ],
+  "skills": [
+    "haccp",
+    "menu planning",
+    "food safety"
+  ],
+  "education": [
+    {
+      "degree": "Associate of Applied Science",
+      "field": "Culinary Arts",
+      "institution": "Culinary Institute of America",
+      "graduation_year": 2015
+    }
+  ],
+  "experience": [
+    {
+      "title": "Executive Chef",
+      "company": "The Salt Lick Bistro",
+      "start": "2019-01",
+      "end": "Present",
+      "is_current": true
+    },
+    {
+      "title": "Sous Chef",
+      "company": "Riverbend Grille",
+      "start": "2016-03",
+      "end": "2018-12",
+      "is_current": false
+    }
+  ],
+  "total_years_experience": 10.6,
+  "layout": {
+    "page_count": 1,
+    "is_multi_column": false,
+    "has_tables": false,
+    "has_images": false,
+    "needs_ocr": false
+  },
+  "traps": [
+    "R&D",
+    "Microsoft Word"
+  ]
+}

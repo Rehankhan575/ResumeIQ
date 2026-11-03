@@ -1,0 +1,30 @@
+Job Title: Full Stack Software Engineer
+Company: CloudScale Systems
+Location: Seattle, WA (Remote Eligible)
+
+About the Role:
+CloudScale Systems is looking for a versatile Full Stack Software Engineer to build scalable customer-facing web applications and resilient microservices. You will collaborate across disciplines to deliver responsive interfaces and high-concurrency cloud backends that empower our global go-to-market enterprise solutions. Candidates of all academic backgrounds, regardless of whether you held a Grade C or honors distinction, are encouraged to demonstrate practical craftsmanship.
+
+Minimum Experience:
+Minimum 3+ years of professional software engineering experience delivering production web services.
+
+Key Responsibilities:
+• Develop modern, accessible frontend web interfaces using JavaScript and component-based React architecture.
+• Build modular server-side REST APIs and microservice endpoints powered by Node.js.
+• Maintain clean version control practices, conduct code reviews, and manage pull requests using Git.
+• Containerize microservices and deploy service components using Docker environments.
+• Coordinate cluster scheduling and service orchestration across Kubernetes cloud clusters.
+• Write concurrent backend backend worker services and networking utilities utilizing Go.
+
+Required Qualifications:
+• Strong proficiency in modern JavaScript development (ES6+) and web browser fundamentals.
+• Production experience building dynamic user interfaces with React.
+• Solid background creating backend API services utilizing Node.js.
+• Rigorous discipline in collaborative version control and release workflows using Git.
+• Minimum 3 years of software engineering experience.
+
+Preferred Qualifications:
+• Working experience containerizing applications using Docker containers.
+• Hands-on familiarity with Kubernetes container orchestration.
+• Practical knowledge of concurrent systems programming in Go.
+• Experience working with TypeScript in large codebase architectures.

@@ -1,0 +1,29 @@
+Job Title: Senior Data Scientist
+Company: Apex Technologies Inc.
+Location: San Francisco, CA (Hybrid)
+
+About the Role:
+Apex Technologies is seeking an experienced Senior Data Scientist to lead our core algorithmic modeling and predictive intelligence platform. In this position, you will partner closely with engineering and product teams to architect, prototype, and operationalize robust machine learning solutions at scale. The ideal candidate has excelled at applying statistical rigor to solve complex commercial challenges in high-velocity R&D environments.
+
+Minimum Experience:
+Minimum 4+ years of professional full-time experience in applied data science or quantitative modeling.
+
+Key Responsibilities:
+• Design, train, and validate production-ready predictive models using Python and modern data science ecosystems.
+• Formulate complex queries and data transformations in SQL across enterprise distributed data warehouses.
+• Implement feature extraction and statistical benchmarking pipelines utilizing scikit-learn.
+• Explore deep neural network architectures and natural language representations using PyTorch.
+• Process large-scale streaming and batch data workloads using Apache Spark pipelines.
+• Communicate analytical findings and model performance metrics to stakeholders using Power BI visualizations.
+
+Required Qualifications:
+• Proficiency in Python programming with demonstrated expertise in statistical computing.
+• Deep competency writing high-performance SQL queries for relational databases.
+• Hands-on mastery of classical machine learning algorithms and scikit-learn framework.
+• Minimum 4 years of hands-on industry experience building scalable ML models.
+
+Preferred Qualifications:
+• Experience developing deep neural network models with PyTorch.
+• Familiarity with distributed big data processing using Spark.
+• Strong background creating executive analytical reporting dashboards in Power BI.
+• Demonstrated track record in enterprise algorithmic innovation and commercial product delivery.
