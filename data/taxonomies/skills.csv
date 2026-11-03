@@ -1,0 +1,1668 @@
+skill,aliases,category,source
+1cadcam unigraphics,,cad_engineering,onet
+3d graphics software,,design_multimedia,onet
+3m post-it app,,software_tools,onet
+5g networks,,networking,ner_synthetic
+a programming language apl,,programming_languages,onet
+a-systems jobview,,accounting_finance,onet
+ab initio,,enterprise_software,onet
+ab testing,a/b testing|split testing|experimentation,data_ml_dl,curated
+abacusnext hotdocs,,software_tools,onet
+abc compiler,,programming_languages,onet
+academic research,scholarly writing,teaching_education,curated
+access,ms access|microsoft access,databases,curated
+access management software,,software_tools,onet
+accessdata ftk,,networking,onet
+accessibility,,design_multimedia,ner_synthetic
+account management,key account management|client retention,sales_marketing,curated
+accounts payable,ap accounting,accounting_finance,curated
+accounts payable software,,accounting_finance,onet
+accounts receivable,ar accounting,accounting_finance,curated
+accounts receivable software,,accounting_finance,onet
+acd systems canvas,,design_multimedia,onet
+act!,,sales_marketing,onet
+active directory software,,software_tools,onet
+active listening,empathic listening,soft_skills,curated
+actsoft comet tracker,,databases,onet
+acute care,critical care|icu care,healthcare_medical,curated
+ada,,programming_languages,onet
+adaptability,flexibility|change management,soft_skills,curated
+ado.net,,databases,onet
+adobe acrobat,,software_tools,onet
+adobe acrobat reader,,software_tools,onet
+adobe actionscript,,programming_languages,onet
+adobe after effects,,design_multimedia,onet
+adobe audition,,design_multimedia,onet
+adobe captivate,,software_tools,onet
+adobe coldfusion,,web_frameworks,onet
+adobe creative cloud software,,design_multimedia,onet
+adobe director,,design_multimedia,onet
+adobe distiller,,design_multimedia,onet
+adobe dreamweaver,,web_frameworks,onet
+adobe experience manager (aem),,web_frameworks,onet
+adobe flex,,web_frameworks,onet
+adobe framemaker,,design_multimedia,onet
+adobe freehand mx,,design_multimedia,onet
+adobe illustrator,illustrator,software_tools,curated
+adobe imageready,,design_multimedia,onet
+adobe indesign,,design_multimedia,onet
+adobe livemotion,,design_multimedia,onet
+adobe pagemaker,,design_multimedia,onet
+adobe photoshop,photoshop,software_tools,curated
+adobe premiere pro,,design_multimedia,onet
+adobe presenter,,software_tools,onet
+adobe xd,xd,software_tools,curated
+adp enterprise hr,,hr_recruiting,onet
+adp workforce now,,hr_recruiting,onet
+advanced cardiac life support,acls,healthcare_medical,curated
+aec software fasttrack schedule,,project_management,onet
+aeronautical charts,,software_tools,onet
+aestiva purchase order,,enterprise_software,onet
+after effects,,design_multimedia,ner_synthetic
+agricultural machinery,,agriculture,ner_synthetic
+airdata,,project_management,onet
+airflow,apache airflow,data_ml_dl,curated
+airtable,,databases,onet
+ajax,,web_frameworks,onet
+algorithmic language algol,,programming_languages,onet
+allscripts healthcare automation software,,healthcare_medical,onet
+allscripts pm,,healthcare_medical,onet
+allscripts professional ehr,,healthcare_medical,onet
+allscripts sunrise,,healthcare_medical,onet
+alpha software alpha five,,databases,onet
+alteryx software,,data_ml_dl,onet
+amazing charts,,healthcare_medical,onet
+amazon kinesis,,databases,onet
+amazon web services,aws,cloud_devops,curated
+american medical association codemanager,,software_tools,onet
+american sign language browser,,databases,onet
+amkai amkaicharts,,healthcare_medical,onet
+analyse-it,,data_ml_dl,onet
+analyzerxl,,data_ml_dl,onet
+angular,angular.js|angularjs|angular2+,web_frameworks,curated
+ansible,ansible automation,cloud_devops,curated
+ansible software,,software_tools,onet
+ansys fluent,,data_ml_dl,onet
+ansys multiphysics,,data_ml_dl,onet
+ansys simulation software,,data_ml_dl,onet
+anti-money laundering,aml compliance|kyc,legal_compliance,curated
+anti-spyware software,,cybersecurity,onet
+antivirus software,,cybersecurity,onet
+aol mapquest,,cad_engineering,onet
+apache ant,,programming_languages,onet
+apache avro,,software_tools,onet
+apache flume,,databases,onet
+apache hive,,databases,onet
+apache http server,apache web server|httpd,cloud_devops,curated
+apache jmeter,,programming_languages,onet
+apache maven,,programming_languages,onet
+apache oozie,,databases,onet
+apache pig,,databases,onet
+apache solr,,databases,onet
+apache sqoop,,databases,onet
+apache struts,,web_frameworks,onet
+apache subversion svn,,cloud_devops,onet
+apache tomcat,,web_frameworks,onet
+apple appleworks,,software_tools,onet
+apple cocoa,,programming_languages,onet
+apple final cut pro,,design_multimedia,onet
+apple imovie,,design_multimedia,onet
+apple ios,,cloud_devops,onet
+apple iwork keynote,,software_tools,onet
+apple iwork pages,,software_tools,onet
+apple keynote,,software_tools,onet
+apple macos,,cloud_devops,onet
+apple quicktime,,design_multimedia,onet
+apple safari,,software_tools,onet
+appletree,,software_tools,onet
+applicant tracking software,,hr_recruiting,onet
+applicant tracking systems,ats platforms,hr_recruiting,curated
+application management software,,cloud_devops,onet
+appointment scheduling software,,project_management,onet
+aptean made2manage,,enterprise_software,onet
+aptech systems gauss,,data_ml_dl,onet
+ardupilot mission planner,,software_tools,onet
+argo cd,argocd,cloud_devops,curated
+articulate rapid e-learning studio,,software_tools,onet
+artificial intelligence,ai,data_ml_dl,curated
+as/400 database,,databases,onet
+asana,asana project,software_tools,curated
+asp.net,asp.net core|aspnet,web_frameworks,curated
+assay development,,healthcare_medical,ner_synthetic
+assembly,asm|assembly language|x86 assembly,programming_languages,curated
+asset management,,operations_logistics,ner_synthetic
+asset monitoring,,engineering_construction,ner_synthetic
+athenahealth athenacollector,,healthcare_medical,onet
+athletic conditioning,sports performance training,fitness_wellness,curated
+atlas construction business forms,,software_tools,onet
+atlassian bamboo,,enterprise_software,onet
+attention to detail,accuracy|thoroughness,soft_skills,curated
+atx total accounting office,,accounting_finance,onet
+audacity,,design_multimedia,onet
+audience research,,sales_marketing,ner_synthetic
+audio editing,,design_multimedia,ner_synthetic
+audion laboratories voxpro,,design_multimedia,onet
+autocad,autodesk autocad,engineering_construction,curated
+autocrit editing wizard,,software_tools,onet
+autodesk 3ds max,,design_multimedia,onet
+autodesk 3ds max design,,cad_engineering,onet
+autodesk autocad civil 3d,,cad_engineering,onet
+autodesk autocad map 3d,,cad_engineering,onet
+autodesk autocad mechanical,,cad_engineering,onet
+autodesk inventor,,cad_engineering,onet
+autodesk land desktop,,cad_engineering,onet
+autodesk maya,,design_multimedia,onet
+autodesk mudbox,,design_multimedia,onet
+autodesk navisworks,,cad_engineering,onet
+autodesk sketchbook pro,,design_multimedia,onet
+autodessys form z,,cad_engineering,onet
+automated installation software,,cloud_devops,onet
+automated inventory software,,enterprise_software,onet
+aveva intouch hmi,,software_tools,onet
+avid pro tools,,design_multimedia,onet
+avid technology inews,,design_multimedia,onet
+avid technology media composer,,design_multimedia,onet
+avid technology pro tools,,design_multimedia,onet
+avid technology sibelius,,design_multimedia,onet
+avidian technologies prophet,,sales_marketing,onet
+awk,,programming_languages,onet
+axxya systems nutritionist pro,,data_ml_dl,onet
+aya associates comp-u-floor,,databases,onet
+b-method,,programming_languages,onet
+b2b sales,business-to-business sales,sales_marketing,curated
+b2c sales,business-to-consumer sales,sales_marketing,curated
+backbone.js,,web_frameworks,onet
+background checks,employment verification,hr_recruiting,curated
+backup and archival software,,software_tools,onet
+baking,bread making|artisan breads,culinary_chef,curated
+balance sheet,balance sheet preparation,accounting_finance,curated
+bank reconciliation,account reconciliation,accounting_finance,curated
+basecamp,,project_management,onet
+bash,bash scripting|bash shell|bourne-again shell,programming_languages,curated
+basic life support,bls,healthcare_medical,curated
+behavioral health,psychiatric care|mental health assessment,healthcare_medical,curated
+belmar & associates mortware,,databases,onet
+bentley geopak bridge,,design_multimedia,onet
+bentley inroads suite,,cad_engineering,onet
+bentley microstation,,cad_engineering,onet
+bentley staad,,cad_engineering,onet
+bentley systems inroads suite,,cad_engineering,onet
+bentley systems projectwise,,project_management,onet
+bgp,,networking,ner_synthetic
+bigloo scheme,,programming_languages,onet
+bigquery,google bigquery|bq,databases,curated
+bilingual education,esl|esol|ell instruction,teaching_education,curated
+bill of lading software,,enterprise_software,onet
+bill of materials software,,enterprise_software,onet
+billing software,,accounting_finance,onet
+bioex systems exercise pro,,healthcare_medical,onet
+bioinformatics,,healthcare_medical,ner_synthetic
+bitbucket,atlassian bitbucket,software_tools,curated
+bizbench,,data_ml_dl,onet
+bizmatics prognocis emr,,healthcare_medical,onet
+blackbaud etapestry,,sales_marketing,onet
+blackbaud the raiser's edge,,sales_marketing,onet
+blackboard,blackboard learn,teaching_education,curated
+blackboard software,,databases,onet
+blender,blender 3d,software_tools,curated
+blink,,software_tools,onet
+blogging software,,web_frameworks,onet
+bloomberg professional,,data_ml_dl,onet
+bloomz,,software_tools,onet
+blueprint reading,architectural drawings|schematic reading,engineering_construction,curated
+bmc software control-m,,enterprise_software,onet
+body composition assessment,skinfold measurements|bioimpedance,fitness_wellness,curated
+bookkeeping software,,accounting_finance,onet
+bootstrap,twitter bootstrap|bootstrap 5,web_frameworks,curated
+border gateway protocol bgp,,networking,onet
+braintrain captain's log,,healthcare_medical,onet
+brand management,brand awareness|brand positioning,sales_marketing,curated
+budget forecasting,,accounting_finance,ner_synthetic
+budget monitoring,,culinary_chef,ner_synthetic
+budgeting software,,accounting_finance,onet
+bugzilla,,programming_languages,onet
+building codes,ibc compliance|zoning regulations,engineering_construction,curated
+business development,bizdev,sales_marketing,curated
+business intelligence software,,data_ml_dl,onet
+business software applications,,software_tools,onet
+butchery,meat fabrication|poultry fabrication,culinary_chef,curated
+c,c language|c programming,programming_languages,curated
+c#,csharp|c sharp|.net c#,programming_languages,curated
+c++,cpp|c plus plus,programming_languages,curated
+cad,,engineering_construction,ner_synthetic
+cadence pspice,,data_ml_dl,onet
+calendar software,,project_management,onet
+calibration software,,data_ml_dl,onet
+caliper maptitude,,cad_engineering,onet
+call-processing language cpl,,programming_languages,onet
+camera operation,,design_multimedia,ner_synthetic
+camfit data limited microfit,,data_ml_dl,onet
+campaign attribution,,sales_marketing,ner_synthetic
+candidate sourcing,headhunting|boolean search,hr_recruiting,curated
+canu,,programming_languages,onet
+canva,,design_multimedia,onet
+canvas lms,canvas,teaching_education,curated
+capacity planning,,networking,ner_synthetic
+capital budgeting,capex|capital expenditures,accounting_finance,curated
+cardiopulmonary resuscitation,cpr,healthcare_medical,curated
+cardiovascular conditioning,cardio workouts|aerobics,fitness_wellness,curated
+carecloud central,,healthcare_medical,onet
+carlson survcadd,,cad_engineering,onet
+carpentry,framing|finish carpentry,engineering_construction,curated
+cascading style sheets css,,web_frameworks,onet
+case management,legal case tracking,legal_compliance,curated
+case management software,,project_management,onet
+cash flow analysis,,accounting_finance,ner_synthetic
+cash flow statement,cash flow forecasting|cash flow management,accounting_finance,curated
+cassandra,apache cassandra,databases,curated
+catering,banquet service|large event cooking,culinary_chef,curated
+catheterization,urinary catheterization|foley catheter,healthcare_medical,curated
+cell culture,,healthcare_medical,ner_synthetic
+ceridian dayforce enterprise hcm,,hr_recruiting,onet
+cerner,cerner ehr|cerner software,healthcare_medical,curated
+cerner millennium,,healthcare_medical,onet
+cerner powerworks practice management,,healthcare_medical,onet
+cerner profile,,healthcare_medical,onet
+cfa,chartered financial analyst,accounting_finance,curated
+cgi-ams bureaulink enterprise,,software_tools,onet
+chart of accounts,coa,accounting_finance,curated
+chartware emr,,healthcare_medical,onet
+chatbot software,,software_tools,onet
+chef,chef software|chef devops,cloud_devops,curated
+chemotherapy administration,oncology nursing,healthcare_medical,curated
+children's educational software,,software_tools,onet
+chromatography,,healthcare_medical,ner_synthetic
+ci/cd,continuous integration|continuous deployment,cloud_devops,curated
+circleci,circle ci,cloud_devops,curated
+circuit simulation software,,data_ml_dl,onet
+cisco ios,,cloud_devops,onet
+cisco systems ciscoworks,,software_tools,onet
+cisco webex,,design_multimedia,onet
+citrix cloud computing software,,software_tools,onet
+civil engineering,civil infrastructure,engineering_construction,curated
+classdojo,,software_tools,onet
+classroom management,behavior management,teaching_education,curated
+clickhouse,clickhouse db,databases,curated
+client counseling,legal advisory,legal_compliance,curated
+client fitness assessment,physical fitness testing,fitness_wellness,curated
+clinical audit,,healthcare_medical,ner_synthetic
+clinical documentation,charting|progress notes,healthcare_medical,curated
+clinical research,clinical trials|gcp guidelines,healthcare_medical,curated
+clinical trial management software,,databases,onet
+clojure,clojure programming,programming_languages,curated
+cloud infrastructure,,programming_languages,ner_synthetic
+cloud security,,cybersecurity,ner_synthetic
+cloudcompare,,data_ml_dl,onet
+cloudformation,aws cloudformation,cloud_devops,curated
+clover technology galena,,data_ml_dl,onet
+clustalw,,data_ml_dl,onet
+cnc mastercam,,cad_engineering,onet
+cobol,cobol programming,programming_languages,curated
+cold calling,telemarketing,sales_marketing,curated
+collaborative editing software,,software_tools,onet
+color grading,,design_multimedia,ner_synthetic
+commissioning,facility commissioning,engineering_construction,curated
+common curriculum,,software_tools,onet
+common gateway interface cgi,,enterprise_software,onet
+communication,verbal communication|written communication,soft_skills,curated
+compensation and benefits,comp & benefits|total rewards,hr_recruiting,curated
+compris software,,sales_marketing,onet
+computer aided dispatch software,,software_tools,onet
+computer assisted design software,,cad_engineering,onet
+computer imaging software,,design_multimedia,onet
+computer vision,cv,data_ml_dl,curated
+computer-aided design,cad drafting,engineering_construction,curated
+computer-aided engineering cae software,,data_ml_dl,onet
+computerease construction accounting software,,accounting_finance,onet
+concrete work,concrete pouring|rebar placement,engineering_construction,curated
+conflict resolution,mediation|conflict management,soft_skills,curated
+confluence,atlassian confluence,software_tools,curated
+constant contact,,sales_marketing,onet
+construction management software proest,,data_ml_dl,onet
+construction software center easyest,,project_management,onet
+consultative sales,consultative approach,sales_marketing,curated
+consultative selling,solution selling,sales_marketing,curated
+contact management software,,project_management,onet
+content management systems cms,,web_frameworks,onet
+content marketing,content strategy,sales_marketing,curated
+content scheduling,,design_multimedia,ner_synthetic
+contract administration,,engineering_construction,ner_synthetic
+contract drafting,contract review|agreement drafting,legal_compliance,curated
+contract lifecycle management,,legal_compliance,ner_synthetic
+contract negotiation,deal closing|closing techniques,sales_marketing,curated
+control systems,,engineering_construction,ner_synthetic
+conversion optimization,,sales_marketing,ner_synthetic
+coordinate geometry cogo software,,data_ml_dl,onet
+copywriting,ad copywriting|promotional writing,sales_marketing,curated
+core conditioning,core strengthening,fitness_wellness,curated
+corel coreldraw graphics suite,,design_multimedia,onet
+corel paint shop pro,,design_multimedia,onet
+corel painter,,design_multimedia,onet
+corel quattropro,,software_tools,onet
+corel wordperfect office suite,,software_tools,onet
+corporate governance,board resolutions|bylaws,legal_compliance,curated
+corporate tax,business tax,accounting_finance,curated
+cost accounting,cost analysis|job costing,accounting_finance,curated
+cost accounting software,,accounting_finance,onet
+cost estimating,construction takeoff|bid preparation,engineering_construction,curated
+cost estimating software,,project_management,onet
+cost estimation,,engineering_construction,ner_synthetic
+cost reduction,expense management,accounting_finance,curated
+couchdb,apache couchdb,databases,curated
+course management system software,,software_tools,onet
+cpa,certified public accountant,accounting_finance,curated
+cpr certification,cpr/aed,fitness_wellness,curated
+cpr international generalcost estimator,,accounting_finance,onet
+cpr visual estimator,,data_ml_dl,onet
+cpsi cpsi system,,healthcare_medical,onet
+cpt coding,current procedural terminology,healthcare_medical,curated
+craftsman cd estimator,,project_management,onet
+credit analysis,credit underwriting,accounting_finance,curated
+crime mapping software,,cad_engineering,onet
+critical thinking,logical reasoning,soft_skills,curated
+crm,,sales_marketing,ner_synthetic
+crm segmentation,,sales_marketing,ner_synthetic
+crop monitoring,,agriculture,ner_synthetic
+crystalmaker,,data_ml_dl,onet
+css3,css,web_frameworks,curated
+culinary arts,cooking techniques,culinary_chef,curated
+culinary nutrition,special diets|allergen management,culinary_chef,curated
+culinary software services cheftec,,databases,onet
+curriculum development,curriculum design|curriculum planning,teaching_education,curated
+customer information databases,,sales_marketing,onet
+customer journey mapping,conversion rate optimization|cro,sales_marketing,curated
+customer relationship management,crm systems,sales_marketing,curated
+customer service,client satisfaction|customer relations,soft_skills,curated
+dart,dart language|dart programming,programming_languages,curated
+dartware intermapper,,networking,onet
+dassault systemes abaqus,,data_ml_dl,onet
+dassault systemes catia,,cad_engineering,onet
+dassault systemes solidworks,,cad_engineering,onet
+data acquisition software,,data_ml_dl,onet
+data acquisition systems,,data_ml_dl,onet
+data analysis,,healthcare_medical,ner_synthetic
+data analysis software,,data_ml_dl,onet
+data definition language ddl,,databases,onet
+data entry software,,databases,onet
+data governance,,data_ml_dl,ner_synthetic
+data logging software,,databases,onet
+data manipulation language dml,,databases,onet
+data modeling,dimensional modeling,data_ml_dl,curated
+data modeling software,,databases,onet
+data pipelines,data pipeline,data_ml_dl,curated
+data privacy,,legal_compliance,ner_synthetic
+data privacy compliance,gdpr|ccpa,legal_compliance,curated
+data quality,,data_ml_dl,ner_synthetic
+data visualization,dataviz,data_ml_dl,curated
+data visualization software,,data_ml_dl,onet
+data warehousing,dwh|edw,data_ml_dl,curated
+database management software,,databases,onet
+database management systems,,databases,onet
+database reporting software,,databases,onet
+database software,,databases,onet
+databricks,databricks lakehouse,databases,curated
+datadog,datadog monitoring,cloud_devops,curated
+datavision,,databases,onet
+dataworks plus digital crimescene,,databases,onet
+daysmart software appointment-plus,,project_management,onet
+dbase,,databases,onet
+dbase plus,,databases,onet
+dbt,data build tool,data_ml_dl,curated
+debugging software,,programming_languages,onet
+decision making,strategic decision making,soft_skills,curated
+decisioneering crystal ball,,data_ml_dl,onet
+deep learning,dl,data_ml_dl,curated
+defect tracking software,,programming_languages,onet
+delcam powermill,,cad_engineering,onet
+delphi discovery,,data_ml_dl,onet
+delphi technology,,data_ml_dl,onet
+deltek costpoint,,accounting_finance,onet
+demand planning,,operations_logistics,ner_synthetic
+deployment software,,cloud_devops,onet
+deposition preparation,witness preparation,legal_compliance,curated
+derivicom finoptions xl,,data_ml_dl,onet
+design systems,,design_multimedia,ner_synthetic
+designware 3d eyewitness,,design_multimedia,onet
+desire2learn lms software,,software_tools,onet
+desmos,,data_ml_dl,onet
+devsecops,dev sec ops,cloud_devops,curated
+diagramming software,,software_tools,onet
+dialysis,hemodialysis|peritoneal dialysis,healthcare_medical,curated
+differentiated instruction,individualized learning,teaching_education,curated
+digital forensics,,cybersecurity,ner_synthetic
+digital marketing,online marketing,sales_marketing,curated
+disassembler software,,programming_languages,onet
+discovery process,e-discovery|document review,legal_compliance,curated
+dispatch software,,operations_logistics,ner_synthetic
+distance learning,remote teaching|online instruction,teaching_education,curated
+distributed control system dcs,,software_tools,onet
+diversity equity inclusion,dei initiatives|diversity hiring,hr_recruiting,curated
+django,django framework,web_frameworks,curated
+dm2 bills of lading,,data_ml_dl,onet
+doc cop,,software_tools,onet
+docker,docker container|docker containers,cloud_devops,curated
+document management system software,,software_tools,onet
+domain name system dns,,software_tools,onet
+dp technology esprit,,cad_engineering,onet
+drawing and drafting software,,cad_engineering,onet
+drawing software,,design_multimedia,onet
+driver scheduling,,operations_logistics,ner_synthetic
+dropbox,,cloud_devops,onet
+drupal,,web_frameworks,onet
+due diligence,corporate due diligence,legal_compliance,curated
+dynamic analysis software,,programming_languages,onet
+dynamodb,amazon dynamodb,databases,curated
+e++ pattern language,,programming_languages,onet
+e-commerce operations,,sales_marketing,ner_synthetic
+e-learning,,teaching_education,ner_synthetic
+e-mds software,,healthcare_medical,onet
+early childhood education,preschool teaching,teaching_education,curated
+earthsoft equis geology,,databases,onet
+easycbm,,software_tools,onet
+eclinicalworks ehr software,,healthcare_medical,onet
+eclipse,eclipse ide,software_tools,curated
+econometric software limdep,,data_ml_dl,onet
+editcnc,,software_tools,onet
+editorial research,,design_multimedia,ner_synthetic
+edmodo,,software_tools,onet
+edpuzzle,,software_tools,onet
+educational leadership,school administration,teaching_education,curated
+educational research,,teaching_education,ner_synthetic
+educational software,,software_tools,onet
+educational technology,edtech|learning management systems|lms,teaching_education,curated
+edulastic,,software_tools,onet
+egs calcmenu,,databases,onet
+eiffel,,programming_languages,onet
+eko,,software_tools,onet
+elasticsearch,es|elastic search,databases,curated
+electrical engineering,circuit design|schematics,engineering_construction,curated
+electrical testing,,engineering_construction,ner_synthetic
+electrical wiring,panel wiring|conduit bending,engineering_construction,curated
+electron,electron.js|electronjs,web_frameworks,curated
+electronic health records,ehr,healthcare_medical,curated
+electronic medical records,emr,healthcare_medical,curated
+electronic time clock etc,,accounting_finance,onet
+element management software,,software_tools,onet
+elisa,,healthcare_medical,ner_synthetic
+elixir,elixir programming,programming_languages,curated
+email marketing,newsletter marketing|mailchimp,sales_marketing,curated
+email software,,software_tools,onet
+embarcadero delphi,,programming_languages,onet
+embarcadero jbuilder,,programming_languages,onet
+embedded systems development software,,programming_languages,onet
+emc documentum,,software_tools,onet
+emc networker,,software_tools,onet
+emds medisoft,,healthcare_medical,onet
+emotional intelligence,eq|empathy,soft_skills,curated
+employee engagement,pulse surveys|retention strategies,hr_recruiting,curated
+employee onboarding,new hire orientation,hr_recruiting,curated
+employee relations,workplace conflict resolution,hr_recruiting,curated
+employee scheduling software,,project_management,onet
+employer branding,recruitment marketing,hr_recruiting,curated
+encoded archival system ead,,databases,onet
+encryption software,,cybersecurity,onet
+energy auditing,,engineering_construction,ner_synthetic
+energy modeling,,engineering_construction,ner_synthetic
+enterprise javabeans,,web_frameworks,onet
+eos systems photomodeler,,design_multimedia,onet
+epic practice management,,healthcare_medical,onet
+epic systems,epic ehr|epic software,healthcare_medical,curated
+epicor vantage erp,,enterprise_software,onet
+epocrates,,healthcare_medical,onet
+equipment calibration,,engineering_construction,ner_synthetic
+equipment reliability,,engineering_construction,ner_synthetic
+equity research,stock analysis,accounting_finance,curated
+erlang,erlang otp,programming_languages,curated
+erp software,,enterprise_software,onet
+erp systems,,operations_logistics,ner_synthetic
+esri arcgis,,cad_engineering,onet
+esri arcgis geostatistical analyst,,cad_engineering,onet
+esri arcgis software,,cad_engineering,onet
+esri arcgis spatial analyst,,cad_engineering,onet
+esri arcims,,cad_engineering,onet
+esri arcinfo,,cad_engineering,onet
+esri arcmap,,cad_engineering,onet
+esri arcpad,,cad_engineering,onet
+esri arcview,,cad_engineering,onet
+esri arcview 3d analyst,,cad_engineering,onet
+esri software,,cad_engineering,onet
+estimating software,,project_management,onet
+ethereal,,networking,onet
+ethics compliance,professional responsibility,legal_compliance,curated
+etl,extract transform load|elt,data_ml_dl,curated
+etl pipelines,,data_ml_dl,ner_synthetic
+event planning,,culinary_chef,ner_synthetic
+event-driven state-machines programming,,programming_languages,onet
+evernote,,software_tools,onet
+evidence management,,legal_compliance,ner_synthetic
+exact max,,enterprise_software,onet
+exact software macola es,,enterprise_software,onet
+excel,ms excel|microsoft excel|spreadsheets,software_tools,curated
+exercise physiology,biomechanics,fitness_wellness,curated
+exit interviews,offboarding process,hr_recruiting,curated
+expediting,line expeditor,culinary_chef,curated
+experian credinomics,,data_ml_dl,onet
+experimental design,,healthcare_medical,ner_synthetic
+express.js,express|expressjs,web_frameworks,curated
+ext js,,web_frameworks,onet
+extensible markup language xml,,enterprise_software,onet
+extensible stylesheet language xsl,,enterprise_software,onet
+facebook,,web_frameworks,onet
+facetime,,design_multimedia,onet
+fannie mae desktop underwriter,,data_ml_dl,onet
+farm budgeting,,agriculture,ner_synthetic
+fastapi,fastapi framework,web_frameworks,curated
+fastify,fastify framework,web_frameworks,curated
+feature engineering,feature selection,data_ml_dl,curated
+fertilizer planning,,agriculture,ner_synthetic
+fiber optics,,networking,ner_synthetic
+field trials,,agriculture,ner_synthetic
+fifth walk billingtracker,,accounting_finance,onet
+figma,figma design,software_tools,curated
+file server software,,software_tools,onet
+filemaker pro,,databases,onet
+filing system software,,software_tools,onet
+financial accounting software,,accounting_finance,onet
+financial analysis,fp&a|financial planning and analysis,accounting_finance,curated
+financial auditing,internal audit|external audit,accounting_finance,curated
+financial modeling,dcf modeling|lbo modeling,accounting_finance,curated
+financial planning software,,data_ml_dl,onet
+financial reporting,financial statements,accounting_finance,curated
+financial reporting software,,accounting_finance,onet
+finite element analysis software,,data_ml_dl,onet
+fire incident reporting systems,,databases,onet
+firestore,google cloud firestore,databases,curated
+firewall administration,,cybersecurity,ner_synthetic
+firewall software,,networking,onet
+first aid,emergency first aid,healthcare_medical,curated
+fixed asset accounting,depreciation schedules,accounting_finance,curated
+flask,flask framework,web_frameworks,curated
+fleet management software,,enterprise_software,onet
+fleet operations,,operations_logistics,ner_synthetic
+flexibility training,stretching protocols|mobility drills,fitness_wellness,curated
+flink,apache flink,data_ml_dl,curated
+flipgrid,,design_multimedia,onet
+flir thermal studio suite,,data_ml_dl,onet
+flooring technologies qfloors,,databases,onet
+flow chart software,,software_tools,onet
+flutter,flutter framework|flutter sdk,web_frameworks,curated
+food plating,food presentation|garnishing,culinary_chef,curated
+food preparation,prep work|mise en place,culinary_chef,curated
+food safety,safe food handling|servsafe,culinary_chef,curated
+food waste reduction,portion control,culinary_chef,curated
+foodman home-delivery,,sales_marketing,onet
+forensic accounting,fraud examination,accounting_finance,curated
+formula translation/translator fortran,,programming_languages,onet
+forth,,programming_languages,onet
+fortran,fortran 90|fortran 77,programming_languages,curated
+fpa software maccs,,databases,onet
+freight coordination,,operations_logistics,ner_synthetic
+front office operations,,culinary_chef,ner_synthetic
+fuel efficiency,,operations_logistics,ner_synthetic
+functional fitness,functional training,fitness_wellness,curated
+functional testing software,,programming_languages,onet
+fund accounting software,,accounting_finance,onet
+g-code,,programming_languages,onet
+gaap,us gaap|generally accepted accounting principles,accounting_finance,curated
+gaea technologies winsieve,,software_tools,onet
+gait analysis software,,healthcare_medical,onet
+galactek eclipse,,healthcare_medical,onet
+gambit scheme,,programming_languages,onet
+gaussian software,,data_ml_dl,onet
+ge healthcare centricity emr,,healthcare_medical,onet
+gene codes sequencher,,data_ml_dl,onet
+general ledger,gl accounting,accounting_finance,curated
+general ledger software,,accounting_finance,onet
+generative ai,genai,data_ml_dl,curated
+geogebra,,data_ml_dl,onet
+geometric camworks,,cad_engineering,onet
+geriatric care,gerontology,healthcare_medical,curated
+gibbscam,,cad_engineering,onet
+gis mapping,,agriculture,ner_synthetic
+git,git vcs,software_tools,curated
+github,gh,software_tools,curated
+github actions,gh actions,cloud_devops,curated
+gitlab,gitlab vcs,software_tools,curated
+gitlab ci,gitlab ci/cd,cloud_devops,curated
+glp,,healthcare_medical,ner_synthetic
+gmp,,healthcare_medical,ner_synthetic
+gnu octave,,data_ml_dl,onet
+gnuplot,,data_ml_dl,onet
+go,golang,programming_languages,curated
+golden software surfer,,cad_engineering,onet
+google,,databases,onet
+google ads,google adwords,sales_marketing,curated
+google analytics,ga4|universal analytics,sales_marketing,curated
+google android,,cloud_devops,onet
+google angular,,web_frameworks,onet
+google chrome,,software_tools,onet
+google classroom,google workspace for education,teaching_education,curated
+google cloud platform,gcp|google cloud,cloud_devops,curated
+google cloud software,,cloud_devops,onet
+google docs,,software_tools,onet
+google drive,,cloud_devops,onet
+google earth pro,,cad_engineering,onet
+google gmail,,software_tools,onet
+google looker analytics,,data_ml_dl,onet
+google meet,,design_multimedia,onet
+google sheets,,software_tools,onet
+google sites,,web_frameworks,onet
+google slides,,software_tools,onet
+google workspace software,,software_tools,onet
+gps tracking,,operations_logistics,ner_synthetic
+grading,rubric development|grading papers,teaching_education,curated
+grafana,grafana dashboards,cloud_devops,curated
+grafana labs grafana cloud,,software_tools,onet
+graphic presentation software,,design_multimedia,onet
+graphics creation software,,design_multimedia,onet
+graphics software,,design_multimedia,onet
+graphisoft archicad,,cad_engineering,onet
+graphpad software graphpad prism,,data_ml_dl,onet
+graphql,gql,web_frameworks,curated
+greenplum database,,databases,onet
+greenway medical technologies primesuite,,healthcare_medical,onet
+grid integration,,engineering_construction,ner_synthetic
+grilling,charbroiling|bbq,culinary_chef,curated
+groovy,apache groovy,programming_languages,curated
+groundwater modeling system gms,,data_ml_dl,onet
+groundwater vistas,,data_ml_dl,onet
+group fitness instruction,group exercise,fitness_wellness,curated
+groupme,,software_tools,onet
+grpc,grpc framework|rpc,web_frameworks,curated
+guest service,,culinary_chef,ner_synthetic
+guidance software encase enterprise,,data_ml_dl,onet
+haccp,hazard analysis critical control points,culinary_chef,curated
+hadoop,apache hadoop|hdfs,data_ml_dl,curated
+hand held spell checkers,,software_tools,onet
+handheld computer device software,,cloud_devops,onet
+hardware description language hdl,,programming_languages,onet
+harland financial solutions decisionpro,,data_ml_dl,onet
+harvest logistics,,agriculture,ner_synthetic
+haskell,haskell programming,programming_languages,curated
+hbase,apache hbase,databases,curated
+hcss heavybid,,project_management,onet
+hcss heavyjob,,project_management,onet
+health and safety,,engineering_construction,ner_synthetic
+health data reporting,,healthcare_medical,ner_synthetic
+healthfusion meditouch,,healthcare_medical,onet
+heat software goldmine,,sales_marketing,onet
+heavy machinery operation,excavator|forklift|crane,engineering_construction,curated
+hec-1,,data_ml_dl,onet
+hec-hms,,data_ml_dl,onet
+hec-ras,,data_ml_dl,onet
+helm,helm charts,cloud_devops,curated
+help desk software,,software_tools,onet
+henry schein dentrix,,healthcare_medical,onet
+hewlett packard hp-ux,,cloud_devops,onet
+hewlett packard loadrunner,,programming_languages,onet
+hewlett-packard hp openvms,,cloud_devops,onet
+hibernate orm,,databases,onet
+high intensity interval training,hiit,fitness_wellness,curated
+higher education instruction,college teaching|university lecturing,teaching_education,curated
+hipaa compliance,hipaa regulations|patient privacy,healthcare_medical,curated
+hmis advantage,,databases,onet
+hms,,healthcare_medical,onet
+hospitality analytics,,culinary_chef,ner_synthetic
+hr analytics,people analytics|workforce analytics,hr_recruiting,curated
+hr policies,employee handbook development,hr_recruiting,curated
+html5,html,web_frameworks,curated
+hubspot,hubspot crm,sales_marketing,curated
+hubspot software,,sales_marketing,onet
+hugging face,huggingface|transformers,data_ml_dl,curated
+human modeling software,,data_ml_dl,onet
+human resources information systems,hris platforms,hr_recruiting,curated
+hvac systems,heating ventilation air conditioning,engineering_construction,curated
+hydrosolve aqtesolv,,data_ml_dl,onet
+hyland software onbase,,software_tools,onet
+hypertext markup language html,,web_frameworks,onet
+hypertext preprocessor php,,web_frameworks,onet
+iam,,cybersecurity,ner_synthetic
+ibm aix,,cloud_devops,onet
+ibm cognos business intelligence,,data_ml_dl,onet
+ibm cognos impromptu,,data_ml_dl,onet
+ibm db2,,databases,onet
+ibm domino,,software_tools,onet
+ibm informix,,databases,onet
+ibm infosphere datastage,,enterprise_software,onet
+ibm lotus 1-2-3,,software_tools,onet
+ibm lotus notes,,software_tools,onet
+ibm maximo asset management,,enterprise_software,onet
+ibm middleware,,software_tools,onet
+ibm notes,,software_tools,onet
+ibm power systems software,,enterprise_software,onet
+ibm qradar siem,,networking,onet
+ibm rational clearcase,,cloud_devops,onet
+ibm rational clearquest,,programming_languages,onet
+ibm rational purifyplus,,programming_languages,onet
+ibm rational requisitepro,,software_tools,onet
+ibm rational rose xde,,programming_languages,onet
+ibm spss statistics,,data_ml_dl,onet
+ibm terraform,,cloud_devops,onet
+ibm tivoli software,,software_tools,onet
+ibm websphere,,cloud_devops,onet
+ibm websphere mq,,cloud_devops,onet
+icanotes,,healthcare_medical,onet
+icd-10,icd-10-cm|icd coding,healthcare_medical,curated
+icims talent cloud software,,hr_recruiting,onet
+icon programming language,,programming_languages,onet
+iea software emerald,,databases,onet
+ifrs,international financial reporting standards,accounting_finance,curated
+ihs petra,,data_ml_dl,onet
+image analysis software,,data_ml_dl,onet
+image editing software,,design_multimedia,onet
+image enhancement software,,design_multimedia,onet
+image processing software,,design_multimedia,onet
+image scanning software,,software_tools,onet
+imsi turbocad,,cad_engineering,onet
+incident response,,cybersecurity,ner_synthetic
+income statement,profit and loss|p&l,accounting_finance,curated
+infection control,sterile technique|aseptic technique,healthcare_medical,curated
+infection prevention,,healthcare_medical,ner_synthetic
+infor erp baan,,enterprise_software,onet
+infor erp syteline,,enterprise_software,onet
+informatica corporation powercenter,,enterprise_software,onet
+informatica software,,databases,onet
+information architecture,,design_multimedia,ner_synthetic
+information systems integration software,,software_tools,onet
+infrastructure as code,iac,cloud_devops,curated
+injury rehabilitation,corrective exercise,fitness_wellness,curated
+inquiry-based learning,project-based learning|pbl,teaching_education,curated
+inscribe,,software_tools,onet
+inside sales,outbound sales,sales_marketing,curated
+insight direct serviceceo,,databases,onet
+insightful s-plus,,data_ml_dl,onet
+instagram,,web_frameworks,onet
+instructional design,addie model,teaching_education,curated
+instructure canvas,,software_tools,onet
+integration testing software,,programming_languages,onet
+intellectual property,patent filing|trademark registration,legal_compliance,curated
+intellij idea,intellij,software_tools,curated
+interaction design,,design_multimedia,ner_synthetic
+interface definition language idl,,programming_languages,onet
+interoperability testing software,,programming_languages,onet
+interstate connection icon,,programming_languages,onet
+interviewing,,design_multimedia,ner_synthetic
+intrado schoolmessenger,,software_tools,onet
+intravenous therapy,iv therapy|iv insertion,healthcare_medical,curated
+intrusion detection system ids,,networking,onet
+intrusion prevention system ips,,networking,onet
+intuit turbotax,,accounting_finance,onet
+inventory control,kitchen inventory|food cost control,culinary_chef,curated
+inventory control software,,enterprise_software,onet
+inventory control system software,,enterprise_software,onet
+inventory management,,sales_marketing,ner_synthetic
+inventory management systems,,enterprise_software,onet
+inventory optimization,,operations_logistics,ner_synthetic
+inventory software,,enterprise_software,onet
+inventory tracking software,,enterprise_software,onet
+investment banking,corporate finance,accounting_finance,curated
+invision software,,software_tools,onet
+iparadigms turnitin,,software_tools,onet
+ipro,,databases,onet
+irrigation scheduling,,agriculture,ner_synthetic
+iso 9001,,engineering_construction,ner_synthetic
+jamboard,,design_multimedia,onet
+java,java programming|core java,programming_languages,curated
+javascript,js|ecmascript|es6|es2015,programming_languages,curated
+javascript object notation json,,web_frameworks,onet
+jenkins,jenkins ci,cloud_devops,curated
+jira,atlassian jira,software_tools,curated
+job control language jcl,,cloud_devops,onet
+job costing software,,accounting_finance,onet
+job descriptions,job posting creation,hr_recruiting,curated
+journal entries,adjusting entries,accounting_finance,curated
+journey mapping,,design_multimedia,ner_synthetic
+jquery,jquery library,web_frameworks,curated
+julia,julia language|julia programming,programming_languages,curated
+junit,,programming_languages,onet
+jupyter,jupyter notebook|jupyterlab,software_tools,curated
+kafka,apache kafka,data_ml_dl,curated
+kahoot!,,software_tools,onet
+kaizen,,engineering_construction,ner_synthetic
+kali linux,,programming_languages,onet
+kanban,kanban board,soft_skills,curated
+kapwing,,design_multimedia,onet
+kareo practice management,,healthcare_medical,onet
+keras,keras framework,data_ml_dl,curated
+kettlebell training,kettlebell exercises,fitness_wellness,curated
+kitchen equipment operation,commercial ovens|fryers|slicers,culinary_chef,curated
+kitchen sanitation,commercial kitchen cleaning,culinary_chef,curated
+kitty hawk,,data_ml_dl,onet
+knife skills,chopping|julienne|dicing,culinary_chef,curated
+kornshell,,cloud_devops,onet
+kotlin,kotlin programming,programming_languages,curated
+kronos workforce payroll,,accounting_finance,onet
+kronos workforce timekeeper,,accounting_finance,onet
+kubernetes,k8s,cloud_devops,curated
+labor law compliance,eeoc|fmla|flsa,hr_recruiting,curated
+laboratory information system lis,,healthcare_medical,onet
+laboratory safety,,healthcare_medical,ner_synthetic
+ladder logic,,programming_languages,onet
+lambda,aws lambda|serverless,cloud_devops,curated
+lamp stack,,web_frameworks,onet
+landmark graphics geographix,,data_ml_dl,onet
+langchain,langchain framework,data_ml_dl,curated
+laravel,laravel framework,web_frameworks,curated
+large language models,llm|llms,data_ml_dl,curated
+latex,,design_multimedia,onet
+law enforcement information databases,,databases,onet
+lawson human resource management,,hr_recruiting,onet
+lead generation,prospecting|cold outreach,sales_marketing,curated
+leadership,team leadership|people leadership,soft_skills,curated
+leading market technologies expo,,data_ml_dl,onet
+lean construction,last planner system,engineering_construction,curated
+lean manufacturing,,engineering_construction,ner_synthetic
+lean operations,,operations_logistics,ner_synthetic
+learning analytics,,teaching_education,ner_synthetic
+learning assessment,,teaching_education,ner_synthetic
+learning management system lms,,software_tools,onet
+legal research,statutory research|case law research,legal_compliance,curated
+legal writing,brief writing|memorandum drafting,legal_compliance,curated
+leica geosystems erdas imagine,,cad_engineering,onet
+lesson planning,lesson plan design,teaching_education,curated
+lexisnexis,lexis,legal_compliance,curated
+lexisnexis casemap,,databases,onet
+lightgbm,lgbm,data_ml_dl,curated
+linkedin,,web_frameworks,onet
+linux,gnu/linux|ubuntu|centos|rhel|debian,cloud_devops,curated
+linux security,,cybersecurity,ner_synthetic
+list processing language lisp,,programming_languages,onet
+litchi,,data_ml_dl,onet
+literacy instruction,reading instruction|phonics,teaching_education,curated
+litigation support,trial preparation,legal_compliance,curated
+load forecasting,,engineering_construction,ner_synthetic
+load testing software,,programming_languages,onet
+logistics analytics,,operations_logistics,ner_synthetic
+logmein gotomeeting,,design_multimedia,onet
+logmein gotowebinar,,networking,onet
+looker,google looker,software_tools,curated
+loom,,design_multimedia,onet
+lp360,,data_ml_dl,onet
+lsa visual easy lean,,enterprise_software,onet
+lte,,networking,ner_synthetic
+lua,lua programming,programming_languages,curated
+m-code,,programming_languages,onet
+mac helpmate,,software_tools,onet
+machine control software,,software_tools,onet
+machine learning,ml,data_ml_dl,curated
+magellan firmware,,cloud_devops,onet
+maintenance management software,,software_tools,onet
+maintenance planning,,engineering_construction,ner_synthetic
+maintenance record software,,software_tools,onet
+make,gnu make|makefile,software_tools,curated
+makemusic finale,,design_multimedia,onet
+management,general management|team management,soft_skills,curated
+management information systems mis,,enterprise_software,onet
+mapinfo,,cad_engineering,onet
+mapinfo professional,,cad_engineering,onet
+maplesoft maple,,data_ml_dl,onet
+mapping software,,cad_engineering,onet
+maptek vulcan,,data_ml_dl,onet
+mariadb,maria db,databases,curated
+market research,competitive analysis|market intelligence,sales_marketing,curated
+marketing automation,marketo,sales_marketing,curated
+marketo marketing automation,,sales_marketing,onet
+materials testing,soil compaction|concrete testing,engineering_construction,curated
+mathematical software,,data_ml_dl,onet
+mathsoft mathcad,,cad_engineering,onet
+mathworks simulink,,data_ml_dl,onet
+matlab,matlab programming,programming_languages,curated
+maximizer software maximizer enterprise,,sales_marketing,onet
+maxon cinema 4d,,design_multimedia,onet
+maya nastran,,data_ml_dl,onet
+mcafee,,cybersecurity,onet
+mckesson practice plus,,healthcare_medical,onet
+mcneel rhinoceros 3d,,design_multimedia,onet
+measure square floorestimate pro,,project_management,onet
+mechanical engineering,mechanical systems design,engineering_construction,curated
+medcomsoft record,,healthcare_medical,onet
+media analytics,,design_multimedia,ner_synthetic
+medical billing,claims processing,healthcare_medical,curated
+medical condition coding software,,healthcare_medical,onet
+medical procedure coding software,,healthcare_medical,onet
+medical reference software,,software_tools,onet
+medical terminology,medical coding,healthcare_medical,curated
+medication administration,med pass|medication dispensing,healthcare_medical,curated
+medicware emr,,healthcare_medical,onet
+meditech software,,healthcare_medical,onet
+medscribbler enterprise,,healthcare_medical,onet
+mentimeter,,software_tools,onet
+mentor graphics pads,,cad_engineering,onet
+mentoring,coaching|mentorship,soft_skills,curated
+menu planning,menu engineering|menu design,culinary_chef,curated
+merchandising,visual merchandising|product display,sales_marketing,curated
+mergers and acquisitions,m&a,accounting_finance,curated
+metasploit,,cybersecurity,onet
+microfocus groupwise,,software_tools,onet
+microfour practicestudio.net emr,,healthcare_medical,onet
+microscopic image capturing software,,healthcare_medical,onet
+microservices,microservice architecture,cloud_devops,curated
+microservices architecture,,software_tools,onet
+microsoft .net framework,,programming_languages,onet
+microsoft active directory,,software_tools,onet
+microsoft activex,,programming_languages,onet
+microsoft asp.net,,web_frameworks,onet
+microsoft asp.net core mvc,,web_frameworks,onet
+microsoft azure,azure,cloud_devops,curated
+microsoft azure devops services,,programming_languages,onet
+microsoft azure software,,programming_languages,onet
+microsoft business contact manager,,sales_marketing,onet
+microsoft directx,,software_tools,onet
+microsoft dynamics,,enterprise_software,onet
+microsoft dynamics ax,,enterprise_software,onet
+microsoft dynamics crm,,sales_marketing,onet
+microsoft dynamics gp,,enterprise_software,onet
+microsoft dynamics nav,,enterprise_software,onet
+microsoft dynamics sl,,enterprise_software,onet
+microsoft edge,,software_tools,onet
+microsoft esp sdk,,programming_languages,onet
+microsoft exchange,,software_tools,onet
+microsoft frontpage,,web_frameworks,onet
+microsoft frx,,data_ml_dl,onet
+microsoft internet explorer,,software_tools,onet
+microsoft mappoint,,cad_engineering,onet
+microsoft netmeeting,,design_multimedia,onet
+microsoft office software,,software_tools,onet
+microsoft onenote,,software_tools,onet
+microsoft paint,,design_multimedia,onet
+microsoft power automate,,enterprise_software,onet
+microsoft power bi,,data_ml_dl,onet
+microsoft power platform software,,enterprise_software,onet
+microsoft powershell,,programming_languages,onet
+microsoft project,,project_management,onet
+microsoft publisher,,design_multimedia,onet
+microsoft sentinel,,cybersecurity,ner_synthetic
+microsoft sharepoint,,software_tools,onet
+microsoft sharepoint server,,software_tools,onet
+microsoft sql server,ms sql|sql server|mssql|t-sql,databases,curated
+microsoft team foundation server,,project_management,onet
+microsoft teams,,project_management,onet
+microsoft visio,,software_tools,onet
+microsoft visual basic,,programming_languages,onet
+microsoft visual basic.net,,programming_languages,onet
+microsoft visual c# .net,,programming_languages,onet
+microsoft visual foxpro,,databases,onet
+microsoft visual sourcesafe,,programming_languages,onet
+microsoft visual studio,,programming_languages,onet
+microsoft windows,,cloud_devops,onet
+microsoft windows server,,cloud_devops,onet
+microsoft windows xp,,cloud_devops,onet
+microstrategy,,data_ml_dl,onet
+migration software,,networking,onet
+migration testing software,,programming_languages,onet
+millennium software atrex,,sales_marketing,onet
+minesight,,cad_engineering,onet
+minitab,,data_ml_dl,onet
+mitre att&ck software,,programming_languages,onet
+mlflow,mlflow tracking,data_ml_dl,curated
+modeling software,,data_ml_dl,onet
+modernizing medicine practice management,,healthcare_medical,onet
+modula,,programming_languages,onet
+molecular simulation software,,data_ml_dl,onet
+monday.com,monday,software_tools,curated
+mongodb,mongo,databases,curated
+monte carlo simulation software,,data_ml_dl,onet
+moodle,,software_tools,onet
+moody's kmv creditedge,,data_ml_dl,onet
+motion analysis software,,data_ml_dl,onet
+motion graphics,,design_multimedia,ner_synthetic
+mozilla firefox,,software_tools,onet
+msc software adams,,data_ml_dl,onet
+msc software nastran,,data_ml_dl,onet
+msc software patran,,data_ml_dl,onet
+mumps m,,programming_languages,onet
+mutation testing software,,programming_languages,onet
+muthen & muthen mplus,,data_ml_dl,onet
+mysql,my sql,databases,curated
+nagios,,networking,onet
+national instruments labview,,programming_languages,onet
+national instruments multisim,,cad_engineering,onet
+natural language processing,nlp,data_ml_dl,curated
+navisworks jetstream,,cad_engineering,onet
+ncr advanced checkout solution,,sales_marketing,onet
+ncr neighborhoodpos,,sales_marketing,onet
+nearpod,,software_tools,onet
+negotiation,persuasion|influencing skills,soft_skills,curated
+neo4j,neo4j graph,databases,curated
+netscape navigator,,software_tools,onet
+netsuite erp,,enterprise_software,onet
+netsuite netcrm,,sales_marketing,onet
+network directory services software,,software_tools,onet
+network forensics,,cybersecurity,ner_synthetic
+network intrusion detection software,,networking,onet
+network monitoring,,networking,ner_synthetic
+network troubleshooting,,networking,ner_synthetic
+neural network modeling software,,data_ml_dl,onet
+neurosolutions for matlab,,software_tools,onet
+next.js,nextjs|next,web_frameworks,curated
+nginx,nginx server,cloud_devops,curated
+nltk,natural language toolkit,data_ml_dl,curated
+node.js,nodejs|node,web_frameworks,curated
+norton antivirus,,cybersecurity,onet
+nortonlifelock cybersecurity software,,cybersecurity,onet
+nosql,,databases,onet
+notion,notion workspace,software_tools,curated
+nuance dragon naturallyspeaking,,software_tools,onet
+nuesoft technologies nuemd,,healthcare_medical,onet
+numpy,numpy library,data_ml_dl,curated
+nutrition counseling,dietary planning|macronutrient tracking,fitness_wellness,curated
+nuxt.js,nuxtjs|nuxt,web_frameworks,curated
+o*net online,,databases,onet
+oberon,,programming_languages,onet
+objective caml,,programming_languages,onet
+objective-c,obj-c|objective c,programming_languages,curated
+observability,,programming_languages,ner_synthetic
+omnirim records management suite,,software_tools,onet
+on center quick bid,,project_management,onet
+online databases,,databases,onet
+open dental,,healthcare_medical,onet
+open graphics library opengl,,design_multimedia,onet
+openai chatgpt,,programming_languages,onet
+opencv,opencv library,data_ml_dl,curated
+opendronemap,,cad_engineering,onet
+openoffice.org,,software_tools,onet
+openroads designer,,cad_engineering,onet
+openstack,openstack cloud,cloud_devops,curated
+operational databases,,databases,onet
+operational excellence,,engineering_construction,ner_synthetic
+operations reporting,,operations_logistics,ner_synthetic
+optimization software,,data_ml_dl,onet
+oracle application server,,software_tools,onet
+oracle business intelligence discoverer,,databases,onet
+oracle business intelligence suite,,databases,onet
+oracle cloud software,,cloud_devops,onet
+oracle database,oracle db|pl/sql,databases,curated
+oracle e-business suite,,enterprise_software,onet
+oracle e-business suite financials,,data_ml_dl,onet
+oracle eloqua,,sales_marketing,onet
+oracle fusion applications,,enterprise_software,onet
+oracle fusion middleware,,enterprise_software,onet
+oracle hris,,hr_recruiting,onet
+oracle hyperion,,enterprise_software,onet
+oracle java,,programming_languages,onet
+oracle javaserver pages jsp,,web_frameworks,onet
+oracle jd edwards enterpriseone,,enterprise_software,onet
+oracle jdbc,,databases,onet
+oracle netsuite,netsuite,accounting_finance,curated
+oracle peoplesoft,,enterprise_software,onet
+oracle peoplesoft financials,,enterprise_software,onet
+oracle pl/sql,,databases,onet
+oracle primavera systems,,project_management,onet
+oracle reports,,databases,onet
+oracle siebel server sync,,sales_marketing,onet
+oracle solaris,,cloud_devops,onet
+oracle sql developer,,programming_languages,onet
+oracle sql loader,,databases,onet
+oracle taleo,,hr_recruiting,onet
+oracle weblogic server,,software_tools,onet
+orcad capture,,cad_engineering,onet
+order fulfillment,,operations_logistics,ner_synthetic
+order management,,sales_marketing,ner_synthetic
+order management software,,enterprise_software,onet
+organizational skills,multitasking|organization,soft_skills,curated
+originlab origin,,data_ml_dl,onet
+osha compliance,construction safety|site safety,engineering_construction,curated
+ospf,,networking,ner_synthetic
+outlook,ms outlook|microsoft outlook,software_tools,curated
+pacific solutions floorright,,project_management,onet
+packet filter software,,cybersecurity,onet
+padlet,,software_tools,onet
+paid search,,sales_marketing,ner_synthetic
+palisade @risk,,data_ml_dl,onet
+palisade stattools,,data_ml_dl,onet
+palliative care,hospice care,healthcare_medical,curated
+pandas,pandas library,data_ml_dl,curated
+paralegal support,legal assistant tasks,legal_compliance,curated
+parent communication,parent-teacher conferences,teaching_education,curated
+parentsquare,,software_tools,onet
+pascal,,programming_languages,onet
+password management software,,cybersecurity,onet
+pastry arts,patisserie|dessert preparation,culinary_chef,curated
+patch management software,,cloud_devops,onet
+patient advocacy,care coordination,healthcare_medical,curated
+patient assessment,clinical assessment|physical assessment,healthcare_medical,curated
+patient care,direct patient care|bedside care,healthcare_medical,curated
+patient education,discharge planning,healthcare_medical,curated
+patient management software,,healthcare_medical,onet
+patient scheduling,,healthcare_medical,ner_synthetic
+patient tracking software,,healthcare_medical,onet
+pattern recognition software,,data_ml_dl,onet
+payroll administration,benefits enrollment,hr_recruiting,curated
+payroll processing,payroll management|payroll systems,accounting_finance,curated
+payroll software,,accounting_finance,onet
+pcc ehr,,healthcare_medical,onet
+pcc pediatric partner,,healthcare_medical,onet
+pcr,,healthcare_medical,ner_synthetic
+pear deck,,software_tools,onet
+pedagogical methods,pedagogy|teaching methodologies,teaching_education,curated
+pediatric care,pediatrics,healthcare_medical,curated
+peer mentoring,student mentorship,teaching_education,curated
+pentaho kettle,,databases,onet
+perforce helix software,,cloud_devops,onet
+perforce software,,databases,onet
+performance management,performance appraisals|annual reviews,hr_recruiting,curated
+perl,perl programming,programming_languages,curated
+personal computer diagnostic software,,programming_languages,onet
+personal training,fitness coaching,fitness_wellness,curated
+personnel scheduling software,,hr_recruiting,onet
+pest management,,agriculture,ner_synthetic
+pharmacology,drug dosage calculations|pharmacokinetics,healthcare_medical,curated
+phlebotomy,venipuncture|blood draw,healthcare_medical,curated
+photogrammetric software,,design_multimedia,onet
+php,php7|php8,programming_languages,curated
+phylip,,data_ml_dl,onet
+pilates instruction,mat pilates|reformer pilates,fitness_wellness,curated
+ping identity,,cybersecurity,onet
+pinterest,,software_tools,onet
+pix4d pix4dcapture,,data_ml_dl,onet
+pix4d pix4dmapper,,data_ml_dl,onet
+pixologic zbrush,,design_multimedia,onet
+plc programming,,engineering_construction,ner_synthetic
+pleadings,motions|legal pleadings,legal_compliance,curated
+plexis software plexis pos,,sales_marketing,onet
+plumbing systems,pipefitting,engineering_construction,curated
+podcast production,,design_multimedia,ner_synthetic
+point of sale,pos systems,sales_marketing,curated
+pointclickcare healthcare software,,healthcare_medical,onet
+policy analysis,,legal_compliance,ner_synthetic
+poll everywhere,,software_tools,onet
+portfolio management,asset allocation,accounting_finance,curated
+portfolio management software,,data_ml_dl,onet
+portswigger burp suite,,cybersecurity,onet
+postgresql,postgres|psql,databases,curated
+postman,postman api,software_tools,curated
+power bi,powerbi|pbi,software_tools,curated
+power distribution,,engineering_construction,ner_synthetic
+power query,,accounting_finance,ner_synthetic
+power systems,,engineering_construction,ner_synthetic
+powerpoint,ms powerpoint|microsoft powerpoint|ppt,software_tools,curated
+powershell,posh|ps1,programming_languages,curated
+practice management software pms,,healthcare_medical,onet
+precision agriculture,,agriculture,ner_synthetic
+presentation skills,public speaking|oral presentation,soft_skills,curated
+preventive maintenance,,engineering_construction,ner_synthetic
+pricing software,,data_ml_dl,onet
+primavera p6,,engineering_construction,ner_synthetic
+primer3,,data_ml_dl,onet
+problem solving,troubleshooting|analytical problem solving,soft_skills,curated
+process mapping,,engineering_construction,ner_synthetic
+procore software,,data_ml_dl,onet
+procurement analytics,,operations_logistics,ner_synthetic
+product assortment,,sales_marketing,ner_synthetic
+production planning,,engineering_construction,ner_synthetic
+productivity software,,project_management,onet
+prognosis innovation healthcare chartaccess,,healthcare_medical,onet
+programming language one pl/i,,programming_languages,onet
+project,project coordination|project work,soft_skills,curated
+project management,pmp|agile project management,soft_skills,curated
+project scheduling,construction scheduling,engineering_construction,curated
+prolog,,programming_languages,onet
+prometheus,prometheus monitoring,cloud_devops,curated
+promodel,,software_tools,onet
+promotional planning,,sales_marketing,ner_synthetic
+property management systems,,culinary_chef,ner_synthetic
+propertyware,,databases,onet
+prototyping,,design_multimedia,ner_synthetic
+ptc creo parametric,,cad_engineering,onet
+ptc pro/pipe,,cad_engineering,onet
+public relations,pr campaigns|press releases,sales_marketing,curated
+puppet,puppet software|puppet devops,cloud_devops,curated
+purchase orders,,operations_logistics,ner_synthetic
+purchasing software,,enterprise_software,onet
+pycharm,jetbrains pycharm,software_tools,curated
+python,py|python3|python2,programming_languages,curated
+pytorch,torch,data_ml_dl,curated
+pyxis medstation software,,enterprise_software,onet
+qgis,,cad_engineering,onet
+qlik tech qlikview,,data_ml_dl,onet
+qsm slim suite,,data_ml_dl,onet
+quality assurance,qa/qc inspection,engineering_construction,curated
+quality audits,,culinary_chef,ner_synthetic
+quality control,,engineering_construction,ner_synthetic
+quality control software,,healthcare_medical,onet
+quality documentation,,healthcare_medical,ner_synthetic
+quality inspections,,engineering_construction,ner_synthetic
+qualtrics insight,,project_management,onet
+quantitative micro software eviews,,data_ml_dl,onet
+quantity takeoff,,engineering_construction,ner_synthetic
+quark enterprise publishing software,,design_multimedia,onet
+quarkxpress,,design_multimedia,onet
+quest erwin data modeler,,databases,onet
+quickbase business management software,,databases,onet
+quickbooks,intuit quickbooks|qbo,accounting_finance,curated
+quicken,,accounting_finance,onet
+quizlet,,software_tools,onet
+quota attainment,sales targets,sales_marketing,curated
+r,r language|r programming|r-project,programming_languages,curated
+radiology,x-ray imaging|ct scan|mri,healthcare_medical,curated
+rapid prototyping software,,cad_engineering,onet
+react,react.js|reactjs,web_frameworks,curated
+react native,react-native|rn,web_frameworks,curated
+recipe development,standardized recipes,culinary_chef,curated
+reconciliation,,accounting_finance,ner_synthetic
+recordkeeping software,,databases,onet
+records management,,legal_compliance,ner_synthetic
+records management software,,software_tools,onet
+recovery testing software,,programming_languages,onet
+recrystallize crystal reports,,databases,onet
+red hat ansible engine,,cloud_devops,onet
+red hat enterprise linux,,cloud_devops,onet
+red hat openshift,,software_tools,onet
+red hat wildfly,,software_tools,onet
+redis,redis cache,databases,curated
+redshift,amazon redshift,databases,curated
+redux,redux toolkit|rtk,web_frameworks,curated
+regression testing software,,programming_languages,onet
+regulatory compliance,regulatory filings,legal_compliance,curated
+rehabilitation,physical rehab,healthcare_medical,curated
+reinforcement learning,rl,data_ml_dl,curated
+relational database management software,,databases,onet
+relational database software,,databases,onet
+reliability analysis software,,data_ml_dl,onet
+reliasoft weibull++ 6,,data_ml_dl,onet
+remote control software,,software_tools,onet
+repairtrax,,databases,onet
+report generation software,,software_tools,onet
+reporting software,,databases,onet
+requirements management software,,software_tools,onet
+reservation systems,,culinary_chef,ner_synthetic
+responsive design,,design_multimedia,ner_synthetic
+rest,rest api|restful|restful apis,web_frameworks,curated
+rest apis,,programming_languages,ner_synthetic
+restaurantplus pro,,sales_marketing,onet
+restful api,,web_frameworks,onet
+restructured extended executor rexx,,programming_languages,onet
+retail analytics,,sales_marketing,ner_synthetic
+retail sales,merchandise sales|floor sales,sales_marketing,curated
+rethink ed,,software_tools,onet
+returns handling,,sales_marketing,ner_synthetic
+revenue management,,culinary_chef,ner_synthetic
+revit,autodesk revit|bim,engineering_construction,curated
+rf planning,,networking,ner_synthetic
+risk assessment,,cybersecurity,ner_synthetic
+risk controls,,accounting_finance,ner_synthetic
+risk management,credit risk|market risk|operational risk,accounting_finance,curated
+risk registers,,legal_compliance,ner_synthetic
+rivermorph,,databases,onet
+roasting,slow roasting,culinary_chef,curated
+rockware arcmap,,cad_engineering,onet
+rockware modflow,,data_ml_dl,onet
+rockwell automation arena,,data_ml_dl,onet
+rockwell rslogix,,programming_languages,onet
+root cause analysis,,engineering_construction,ner_synthetic
+root cause analysis software,,data_ml_dl,onet
+root kit detection software,,cybersecurity,onet
+route mapping software,,software_tools,onet
+route optimization,,operations_logistics,ner_synthetic
+route planning,,operations_logistics,ner_synthetic
+routing protocols,,networking,ner_synthetic
+rsi envi,,data_ml_dl,onet
+rubric design,,teaching_education,ner_synthetic
+ruby,ruby programming,programming_languages,curated
+ruby on rails,rails|ror,web_frameworks,curated
+rust,rust language|rust programming,programming_languages,curated
+s&op,,operations_logistics,ner_synthetic
+safety compliance,,engineering_construction,ner_synthetic
+safety inspections,,engineering_construction,ner_synthetic
+sage 100 contractor,,databases,onet
+sage 100 erp,,enterprise_software,onet
+sage 50 accounting,,accounting_finance,onet
+sage erp accpac,,enterprise_software,onet
+sage hrms,,hr_recruiting,onet
+sage mas 200 erp,,enterprise_software,onet
+sage mas 90 erp,,enterprise_software,onet
+sakai cle,,software_tools,onet
+sale processing software,,sales_marketing,onet
+sales,selling|direct sales|sales operations,sales_marketing,curated
+sales enablement,sales collateral,sales_marketing,curated
+sales force automation software,,sales_marketing,onet
+sales forecasting,revenue forecasting,sales_marketing,curated
+sales pipeline management,pipeline management|sales funnel,sales_marketing,curated
+salesforce,salesforce crm|sfdc,sales_marketing,curated
+salesforce software,,sales_marketing,onet
+salesforce visualforce,,software_tools,onet
+salesforce.com salesforce crm,,sales_marketing,onet
+sample preparation,,healthcare_medical,ner_synthetic
+sap adaptive server enterprise,,databases,onet
+sap business objects,,enterprise_software,onet
+sap business one,,enterprise_software,onet
+sap businessobjects crystal reports,,databases,onet
+sap businessobjects data integrator,,enterprise_software,onet
+sap concur,,accounting_finance,onet
+sap crystal reports,,databases,onet
+sap erp,sap fico,accounting_finance,curated
+sap fi,,accounting_finance,ner_synthetic
+sap mm,,operations_logistics,ner_synthetic
+sap netweaver,,enterprise_software,onet
+sap netweaver bw,,databases,onet
+sap powerbuilder,,programming_languages,onet
+sap software,,enterprise_software,onet
+sas,,data_ml_dl,onet
+sas jmp,,data_ml_dl,onet
+sass,scss,web_frameworks,curated
+sauce making,mother sauces|reductions,culinary_chef,curated
+sautéing,pan frying,culinary_chef,curated
+sbs international maestro suite,,project_management,onet
+scada,,engineering_construction,ner_synthetic
+scala,scala programming,programming_languages,curated
+scanning software,,software_tools,onet
+scheduling software,,project_management,onet
+scheme,,programming_languages,onet
+schlumberger petrel e&p,,data_ml_dl,onet
+schoology,,software_tools,onet
+scientific software international hlm,,data_ml_dl,onet
+scientific writing,,healthcare_medical,ner_synthetic
+scikit-learn,sklearn,data_ml_dl,curated
+scipy,scipy library,data_ml_dl,curated
+screen magnification software,,software_tools,onet
+screen reader software,,software_tools,onet
+screencast-o-matic,,design_multimedia,onet
+screencastify,,design_multimedia,onet
+scriptwriting,,design_multimedia,ner_synthetic
+scrum,scrum master|sprint planning,soft_skills,curated
+seafood preparation,fish filleting,culinary_chef,curated
+seamonkey,,software_tools,onet
+search engine marketing,sem|pay-per-click|ppc,sales_marketing,curated
+search engine optimization,seo,sales_marketing,curated
+security incident management software,,networking,onet
+security monitoring,,cybersecurity,ner_synthetic
+security testing software,,programming_languages,onet
+seesaw,,software_tools,onet
+selenium,,programming_languages,onet
+service recovery,,culinary_chef,ner_synthetic
+servicenow,,databases,onet
+shell,shell scripting|sh,programming_languages,curated
+shell script,,cloud_devops,onet
+shift scheduling,,culinary_chef,ner_synthetic
+shopify,,sales_marketing,ner_synthetic
+siem,,cybersecurity,ner_synthetic
+siemens modelsim,,data_ml_dl,onet
+siemens nx,,cad_engineering,onet
+siemens solid edge,,cad_engineering,onet
+siemens teamcenter,,project_management,onet
+simplifymd,,healthcare_medical,onet
+simulation software,,data_ml_dl,onet
+single sign-on sso,,cybersecurity,onet
+site inspection,,engineering_construction,ner_synthetic
+site reliability engineering,sre,cloud_devops,curated
+six sigma,,engineering_construction,ner_synthetic
+skype,,software_tools,onet
+slack,slack messaging,software_tools,curated
+slido interaction software,,networking,onet
+smalltalk,,programming_languages,onet
+smartcamcnc smartcam,,cad_engineering,onet
+smartdraw legal,,design_multimedia,onet
+smugmug flickr,,design_multimedia,onet
+snapchat,,software_tools,onet
+snort,,networking,onet
+snowflake,snowflake dwh|snowflake data cloud,databases,curated
+snyk,snyk security,cloud_devops,curated
+soapware emr,,healthcare_medical,onet
+social emotional learning,sel,teaching_education,curated
+social media analytics,,sales_marketing,ner_synthetic
+social media marketing,smm,sales_marketing,curated
+social media sites,,web_frameworks,onet
+social media software,,web_frameworks,onet
+social solutions eto,,healthcare_medical,onet
+social storytelling,,design_multimedia,ner_synthetic
+softcafe menupro,,design_multimedia,onet
+softech cadra,,cad_engineering,onet
+software development tools,,programming_languages,onet
+software libraries,,programming_languages,onet
+soil sampling,,agriculture,ner_synthetic
+solar pv design,,engineering_construction,ner_synthetic
+solarwinds,,cloud_devops,onet
+solidworks,dassault solidworks,engineering_construction,curated
+sonarqube,sonar,cloud_devops,curated
+sonography,ultrasound,healthcare_medical,curated
+source code editor software,,programming_languages,onet
+sous vide cooking,precision cooking,culinary_chef,curated
+sox compliance,sarbanes-oxley|sox,accounting_finance,curated
+spacy,spacy nlp,data_ml_dl,curated
+spark,apache spark|pyspark,data_ml_dl,curated
+sparta systems trackwise,,software_tools,onet
+special education,sped|individualized education plan|iep,teaching_education,curated
+spectrophotometry,,healthcare_medical,ner_synthetic
+speech recognition software,,software_tools,onet
+splunk,splunk enterprise,cloud_devops,curated
+sports nutrition,athletic fueling,fitness_wellness,curated
+spring,spring framework,web_frameworks,curated
+spring boot,spring-boot,web_frameworks,curated
+sql,structured query language|ansi sql,programming_languages,curated
+sqlite,sqlite3,databases,curated
+squeegee,,cloud_devops,onet
+st. paul travelers e-carma,,databases,onet
+staff training,,culinary_chef,ner_synthetic
+stakeholder management,stakeholder engagement,soft_skills,curated
+standardized testing,test preparation|exam proctoring,teaching_education,curated
+starlims,,healthcare_medical,onet
+stat! systems qd clinical,,healthcare_medical,onet
+statacorp stata,,data_ml_dl,onet
+statgraphics,,data_ml_dl,onet
+static analysis software,,programming_languages,onet
+station management,line cook stations,culinary_chef,curated
+statistica,,data_ml_dl,onet
+statistical analysis,applied statistics|inferential statistics,data_ml_dl,curated
+statistical analysis software,,data_ml_dl,onet
+statistical process control,,engineering_construction,ner_synthetic
+statistical software,,data_ml_dl,onet
+statistics,,data_ml_dl,ner_synthetic
+statsmodels,statsmodels library,data_ml_dl,curated
+stem education,stem curriculum,teaching_education,curated
+stock reconciliation,,operations_logistics,ner_synthetic
+storage management software,,software_tools,onet
+store scheduling,,sales_marketing,ner_synthetic
+storyboarding,,design_multimedia,ner_synthetic
+strategic planning,business strategy|okrs,soft_skills,curated
+strength training,weightlifting|resistance training,fitness_wellness,curated
+stress testing software,,programming_languages,onet
+structural analysis,finite element analysis|fea,engineering_construction,curated
+structure query language sql,,databases,onet
+structured interviewing,behavioral interviewing,hr_recruiting,curated
+structured query language sql,,databases,onet
+structured query report sqr,,databases,onet
+student advising,academic advising,teaching_education,curated
+student assessment,formative assessment|summative assessment,teaching_education,curated
+student engagement,active learning strategies,teaching_education,curated
+succession planning,talent management,hr_recruiting,curated
+sumtotal systems toolbook,,software_tools,onet
+sun microsystems java,,programming_languages,onet
+supabase,supabase db,databases,curated
+supplier management,,operations_logistics,ner_synthetic
+surgical preparation,pre-op care|post-op care|pacu,healthcare_medical,curated
+survey software,,data_ml_dl,onet
+surveying,total station|gps surveying,engineering_construction,curated
+sustainability reporting,,agriculture,ner_synthetic
+svelte,sveltejs|sveltekit,web_frameworks,curated
+swift,swift language|swift programming,programming_languages,curated
+syllabus design,course syllabus,teaching_education,curated
+symantec pcanywhere,,software_tools,onet
+symantec visual cafe,,programming_languages,onet
+symfony,symfony framework,web_frameworks,curated
+synamed emr,,healthcare_medical,onet
+synergy software kaleidagraph,,data_ml_dl,onet
+syspro business software,,enterprise_software,onet
+systat software sigmaplot,,data_ml_dl,onet
+systat software sigmastat,,data_ml_dl,onet
+system administration,sysadmin,cloud_devops,curated
+system design,,programming_languages,ner_synthetic
+system testing software,,programming_languages,onet
+systemverilog,,programming_languages,onet
+tableau,tableau software|tableau desktop,software_tools,curated
+tadpoles,,software_tools,onet
+tailwind css,tailwind|tailwindcss,web_frameworks,curated
+talend big data integration,,databases,onet
+talend data fabric,,databases,onet
+talent acquisition,recruitment|recruiting,hr_recruiting,curated
+tax preparation,tax returns|tax filing,accounting_finance,curated
+tax software,,accounting_finance,onet
+tcp/ip,,networking,ner_synthetic
+tcpdump,,networking,onet
+teamwork,collaboration|cross-functional teamwork,soft_skills,curated
+technical manual database software,,software_tools,onet
+techsmith camtasia,,design_multimedia,onet
+teleconferencing software,,design_multimedia,onet
+telemetry,telemetry monitoring|ecg interpretation|ekg,healthcare_medical,curated
+tenable nessus,,cybersecurity,onet
+tensorflow,tf,data_ml_dl,curated
+teradata database,,databases,onet
+terminal emulation software,,networking,onet
+terraform,hashicorp terraform,cloud_devops,curated
+territory management,sales territory planning,sales_marketing,curated
+test automation,,programming_languages,ner_synthetic
+test automation software,,data_ml_dl,onet
+test design software,,programming_languages,onet
+test implementation software,,programming_languages,onet
+testing software,,data_ml_dl,onet
+testng,,programming_languages,onet
+text to speech software,,software_tools,onet
+the general store,,sales_marketing,onet
+the mathworks matlab,,data_ml_dl,onet
+thomson reuters westlaw,,software_tools,onet
+thomson reuters westlaw edge,,software_tools,onet
+threat intelligence,,cybersecurity,ner_synthetic
+threat modeling,,cybersecurity,ner_synthetic
+three-dimensional modeling software,,cad_engineering,onet
+tibco s-plus,,data_ml_dl,onet
+tibco spotfire,,data_ml_dl,onet
+tiktok,,design_multimedia,onet
+time and attendance software,,accounting_finance,onet
+time management,task prioritization,soft_skills,curated
+time reporting software,,accounting_finance,onet
+time series analysis,time series forecasting|forecasting,data_ml_dl,curated
+time tracking software,,accounting_finance,onet
+timekeeping software,,accounting_finance,onet
+tool command language tcl,,programming_languages,onet
+trademark law,copyright registration,legal_compliance,curated
+tradesman's software master estimator,,project_management,onet
+traffic analysis,,operations_logistics,ner_synthetic
+training and development,learning and development|l&d,hr_recruiting,curated
+training facilitation,,teaching_education,ner_synthetic
+trancite logic systems scenepd,,design_multimedia,onet
+transact-sql,,databases,onet
+transport scheduling,,operations_logistics,ner_synthetic
+traverse pc,,cad_engineering,onet
+treasury management,liquidity management,accounting_finance,curated
+trello,trello boards,software_tools,curated
+triage,patient triage|emergency triage,healthcare_medical,curated
+trimble geomatics office,,data_ml_dl,onet
+trimble pathfinder office,,cad_engineering,onet
+trimble sketchup pro,,design_multimedia,onet
+trimble terramodel,,cad_engineering,onet
+tumbleweed securetransport,,software_tools,onet
+turtle creek software goldenseal,,project_management,onet
+tutoring,one-on-one tutoring|academic tutoring,teaching_education,curated
+twitter,,software_tools,onet
+typescript,ts,programming_languages,curated
+typography,,design_multimedia,ner_synthetic
+ugcs,,data_ml_dl,onet
+ugs solid edge,,cad_engineering,onet
+ultimate software ultipro workplace,,hr_recruiting,onet
+unified modeling language uml,,software_tools,onet
+union relations,collective bargaining|labor relations,hr_recruiting,curated
+unistat statistical package,,data_ml_dl,onet
+unit testing software,,programming_languages,onet
+unity technologies unity,,programming_languages,onet
+unix,unix system,cloud_devops,curated
+unix shell,,cloud_devops,onet
+unreal technology unreal engine,,programming_languages,onet
+upselling,cross-selling,sales_marketing,curated
+usability testing,,design_multimedia,ner_synthetic
+usability testing software,,programming_languages,onet
+user interface design software,,programming_languages,onet
+user research,,design_multimedia,ner_synthetic
+vagrant,hashicorp vagrant,cloud_devops,curated
+valuation,business valuation|company valuation,accounting_finance,curated
+value stream mapping,,engineering_construction,ner_synthetic
+valusoft mastercook,,databases,onet
+variance analysis,budget vs actual,accounting_finance,curated
+vba,visual basic for applications|excel vba,programming_languages,curated
+vector databases,vector search|pinecone|weaviate|chromadb|milvus,databases,curated
+vehicle maintenance,,operations_logistics,ner_synthetic
+vehicle management software,,databases,onet
+vendor coordination,,culinary_chef,ner_synthetic
+vendor evaluation,,operations_logistics,ner_synthetic
+verilog,,programming_languages,onet
+veritas netbackup,,software_tools,onet
+vero software edgecam,,cad_engineering,onet
+vero software surfcam,,cad_engineering,onet
+version control software,,cloud_devops,onet
+vertafore imageright,,databases,onet
+video analysis software,,data_ml_dl,onet
+video editing software,,design_multimedia,onet
+video production,,design_multimedia,ner_synthetic
+videoconferencing software,,design_multimedia,onet
+virus scanning software,,cybersecurity,onet
+visual basic,vb|vb.net,programming_languages,curated
+visual storytelling,,design_multimedia,ner_synthetic
+visual studio,vs ide,software_tools,curated
+visual studio code,vs code|vscode,software_tools,curated
+vital signs,vital signs monitoring|vitals,healthcare_medical,curated
+vite,vitejs,web_frameworks,curated
+vmware,vmware vsphere|esxi,cloud_devops,curated
+vmware esx server,,software_tools,onet
+voice activated software,,software_tools,onet
+voip,,networking,ner_synthetic
+vue.js,vue|vuejs|vue 3,web_frameworks,curated
+vulnerability management,,cybersecurity,ner_synthetic
+wam software,,data_ml_dl,onet
+ward systems group genehunter,,data_ml_dl,onet
+warehouse management system wms,,enterprise_software,onet
+warehouse operations,,operations_logistics,ner_synthetic
+water flow modeling software,,data_ml_dl,onet
+water management,,agriculture,ner_synthetic
+watir,,programming_languages,onet
+wavefunction spartan,,data_ml_dl,onet
+web application software,,programming_languages,onet
+web browser software,,software_tools,onet
+web conferencing software,,design_multimedia,onet
+web server software,,software_tools,onet
+webpack,webpack bundler,web_frameworks,curated
+website development software,,web_frameworks,onet
+websocket,websockets|ws,web_frameworks,curated
+weight management,fat loss guidance,fitness_wellness,curated
+welding,mig welding|tig welding|arc welding,engineering_construction,curated
+wellness coaching,lifestyle modification,fitness_wellness,curated
+westlaw,westlaw edge,legal_compliance,curated
+wevideo,,design_multimedia,onet
+whitesmoke,,software_tools,onet
+wilhelm publishing threshold,,software_tools,onet
+wind flow modeling software,,data_ml_dl,onet
+winestimator winest,,data_ml_dl,onet
+wintac pro,,databases,onet
+wireframing,,design_multimedia,ner_synthetic
+wireless optimization,,networking,ner_synthetic
+wireshark,,networking,onet
+wolfram research mathematica,,data_ml_dl,onet
+wonderware software,,software_tools,onet
+word,ms word|microsoft word,software_tools,curated
+wordpress,,web_frameworks,onet
+work ethic,professionalism|dependability,soft_skills,curated
+work order software,,databases,onet
+work scheduling software,,project_management,onet
+work technology worktech time,,accounting_finance,onet
+workday hcm,workday hr,hr_recruiting,curated
+workday software,,enterprise_software,onet
+workflow software,,software_tools,onet
+workforce planning,headcount planning,hr_recruiting,curated
+working capital management,working capital,accounting_finance,curated
+workout program design,exercise prescription,fitness_wellness,curated
+worktech maximo,,enterprise_software,onet
+worldcat,,software_tools,onet
+wound care,dressing changes|wound dressing,healthcare_medical,curated
+wrshealth emr,,healthcare_medical,onet
+xactware xactimate,,databases,onet
+xara designer pro,,design_multimedia,onet
+xcode,,programming_languages,onet
+xero,xero accounting,accounting_finance,curated
+xgboost,xgb,data_ml_dl,curated
+xp software xpswmm,,data_ml_dl,onet
+yardi software,,databases,onet
+yardi systems yardi enterprise,,databases,onet
+yarn,yarn package manager,software_tools,curated
+yield forecasting,,agriculture,ner_synthetic
+yoga instruction,hatha yoga|vinyasa yoga,fitness_wellness,curated
+youtube,,design_multimedia,onet
+zabbix,,networking,onet
+zero trust,,cybersecurity,ner_synthetic
+zoom,,design_multimedia,onet
