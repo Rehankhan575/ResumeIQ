@@ -193,6 +193,9 @@ Core models defined in `app/schemas.py`:
 | Baseline comparison | TF-IDF cosine vs. SBERT cosine on same pairs |
 | ATS Score | Component-level ablation; no ground-truth ATS label |
 
+> [!NOTE]
+> **Matcher Weak Labels & Evaluation Circularity**: JD category relevance labels are derived via title-matching heuristic rules (`title_category_map.csv`), not human recruiter curation. Because category membership defines both positive training pairs and evaluation relevance judgments, ranking metrics (MRR, nDCG) partly reflect category separation rather than individual applicant qualification.
+
 ---
 
 ## Decisions Log
@@ -223,10 +226,20 @@ Core models defined in `app/schemas.py`:
 | 22 | 2026-11-03 | In full-text fallback mode, ambiguous terms require strong list evidence (2+ non-ambiguous skills within 6 tokens) | Prevents soft skill and verb leaks (`make`, `word`, `access`, `project`, `management`, `sales`) when document layout collapses without section headings |
 | 23 | 2026-11-03 | Classifier trained across 4 models (TF-IDF+LR, TF-IDF+MLP, BiLSTM, DistilBERT) on masked text; best val F1 saved, test set accessed strictly via --final-eval | Prevents title leak, adheres to 20-min compute budget, provides graceful on-the-fly fallback if checkpoints missing |
 | 24 | 2026-11-03 | Composite ATS score (0-100) across 9 weighted components; issues prioritized by estimated gain; explainability via batched LOSO and TF-IDF+LR linear attribution | Reflects absence of ground-truth ATS scores; guarantees deterministic sub-second CPU explainability without SHAP/LIME overhead |
+| 25 | 2026-11-04 | Siamese bi-encoder (`all-MiniLM-L6-v2`) fine-tuned with `MultipleNegativesRankingLoss` on MPS; fallback to TF-IDF | Optimizes dense embeddings for resume-JD matching within 15-min budget; centroid-based cross-category hard negative mining and per-category JD caps prevent class skew |
+| 26 | 2026-11-04 | Matcher evaluation explicitly discloses weak label circularity | Shared title-rule category definitions govern both training triplets and evaluation qrels; metrics measure category separation rather than recruiter qualification |
 
 ---
 
 ## CHANGELOG
+
+### v0.8.0 — 2026-11-04
+- `app/models/matcher.py`: implemented Stage 4 Résumé–JD matcher supporting TF-IDF cosine baseline and fine-tuned Siamese bi-encoder (`sentence-transformers/all-MiniLM-L6-v2`), with `match(resume_text, jd_text)` computing composite score (0-1) and section similarities (skills overlap via `TaxonomySkillExtractor`, experience vs JD text), and graceful TF-IDF fallback
+- `scripts/train_matcher.py`: end-to-end training and evaluation pipeline for the 15 categories with >=20 JDs, centroid-based hard negative mining across categories, capped JDs per category to prevent class skew, MPS/GPU accelerated fine-tuning with `MultipleNegativesRankingLoss`, validation evaluation, isolated `--final-eval` test evaluation, and metrics export to `artifacts/metrics/matcher/`
+- `tests/test_matcher.py`: 6 tests verifying 0-1 bounded scoring, empty input resilience, missing-model TF-IDF fallback, zero test resume/JD leak into training pairs, fixture discrimination sanity check (`ds_clean` vs `jd_data_scientist` vs `jd_chef`, and `chef_plain` reversed), and pipeline compatibility (203 total passing tests)
+- `artifacts/models/matcher/`: trained bi-encoder model weights and TF-IDF matcher baseline
+- `artifacts/metrics/matcher/`: validation (`matcher_val.json`) and test (`matcher_eval.json`) metrics
+- `docs/matcher.md`: comprehensive documentation covering architecture, 15 target categories, ranking metrics, section similarity formulation, and explicit disclosure of weak label circularity
 
 ### v0.7.0 — 2026-11-03
 - `data/taxonomies/ambiguous_terms.csv`: added rule `rn,require_context` preventing clinical "RN" (Registered Nurse) from colliding with software framework React Native without context

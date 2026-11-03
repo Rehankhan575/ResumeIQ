@@ -1,0 +1,696 @@
+{
+  "val": {
+    "tfidf": {
+      "overall": {
+        "mrr": 0.6121,
+        "ndcg@10": 0.4537,
+        "recall@5": 0.2209,
+        "recall@10": 0.3239
+      },
+      "per_category": {
+        "HEALTHCARE": {
+          "mrr": 0.5543,
+          "ndcg@10": 0.4425,
+          "recall@5": 0.0311,
+          "recall@10": 0.0649,
+          "count": 17
+        },
+        "SALES": {
+          "mrr": 0.7819,
+          "ndcg@10": 0.7339,
+          "recall@5": 0.0706,
+          "recall@10": 0.1348,
+          "count": 17
+        },
+        "INFORMATION-TECHNOLOGY": {
+          "mrr": 0.8588,
+          "ndcg@10": 0.582,
+          "recall@5": 0.1151,
+          "recall@10": 0.1905,
+          "count": 18
+        },
+        "ACCOUNTANT": {
+          "mrr": 0.8693,
+          "ndcg@10": 0.7534,
+          "recall@5": 0.1794,
+          "recall@10": 0.3765,
+          "count": 17
+        },
+        "ENGINEERING": {
+          "mrr": 0.5324,
+          "ndcg@10": 0.3336,
+          "recall@5": 0.2,
+          "recall@10": 0.3176,
+          "count": 17
+        },
+        "CONSTRUCTION": {
+          "mrr": 0.742,
+          "ndcg@10": 0.6085,
+          "recall@5": 0.4118,
+          "recall@10": 0.5882,
+          "count": 17
+        },
+        "ADVOCATE": {
+          "mrr": 0.1799,
+          "ndcg@10": 0.0604,
+          "recall@5": 0.0138,
+          "recall@10": 0.0311,
+          "count": 17
+        },
+        "CONSULTANT": {
+          "mrr": 0.1282,
+          "ndcg@10": 0.0427,
+          "recall@5": 0.0214,
+          "recall@10": 0.0428,
+          "count": 17
+        },
+        "HR": {
+          "mrr": 0.7339,
+          "ndcg@10": 0.2952,
+          "recall@5": 0.1607,
+          "recall@10": 0.2321,
+          "count": 16
+        },
+        "TEACHER": {
+          "mrr": 0.8359,
+          "ndcg@10": 0.5639,
+          "recall@5": 0.3516,
+          "recall@10": 0.5156,
+          "count": 16
+        },
+        "BANKING": {
+          "mrr": 0.2214,
+          "ndcg@10": 0.1844,
+          "recall@5": 0.1765,
+          "recall@10": 0.2647,
+          "count": 17
+        },
+        "BPO": {
+          "mrr": 0.0333,
+          "ndcg@10": 0.0,
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "count": 4
+        },
+        "CHEF": {
+          "mrr": 0.9069,
+          "ndcg@10": 0.8077,
+          "recall@5": 0.6471,
+          "recall@10": 0.8235,
+          "count": 17
+        },
+        "BUSINESS-DEVELOPMENT": {
+          "mrr": 0.6231,
+          "ndcg@10": 0.3932,
+          "recall@5": 0.2437,
+          "recall@10": 0.4034,
+          "count": 17
+        },
+        "DIGITAL-MEDIA": {
+          "mrr": 0.7612,
+          "ndcg@10": 0.6722,
+          "recall@5": 0.5733,
+          "recall@10": 0.68,
+          "count": 15
+        }
+      }
+    },
+    "zero_shot": {
+      "overall": {
+        "mrr": 0.6377,
+        "ndcg@10": 0.4414,
+        "recall@5": 0.2107,
+        "recall@10": 0.309
+      },
+      "per_category": {
+        "HEALTHCARE": {
+          "mrr": 0.5742,
+          "ndcg@10": 0.4149,
+          "recall@5": 0.0311,
+          "recall@10": 0.058,
+          "count": 17
+        },
+        "SALES": {
+          "mrr": 0.8549,
+          "ndcg@10": 0.7478,
+          "recall@5": 0.0706,
+          "recall@10": 0.1337,
+          "count": 17
+        },
+        "INFORMATION-TECHNOLOGY": {
+          "mrr": 0.6023,
+          "ndcg@10": 0.4015,
+          "recall@5": 0.0714,
+          "recall@10": 0.1389,
+          "count": 18
+        },
+        "ACCOUNTANT": {
+          "mrr": 1.0,
+          "ndcg@10": 0.8564,
+          "recall@5": 0.2176,
+          "recall@10": 0.4088,
+          "count": 17
+        },
+        "ENGINEERING": {
+          "mrr": 0.6816,
+          "ndcg@10": 0.3593,
+          "recall@5": 0.1824,
+          "recall@10": 0.3235,
+          "count": 17
+        },
+        "CONSTRUCTION": {
+          "mrr": 0.7813,
+          "ndcg@10": 0.4782,
+          "recall@5": 0.3015,
+          "recall@10": 0.4118,
+          "count": 17
+        },
+        "ADVOCATE": {
+          "mrr": 0.1808,
+          "ndcg@10": 0.0921,
+          "recall@5": 0.0311,
+          "recall@10": 0.0554,
+          "count": 17
+        },
+        "CONSULTANT": {
+          "mrr": 0.4045,
+          "ndcg@10": 0.1665,
+          "recall@5": 0.0749,
+          "recall@10": 0.1337,
+          "count": 17
+        },
+        "HR": {
+          "mrr": 0.5947,
+          "ndcg@10": 0.2482,
+          "recall@5": 0.1696,
+          "recall@10": 0.2054,
+          "count": 16
+        },
+        "TEACHER": {
+          "mrr": 0.8646,
+          "ndcg@10": 0.5793,
+          "recall@5": 0.4062,
+          "recall@10": 0.5078,
+          "count": 16
+        },
+        "BANKING": {
+          "mrr": 0.2319,
+          "ndcg@10": 0.1673,
+          "recall@5": 0.1176,
+          "recall@10": 0.2353,
+          "count": 17
+        },
+        "BPO": {
+          "mrr": 0.3331,
+          "ndcg@10": 0.1082,
+          "recall@5": 0.0833,
+          "recall@10": 0.0833,
+          "count": 4
+        },
+        "CHEF": {
+          "mrr": 0.9706,
+          "ndcg@10": 0.9412,
+          "recall@5": 0.8,
+          "recall@10": 0.9882,
+          "count": 17
+        },
+        "BUSINESS-DEVELOPMENT": {
+          "mrr": 0.6814,
+          "ndcg@10": 0.3435,
+          "recall@5": 0.2269,
+          "recall@10": 0.3109,
+          "count": 17
+        },
+        "DIGITAL-MEDIA": {
+          "mrr": 0.5835,
+          "ndcg@10": 0.4641,
+          "recall@5": 0.3067,
+          "recall@10": 0.5067,
+          "count": 15
+        }
+      }
+    },
+    "fine_tuned": {
+      "overall": {
+        "mrr": 0.8567,
+        "ndcg@10": 0.6821,
+        "recall@5": 0.3286,
+        "recall@10": 0.4671
+      },
+      "per_category": {
+        "HEALTHCARE": {
+          "mrr": 0.7095,
+          "ndcg@10": 0.674,
+          "recall@5": 0.0476,
+          "recall@10": 0.1003,
+          "count": 17
+        },
+        "SALES": {
+          "mrr": 1.0,
+          "ndcg@10": 0.9875,
+          "recall@5": 0.0898,
+          "recall@10": 0.1797,
+          "count": 17
+        },
+        "INFORMATION-TECHNOLOGY": {
+          "mrr": 0.8421,
+          "ndcg@10": 0.7095,
+          "recall@5": 0.129,
+          "recall@10": 0.2421,
+          "count": 18
+        },
+        "ACCOUNTANT": {
+          "mrr": 1.0,
+          "ndcg@10": 0.9247,
+          "recall@5": 0.2412,
+          "recall@10": 0.45,
+          "count": 17
+        },
+        "ENGINEERING": {
+          "mrr": 0.8627,
+          "ndcg@10": 0.6559,
+          "recall@5": 0.3294,
+          "recall@10": 0.6412,
+          "count": 17
+        },
+        "CONSTRUCTION": {
+          "mrr": 0.8703,
+          "ndcg@10": 0.718,
+          "recall@5": 0.4779,
+          "recall@10": 0.6765,
+          "count": 17
+        },
+        "ADVOCATE": {
+          "mrr": 0.7967,
+          "ndcg@10": 0.7303,
+          "recall@5": 0.2145,
+          "recall@10": 0.4256,
+          "count": 17
+        },
+        "CONSULTANT": {
+          "mrr": 0.9496,
+          "ndcg@10": 0.5371,
+          "recall@5": 0.2567,
+          "recall@10": 0.4225,
+          "count": 17
+        },
+        "HR": {
+          "mrr": 0.9688,
+          "ndcg@10": 0.2735,
+          "recall@5": 0.1429,
+          "recall@10": 0.1518,
+          "count": 16
+        },
+        "TEACHER": {
+          "mrr": 0.9104,
+          "ndcg@10": 0.803,
+          "recall@5": 0.5234,
+          "recall@10": 0.7734,
+          "count": 16
+        },
+        "BANKING": {
+          "mrr": 0.6308,
+          "ndcg@10": 0.4143,
+          "recall@5": 0.3235,
+          "recall@10": 0.4118,
+          "count": 17
+        },
+        "BPO": {
+          "mrr": 0.1429,
+          "ndcg@10": 0.0606,
+          "recall@5": 0.0417,
+          "recall@10": 0.0833,
+          "count": 4
+        },
+        "CHEF": {
+          "mrr": 1.0,
+          "ndcg@10": 0.9976,
+          "recall@5": 0.9529,
+          "recall@10": 1.0,
+          "count": 17
+        },
+        "BUSINESS-DEVELOPMENT": {
+          "mrr": 0.9559,
+          "ndcg@10": 0.6665,
+          "recall@5": 0.5126,
+          "recall@10": 0.5714,
+          "count": 17
+        },
+        "DIGITAL-MEDIA": {
+          "mrr": 0.6508,
+          "ndcg@10": 0.5718,
+          "recall@5": 0.4533,
+          "recall@10": 0.6133,
+          "count": 15
+        }
+      }
+    }
+  },
+  "test": {
+    "tfidf": {
+      "overall": {
+        "mrr": 0.6333,
+        "ndcg@10": 0.4854,
+        "recall@5": 0.2337,
+        "recall@10": 0.3456
+      },
+      "per_category": {
+        "HEALTHCARE": {
+          "mrr": 0.7208,
+          "ndcg@10": 0.594,
+          "recall@5": 0.0377,
+          "recall@10": 0.0754,
+          "count": 17
+        },
+        "SALES": {
+          "mrr": 0.8889,
+          "ndcg@10": 0.7922,
+          "recall@5": 0.0706,
+          "recall@10": 0.1328,
+          "count": 18
+        },
+        "INFORMATION-TECHNOLOGY": {
+          "mrr": 0.8796,
+          "ndcg@10": 0.58,
+          "recall@5": 0.0859,
+          "recall@10": 0.165,
+          "count": 18
+        },
+        "ACCOUNTANT": {
+          "mrr": 0.9008,
+          "ndcg@10": 0.7804,
+          "recall@5": 0.2284,
+          "recall@10": 0.4167,
+          "count": 18
+        },
+        "ENGINEERING": {
+          "mrr": 0.814,
+          "ndcg@10": 0.5694,
+          "recall@5": 0.2017,
+          "recall@10": 0.3908,
+          "count": 17
+        },
+        "CONSTRUCTION": {
+          "mrr": 0.8003,
+          "ndcg@10": 0.4976,
+          "recall@5": 0.2834,
+          "recall@10": 0.369,
+          "count": 17
+        },
+        "ADVOCATE": {
+          "mrr": 0.1696,
+          "ndcg@10": 0.0767,
+          "recall@5": 0.0303,
+          "recall@10": 0.0707,
+          "count": 18
+        },
+        "CONSULTANT": {
+          "mrr": 0.0818,
+          "ndcg@10": 0.0447,
+          "recall@5": 0.0147,
+          "recall@10": 0.0735,
+          "count": 17
+        },
+        "HR": {
+          "mrr": 0.9099,
+          "ndcg@10": 0.7407,
+          "recall@5": 0.5648,
+          "recall@10": 0.7037,
+          "count": 18
+        },
+        "TEACHER": {
+          "mrr": 0.7634,
+          "ndcg@10": 0.5229,
+          "recall@5": 0.4,
+          "recall@10": 0.4571,
+          "count": 15
+        },
+        "BANKING": {
+          "mrr": 0.4874,
+          "ndcg@10": 0.2317,
+          "recall@5": 0.1111,
+          "recall@10": 0.2444,
+          "count": 18
+        },
+        "BPO": {
+          "mrr": 0.0967,
+          "ndcg@10": 0.1028,
+          "recall@5": 0.0,
+          "recall@10": 0.2222,
+          "count": 3
+        },
+        "CHEF": {
+          "mrr": 0.6011,
+          "ndcg@10": 0.4805,
+          "recall@5": 0.4028,
+          "recall@10": 0.4722,
+          "count": 18
+        },
+        "BUSINESS-DEVELOPMENT": {
+          "mrr": 0.4045,
+          "ndcg@10": 0.4078,
+          "recall@5": 0.3889,
+          "recall@10": 0.6667,
+          "count": 18
+        },
+        "DIGITAL-MEDIA": {
+          "mrr": 0.5239,
+          "ndcg@10": 0.5478,
+          "recall@5": 0.5714,
+          "recall@10": 0.6905,
+          "count": 14
+        }
+      }
+    },
+    "zero_shot": {
+      "overall": {
+        "mrr": 0.6311,
+        "ndcg@10": 0.4532,
+        "recall@5": 0.1964,
+        "recall@10": 0.3007
+      },
+      "per_category": {
+        "HEALTHCARE": {
+          "mrr": 0.5267,
+          "ndcg@10": 0.4669,
+          "recall@5": 0.0302,
+          "recall@10": 0.0626,
+          "count": 17
+        },
+        "SALES": {
+          "mrr": 0.9722,
+          "ndcg@10": 0.8668,
+          "recall@5": 0.0772,
+          "recall@10": 0.1422,
+          "count": 18
+        },
+        "INFORMATION-TECHNOLOGY": {
+          "mrr": 0.8333,
+          "ndcg@10": 0.4967,
+          "recall@5": 0.0741,
+          "recall@10": 0.1347,
+          "count": 18
+        },
+        "ACCOUNTANT": {
+          "mrr": 0.9352,
+          "ndcg@10": 0.8734,
+          "recall@5": 0.2593,
+          "recall@10": 0.4722,
+          "count": 18
+        },
+        "ENGINEERING": {
+          "mrr": 0.8379,
+          "ndcg@10": 0.5999,
+          "recall@5": 0.2521,
+          "recall@10": 0.3824,
+          "count": 17
+        },
+        "CONSTRUCTION": {
+          "mrr": 0.7739,
+          "ndcg@10": 0.4822,
+          "recall@5": 0.262,
+          "recall@10": 0.369,
+          "count": 17
+        },
+        "ADVOCATE": {
+          "mrr": 0.3047,
+          "ndcg@10": 0.19,
+          "recall@5": 0.0808,
+          "recall@10": 0.1717,
+          "count": 18
+        },
+        "CONSULTANT": {
+          "mrr": 0.1779,
+          "ndcg@10": 0.1171,
+          "recall@5": 0.0735,
+          "recall@10": 0.1765,
+          "count": 17
+        },
+        "HR": {
+          "mrr": 0.7396,
+          "ndcg@10": 0.3707,
+          "recall@5": 0.2222,
+          "recall@10": 0.3611,
+          "count": 18
+        },
+        "TEACHER": {
+          "mrr": 0.7801,
+          "ndcg@10": 0.5425,
+          "recall@5": 0.381,
+          "recall@10": 0.4857,
+          "count": 15
+        },
+        "BANKING": {
+          "mrr": 0.4869,
+          "ndcg@10": 0.2163,
+          "recall@5": 0.1222,
+          "recall@10": 0.2,
+          "count": 18
+        },
+        "BPO": {
+          "mrr": 0.1241,
+          "ndcg@10": 0.0782,
+          "recall@5": 0.1111,
+          "recall@10": 0.1111,
+          "count": 3
+        },
+        "CHEF": {
+          "mrr": 0.79,
+          "ndcg@10": 0.6562,
+          "recall@5": 0.5556,
+          "recall@10": 0.6528,
+          "count": 18
+        },
+        "BUSINESS-DEVELOPMENT": {
+          "mrr": 0.1949,
+          "ndcg@10": 0.1779,
+          "recall@5": 0.1667,
+          "recall@10": 0.3056,
+          "count": 18
+        },
+        "DIGITAL-MEDIA": {
+          "mrr": 0.5649,
+          "ndcg@10": 0.3305,
+          "recall@5": 0.2381,
+          "recall@10": 0.3571,
+          "count": 14
+        }
+      }
+    },
+    "fine_tuned": {
+      "overall": {
+        "mrr": 0.7798,
+        "ndcg@10": 0.7286,
+        "recall@5": 0.3755,
+        "recall@10": 0.5338
+      },
+      "per_category": {
+        "HEALTHCARE": {
+          "mrr": 0.8144,
+          "ndcg@10": 0.7949,
+          "recall@5": 0.0498,
+          "recall@10": 0.1041,
+          "count": 17
+        },
+        "SALES": {
+          "mrr": 1.0,
+          "ndcg@10": 0.9879,
+          "recall@5": 0.0847,
+          "recall@10": 0.1667,
+          "count": 18
+        },
+        "INFORMATION-TECHNOLOGY": {
+          "mrr": 0.9259,
+          "ndcg@10": 0.887,
+          "recall@5": 0.1313,
+          "recall@10": 0.2694,
+          "count": 18
+        },
+        "ACCOUNTANT": {
+          "mrr": 1.0,
+          "ndcg@10": 0.9929,
+          "recall@5": 0.2778,
+          "recall@10": 0.5494,
+          "count": 18
+        },
+        "ENGINEERING": {
+          "mrr": 1.0,
+          "ndcg@10": 0.9423,
+          "recall@5": 0.3445,
+          "recall@10": 0.6597,
+          "count": 17
+        },
+        "CONSTRUCTION": {
+          "mrr": 0.8049,
+          "ndcg@10": 0.6661,
+          "recall@5": 0.3583,
+          "recall@10": 0.5615,
+          "count": 17
+        },
+        "ADVOCATE": {
+          "mrr": 0.8926,
+          "ndcg@10": 0.7939,
+          "recall@5": 0.3939,
+          "recall@10": 0.6818,
+          "count": 18
+        },
+        "CONSULTANT": {
+          "mrr": 0.2032,
+          "ndcg@10": 0.131,
+          "recall@5": 0.1029,
+          "recall@10": 0.1912,
+          "count": 17
+        },
+        "HR": {
+          "mrr": 0.5926,
+          "ndcg@10": 0.5922,
+          "recall@5": 0.5,
+          "recall@10": 0.6667,
+          "count": 18
+        },
+        "TEACHER": {
+          "mrr": 0.9667,
+          "ndcg@10": 0.8874,
+          "recall@5": 0.6762,
+          "recall@10": 0.8571,
+          "count": 15
+        },
+        "BANKING": {
+          "mrr": 0.6001,
+          "ndcg@10": 0.3447,
+          "recall@5": 0.2111,
+          "recall@10": 0.3667,
+          "count": 18
+        },
+        "BPO": {
+          "mrr": 0.0326,
+          "ndcg@10": 0.0,
+          "recall@5": 0.0,
+          "recall@10": 0.0,
+          "count": 3
+        },
+        "CHEF": {
+          "mrr": 0.7585,
+          "ndcg@10": 0.736,
+          "recall@5": 0.7222,
+          "recall@10": 0.75,
+          "count": 18
+        },
+        "BUSINESS-DEVELOPMENT": {
+          "mrr": 0.963,
+          "ndcg@10": 0.9615,
+          "recall@5": 0.9722,
+          "recall@10": 0.9722,
+          "count": 18
+        },
+        "DIGITAL-MEDIA": {
+          "mrr": 0.4648,
+          "ndcg@10": 0.575,
+          "recall@5": 0.5476,
+          "recall@10": 0.8571,
+          "count": 14
+        }
+      }
+    }
+  }
+}
