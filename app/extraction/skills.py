@@ -89,8 +89,18 @@ class TaxonomySkillExtractor:
         self.active_skills: Set[str] = set()
         self.ambiguous_rules: Dict[str, str] = {}
         self.max_ngram_len: int = 1
+        self.non_ambiguous_skills: Set[str] = set()
+        self.reason_counts: Dict[str, Dict[str, int]] = {}
 
         self._load_taxonomies()
+
+    def reset_reason_counts(self) -> None:
+        """Reset internal acceptance reason counters."""
+        self.reason_counts = {}
+
+    def get_reason_counts(self) -> Dict[str, Dict[str, int]]:
+        """Return a copy of internal acceptance reason counters."""
+        return {k: dict(v) for k, v in self.reason_counts.items()}
 
     def _load_taxonomies(self) -> None:
         """Load active taxonomy skills, aliases, and ambiguous term rules."""
@@ -139,8 +149,12 @@ class TaxonomySkillExtractor:
                         self.max_ngram_len = max(self.max_ngram_len, len(a_tokens))
 
         self.max_ngram_len = min(self.max_ngram_len, 5)
+        self.non_ambiguous_skills = {
+            s for s in self.active_skills if s not in self.ambiguous_rules
+        }
         logger.debug(
-            f"TaxonomySkillExtractor loaded: {len(self.active_skills)} active skills, "
+            f"TaxonomySkillExtractor loaded: {len(self.active_skills)} active skills "
+            f"({len(self.non_ambiguous_skills)} non-ambiguous), "
             f"{len(self.term_to_canonical)} lookup keys, max ngram {self.max_ngram_len}."
         )
 
@@ -153,12 +167,19 @@ class TaxonomySkillExtractor:
         section_name: str,
         line_context: str,
         full_text: str,
-    ) -> bool:
-        """Validate an ambiguous term match according to rules and context."""
+    ) -> Tuple[bool, str]:
+        """Validate an ambiguous term match according to rules and context.
+
+        Returns (is_valid, reason) where reason is one of:
+        - "no_rule": term has no ambiguous rule
+        - "skills_section": accepted within a recognized skills section
+        - "list_context": accepted due to list syntax / delimiters
+        - "full_text_fallback": accepted in fallback context
+        """
         canonical_lower = canonical.lower()
         rule = self.ambiguous_rules.get(canonical_lower)
         if not rule:
-            return True
+            return True, "no_rule"
 
         is_skill_sec = section_name.lower().strip() in SKILL_SECTIONS
 
@@ -174,26 +195,26 @@ class TaxonomySkillExtractor:
 
         if canonical_lower in INVALID_PREFIX_TERMS:
             if prev_lower in INVALID_PREFIX_TERMS[canonical_lower]:
-                return False
+                return False, "invalid_prefix"
 
         # Trap: R&D (or R & D)
         if canonical_lower == "r":
             if next_lower in {"&", "d"} or prev_lower in {"&", "r"}:
-                return False
+                return False, "rd_trap"
             if "r&d" in raw_slice.lower() or "r & d" in line_context.lower():
                 # Verify raw slice itself is not part of R&D
                 if re.search(r"\bR\s*&\s*D\b", line_context):
-                    return False
+                    return False, "rd_trap"
 
         # Trap: go-to-market
         if canonical_lower == "go":
             if "go-to-market" in line_context.lower():
-                return False
+                return False, "gtm_trap"
 
         # Trap: excelled at
         if canonical_lower == "excel":
             if "excelled" in line_context.lower() or "excel at" in line_context.lower():
-                return False
+                return False, "excel_verb_trap"
 
         # Trap: chef (DevOps tool vs culinary profession)
         if canonical_lower == "chef":
@@ -202,48 +223,48 @@ class TaxonomySkillExtractor:
             culinary_hits = sum(1 for w in CULINARY_CONTEXT_TERMS if w in norm_full)
             devops_hits = sum(1 for w in DEVOPS_CONTEXT_TERMS if w in norm_full)
             if culinary_hits > 2 and devops_hits == 0:
-                return False
+                return False, "chef_culinary_context"
             if not is_skill_sec and not any(w in line_context.lower() for w in DEVOPS_CONTEXT_TERMS):
-                return False
+                return False, "chef_no_devops_context"
 
         # 2. Case sensitivity / exact-case checks
         if rule == "case_sensitive" or rule == "require_context":
             # Short single/two letter tokens need strict casing
             if canonical_lower in {"c", "r"}:
                 if raw_slice != canonical.upper():  # Must be 'C' or 'R'
-                    return False
+                    return False, "case_failed"
             elif canonical_lower == "go":
                 if raw_slice not in {"Go", "GO", "Golang"}:
-                    return False
+                    return False, "case_failed"
             elif canonical_lower in {"java", "jira"}:
                 if raw_slice not in {canonical.capitalize(), canonical.upper()}:
-                    return False
+                    return False, "case_failed"
             elif canonical_lower in {"react", "swift", "rust", "spark", "puppet", "spring", "bash", "git", "dart", "sass", "yarn"}:
                 if raw_slice.islower() and not is_skill_sec and not is_list:
-                    return False
+                    return False, "case_failed"
             elif canonical_lower in {"excel", "word", "access"}:
                 if raw_slice.islower() and not is_skill_sec:
-                    return False
+                    return False, "case_failed"
 
         # 3. Domain context checks for triage, baking, grilling, roasting, welding
         if canonical_lower == "triage":
             norm_ctx = (line_context + " " + full_text).lower()
             has_healthcare = any(term in norm_ctx for term in HEALTHCARE_CONTEXT_TERMS)
             if not has_healthcare and not is_skill_sec:
-                return False
+                return False, "triage_no_healthcare"
 
         if canonical_lower in {"baking", "grilling", "roasting"}:
             norm_ctx = (line_context + " " + full_text).lower()
             has_culinary = any(term in norm_ctx for term in CULINARY_CONTEXT_TERMS)
             if not has_culinary and not is_skill_sec:
-                return False
+                return False, "culinary_no_context"
 
         # 4. Context rules (require_context vs exclude_standalone)
         if rule == "exclude_standalone":
             # Soft skills / generic terms: management, project, sales, communication, etc.
             # Only valid in a dedicated skills section or structured list
             if not is_skill_sec and not is_list:
-                return False
+                return False, "standalone_rejected"
 
         if rule == "require_context":
             # Must be in a skills section, a list context, or near another skill
@@ -252,10 +273,18 @@ class TaxonomySkillExtractor:
                 if canonical_lower == "triage":
                     norm_line = line_context.lower()
                     if any(term in norm_line for term in HEALTHCARE_CONTEXT_TERMS):
-                        return True
-                return False
+                        return True, "full_text_fallback"
+                return False, "require_context_rejected"
 
-        return True
+        # Determine acceptance reason
+        if is_skill_sec:
+            acc_reason = "skills_section"
+        elif is_list:
+            acc_reason = "list_context"
+        else:
+            acc_reason = "full_text_fallback"
+
+        return True, acc_reason
 
     def extract_from_text(
         self,
@@ -296,6 +325,15 @@ class TaxonomySkillExtractor:
         # Longest match first: length DESC, start index ASC
         candidates.sort(key=lambda x: (-x[0], x[1]))
 
+        # Track non-ambiguous candidate token spans for strong list context check
+        is_skill_sec = section_name.lower().strip() in SKILL_SECTIONS
+        is_fallback = not is_skill_sec
+        non_ambig_candidate_spans = [
+            (c[1], c[2], c[4].lower())
+            for c in candidates
+            if c[4].lower() in self.non_ambiguous_skills
+        ]
+
         matched_token_indices: Set[int] = set()
         matched_results: List[Dict[str, Any]] = []
 
@@ -303,6 +341,31 @@ class TaxonomySkillExtractor:
             # Check overlap
             if any(idx in matched_token_indices for idx in range(start_idx, end_idx)):
                 continue
+
+            canonical_lower = canonical.lower()
+
+            # Fix: In full-text fallback mode (no detected skills section), ambiguous,
+            # exclude_standalone, and require_context terms are REJECTED unless there is
+            # strong list evidence: the term sits in a comma/bullet/pipe-separated run with
+            # at least 2 other non-ambiguous taxonomy skills within a 6-token window.
+            if is_fallback and canonical_lower in self.ambiguous_rules:
+                nearby_non_ambig = set()
+                for n_i, n_j, can in non_ambig_candidate_spans:
+                    if n_i >= end_idx:
+                        dist = n_i - end_idx
+                    elif n_j <= start_idx:
+                        dist = start_idx - n_j
+                    else:
+                        continue
+                    if dist <= 6:
+                        nearby_non_ambig.add(can)
+
+                w_start_char = token_spans[max(0, start_idx - 6)][2]
+                w_end_char = token_spans[min(n_tokens - 1, end_idx + 6)][3]
+                w_slice = text[w_start_char:w_end_char]
+                has_delim = bool(re.search(r"[,|/•;\n*]", w_slice))
+                if len(nearby_non_ambig) < 2 or not has_delim:
+                    continue
 
             # Context extraction for ambiguity check
             prev_token = token_spans[start_idx - 1][0] if start_idx > 0 else ""
@@ -315,7 +378,7 @@ class TaxonomySkillExtractor:
             line_end = len(text) if line_end == -1 else line_end
             line_context = text[line_start:line_end]
 
-            if not self._check_ambiguity(
+            is_valid, acc_reason = self._check_ambiguity(
                 canonical=canonical,
                 raw_slice=raw_slice,
                 prev_raw_token=prev_token,
@@ -323,8 +386,17 @@ class TaxonomySkillExtractor:
                 section_name=section_name,
                 line_context=line_context,
                 full_text=text,
-            ):
+            )
+            if not is_valid:
                 continue
+
+            # Record acceptance reason
+            skill_key = canonical.lower()
+            if skill_key not in self.reason_counts:
+                self.reason_counts[skill_key] = {}
+            self.reason_counts[skill_key][acc_reason] = (
+                self.reason_counts[skill_key].get(acc_reason, 0) + 1
+            )
 
             # Mark tokens as consumed
             for idx in range(start_idx, end_idx):
@@ -445,3 +517,4 @@ class TaxonomySkillExtractor:
             "preferred_skills": preferred_skills,
             "min_years": min_years,
         }
+

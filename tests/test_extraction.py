@@ -382,3 +382,63 @@ def test_jd_skills_and_min_years() -> None:
     assert "sql" in req_lower
     assert "pytorch" in pref_lower
     assert "snowflake" in pref_lower
+
+
+# ---------------------------------------------------------------------------
+# 9. Collapsed Fallback Filtering & Reason Tracking
+# ---------------------------------------------------------------------------
+
+def test_collapsed_text_prose_ambiguous_terms_rejected() -> None:
+    """In collapsed text (fallback mode), prose occurrences of ambiguous terms are rejected."""
+    extractor = get_skill_extractor()
+    # Prose with 'make', 'word', 'access', 'project', 'management' without list evidence
+    text = (
+        "We make sure to provide direct access to servers, track each project phase, "
+        "and handle team management while writing word documentation."
+    )
+    # Section name empty = fallback mode
+    res = extractor.extract_canonical_skills(text, section_name="")
+    extracted_lower = [s.lower() for s in res]
+
+    assert "make" not in extracted_lower
+    assert "word" not in extracted_lower
+    assert "access" not in extracted_lower
+    assert "project" not in extracted_lower
+    assert "management" not in extracted_lower
+
+
+def test_collapsed_text_strong_list_ambiguous_terms_accepted() -> None:
+    """In collapsed text (fallback mode), ambiguous terms in a strong list run are accepted."""
+    extractor = get_skill_extractor()
+
+    # 'Word' inside a list run with 2+ non-ambiguous skills (Python, Docker)
+    text1 = "Technical Toolkit: Python, Docker, Word, PostgreSQL, Linux"
+    res1 = extractor.extract_canonical_skills(text1, section_name="")
+    assert "word" in [s.lower() for s in res1]
+
+    # 'Access' inside a database list with 2+ non-ambiguous skills (MySQL, PostgreSQL)
+    text2 = "Database platforms: MySQL, PostgreSQL, Access, Redis"
+    res2 = extractor.extract_canonical_skills(text2, section_name="")
+    assert "access" in [s.lower() for s in res2]
+
+
+def test_acceptance_reason_counter() -> None:
+    """Verify acceptance reason counters record reasons and reset cleanly."""
+    extractor = get_skill_extractor()
+    extractor.reset_reason_counts()
+
+    # 1. Skills section match
+    extractor.extract_canonical_skills("Skills: Python, Excel", section_name="skills")
+    # 2. Fallback strong list match
+    extractor.extract_canonical_skills("Tools: Python, Docker, Word", section_name="")
+
+    reasons = extractor.get_reason_counts()
+    assert "excel" in reasons
+    assert reasons["excel"].get("skills_section", 0) >= 1
+
+    assert "word" in reasons
+    assert reasons["word"].get("list_context", 0) >= 1
+
+    extractor.reset_reason_counts()
+    assert extractor.get_reason_counts() == {}
+

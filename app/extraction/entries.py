@@ -282,7 +282,7 @@ def clean_title_company(raw_text: str) -> Tuple[str, str]:
     """Parse title and company from a single line with standard delimiters."""
     # Delimiters: '—', '–', '|', ' at ', ' - '
     # If multiple delimiters, e.g.:
-    # "Staff Nurse — Emergency Department — Saint Luke Medical Center, Denver, CO"
+    # "Senior Specialist — Core Platform — Example Corporation, Chicago, IL"
     delims = [m.start() for m in re.finditer(r"\s*(?:—|–|\||\bat\b| - )\s*", raw_text, re.IGNORECASE)]
     if not delims:
         return raw_text.strip(), ""
@@ -297,13 +297,13 @@ def clean_title_company(raw_text: str) -> Tuple[str, str]:
         title = parts[0]
         company_raw = parts[1]
     else:
-        # e.g. ["Staff Nurse", "Emergency Department", "Saint Luke Medical Center, Denver, CO"]
+        # e.g. ["Senior Specialist", "Core Platform", "Example Corporation, Chicago, IL"]
         # Combine leading parts into Title if they look like department/role
         title = f"{parts[0]} – {parts[1]}"
         company_raw = parts[2]
 
     # Clean location (city, state) from company
-    # E.g. "Highland Financial Group, Chicago, IL" -> "Highland Financial Group"
+    # E.g. "Example Corporation, Chicago, IL" -> "Example Corporation"
     company = re.sub(r",\s*[A-Za-z\s]+,\s*[A-Z]{2}\b", "", company_raw).strip()
     company = re.sub(r",\s*[A-Z]{2}\b", "", company).strip()
 
@@ -421,3 +421,4 @@ def compute_total_years_experience(
 
     total_years = len(all_months) / 12.0
     return round(total_years, 1)
+

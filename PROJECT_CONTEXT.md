@@ -220,10 +220,18 @@ Core models defined in `app/schemas.py`:
 | 19 | 2026-11-03 | Two-column layout detected via x0 clustering (gutter ≥ 50pt, vertical overlap ≥ 20%); read left then right | Prevents interleaving of sidebar metadata (contact, skills, education) into main work experience streams |
 | 20 | 2026-11-03 | Typed parser errors subclassing `ParseError` (empty, oversize, corrupted, locked, unsupported) | Prevents unhandled bare library exceptions from leaking through the ingestion boundary |
 | 21 | 2026-11-03 | `SCHEMA_VERSION` bumped to 1.2.0 (additive: `JobDescription.min_years`, `EducationEntry.graduation_year`, `ExperienceEntry.start`, `ExperienceEntry.end`) | Stage 2 extraction requires graduation year for education and compact start/end alias keys for experience and JD minimum experience |
+| 22 | 2026-11-03 | In full-text fallback mode, ambiguous terms require strong list evidence (2+ non-ambiguous skills within 6 tokens) | Prevents soft skill and verb leaks (`make`, `word`, `access`, `project`, `management`, `sales`) when document layout collapses without section headings |
 
 ---
 
 ## CHANGELOG
+
+### v0.5.1 — 2026-11-03
+- `app/extraction/skills.py`: added acceptance reason tracking (`get_reason_counts()`, `reset_reason_counts()`) and implemented strict fallback filter: in full-text fallback mode (no detected skills section), ambiguous, `exclude_standalone`, and `require_context` terms are rejected unless situated in a delimited run with ≥2 other non-ambiguous active taxonomy skills within a 6-token window; behavior inside detected skills sections remains unchanged
+- `app/extraction/entries.py`: cleaned up fixture-specific comment examples in `clean_title_company` to use generic placeholders (`Senior Specialist — Core Platform — Example Corporation, Chicago, IL`)
+- `scripts/eval_extraction.py`: added dual-mode stress test evaluating collapsed `Resume_str` vs generic block-flattened `Resume_html` (`div`, `p`, `li`, `br`, `tr` only) across 370 val IDs, added acceptance reason histogram table, detailed FP classifications for `chef_plain` and `jd_chef`, and before/after ambiguity comparison
+- `tests/test_extraction.py`: added 3 unit tests verifying rejection of ambiguous terms (`make`, `word`, `access`, `project`, `management`) in collapsed prose, acceptance inside delimited runs with 2+ non-ambiguous skills, and reason counter lifecycle (16 unit tests, 179 total tests passing)
+- `docs/extraction.md`: documented fallback ambiguity filter design, reason histograms, dual-mode section detection rates, and HTML approximation caveats
 
 ### v0.5.0 — 2026-11-03
 - `app/extraction/`: implemented Stage 2 text tokenization (`text_utils.py`, 100% parity with `taxonomy_stats.py`), rule-based taxonomy skill extractor (`skills.py`, active-only, 1-5 n-grams, longest-match first, non-overlapping spans, `ambiguous_terms.csv` context & case validation, JD required/preferred splitting and `min_years` parsing), structured entry extractor (`entries.py`, normalized education, date-anchored experience, non-overlapping interval union `total_years_experience`), and unified orchestrator (`extractor.py`, `extract_entities` preserving pipeline signature)

@@ -1,9 +1,9 @@
 {
-  "timestamp": "2026-11-03T17:11:04Z",
+  "timestamp": "2026-11-03T17:28:28Z",
   "fixtures": {
-    "micro_precision": 0.8,
+    "micro_precision": 0.8148,
     "micro_recall": 1.0,
-    "micro_f1": 0.8889,
+    "micro_f1": 0.898,
     "total_trap_violations": 0,
     "fixtures": {
       "accountant_table.pdf": {
@@ -23,14 +23,13 @@
       },
       "chef_plain.docx": {
         "type": "resume",
-        "precision": 0.4286,
+        "precision": 0.5,
         "recall": 1.0,
-        "f1": 0.6,
+        "f1": 0.6667,
         "false_positives": [
           "butchery",
           "catering",
-          "culinary arts",
-          "word"
+          "culinary arts"
         ],
         "misses": [],
         "trap_hits": [],
@@ -148,80 +147,93 @@
     }
   },
   "real_text_stress_test": {
-    "section_detection": {
+    "section_detection_collapsed": {
       "OVERALL": {
-        "total": 370,
-        "pct_exp": 0.0,
-        "pct_edu": 0.3,
-        "pct_skills": 0.3
+        "exp": 0,
+        "edu": 1,
+        "skills": 1,
+        "total": 370
       },
       "INFORMATION-TECHNOLOGY": {
-        "total": 18,
-        "pct_exp": 0.0,
-        "pct_edu": 0.0,
-        "pct_skills": 0.0
+        "exp": 0,
+        "edu": 0,
+        "skills": 0,
+        "total": 18
       },
       "HEALTHCARE": {
-        "total": 17,
-        "pct_exp": 0.0,
-        "pct_edu": 0.0,
-        "pct_skills": 0.0
+        "exp": 0,
+        "edu": 0,
+        "skills": 0,
+        "total": 17
       },
       "ACCOUNTANT": {
-        "total": 17,
-        "pct_exp": 0.0,
-        "pct_edu": 0.0,
-        "pct_skills": 0.0
+        "exp": 0,
+        "edu": 0,
+        "skills": 0,
+        "total": 17
       },
       "CHEF": {
-        "total": 17,
-        "pct_exp": 0.0,
-        "pct_edu": 0.0,
-        "pct_skills": 0.0
+        "exp": 0,
+        "edu": 0,
+        "skills": 0,
+        "total": 17
       },
       "SALES": {
-        "total": 17,
-        "pct_exp": 0.0,
-        "pct_edu": 0.0,
-        "pct_skills": 0.0
+        "exp": 0,
+        "edu": 0,
+        "skills": 0,
+        "total": 17
+      }
+    },
+    "section_detection_html": {
+      "OVERALL": {
+        "exp": 370,
+        "edu": 366,
+        "skills": 352,
+        "total": 370
+      },
+      "INFORMATION-TECHNOLOGY": {
+        "exp": 18,
+        "edu": 17,
+        "skills": 17,
+        "total": 18
+      },
+      "HEALTHCARE": {
+        "exp": 17,
+        "edu": 17,
+        "skills": 17,
+        "total": 17
+      },
+      "ACCOUNTANT": {
+        "exp": 17,
+        "edu": 17,
+        "skills": 17,
+        "total": 17
+      },
+      "CHEF": {
+        "exp": 17,
+        "edu": 17,
+        "skills": 16,
+        "total": 17
+      },
+      "SALES": {
+        "exp": 17,
+        "edu": 17,
+        "skills": 17,
+        "total": 17
       }
     },
     "skills_distribution": {
-      "mean": 12.95,
-      "median": 12.0,
-      "p5": 5.0,
-      "pct_under_5": 4.05
+      "mean": 10.25,
+      "median": 9.0,
+      "p5": 2.0,
+      "pct_under_5": 15.68
     },
     "top_20_skills": [
-      {
-        "skill": "management",
-        "count": 284,
-        "pct": 76.76
-      },
-      {
-        "skill": "sales",
-        "count": 202,
-        "pct": 54.59
-      },
-      {
-        "skill": "communication",
-        "count": 184,
-        "pct": 49.73
-      },
       {
         "skill": "customer service",
         "count": 154,
         "pct": 41.62
-      },
-      {
-        "skill": "leadership",
-        "count": 150,
-        "pct": 40.54
-      },
-      {
-        "skill": "project",
-        "count": 145,
-        "pct": 39.19
       },
       {
         "skill": "organizational skills",
@@ -229,19 +241,14 @@
         "pct": 39.19
       },
       {
-        "skill": "excel",
-        "count": 130,
-        "pct": 35.14
-      },
-      {
-        "skill": "word",
-        "count": 103,
-        "pct": 27.84
-      },
-      {
         "skill": "project management",
         "count": 93,
         "pct": 25.14
+      },
+      {
+        "skill": "management",
+        "count": 89,
+        "pct": 24.05
       },
       {
         "skill": "attention to detail",
@@ -252,6 +259,16 @@
         "skill": "problem solving",
         "count": 85,
         "pct": 22.97
+      },
+      {
+        "skill": "excel",
+        "count": 75,
+        "pct": 20.27
+      },
+      {
+        "skill": "sales",
+        "count": 72,
+        "pct": 19.46
       },
       {
         "skill": "powerpoint",
@@ -269,14 +286,14 @@
         "pct": 17.03
       },
       {
+        "skill": "word",
+        "count": 60,
+        "pct": 16.22
+      },
+      {
         "skill": "outlook",
         "count": 59,
         "pct": 15.95
-      },
-      {
-        "skill": "make",
-        "count": 54,
-        "pct": 14.59
       },
       {
         "skill": "time management",
@@ -284,14 +301,34 @@
         "pct": 13.24
       },
       {
-        "skill": "access",
-        "count": 48,
-        "pct": 12.97
-      },
-      {
         "skill": "public relations",
         "count": 46,
         "pct": 12.43
+      },
+      {
+        "skill": "business development",
+        "count": 43,
+        "pct": 11.62
+      },
+      {
+        "skill": "financial reporting",
+        "count": 39,
+        "pct": 10.54
+      },
+      {
+        "skill": "strategic planning",
+        "count": 38,
+        "pct": 10.27
+      },
+      {
+        "skill": "quality assurance",
+        "count": 32,
+        "pct": 8.65
+      },
+      {
+        "skill": "quality control",
+        "count": 31,
+        "pct": 8.38
       }
     ],
     "suspect_skills": [
@@ -366,6 +403,215 @@
         "pct": 10.27
       }
     ],
+    "reason_histogram": [
+      {
+        "skill": "customer service",
+        "count": 154,
+        "pct": 41.6,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 465
+      },
+      {
+        "skill": "organizational skills",
+        "count": 145,
+        "pct": 39.2,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 248
+      },
+      {
+        "skill": "project management",
+        "count": 93,
+        "pct": 25.1,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 207
+      },
+      {
+        "skill": "management",
+        "count": 89,
+        "pct": 24.1,
+        "skills_section": 16,
+        "list_context": 121,
+        "full_text_fallback": 0,
+        "no_rule": 0
+      },
+      {
+        "skill": "attention to detail",
+        "count": 89,
+        "pct": 24.1,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 151
+      },
+      {
+        "skill": "problem solving",
+        "count": 85,
+        "pct": 23.0,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 176
+      },
+      {
+        "skill": "excel",
+        "count": 75,
+        "pct": 20.3,
+        "skills_section": 2,
+        "list_context": 101,
+        "full_text_fallback": 0,
+        "no_rule": 0
+      },
+      {
+        "skill": "sales",
+        "count": 72,
+        "pct": 19.5,
+        "skills_section": 0,
+        "list_context": 115,
+        "full_text_fallback": 0,
+        "no_rule": 0
+      },
+      {
+        "skill": "powerpoint",
+        "count": 66,
+        "pct": 17.8,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 105
+      },
+      {
+        "skill": "talent acquisition",
+        "count": 64,
+        "pct": 17.3,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 220
+      },
+      {
+        "skill": "mentoring",
+        "count": 63,
+        "pct": 17.0,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 144
+      },
+      {
+        "skill": "word",
+        "count": 60,
+        "pct": 16.2,
+        "skills_section": 2,
+        "list_context": 87,
+        "full_text_fallback": 0,
+        "no_rule": 0
+      },
+      {
+        "skill": "outlook",
+        "count": 59,
+        "pct": 15.9,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 92
+      },
+      {
+        "skill": "time management",
+        "count": 49,
+        "pct": 13.2,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 65
+      },
+      {
+        "skill": "public relations",
+        "count": 46,
+        "pct": 12.4,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 188
+      },
+      {
+        "skill": "business development",
+        "count": 43,
+        "pct": 11.6,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 131
+      },
+      {
+        "skill": "financial reporting",
+        "count": 39,
+        "pct": 10.5,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 119
+      },
+      {
+        "skill": "strategic planning",
+        "count": 38,
+        "pct": 10.3,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 62
+      },
+      {
+        "skill": "quality assurance",
+        "count": 32,
+        "pct": 8.6,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 62
+      },
+      {
+        "skill": "quality control",
+        "count": 31,
+        "pct": 8.4,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 54
+      },
+      {
+        "skill": "make",
+        "count": 0,
+        "pct": 0.0,
+        "skills_section": 0,
+        "list_context": 0,
+        "full_text_fallback": 0,
+        "no_rule": 0
+      },
+      {
+        "skill": "access",
+        "count": 23,
+        "pct": 6.2,
+        "skills_section": 0,
+        "list_context": 34,
+        "full_text_fallback": 0,
+        "no_rule": 0
+      },
+      {
+        "skill": "project",
+        "count": 19,
+        "pct": 5.1,
+        "skills_section": 0,
+        "list_context": 23,
+        "full_text_fallback": 0,
+        "no_rule": 0
+      }
+    ],
     "entries_yield": {
       "pct_education_parsed": 74.86,
       "pct_experience_parsed": 95.95,
@@ -375,8 +621,8 @@
       "total_years_pct_over_40": 0.28
     },
     "latency_ms": {
-      "mean": 5.06,
-      "p95": 9.03
+      "mean": 4.45,
+      "p95": 6.78
     }
   }
 }
