@@ -221,10 +221,18 @@ Core models defined in `app/schemas.py`:
 | 20 | 2026-11-03 | Typed parser errors subclassing `ParseError` (empty, oversize, corrupted, locked, unsupported) | Prevents unhandled bare library exceptions from leaking through the ingestion boundary |
 | 21 | 2026-11-03 | `SCHEMA_VERSION` bumped to 1.2.0 (additive: `JobDescription.min_years`, `EducationEntry.graduation_year`, `ExperienceEntry.start`, `ExperienceEntry.end`) | Stage 2 extraction requires graduation year for education and compact start/end alias keys for experience and JD minimum experience |
 | 22 | 2026-11-03 | In full-text fallback mode, ambiguous terms require strong list evidence (2+ non-ambiguous skills within 6 tokens) | Prevents soft skill and verb leaks (`make`, `word`, `access`, `project`, `management`, `sales`) when document layout collapses without section headings |
+| 23 | 2026-11-03 | Classifier trained across 4 models (TF-IDF+LR, TF-IDF+MLP, BiLSTM, DistilBERT) on masked text; best val F1 saved, test set accessed strictly via --final-eval | Prevents title leak, adheres to 20-min compute budget, provides graceful on-the-fly fallback if checkpoints missing |
 
 ---
 
 ## CHANGELOG
+
+### v0.6.0 — 2026-11-03
+- `scripts/train_classifier.py`: implemented 4-model classifier training pipeline (TF-IDF+LR, TF-IDF+MLP, BiLSTM, DistilBERT) with smoke testing, val-only hyperparameter tuning, early stopping, confusion matrix plotting, loss curve generation, and isolated `--final-eval` test evaluation
+- `app/models/classifier.py`: implemented `classify(text, top_k=3, normalize=True)` returning top-3 `CategoryPrediction` objects with probabilities summing to 1.0, cached model inference for the best validation model (`tfidf_mlp`), pipeline integration `classify_resume(parsed)`, and on-the-fly TF-IDF+LR fallback
+- `tests/test_classifier.py`: 6 tests verifying output shape, probability normalization to 1.0, missing model directory fallback, zero text leakage across train/val/test splits, schema integration with `ParsedResume`, and empty/whitespace input handling (185 total tests passing)
+- `artifacts/metrics/classifier/`: generated confusion matrices (`cm_*.png`), loss curves (`loss_curve_*.png`), and metrics payload (`metrics.json`) across all 4 models
+- `docs/classifier.md`: comprehensive Stage 3a documentation detailing experimental setup, throughput measurements, 4-model comparison table, serving fallback, and error analysis
 
 ### v0.5.1 — 2026-11-03
 - `app/extraction/skills.py`: added acceptance reason tracking (`get_reason_counts()`, `reset_reason_counts()`) and implemented strict fallback filter: in full-text fallback mode (no detected skills section), ambiguous, `exclude_standalone`, and `require_context` terms are rejected unless situated in a delimited run with ≥2 other non-ambiguous active taxonomy skills within a 6-token window; behavior inside detected skills sections remains unchanged
