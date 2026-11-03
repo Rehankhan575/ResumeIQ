@@ -99,22 +99,25 @@ artefacts. No further masking is applied to avoid destroying signal.
 
 ### Source
 - **Dataset**: `linkedin_sample` (5,000 postings, `postings_5k.parquet`)
-- **After dedup on (title, description[:200])**: 4,897 unique JDs
-- **After title→category mapping**: 1,729 mapped JDs
-- **Excluded**: 1,729 ambiguous + unmapped JDs
+- **After dedup on (title, description[:200])**: 4,833 unique JDs
+- **After title→category mapping**: 1,796 mapped JDs
+- **Excluded**: 26 ambiguous + 3,011 unmapped (3,037 total excluded)
 
 ### Title→Category Mapping
-Rules live in `data/taxonomies/title_category_map.csv` (244 keyword rules,
-24 categories). Each title is matched case-insensitively on word boundaries
-(`\b...\b`). Titles matching >1 category are **AMBIGUOUS** and excluded;
-titles matching 0 categories are **UNMAPPED** and excluded.
+Rules live in `data/taxonomies/title_category_map.csv` (243 keyword rules,
+24 categories). Precedence rules:
+1. Word-boundary `\bsales\b` takes precedence and maps directly to `SALES` (e.g., "Sales Consultant" maps to `SALES`).
+2. When two keywords match and one is a generic role word (`consultant`, `specialist`, `associate`, `manager`, `analyst`), the domain keyword wins (e.g., "DevOps Consultant" → `INFORMATION-TECHNOLOGY`, "Medical Consultant" → `HEALTHCARE`).
+3. Domain keyword collisions remain **AMBIGUOUS** and are excluded.
+4. "General merchandise" (merchandise) and "business analyst" rules are removed (excluded from mapping).
+Titles matching 0 rules are **UNMAPPED** and excluded.
 
 ### Split
 | Split | JDs   | Approx. % |
 |-------|-------|-----------|
-| train | 1,210 | 70.0%     |
-| val   | 259   | 15.0%     |
-| test  | 260   | 15.0%     |
+| train | 1,257 | 70.0%     |
+| val   | 269   | 15.0%     |
+| test  | 270   | 15.0%     |
 
 Split at (title, description[:200]) group level. Stratification attempted
 but fell back to unstratified due to sparse categories (see below).
@@ -127,9 +130,9 @@ The following categories have fewer than 20 mapped JDs total and are
 | Category         | Total JDs |
 |------------------|----------:|
 | AGRICULTURE      |         1 |
-| APPAREL          |        10 |
+| APPAREL          |         4 |
 | ARTS             |         5 |
-| AUTOMOBILE       |        19 |
+| AUTOMOBILE       |        18 |
 | AVIATION         |         8 |
 | DESIGNER         |         8 |
 | FINANCE          |        12 |
@@ -179,7 +182,7 @@ subset of the classifier test split (verified by `verify_splits.py`).
 
 | Limitation | Detail |
 |-----------|--------|
-| **JD category labels are weak** | Assigned by keyword title rules, not human review. Titles matching 2+ categories are excluded, but single-match may still be wrong (e.g., "Sales Consultant" → CONSULTANT). |
+| **JD category labels are weak** | Assigned by keyword title rules, not human review. Precedence resolves role words (e.g., "Sales Consultant" → SALES), and domain collisions remain excluded, but single-match noise may still exist. |
 | **Matcher metrics are partly circular** | SBERT trained on JDs that were also categorised by title; if the category signal drives both the JD labels and resume labels, MRR/nDCG partly reflect category overlap, not true semantic fit. |
 | **Header leak residual: 19.7%** | Category words appear in resume body text, not just in the header. Masking removes the explicit title but cannot remove all category vocabulary. |
 | **Synthetic NER has only 301 skills** | `ner_synthetic` templates cover a limited skill vocabulary; generalisation to real resumes needs hand-corrected gold evaluation. |

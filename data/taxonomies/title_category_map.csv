@@ -33,7 +33,6 @@ vineyard,AGRICULTURE
 fashion,APPAREL
 apparel,APPAREL
 textile,APPAREL
-merchandise,APPAREL
 buyer.*fashion,APPAREL
 garment,APPAREL
 clothing,APPAREL
@@ -78,7 +77,6 @@ contact center,BPO
 help desk,BPO
 service desk,BPO
 business development,BUSINESS-DEVELOPMENT
-business analyst,BUSINESS-DEVELOPMENT
 strategy manager,BUSINESS-DEVELOPMENT
 partnerships,BUSINESS-DEVELOPMENT
 corporate development,BUSINESS-DEVELOPMENT
@@ -220,6 +218,7 @@ brand communications,PUBLIC-RELATIONS
 corporate communications,PUBLIC-RELATIONS
 press secretary,PUBLIC-RELATIONS
 spokesperson,PUBLIC-RELATIONS
+sales,SALES
 sales manager,SALES
 sales representative,SALES
 account executive,SALES

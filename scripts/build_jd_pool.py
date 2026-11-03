@@ -93,7 +93,6 @@ RAW_RULES: List[Tuple[str, str]] = [
     ("fashion", "APPAREL"),
     ("apparel", "APPAREL"),
     ("textile", "APPAREL"),
-    ("merchandise", "APPAREL"),
     ("buyer.*fashion", "APPAREL"),
     ("garment", "APPAREL"),
     ("clothing", "APPAREL"),
@@ -144,7 +143,6 @@ RAW_RULES: List[Tuple[str, str]] = [
     ("service desk", "BPO"),
     # BUSINESS-DEVELOPMENT
     ("business development", "BUSINESS-DEVELOPMENT"),
-    ("business analyst", "BUSINESS-DEVELOPMENT"),
     ("strategy manager", "BUSINESS-DEVELOPMENT"),
     ("partnerships", "BUSINESS-DEVELOPMENT"),
     ("corporate development", "BUSINESS-DEVELOPMENT"),
@@ -299,6 +297,7 @@ RAW_RULES: List[Tuple[str, str]] = [
     ("press secretary", "PUBLIC-RELATIONS"),
     ("spokesperson", "PUBLIC-RELATIONS"),
     # SALES
+    ("sales", "SALES"),
     ("sales manager", "SALES"),
     ("sales representative", "SALES"),
     ("account executive", "SALES"),
@@ -326,40 +325,72 @@ RAW_RULES: List[Tuple[str, str]] = [
 ]
 
 
-def build_title_map() -> Tuple[Dict[str, str], List[Tuple[str, str]]]:
-    """Compile RAW_RULES into a mapping and list of (pattern, category) pairs.
+GENERIC_ROLE_WORDS: Set[str] = {
+    "consultant", "specialist", "associate", "manager", "analyst",
+}
+SALES_WORD_PATTERN = re.compile(r"\bsales\b", re.IGNORECASE)
+
+
+def build_title_map() -> List[Tuple[re.Pattern[str], str, str]]:
+    """Compile RAW_RULES into a list of (pattern, category, keyword) tuples.
 
     Returns:
-        (keyword_to_category dict, list of (compiled_pattern_str, category)).
+        List of (compiled_pattern, category, keyword_str).
     """
-    rules: List[Tuple[re.Pattern[str], str]] = []
+    rules: List[Tuple[re.Pattern[str], str, str]] = []
     for kw, cat in RAW_RULES:
         # Wrap in word-boundary anchors
         pattern = re.compile(r"\b" + kw + r"\b", re.IGNORECASE)
-        rules.append((pattern, cat))
+        rules.append((pattern, cat, kw))
     return rules
 
 
-def map_title(title: str, rules: List[Tuple[re.Pattern[str], str]]) -> Optional[str]:
+def map_title(title: str, rules: List[Tuple[re.Pattern[str], str, str]]) -> Optional[str]:
     """Map a job title to a category, or return None if ambiguous/unmapped.
 
-    A title is AMBIGUOUS if it matches more than one distinct category.
-    A title is UNMAPPED if it matches none.
+    Precedence rules:
+    1. If the title contains word-boundary 'sales', it maps to SALES (precedence
+       over generic role words and other co-occurring terms).
+    2. When multiple keywords match and one is a generic role word (consultant,
+       specialist, associate, manager, analyst), the domain keyword wins.
+    3. If multiple domain categories match, the title is AMBIGUOUS (returns None).
+    4. If no keywords match, the title is UNMAPPED (returns None).
 
     Args:
         title: Job title string.
-        rules: Compiled (pattern, category) pairs.
+        rules: Compiled (pattern, category, keyword) tuples.
 
     Returns:
         Category string, or None.
     """
-    matched_cats: Set[str] = set()
-    for pattern, cat in rules:
+    # 1. Sales precedence
+    if SALES_WORD_PATTERN.search(title):
+        return "SALES"
+
+    # 2. General rule matching
+    matches: List[Tuple[str, str]] = []
+    for pattern, cat, kw in rules:
         if pattern.search(title):
-            matched_cats.add(cat)
-    if len(matched_cats) == 1:
-        return matched_cats.pop()
-    return None  # 0 = unmapped, >1 = ambiguous
+            matches.append((cat, kw))
+
+    if not matches:
+        return None
+
+    cats = {c for c, _ in matches}
+    if len(cats) == 1:
+        return next(iter(cats))
+
+    # Precedence: domain keyword wins over generic role words / CONSULTANT
+    domain_cats: Set[str] = set()
+    for cat, kw in matches:
+        if cat == "CONSULTANT" or kw.lower() in GENERIC_ROLE_WORDS:
+            continue
+        domain_cats.add(cat)
+
+    if len(domain_cats) == 1:
+        return domain_cats.pop()
+
+    return None  # 0 domain cats (all generic) or >1 domain cats (ambiguous)
 
 
 # -- Main -------------------------------------------------------------------
@@ -395,15 +426,15 @@ def main() -> None:
 
     # Count ambiguous vs truly unmapped
     def classify_title(title: str) -> str:
+        if map_title(str(title), rules) is not None:
+            return "mapped"
         cats: Set[str] = set()
-        for pattern, cat in rules:
+        for pattern, cat, _ in rules:
             if pattern.search(str(title)):
                 cats.add(cat)
         if len(cats) > 1:
             return "ambiguous"
-        if len(cats) == 0:
-            return "unmapped"
-        return "mapped"
+        return "unmapped"
 
     unmapped_df["_status"] = unmapped_df["title"].map(classify_title)
     ambiguous_df = unmapped_df[unmapped_df["_status"] == "ambiguous"]
@@ -425,10 +456,10 @@ def main() -> None:
     for title, cnt in unmapped_counts.items():
         logger.info(f"  [{cnt:3d}] {title}")
 
-    # 60 random mapped (title -> category) pairs
+    # 60 random mapped (title -> category) pairs (random_state=1)
     logger.info("60 random mapped (title -> category) pairs:")
     sample = mapped[["title", "category"]].sample(
-        n=min(60, len(mapped)), random_state=SEED
+        n=min(60, len(mapped)), random_state=1
     )
     for _, row in sample.iterrows():
         logger.info(f"  {row['title']} -> {row['category']}")

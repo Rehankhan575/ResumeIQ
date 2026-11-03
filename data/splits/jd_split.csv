@@ -1,4 +1,5 @@
 jd_id,category,split,title
+1,SALES,train,Aftermarket Sales Rep
 4,INFORMATION-TECHNOLOGY,train,Lead Data Engineer (FinOps)
 9,ACCOUNTANT,train,Staff Accountant
 16,BANKING,train,Part Time Associate Banker CO Metro Central (30 hours)
@@ -11,869 +12,910 @@ jd_id,category,split,title
 31,SALES,train,Account Manager
 35,BPO,train,"Manager, Customer Support"
 37,CHEF,train,Patient Food Service Manager
+38,SALES,train,Director of Sales - Reno NV
 42,INFORMATION-TECHNOLOGY,train,Java Software Engineer
-48,BUSINESS-DEVELOPMENT,train,"Business Analyst with Data Science - Only US Citizens, Green Card - Locals"
-51,HEALTHCARE,train,Histotechnologist - Surgical Pathology
-54,HEALTHCARE,test,"Physical Therapist (PT) - $10,000.00 Sign On Bonus Available"
+51,HEALTHCARE,val,Histotechnologist - Surgical Pathology
+54,HEALTHCARE,train,"Physical Therapist (PT) - $10,000.00 Sign On Bonus Available"
 57,SALES,train,Guest Experience Sales Specialist
 58,AUTOMOBILE,train,Automotive Technician
 63,SALES,train,Account Manager
 68,CONSTRUCTION,train,Estimator
 71,BANKING,train,Senior/Executive E&S Property Underwriter
-75,BANKING,train,Wealth Management Associate
+74,SALES,train,Sales & Catering Coordinator
+75,BANKING,test,Wealth Management Associate
+81,SALES,train,Channel Sales Program Manager
 89,ACCOUNTANT,train,Senior Payroll Coordinator
-93,HEALTHCARE,test,"Travel - Med Surg - Nurse Job - $1,958/wk - $2,162/wk"
+91,SALES,train,Vice President of Sales
+93,HEALTHCARE,train,"Travel - Med Surg - Nurse Job - $1,958/wk - $2,162/wk"
 96,ENGINEERING,train,Electrical Engineer
-101,SALES,train,Full Time - Sales Associate - Tools - Closing
-103,HEALTHCARE,train,Occupational Therapist
+101,SALES,test,Full Time - Sales Associate - Tools - Closing
+103,HEALTHCARE,val,Occupational Therapist
 104,CHEF,train,"Food Service Associate, Full or Part Time"
-108,HEALTHCARE,train,Surgical Technologist (FT Days / 10's) KH Soin
-110,SALES,test,Sales Associate-FORT HENRY MALL
-117,SALES,test,Inside Sales Manager
+108,HEALTHCARE,test,Surgical Technologist (FT Days / 10's) KH Soin
+110,SALES,train,Sales Associate-FORT HENRY MALL
+117,SALES,train,Inside Sales Manager
 118,HEALTHCARE,train,Phlebotomist
-129,SALES,val,Enterprise Select Account Executive - Retail
+129,SALES,train,Enterprise Select Account Executive - Retail
 133,ACCOUNTANT,train,Accountant
 139,BUSINESS-DEVELOPMENT,train,Business Development Coordinator or Assistant
 140,CHEF,train,Cook
 147,HEALTHCARE,train,CERTIFIED NURSING ASSISTANT - WARREN HILLS REHABILITATION & NURSING CENTER
-148,BUSINESS-DEVELOPMENT,train,Director of Sales & Partnerships
+148,SALES,train,Director of Sales & Partnerships
 153,HEALTHCARE,train,Registered Nurse Intensive Care Unit PRN
-154,ACCOUNTANT,train,Access Controller
+154,ACCOUNTANT,val,Access Controller
+155,SALES,val,Associate Sales Representative / Clinical Support
 160,CONSULTANT,train,Business Execution Consultant 2 - Contingent
 162,HEALTHCARE,train,Medical Lab Technician
 165,SALES,train,Sales Representative - Facility Services
-168,ACCOUNTANT,test,External Audit Senior Manager - Technology and Media - US
-175,BPO,val,CUSTOMER SERVICE REPRESENTATIVE
-180,HEALTHCARE,train,Certified Nursing Assistant (CNA)
+168,ACCOUNTANT,train,External Audit Senior Manager - Technology and Media - US
+170,SALES,test,REMOTE - Sales Development Representative
+175,BPO,train,CUSTOMER SERVICE REPRESENTATIVE
+180,HEALTHCARE,val,Certified Nursing Assistant (CNA)
 181,CONSTRUCTION,train,"Electric Transmission Construction Coordinator - Roanoke, VA"
 184,SALES,train,Sales Associate Target Optical
 188,HEALTHCARE,train,"Registered Nurse, ASU, Per Diem"
+189,ADVOCATE,train,IDB Invest - Paralegal Consultant
 194,TEACHER,test,Swim Instructor
 195,HEALTHCARE,train,Hospice RN Clinical Branch Director
-199,ENGINEERING,test,Manufacturing Engineer
-200,ADVOCATE,train,Paralegal
+199,ENGINEERING,val,Manufacturing Engineer
+200,ADVOCATE,val,Paralegal
 206,SALES,train,Retail Sales and Store Support
 207,ENGINEERING,train,Quality Engineer
-212,SALES,train,Salesperson
-220,SALES,val,"Account Executive, Strategic Retail"
-221,AVIATION,train,Avionics Technician I - 3rd shift
-222,APPAREL,val,"Retail Cosmetics Sales Beauty Advisor, Northridge Fashion Center - Flex"
+211,HEALTHCARE,train,Medical Consultant
+212,SALES,test,Salesperson
+220,SALES,train,"Account Executive, Strategic Retail"
+221,AVIATION,test,Avionics Technician I - 3rd shift
+222,SALES,train,"Retail Cosmetics Sales Beauty Advisor, Northridge Fashion Center - Flex"
 223,DIGITAL-MEDIA,val,Social Media Manager
 224,ADVOCATE,train,Senior Counsel - Assistant General Counsel
-227,HEALTHCARE,train,Doctor's Technician
-228,ACCOUNTANT,train,Senior Accountant (Hybrid)
+227,HEALTHCARE,val,Doctor's Technician
+228,ACCOUNTANT,test,Senior Accountant (Hybrid)
 230,SALES,test,Sales Specialist
 231,HEALTHCARE,train,Registered Nurse - RN - LTAC
 235,INFORMATION-TECHNOLOGY,test,"Senior Software Engineer, Test #3748"
 236,SALES,train,Outside Sales Rep - Graphics and Color (Carolinas)
-240,HEALTHCARE,val,Medical Assistant Certified/Registered
-241,CONSULTANT,train,Functional PeopleSoft Consultant with Project Costing & Billing
-242,INFORMATION-TECHNOLOGY,test,Senior Software Developer
-245,SALES,val,Sales Manager
+240,HEALTHCARE,train,Medical Assistant Certified/Registered
+241,CONSULTANT,val,Functional PeopleSoft Consultant with Project Costing & Billing
+242,INFORMATION-TECHNOLOGY,train,Senior Software Developer
+245,SALES,test,Sales Manager
 248,ADVOCATE,train,Litigation Paralegal - Personal Injury
+249,SALES,train,Sales Supervisor
 250,CONSULTANT,train,Oracle Apex Consultant / TECHNICAL SPECIALIST
-256,HEALTHCARE,val,Physician
+256,HEALTHCARE,train,Physician
 257,INFORMATION-TECHNOLOGY,train,Data Analyst
-258,CONSULTANT,train,In-Home Sales Consultant
-259,HR,val,Human Resources Generalist
+258,SALES,train,In-Home Sales Consultant
+259,HR,train,Human Resources Generalist
 261,HEALTHCARE,train,"Licensed Vocational Nurse/LVN – Adult Care - Full Time, Days"
-263,TEACHER,test,Teacher - Foreign Language - Spanish
+263,TEACHER,train,Teacher - Foreign Language - Spanish
 265,FINANCE,train,Board Treasurer
 266,ENGINEERING,train,Electrical Engineer II (Substation)
-267,CONSULTANT,test,Software Implementation Consultant
+267,CONSULTANT,train,Software Implementation Consultant
 269,INFORMATION-TECHNOLOGY,train,.Net full stack developer
 271,HEALTHCARE,train,Surgical Technologist II (Non-Exempt)
-276,HEALTHCARE,val,Registered Nurse- Full Time- Days
+274,SALES,train,Sales Support Engineer
+275,SALES,train,Sales and Operations Management Trainee
+276,HEALTHCARE,train,Registered Nurse- Full Time- Days
 279,INFORMATION-TECHNOLOGY,train,Software Engineer / Research Scientist
 280,SALES,train,Account Manager
 284,SALES,train,Account Manager
-286,HEALTHCARE,train,RN - Medical Surgical
-289,ENGINEERING,train,Principal Structural Engineer
-295,TEACHER,train,5-12 Apprentice Teacher
+286,HEALTHCARE,test,RN - Medical Surgical
+289,ENGINEERING,test,Principal Structural Engineer
+295,TEACHER,test,5-12 Apprentice Teacher
 307,HEALTHCARE,train,Medical Assistant Family Medicine
 310,CONSTRUCTION,train,Campus Construction Manager
 311,BPO,train,Customer Service Representative
 312,SALES,train,Senior Commercial Lines Account Manager - (Remote Role)
 316,ADVOCATE,train,Commercial Real Estate Attorney (TEMP)
-317,HEALTHCARE,train,Registered Nurse (RN) - Day Surgery - $32-58 per hour - 116183
+317,HEALTHCARE,val,Registered Nurse (RN) - Day Surgery - $32-58 per hour - 116183
 319,INFORMATION-TECHNOLOGY,train,Data Analyst
+322,ADVOCATE,val,"Consultant, Financial Services, Consumer Finance l Forensic and Litigation Consulting"
 325,HEALTHCARE,train,Hospitalist Physician - $185/hourly - $200/hourly
 335,HEALTHCARE,val,Registered Nurse - PRN - Cancer Center
-337,CHEF,val,"Food Service Worker 2, Creedmoor Psychiatric Center, P24728"
-339,SALES,val,Assistant Store Manager
+337,CHEF,train,"Food Service Worker 2, Creedmoor Psychiatric Center, P24728"
+339,SALES,train,Assistant Store Manager
 341,CONSTRUCTION,train,Sparkleberry Carpenter Helper 3
-343,INFORMATION-TECHNOLOGY,train,Data Scientist / AI
+343,INFORMATION-TECHNOLOGY,test,Data Scientist / AI
 350,CONSULTANT,train,"IRIS Consultant - TMG (Milwaukee and Ozaukee Counties, WI) (Fieldwork/Hybrid) (No Weekends, No Holidays, No After Hours)"
 353,ACCOUNTANT,train,Accounting Manager
-354,HEALTHCARE,train,Field Clinical Education Liaison
-357,HEALTHCARE,test,Registered Nurse (RN) - Med Surg / Telemetry - $32-58 per hour - 81197
+354,HEALTHCARE,val,Field Clinical Education Liaison
+357,HEALTHCARE,train,Registered Nurse (RN) - Med Surg / Telemetry - $32-58 per hour - 81197
 362,BUSINESS-DEVELOPMENT,train,Cardiology Business Development Representative
-365,INFORMATION-TECHNOLOGY,test,Senior DevOps Engineer
+365,INFORMATION-TECHNOLOGY,train,Senior DevOps Engineer
 367,AUTOMOBILE,train,Automotive Mechanic
-369,HEALTHCARE,test,Registered Nurse
-370,DIGITAL-MEDIA,train,Marketing Content Manager
+369,HEALTHCARE,val,Registered Nurse
+370,DIGITAL-MEDIA,test,Marketing Content Manager
 373,ENGINEERING,train,Process Engineer
 374,HEALTHCARE,train,Registered Nurse RN- Triage Multispecialty Family Medicine- Days
-375,BPO,val,Remote Insurance Call Center Support
-376,HEALTHCARE,train,Professional Nurse
+375,BPO,train,Remote Insurance Call Center Support
+376,HEALTHCARE,val,Professional Nurse
 382,HEALTHCARE,train,Optometric Technician/Medical Assistant
-386,ACCOUNTANT,val,Senior Accountant
+386,ACCOUNTANT,train,Senior Accountant
 387,BANKING,train,Consumer Banker I (Seymour)
 388,ACCOUNTANT,train,Senior Project Accountant
 391,ADVOCATE,train,Attorney At Law
 392,HEALTHCARE,train,SUPPORT NURSE (LPN) - BRADLEY CREEK HEALTH CENTER
-395,SALES,test,Customer Service Account Executive
-399,BUSINESS-DEVELOPMENT,test,Business Development Representative
+394,SALES,val,Assistant Manager-Sales
+395,SALES,train,Customer Service Account Executive
+399,BUSINESS-DEVELOPMENT,train,Business Development Representative
 400,HEALTHCARE,train,"Locum Emergency Medicine Physician job in Mission, TX - Make $225/hr - $250/hr"
 404,SALES,train,IT Solution Sales Account Manager
 408,HEALTHCARE,train,Certified Nursing Assistant (CNA)
-414,HEALTHCARE,test,Physical Therapist
+410,SALES,test,Store Counter Sales (Part time)
+414,HEALTHCARE,train,Physical Therapist
 419,HEALTHCARE,train,HOME CARE PHYSICAL THERAPIST PT
-420,BPO,train,Call Center Sales Rep (Bilingual Spanish) - $18 per Hour Plus Commission & Incentives
+420,SALES,train,Call Center Sales Rep (Bilingual Spanish) - $18 per Hour Plus Commission & Incentives
 426,CONSTRUCTION,train,Concrete Additive Construction Technician
 430,HEALTHCARE,train,Pharmacist Staff
 438,HEALTHCARE,train,Travel Allied Health Professional - Certified Surgical Technologist
-441,ADVOCATE,train,Workers' Compensation Associate Attorney
-449,INFORMATION-TECHNOLOGY,test,Database Administrator
+441,ADVOCATE,test,Workers' Compensation Associate Attorney
+448,INFORMATION-TECHNOLOGY,train,Senior Consultant - DevOps
+449,INFORMATION-TECHNOLOGY,train,Database Administrator
 451,HEALTHCARE,train,Registered Nurse - ER
+452,SALES,train,"Sales Associate / Jewelry Consultant - Zales Outlet - Wrentham Village Premium Outlets - Wrentham, MA"
 456,ACCOUNTANT,train,Senior Accountant
 457,SALES,train,Sales Associate
 458,SALES,train,Senior Sales Account Manager
 465,SALES,train,"Senior Business Account Executive 3, SMB Direct Sales"
-473,SALES,test,Oracle Sales Executive 
+473,SALES,train,Oracle Sales Executive 
 474,HEALTHCARE,train,Licensed Practical Nurse - LPN - Home Health
 479,BPO,train,"Customer Support Engineer –Herndon, VA"
+480,SALES,train,Sales Operations Manager
 482,ACCOUNTANT,train,Senior Accountant/Accounting Manager
-484,CONSTRUCTION,train,Construction Manager
-486,SALES,train,Account Manager
+484,CONSTRUCTION,val,Construction Manager
+486,SALES,test,Account Manager
 489,SALES,train,Account Manager
-491,INFORMATION-TECHNOLOGY,test,Lead Software Engineer - Finance (Hybrid)
+491,INFORMATION-TECHNOLOGY,train,Lead Software Engineer - Finance (Hybrid)
 494,HEALTHCARE,train,CERTIFIED NURSING ASSISTANT - THE OAKS
 497,BUSINESS-DEVELOPMENT,train,Director Business Development
-501,BPO,train,Help Desk Analyst
+501,BPO,test,Help Desk Analyst
 502,INFORMATION-TECHNOLOGY,train,Python Developer - W2 Contract 
-505,INFORMATION-TECHNOLOGY,train,Senior Data Engineer
+505,INFORMATION-TECHNOLOGY,test,Senior Data Engineer
 507,HEALTHCARE,train,Clinical Applications Specialist
 509,HEALTHCARE,train,Registered Nurse - Progressive Care - R3
-513,SALES,train,Outside Sales Executive
+513,SALES,test,Outside Sales Executive
 515,ENGINEERING,train,GN&C Systems Engineer
-517,FINANCE,train,"Associate Portfolio Manager (Hybrid - Columbia, SC)"
+517,FINANCE,val,"Associate Portfolio Manager (Hybrid - Columbia, SC)"
 519,AUTOMOBILE,train,Automotive Finance & Insurance Writer
 524,INFORMATION-TECHNOLOGY,train,"Senior Lead Software Engineer, Full Stack (Remote -Eligible)"
 526,BUSINESS-DEVELOPMENT,train,Business Development Manager
-529,SALES,val,"store manager- North Fort Worth, TX"
-536,CHEF,val,Panty Cook
+529,SALES,train,"store manager- North Fort Worth, TX"
+536,CHEF,train,Panty Cook
 537,AGRICULTURE,train,Sow Farm Animal Caretaker
 538,ACCOUNTANT,train,"Senior Accountant (↑ growth $30M svc co | WFH - ambitious, dynamic, & bright)"
 544,SALES,train,Junior Sales Executive
-545,SALES,train,salesperson
-556,ENGINEERING,val,Mechanical Engineer
+545,SALES,test,salesperson
+549,SALES,val,Florida Blue Center Sales & Service Cnsltnt
+556,ENGINEERING,train,Mechanical Engineer
 559,HEALTHCARE,train,Medical Assistant
-561,HEALTHCARE,test,Certified Medical Coder
+561,HEALTHCARE,val,Certified Medical Coder
 562,SALES,train,Solutions Sales Executive
 563,HEALTHCARE,train,Medical Secretary
-565,SALES,val,Retail Sales Lead Team Sport
-567,SALES,train,Associate Account Manager
-568,BPO,test,Customer Service Representative
+565,SALES,train,Retail Sales Lead Team Sport
+567,SALES,val,Associate Account Manager
+568,BPO,train,Customer Service Representative
 569,ACCOUNTANT,train,Accounts Receivable Analyst
 570,HEALTHCARE,train,"Travel - PCU - Nurse Job - $2,411/wk - $2,600/wk"
-572,SALES,train,"Retail Sales Specialist - Part Time - $18.00 per hour, plus commission and incentives!"
+572,SALES,val,"Retail Sales Specialist - Part Time - $18.00 per hour, plus commission and incentives!"
 575,HEALTHCARE,train,Surgical Nurse
-580,HEALTHCARE,train,Registered Nurse - RN - LTAC
-584,ADVOCATE,train,Litigation Paralegal
+580,HEALTHCARE,val,Registered Nurse - RN - LTAC
+584,ADVOCATE,val,Litigation Paralegal
 586,HR,train,Human Resources Business Partner
 588,HEALTHCARE,train,Registered Nurse (RN) - Emergency Room PRN
-589,HEALTHCARE,test,Registered Nurse RN Outpatient Cardiac Services
-590,HEALTHCARE,val,Medical Director 
+589,HEALTHCARE,train,Registered Nurse RN Outpatient Cardiac Services
+590,HEALTHCARE,test,Medical Director 
 591,SALES,train,Senior Account Manager
-595,BUSINESS-DEVELOPMENT,train,Product Owner - Business Analyst
-597,SALES,val,Seasonal Sales Associate
+597,SALES,train,Seasonal Sales Associate
 598,HEALTHCARE,train,CNA PRN on the Surgical Service Unit
 600,HEALTHCARE,train,UNIV - Pharmacist
-602,BUSINESS-DEVELOPMENT,train,Senior Business Analyst
 607,SALES,val,New Home Sales Specialist
 609,CONSTRUCTION,train,Construction Manager
-610,HEALTHCARE,train,REGISTERED NURSE - THE FOLEY CENTER AT CHESTNUT RIDGE
+610,HEALTHCARE,test,REGISTERED NURSE - THE FOLEY CENTER AT CHESTNUT RIDGE
 620,SALES,train,Associate Account Executive 
 621,ACCOUNTANT,test,Payroll Specialist
 623,HEALTHCARE,train,"Medical Science Liaison, South Central"
-627,ACCOUNTANT,val,Cost Accountant
-630,HEALTHCARE,test,Patient Care Technician (PCT) - FT | Sarasota
+627,ACCOUNTANT,train,Cost Accountant
+630,HEALTHCARE,train,Patient Care Technician (PCT) - FT | Sarasota
 644,ACCOUNTANT,train,Staff Accountant – life sciences
 646,DIGITAL-MEDIA,train,"Social Media Strategist, Parenting"
-647,TEACHER,train,5th Grade Teacher
-649,INFORMATION-TECHNOLOGY,test,Senior Data Scientist (Perf. Mgmt & Org. Strategy) (Hybrid Schedule)
-653,ADVOCATE,train,Paralegal
+647,TEACHER,test,5th Grade Teacher
+649,INFORMATION-TECHNOLOGY,train,Senior Data Scientist (Perf. Mgmt & Org. Strategy) (Hybrid Schedule)
+653,ADVOCATE,val,Paralegal
 654,CONSULTANT,train,Bridal Consultant
 657,HEALTHCARE,train,Medical Assistant I - Bilingual (English\/Spanish)
 659,DIGITAL-MEDIA,train,SEO Manager
-660,SALES,test,Channel Sales Manager
+660,SALES,train,Channel Sales Manager
 661,HEALTHCARE,train,Pharmacist (Floater)
 662,INFORMATION-TECHNOLOGY,test,Cybersecurity Engineer - Technology Solutions
 663,HEALTHCARE,train,Registered Nurse
-664,SALES,test,Account Executive - Mid Market (Florida)
+664,SALES,train,Account Executive - Mid Market (Florida)
 665,BPO,train,Customer Service Representative
 669,HEALTHCARE,train,"(US) Sr. Solutions Analyst, Clinical"
+672,SALES,val,CERAMIC SALES AGENT
 674,HEALTHCARE,train,Phlebotomist
-678,ENGINEERING,train,Senior Process Engineer
+678,ENGINEERING,val,Senior Process Engineer
 680,SALES,train,Sales Executive
-681,ADVOCATE,val,Attorney
-685,HEALTHCARE,train,Medical Assistant - Advanced Surgery Center of Clifton
+681,ADVOCATE,train,Attorney
+685,HEALTHCARE,val,Medical Assistant - Advanced Surgery Center of Clifton
 686,HEALTHCARE,test,Physician Assistant
 687,HEALTHCARE,train,Medical Coding Supervisor
-688,INFORMATION-TECHNOLOGY,train,Lead Data Scientist
-691,INFORMATION-TECHNOLOGY,train,Data Scientist
+688,INFORMATION-TECHNOLOGY,val,Lead Data Scientist
+691,INFORMATION-TECHNOLOGY,val,Data Scientist
 696,SALES,train,Field Sales Manager - New York
 697,CONSULTANT,train,Senior Actuarial Consultant
-698,ENGINEERING,val,R&D Systems Engineer (Early/Mid-Career)
-700,HEALTHCARE,train,Registered Nurse (RN) - PRN Night | Las Vegas LTACH
+698,ENGINEERING,train,R&D Systems Engineer (Early/Mid-Career)
+700,HEALTHCARE,val,Registered Nurse (RN) - PRN Night | Las Vegas LTACH
 701,SALES,train,Salesperson
 703,SALES,train,Sales Representative - Payments
-705,SALES,train,Outside Sales Representative | MTS
-708,CONSULTANT,val,"Manager, Risk Advisory and Consulting (Financial)"
+705,SALES,test,Outside Sales Representative | MTS
+708,CONSULTANT,train,"Manager, Risk Advisory and Consulting (Financial)"
 710,BANKING,train,Credit Analyst 5
-711,BPO,test,Call Center Sales Retention Rep (Bilingual Spanish) - $18 per Hour Plus Commission & Incentives
+711,SALES,test,Call Center Sales Retention Rep (Bilingual Spanish) - $18 per Hour Plus Commission & Incentives
+712,SALES,test,"Federal Sales Engineer, FSI"
 719,BPO,train,Customer Service Representative
 722,SALES,train,Retail Sales Associate
-724,DIGITAL-MEDIA,val,Graphic Designer and Copywriter Extraordinaire
-725,HEALTHCARE,val,Licensed Clinical Social Worker
+724,DIGITAL-MEDIA,test,Graphic Designer and Copywriter Extraordinaire
+725,HEALTHCARE,train,Licensed Clinical Social Worker
 730,ACCOUNTANT,train,Audit Remediation Specialist
-731,ENGINEERING,val,Senior Hydraulic Systems Engineer
-733,BPO,test,Customer Service Representative
+731,ENGINEERING,train,Senior Hydraulic Systems Engineer
+733,BPO,train,Customer Service Representative
+736,SALES,val,"Compensation Manager, Sales Incentives"
 737,BANKING,train,Personal Banker Roving Perimeter Gateway
-741,HR,train,Regional Recruiter
+741,HR,val,Regional Recruiter
 742,BPO,train,Sr Contact Center/Genesys Engineer
-748,ACCOUNTANT,val,Staff Accountant
+748,ACCOUNTANT,train,Staff Accountant
 751,BPO,train,Family and Adult Services Customer Service Representative
-754,SALES,train,Logistics Account Manager
-757,ACCOUNTANT,test,Controller of Grow America
+754,SALES,test,Logistics Account Manager
+757,ACCOUNTANT,val,Controller of Grow America
 758,ADVOCATE,train,Litigation Associate Attorney
 759,TEACHER,train,Substitute Teacher-Long Term
-760,INFORMATION-TECHNOLOGY,val,Java Backend Developer
-761,BANKING,test,Express Greeter/Bank Teller (Entry-level)
-762,INFORMATION-TECHNOLOGY,train,Domo Data Analyst (REMOTE)
+760,INFORMATION-TECHNOLOGY,train,Java Backend Developer
+761,BANKING,val,Express Greeter/Bank Teller (Entry-level)
+762,INFORMATION-TECHNOLOGY,val,Domo Data Analyst (REMOTE)
 763,HEALTHCARE,train,Medical Assistant Specialist
-771,INFORMATION-TECHNOLOGY,test,Senior DevOps Engineer
-773,HEALTHCARE,train,Patient Care Technician
-775,SALES,train,ASSISTANT STORE MANAGER
+771,INFORMATION-TECHNOLOGY,train,Senior DevOps Engineer
+773,HEALTHCARE,val,Patient Care Technician
+775,SALES,val,ASSISTANT STORE MANAGER
 777,AUTOMOBILE,train,Motor Vehicle Operator | Senior Services - Paratransit Division
-780,CONSTRUCTION,train,Construction Manager (Clarksville/Nashville)
-782,SALES,val,Store Manager - 24H400
+780,CONSTRUCTION,test,Construction Manager (Clarksville/Nashville)
+782,SALES,train,Store Manager - 24H400
 785,HEALTHCARE,train,REGISTERED NURSE - SOUTHWOOD
-795,HEALTHCARE,val,Surgical Tech
+795,HEALTHCARE,train,Surgical Tech
 801,INFORMATION-TECHNOLOGY,train,Sr./Staff  WiFi MAC Software Engineer 
 804,AUTOMOBILE,train,New Vehicle Engineering Specialist (General Assembly)
 805,CHEF,train,"Prepared Foods Department Supervisor (Culinary, Deli)"
-811,HEALTHCARE,val,Medical Assistant Supervisor- Outpatient Pediatrics Clinic
-815,ACCOUNTANT,val,Senior Staff Accountant
-821,HEALTHCARE,train,Nurse Care Manager
-822,BUSINESS-DEVELOPMENT,train,Business Analyst
+811,HEALTHCARE,train,Medical Assistant Supervisor- Outpatient Pediatrics Clinic
+815,ACCOUNTANT,train,Senior Staff Accountant
+821,HEALTHCARE,test,Nurse Care Manager
 825,HEALTHCARE,train,"Professional Staff Nurse, UPMC Memorial Leader Surgery Center"
-826,CONSTRUCTION,val,Estimator / Project Manager
-827,CONSULTANT,test,Risk Management Consultant- New Jersey NY
+826,CONSTRUCTION,train,Estimator / Project Manager
+827,CONSULTANT,val,Risk Management Consultant- New Jersey NY
 829,CONSULTANT,train,Leasing Consultant
-830,CONSULTANT,train,Sales Consultant Stokes Hodges Ford
-831,ACCOUNTANT,test,Staff Accountant
-835,ADVOCATE,test,Paralegal/office manager
+830,SALES,train,Sales Consultant Stokes Hodges Ford
+831,ACCOUNTANT,val,Staff Accountant
+835,ADVOCATE,train,Paralegal/office manager
 841,CONSTRUCTION,train,Project Manager - T&D Construction
-844,ENGINEERING,val,Senior Mechanical Engineer
+844,ENGINEERING,train,Senior Mechanical Engineer
 846,SALES,train,H&M Retail Sales Associate
-853,BANKING,train,Wealth Management Advisor
-855,CONSTRUCTION,train,Collision Estimator
+853,BANKING,test,Wealth Management Advisor
+855,CONSTRUCTION,test,Collision Estimator
 861,HEALTHCARE,train,Occupational Therapist
-862,TEACHER,train,Assistant Professor - Tenure-track
+862,TEACHER,val,Assistant Professor - Tenure-track
 864,SALES,train,Account Manager - Territory
-866,TEACHER,train,Special Education Teacher- Founders Classical Academy of Bastrop
+865,SALES,train,Driver Sales Rep
+866,TEACHER,val,Special Education Teacher- Founders Classical Academy of Bastrop
 867,HEALTHCARE,train,Registered Nurse- Part Time
-871,HEALTHCARE,val,REGISTERED NURSE (RN) - SOUTHPORT HEALTH AND REHABILITATION CENTER
+871,HEALTHCARE,test,REGISTERED NURSE (RN) - SOUTHPORT HEALTH AND REHABILITATION CENTER
 872,CHEF,val,Grill Cook
-873,ACCOUNTANT,train,Sr Staff Accountant
-875,HEALTHCARE,test,Nurse - RN - CVOR
-876,CONSULTANT,train,"Team Lead, Senior Consultant, Fund Administrator, Hedge Fund Services"
-877,BUSINESS-DEVELOPMENT,train,Business Development Executive - Ohio
-879,SALES,val,"Retail Sales Specialist - Part-Time (Bilingual Spanish) - $18.00 per hour, plus commission and incentives!"
+873,ACCOUNTANT,test,Sr Staff Accountant
+875,HEALTHCARE,train,Nurse - RN - CVOR
+876,CONSULTANT,val,"Team Lead, Senior Consultant, Fund Administrator, Hedge Fund Services"
+877,BUSINESS-DEVELOPMENT,test,Business Development Executive - Ohio
+879,SALES,train,"Retail Sales Specialist - Part-Time (Bilingual Spanish) - $18.00 per hour, plus commission and incentives!"
 880,BPO,train,Customer Service Representative
 890,HEALTHCARE,train,Registered Nurse (RN) Medical Surgical – Oncology Full Time Days
 893,INFORMATION-TECHNOLOGY,train,Data Engineer
 896,SALES,train,Assistant Store Manager
-899,HEALTHCARE,val,CERTIFIED NURSING ASSISTANT - THE PAVILION HEALTH CENTER
-901,INFORMATION-TECHNOLOGY,test,Web Developer
+899,HEALTHCARE,test,CERTIFIED NURSING ASSISTANT - THE PAVILION HEALTH CENTER
+901,INFORMATION-TECHNOLOGY,train,Web Developer
 902,INFORMATION-TECHNOLOGY,train,Research Data Analyst
-904,TEACHER,val,2024-2025 Math Teacher 6 - Becker MS
+904,TEACHER,train,2024-2025 Math Teacher 6 - Becker MS
 905,HEALTHCARE,train,Area Medical Director
 907,ENGINEERING,train,Process Engineer w/Food exp.-NJ Candidates ONLY -(Salary $110-115k)
 908,ACCOUNTANT,val,Senior Accountant
 909,ACCOUNTANT,train,Senior Accounting Manager
-911,SALES,train,Oakley - Store Manager Temecula
-913,INFORMATION-TECHNOLOGY,test,Software Engineer
+911,SALES,val,Oakley - Store Manager Temecula
+913,INFORMATION-TECHNOLOGY,train,Software Engineer
 914,TEACHER,train,Middle School Science Teacher
 920,BPO,train,"Contact Center Transformation Lead, Global Team"
-922,HEALTHCARE,test,Medical Director
-925,HEALTHCARE,test,LICENSED PRACTICAL NURSE - LPN - QUAIL HAVEN
+922,HEALTHCARE,train,Medical Director
+925,HEALTHCARE,train,LICENSED PRACTICAL NURSE - LPN - QUAIL HAVEN
 926,SALES,train,"Yelp - Inside Sales Representative (Remote - Nashville), application via RippleMatch"
-928,SALES,train,Retail Store Manager
-929,HR,train,Director of Human Resources and Administration
+928,SALES,test,Retail Store Manager
+929,HR,test,Director of Human Resources and Administration
 930,INFORMATION-TECHNOLOGY,train,Senior Software Engineer
+932,SALES,test,Vice President of Sales
+933,SALES,train,PT Meat Market Seafood Sales Assoc
 934,DESIGNER,train,UI/UX Designer
-938,INFORMATION-TECHNOLOGY,val,Lead Machine Learning Engineer
+938,INFORMATION-TECHNOLOGY,train,Lead Machine Learning Engineer
 944,ACCOUNTANT,train,Tax Accountant
-947,SALES,train,Sales Representative- $80K
+947,SALES,test,Sales Representative- $80K
 953,SALES,train,Outside Sales Representative
 954,DIGITAL-MEDIA,train,Content Manager (INTERNSHIP)
-956,ADVOCATE,train,Attorney
-959,SALES,test,Part-time Sales Associate - CUMBERLAND MALL
-963,SALES,train,Account Executive
-969,DIGITAL-MEDIA,test,Digital Marketing Intern
+956,ADVOCATE,val,Attorney
+959,SALES,train,Part-time Sales Associate - CUMBERLAND MALL
+963,SALES,val,Account Executive
+969,DIGITAL-MEDIA,train,Digital Marketing Intern
 971,SALES,train,Outside Sales Representative
 972,INFORMATION-TECHNOLOGY,train,Java Full Stack Developer with Angular 14
 976,HEALTHCARE,train,Emergency Medicine Physician - $275/yearly
 977,INFORMATION-TECHNOLOGY,train,Staff DevOps Engineer
-980,ENGINEERING,train,IC Packaging Mechanical Engineer
-982,HEALTHCARE,train,CERTIFIED NURSING ASSISTANT - THE OAKS
+980,ENGINEERING,val,IC Packaging Mechanical Engineer
+982,HEALTHCARE,test,CERTIFIED NURSING ASSISTANT - THE OAKS
 986,SALES,val,"Retail Sales Associate, South Beach - Part Time"
-989,BUSINESS-DEVELOPMENT,test,Business Development Manager - Aluminum Building Products
-991,DESIGNER,train,Interior Design Assistant
+989,BUSINESS-DEVELOPMENT,val,Business Development Manager - Aluminum Building Products
+991,DESIGNER,test,Interior Design Assistant
 992,CHEF,train,Chef de Partie Opportunity at Top Napa Valley Restaurant!
 1001,SALES,train,Healthcare Account Executive
 1002,ACCOUNTANT,train,Senior Accountant $90k-120K
-1004,PUBLIC-RELATIONS,train,Marketing And Public Relations Intern
+1004,PUBLIC-RELATIONS,test,Marketing And Public Relations Intern
 1006,SALES,train,Territory Sales Manager
-1010,ADVOCATE,test,Litigation Paralegal
-1013,BPO,train,Call Center Coordinator
+1010,ADVOCATE,train,Litigation Paralegal
+1013,BPO,test,Call Center Coordinator
 1014,HEALTHCARE,train,"Weekend Option, Licensed Practical Nurse, UPMC Harrisburg, Main 10- Neurology."
 1016,ENGINEERING,test,Associate Quality Engineer - Rotational
 1017,HEALTHCARE,train,CERTIFIED NURSING ASSISTANT - PINEHURST HEALTHCARE & REHABILITATION CENTER
 1018,HEALTHCARE,val,Clinical Research Nurse Sr. (Sidney Kimmel Cancer Center)
-1020,BUSINESS-DEVELOPMENT,train,Senior Business Analyst
-1023,HEALTHCARE,train,Lead Occupational Health Nurse
-1030,HEALTHCARE,train,Insurance Reviewer-Clinical
+1023,HEALTHCARE,test,Lead Occupational Health Nurse
+1030,HEALTHCARE,val,Insurance Reviewer-Clinical
 1032,SALES,train,"Hershey's Part-Time Territory Sales Associate (Kingsport, TN)"
 1034,BPO,train,Customer Service Representative
-1036,ACCOUNTANT,test,Assistant Controller
-1039,SALES,test,Retail Sales Technology Associate
-1040,HEALTHCARE,test,Family Nurse Practitioner or Physician Assistant - Sign-On Bonus Available
+1036,ACCOUNTANT,train,Assistant Controller
+1037,SALES,test,Fishing Sales Outfitter
+1039,SALES,train,Retail Sales Technology Associate
+1040,HEALTHCARE,train,Family Nurse Practitioner or Physician Assistant - Sign-On Bonus Available
 1045,CONSULTANT,test,Financial Planning Consultant
-1047,BUSINESS-DEVELOPMENT,test,"Sr. Business Development Manager, Amazon Air"
+1047,BUSINESS-DEVELOPMENT,train,"Sr. Business Development Manager, Amazon Air"
 1048,INFORMATION-TECHNOLOGY,train,Web Developer
+1049,SALES,train,Sales Assistant Manager
 1050,CONSULTANT,train,Sr. Fraud Consultant
 1054,ENGINEERING,train,Process Engineer - Cathode
-1055,HEALTHCARE,val,Dentist
-1059,HEALTHCARE,train,Assistant Nurse Manager- Oncology
-1063,INFORMATION-TECHNOLOGY,train,Lead Java Developer with API Service and Governance
-1064,SALES,test,Store Manager in Training
+1055,HEALTHCARE,train,Dentist
+1059,HEALTHCARE,test,Assistant Nurse Manager- Oncology
+1063,INFORMATION-TECHNOLOGY,test,Lead Java Developer with API Service and Governance
+1064,SALES,val,Store Manager in Training
 1066,CHEF,train,Executive Chef - Corporate Dining
-1073,ADVOCATE,val,Attorney
+1073,ADVOCATE,train,Attorney
 1075,INFORMATION-TECHNOLOGY,train,Software Developer
-1077,CONSTRUCTION,val,Project Estimator Il
-1078,TEACHER,test,Lead Teacher
-1081,ENGINEERING,test,Manufacturing Engineer II
+1077,CONSTRUCTION,train,Project Estimator Il
+1078,TEACHER,train,Lead Teacher
+1081,ENGINEERING,train,Manufacturing Engineer II
 1087,SALES,train,Retail Sales Associate (Seasonal)
 1090,ADVOCATE,train,Family Law Attorney - Partner
 1091,ACCOUNTANT,train,Senior Corporate Accountant
-1096,SALES,val,Key Holder/Sales Associate
-1102,HR,train,Talent Acquisition Coordinator
+1096,SALES,train,Key Holder/Sales Associate
+1102,HR,test,Talent Acquisition Coordinator
 1104,HEALTHCARE,train,Medical Biller
-1106,TEACHER,test,CDL-A Instructor
+1106,TEACHER,train,CDL-A Instructor
 1115,CHEF,train,Assistant Executive Chef / Kitchen Manager
-1117,CONSTRUCTION,train,Construction Worker
+1117,CONSTRUCTION,val,Construction Worker
 1121,INFORMATION-TECHNOLOGY,train,Lead Java Developer
 1123,ACCOUNTANT,train,Accounting Manager - Hilton New York Times Square
-1124,BUSINESS-DEVELOPMENT,train,Business Analyst
-1126,CHEF,val,COOK LINE - STEAKHOUSE
-1127,BUSINESS-DEVELOPMENT,val,"Business Development Manager - Builder (Atlanta, Georgia, United States, 30033)"
-1129,SALES,test,Retail Manager
-1130,INFORMATION-TECHNOLOGY,test,"Senior Data Engineer (Azure, Python, SQL)"
-1136,BPO,train,Remote Customer Service Representative
+1126,CHEF,train,COOK LINE - STEAKHOUSE
+1127,BUSINESS-DEVELOPMENT,train,"Business Development Manager - Builder (Atlanta, Georgia, United States, 30033)"
+1129,SALES,train,Retail Manager
+1130,INFORMATION-TECHNOLOGY,train,"Senior Data Engineer (Azure, Python, SQL)"
+1136,BPO,val,Remote Customer Service Representative
 1139,HEALTHCARE,train,Patient Care Advocate
 1141,ACCOUNTANT,train,Staff Accountant
-1146,HEALTHCARE,train,Licensed Practical Nurse
+1146,HEALTHCARE,test,Licensed Practical Nurse
 1148,HEALTHCARE,train,Intensive Care Unit Registered Nurse
 1149,HEALTHCARE,train,"Registered Nurse, Atlantic Visiting Nurse, Full-Time"
-1150,HEALTHCARE,train,"Travel LTC/SNF LPN/LVN (License Practical Nurse) in De Smet, SD - 679088"
+1150,HEALTHCARE,test,"Travel LTC/SNF LPN/LVN (License Practical Nurse) in De Smet, SD - 679088"
 1160,CONSTRUCTION,train,HVAC Mechanic - Washington Hilton
-1161,SALES,train,Inside Technical Sales Specialist
-1162,INFORMATION-TECHNOLOGY,train,Data Engineer
+1161,SALES,val,Inside Technical Sales Specialist
+1162,INFORMATION-TECHNOLOGY,val,Data Engineer
 1163,SALES,test,"Sales Manager -Lubbock, TX"
-1166,ACCOUNTANT,train,Product Controller
+1166,ACCOUNTANT,test,Product Controller
 1170,SALES,train,Strategic Markets Account Manager Dallas
 1173,INFORMATION-TECHNOLOGY,train,AWS Cloud Engineer
-1180,SALES,val,Employee Benefits Assistant Account Manager
-1182,BANKING,train,Financial Analyst
+1180,SALES,train,Employee Benefits Assistant Account Manager
+1182,BANKING,test,Financial Analyst
 1184,SALES,train,Account Executive
-1185,ACCOUNTANT,train,Night Auditor
+1185,ACCOUNTANT,val,Night Auditor
 1187,SALES,train,Assistant Store Manager $16.25/hr
-1189,CONSULTANT,train,Sales Consultant (Commission-Only)
-1192,INFORMATION-TECHNOLOGY,train,Tech Lead Software Engineer - TikTok LIVE
+1189,SALES,train,Sales Consultant (Commission-Only)
+1192,INFORMATION-TECHNOLOGY,test,Tech Lead Software Engineer - TikTok LIVE
 1194,HEALTHCARE,val,Clinical Nurse Navigator RN - Psychiatry
-1195,ACCOUNTANT,train,Assistant Controller
+1195,ACCOUNTANT,val,Assistant Controller
 1198,SALES,train,Med Aesthetics Sales Manager - (Conference Exhibitor + Sponsorship Sales - Western Region)
 1204,ENGINEERING,val,Quality Engineer II
 1205,HEALTHCARE,train,Surgical Tech (CST)
 1209,INFORMATION-TECHNOLOGY,train,Senior Director Software Engineer - Advanced Advertising
 1211,HEALTHCARE,val,Nurse Practitioner
-1212,ADVOCATE,train,Litigation Paralegal
-1214,BUSINESS-DEVELOPMENT,val,Business Analyst
-1215,CONSTRUCTION,test,TIG Welder I 1st Shift
-1218,TEACHER,test,"Part Time Curriculum Specialist (6-8 Math) - Paramus, NJ"
-1219,BUSINESS-DEVELOPMENT,test,Business Analyst
+1212,ADVOCATE,test,Litigation Paralegal
+1215,CONSTRUCTION,train,TIG Welder I 1st Shift
+1218,TEACHER,train,"Part Time Curriculum Specialist (6-8 Math) - Paramus, NJ"
 1220,HR,train,HR Business Partner
 1224,SALES,train,Inside Sales Application Engineer II
-1225,CHEF,train,Cook
-1226,HEALTHCARE,val,Licensed Practical Nurse - Full-Time/Part-Time/Casual 2nd Shift
+1225,CHEF,test,Cook
+1226,HEALTHCARE,test,Licensed Practical Nurse - Full-Time/Part-Time/Casual 2nd Shift
 1227,HEALTHCARE,train,Registered Nurse RN - MICU
-1229,HEALTHCARE,val,"CMA, Certified Medical Assistant - Primary Mobile Clinic"
+1229,HEALTHCARE,train,"CMA, Certified Medical Assistant - Primary Mobile Clinic"
 1240,SALES,train,Sales Associate LensCrafters
 1251,CONSTRUCTION,train,Bilingual Assistant Site Manager
-1260,HEALTHCARE,test,Medical Assistant - Conviva University Blvd
-1261,HEALTHCARE,val,Nurse Practitioner
-1265,HEALTHCARE,test,"Travel Nurse RN - $38,094 to $42,234 per week in Santa Clara, CA"
+1260,HEALTHCARE,train,Medical Assistant - Conviva University Blvd
+1261,HEALTHCARE,train,Nurse Practitioner
+1265,HEALTHCARE,train,"Travel Nurse RN - $38,094 to $42,234 per week in Santa Clara, CA"
 1266,HEALTHCARE,train,REGISTERED NURSE & LICENSED PRACTICAL NURSE
-1267,ENGINEERING,test,Process Engineer
+1267,ENGINEERING,train,Process Engineer
 1268,SALES,train,Full Time - Sales Associate - Flooring - Closing
-1269,INFORMATION-TECHNOLOGY,train,Cloud Application Software Engineer
-1270,HEALTHCARE,val,Certified Nursing Assistant CNA Home Health
+1269,INFORMATION-TECHNOLOGY,test,Cloud Application Software Engineer
+1270,HEALTHCARE,train,Certified Nursing Assistant CNA Home Health
+1274,SALES,train,Wireless Sales Pro
 1279,HEALTHCARE,val,Registered Nurse - Radiology
 1283,DIGITAL-MEDIA,train,Copywriter
 1285,ENGINEERING,train,Electrical Engineer
 1286,FINANCE,train,Financial Risk Analyst
 1289,HEALTHCARE,train,"Travel - Med Surg - Nurse Job - $2,476/wk - $2,684/wk"
-1290,SALES,val,Urology Sales Representative
-1292,HEALTHCARE,val,Licensed Practical Nurse
+1290,SALES,train,Urology Sales Representative
+1292,HEALTHCARE,train,Licensed Practical Nurse
+1295,SALES,train,Community Mortgage Bank Sales Consultant
 1296,INFORMATION-TECHNOLOGY,train,Senior Data Analyst (Only Locals to California will be considered)
-1298,HEALTHCARE,train,Clinical Manager - RN
+1298,HEALTHCARE,val,Clinical Manager - RN
 1299,CONSTRUCTION,train,Foreman Pipefitter I
-1301,INFORMATION-TECHNOLOGY,train,Cloud Engineer
+1301,INFORMATION-TECHNOLOGY,val,Cloud Engineer
 1302,CONSTRUCTION,train,Site Civil Engineer
 1304,AUTOMOBILE,train,"Design Engineer (CATIA) for a global automotive company in Raymond, OH"
 1307,CONSTRUCTION,train,Field Construction Coordinator
 1310,HEALTHCARE,train,LICENSED PRACTICAL NURSE (LPN) - HIGHLAND HOUSE
+1313,BANKING,train,"Client Relationship Consultant 2 (Banker) - Bremerton, WA ($1000.00 Sign On Bonus)"
 1321,HEALTHCARE,train,Nurse - RN - Med Surg Tele
-1322,CONSULTANT,train,"Cloud Security Architect (Need only local consultant of Frisco, TX)"
-1323,INFORMATION-TECHNOLOGY,test,Staff Software Engineer
-1328,SALES,val,All NY State-Part-time Sales Associate - Woodbury Commons 2557
+1322,CONSULTANT,test,"Cloud Security Architect (Need only local consultant of Frisco, TX)"
+1323,INFORMATION-TECHNOLOGY,train,Staff Software Engineer
+1328,SALES,train,All NY State-Part-time Sales Associate - Woodbury Commons 2557
 1333,BANKING,train,Senior Financial Analyst
-1335,INFORMATION-TECHNOLOGY,val,Java Backend Developer (W2)
+1335,INFORMATION-TECHNOLOGY,train,Java Backend Developer (W2)
 1338,ENGINEERING,train,"Instrumentation, Controls, and Electrical Engineer"
 1345,HEALTHCARE,train,Phlebotomist
-1347,CONSTRUCTION,train,Fire Sprinkler Foreman
-1349,HEALTHCARE,train,Nurse Practitioner
-1355,SALES,train,Retail Sales Associate Part Time
-1356,HEALTHCARE,train,"Full-Time Registered Nurse (RN), Pre-Operative/PACU/OR - Eye Surgery Center of Elizabethtown - No Nights, Weekends, or On-Call Shifts!"
-1357,HEALTHCARE,train,Registered Nurse (RN) - Thoracic Cardiovascular Surgical Acute & Intermediate Unit - Weekend Program
-1362,INFORMATION-TECHNOLOGY,train,Data Engineer
-1366,CHEF,test,Banquet Chef
-1367,DIGITAL-MEDIA,train,Digital Marketing Manager
-1368,HEALTHCARE,val,Physician Assistant
+1347,CONSTRUCTION,val,Fire Sprinkler Foreman
+1349,HEALTHCARE,test,Nurse Practitioner
+1355,SALES,val,Retail Sales Associate Part Time
+1356,HEALTHCARE,val,"Full-Time Registered Nurse (RN), Pre-Operative/PACU/OR - Eye Surgery Center of Elizabethtown - No Nights, Weekends, or On-Call Shifts!"
+1357,HEALTHCARE,test,Registered Nurse (RN) - Thoracic Cardiovascular Surgical Acute & Intermediate Unit - Weekend Program
+1362,INFORMATION-TECHNOLOGY,test,Data Engineer
+1366,CHEF,train,Banquet Chef
+1367,DIGITAL-MEDIA,val,Digital Marketing Manager
+1368,HEALTHCARE,test,Physician Assistant
 1373,ACCOUNTANT,train,Accounts Payable Manager
 1381,HEALTHCARE,train,Registered Nurse (RN)
 1383,HEALTHCARE,train,Registered Nurse - Intensive Care Unit
+1385,SALES,train,Sales Director
 1386,ENGINEERING,train,Chemical Engineer
 1393,INFORMATION-TECHNOLOGY,train,"Senior Software Engineer, 32707699"
-1399,HEALTHCARE,train,Medical Assistant/Phlebotomist
+1399,HEALTHCARE,test,Medical Assistant/Phlebotomist
 1402,HEALTHCARE,test,Specialty Registered Nurse
-1404,HEALTHCARE,train,Patient Care Technician
+1404,HEALTHCARE,val,Patient Care Technician
 1406,HEALTHCARE,train,Physician Family Practice
+1411,SALES,val,Sales Agent
 1412,FITNESS,train,Wellness Coach
 1413,BANKING,train,Wealth Management-Dallas-Associate-Software Engineering
 1415,HEALTHCARE,train,Nurse Clinical/UKHC
 1416,HEALTHCARE,train,Physician Urology
-1417,CHEF,val,Prepared Foods Associate Team Leader (Culinary & Deli Assistant Department Manager)-Full Time
-1419,HEALTHCARE,test,Medical Technologist
+1417,CHEF,train,Prepared Foods Associate Team Leader (Culinary & Deli Assistant Department Manager)-Full Time
+1419,HEALTHCARE,train,Medical Technologist
 1420,CHEF,train,Culinary Diet Technician PRN
-1421,HEALTHCARE,val,"Medical Director, Fertility"
-1422,FINANCE,test,"Finance Manager, Publisher Tech Finance"
-1430,BANKING,val,Sr. Financial Analyst
+1421,HEALTHCARE,train,"Medical Director, Fertility"
+1422,FINANCE,val,"Finance Manager, Publisher Tech Finance"
+1425,SALES,train,Global VP of Sales
+1430,BANKING,train,Sr. Financial Analyst
 1431,INFORMATION-TECHNOLOGY,train,Senior Software Engineer Test
-1432,ACCOUNTANT,val,Bank Reconciliation Accountant
-1433,SALES,val,Account Executive
+1432,ACCOUNTANT,train,Bank Reconciliation Accountant
+1433,SALES,train,Account Executive
 1434,CONSTRUCTION,train,HVAC SERVICE TECHNICIAN
-1436,SALES,train,Specialty Account Manager - Rare Disease - Amgen
+1435,SALES,train,Enterprise Sales Development Representative
+1436,SALES,val,Specialty Account Manager - Rare Disease - Amgen
 1437,INFORMATION-TECHNOLOGY,train,DevOps Engineer
-1440,SALES,test,Retail Sales Associate (Part Time)
+1440,SALES,train,Retail Sales Associate (Part Time)
 1443,SALES,train,Store Manager
-1445,ENGINEERING,train,Industrial Engineer
-1449,HEALTHCARE,val,"Manager, Medical Bill Review, Hybrid Remote in Lansing, MI or Remote opportunity"
-1451,SALES,val,Inside Sales Representative (Shallotte)
-1452,CONSTRUCTION,test,Collision Estimator
+1445,ENGINEERING,test,Industrial Engineer
+1449,HEALTHCARE,train,"Manager, Medical Bill Review, Hybrid Remote in Lansing, MI or Remote opportunity"
+1451,SALES,train,Inside Sales Representative (Shallotte)
+1452,CONSTRUCTION,train,Collision Estimator
 1455,SALES,train,03315 Assistant Store Manager
-1456,TEACHER,val,TEACHER-COMPUTER
+1456,TEACHER,train,TEACHER-COMPUTER
 1464,INFORMATION-TECHNOLOGY,train,SQL Database Administrator
 1473,BUSINESS-DEVELOPMENT,train,Remote Business Development Expert (Average $75K - $200K)
-1476,SALES,train,Outside Sales Representative
+1475,SALES,test,Sales Account Coordinator
+1476,SALES,val,Outside Sales Representative
 1477,AVIATION,train,Aircraft Scheduler/Dispatcher (Executive Travel Scheduler)
-1479,HEALTHCARE,train,Physical Therapist Assistant
-1480,HEALTHCARE,train,Physical Therapist – Physical Therapy DHOC
+1479,HEALTHCARE,test,Physical Therapist Assistant
+1480,HEALTHCARE,test,Physical Therapist – Physical Therapy DHOC
 1482,ADVOCATE,train,Litigation and Dispute Resolution Associate  (Junior-Level)
-1483,ENGINEERING,train,Geographic Information Systems Engineer
-1490,HEALTHCARE,test,Registered Nurse - RN - LTAC
-1501,ENGINEERING,train,Quality Engineer and Program Manager
-1504,HEALTHCARE,train,General Dentist
+1483,ENGINEERING,val,Geographic Information Systems Engineer
+1490,HEALTHCARE,train,Registered Nurse - RN - LTAC
+1501,ENGINEERING,test,Quality Engineer and Program Manager
+1504,HEALTHCARE,val,General Dentist
+1505,SALES,train,Sales And Marketing Representative
 1508,HR,train,Vice President Human Resources
+1512,SALES,val,Vice President of Sales
 1513,TEACHER,train,Sr M&T Instructor
 1514,HEALTHCARE,train,LPN Licensed Practical Nurse $3000 Sign On
 1515,FITNESS,train,Regional Health and Wellness Coach / Member Care Coordinator
-1520,HEALTHCARE,test,Sr Triage Customer Agent with medical exp
-1521,INFORMATION-TECHNOLOGY,val,AWS Cloud Engineer
-1525,HEALTHCARE,train,Clinical Revenue Supervisor
+1520,HEALTHCARE,train,Sr Triage Customer Agent with medical exp
+1521,INFORMATION-TECHNOLOGY,test,AWS Cloud Engineer
+1525,HEALTHCARE,val,Clinical Revenue Supervisor
 1527,INFORMATION-TECHNOLOGY,train,Full Stack Java Developer
 1530,INFORMATION-TECHNOLOGY,train,Sr. Software Engineer - Test (SDET) - Paze
-1538,HEALTHCARE,val,Interventional Radiologist
+1534,SALES,train,"Retail Cosmetics Sales Beauty Advisor, Jensen Beach - Flex"
+1538,HEALTHCARE,test,Interventional Radiologist
 1540,INFORMATION-TECHNOLOGY,train,Staff Software Engineer - Interactive Computing
 1541,HR,train,Accounting Human Resources Manager
-1544,TEACHER,train,Art Teacher
-1548,BUSINESS-DEVELOPMENT,test,Director of Partnerships
+1544,TEACHER,test,Art Teacher
+1548,BUSINESS-DEVELOPMENT,val,Director of Partnerships
 1555,ENGINEERING,train,Quality Engineer
-1557,HEALTHCARE,train,Clinical Supervisor
-1560,CONSULTANT,train,Dynamics Business Central Finance Consultant
-1566,SALES,val,Sales Associate
+1557,HEALTHCARE,val,Clinical Supervisor
+1560,CONSULTANT,val,Dynamics Business Central Finance Consultant
+1566,SALES,train,Sales Associate
 1568,HEALTHCARE,val,MEDICAL ASSISTANT
 1570,HEALTHCARE,train,Dialysis Registered Nurse
-1572,HEALTHCARE,test,Patient Care Technician with Dialysis Experience
-1579,CONSULTANT,val,Registered Dietician Consultant
-1582,ADVOCATE,train,Staff Attorney
-1583,SALES,val,Brand Store Manager
+1572,HEALTHCARE,train,Patient Care Technician with Dialysis Experience
+1579,CONSULTANT,train,Registered Dietician Consultant
+1582,ADVOCATE,val,Staff Attorney
+1583,SALES,train,Brand Store Manager
+1584,SALES,train,Early Careers Sales Program Education Manager
 1588,CONSULTANT,train,Oracle Business Intelligence Consultant
-1590,HEALTHCARE,test,"Travel Nurse RN - Telemetry - $2,220 per week in Burlington, NC"
-1594,ADVOCATE,val,Litigation Paralegal
-1595,DIGITAL-MEDIA,train,Social Media Manager
+1590,HEALTHCARE,train,"Travel Nurse RN - Telemetry - $2,220 per week in Burlington, NC"
+1594,ADVOCATE,train,Litigation Paralegal
+1595,DIGITAL-MEDIA,test,Social Media Manager
 1601,SALES,train,Outside Sales Associate
-1602,INFORMATION-TECHNOLOGY,test,Lead Data Analyst
-1604,BPO,train,IT - Help Desk - Trainer I
+1602,INFORMATION-TECHNOLOGY,train,Lead Data Analyst
+1604,BPO,val,IT - Help Desk - Trainer I
 1605,INFORMATION-TECHNOLOGY,train,"JAVA Fullstack Developer-AWS @ Chicago, IL - 6 Months with EXT - Hybrid Role ONLY LOCAL PROFILES"
 1608,ACCOUNTANT,train,Accountant
 1614,SALES,train,Store Manager (SM) at Texas A&M Texarkana
-1616,HEALTHCARE,test,Physical Therapist Clinic Director
-1620,INFORMATION-TECHNOLOGY,val,Cloud Engineer (Azure)
+1616,HEALTHCARE,train,Physical Therapist Clinic Director
+1618,SALES,test,Director of Enterprise Sales
+1620,INFORMATION-TECHNOLOGY,test,Cloud Engineer (Azure)
 1621,HEALTHCARE,train,Registered Nurse- Twain
 1622,HEALTHCARE,train,"Travel - Med Surg - Nurse Job - $1,746/wk - $1,956/wk"
 1624,HEALTHCARE,train,"Psychiatric-Mental Health Physician - $312,000/yearly"
-1632,CONSTRUCTION,val,Construction Project Manager 
+1632,CONSTRUCTION,train,Construction Project Manager 
 1634,HEALTHCARE,train,Registered Nurse (New Grads Accepted)
-1642,ACCOUNTANT,train,Senior Payroll Accountant
-1643,ADVOCATE,val,Litigation Legal Secretary
-1644,SALES,test,Account Executive
-1645,HEALTHCARE,train,Clinical Liaison
-1646,ACCOUNTANT,val,Accounting Manager
-1649,INFORMATION-TECHNOLOGY,val,Principal Data Scientist - Biostatistics
-1650,HEALTHCARE,train,"Medical Assistant, Primary Care"
-1656,HR,test,Recruiter On-Demand 
-1668,SALES,train,Full-Time Store Manager Trainee
+1642,ACCOUNTANT,val,Senior Payroll Accountant
+1643,ADVOCATE,test,Litigation Legal Secretary
+1644,SALES,val,Account Executive
+1645,HEALTHCARE,test,Clinical Liaison
+1646,ACCOUNTANT,train,Accounting Manager
+1649,INFORMATION-TECHNOLOGY,train,Principal Data Scientist - Biostatistics
+1650,HEALTHCARE,test,"Medical Assistant, Primary Care"
+1656,HR,val,Recruiter On-Demand 
+1668,SALES,val,Full-Time Store Manager Trainee
+1672,SALES,test,Sales & Customer Service
 1675,SALES,train,Retail Sales – Part Time
-1679,BUSINESS-DEVELOPMENT,train,IT Business Analyst - ServiceNow
-1681,CONSTRUCTION,val,"Electrician Substation Trainee - 90375764 - Lancaster, PA"
+1681,CONSTRUCTION,test,"Electrician Substation Trainee - 90375764 - Lancaster, PA"
 1682,HEALTHCARE,train,Nurse - CNA - LTC
 1686,ENGINEERING,train,Asset Integrity Electrical Engineer
 1688,BANKING,train,Universal Banker II - Bessemer Ave- BU
 1695,ENGINEERING,train,Systems Engineer (ITSIS) - 18695
-1700,INFORMATION-TECHNOLOGY,train,Data Engineer
+1700,INFORMATION-TECHNOLOGY,test,Data Engineer
 1707,ACCOUNTANT,val,Controller
 1708,INFORMATION-TECHNOLOGY,train,Software Engineer I
 1710,ACCOUNTANT,train,Property Senior/Staff Accountant
-1712,BUSINESS-DEVELOPMENT,val,Business Development Manager
+1712,BUSINESS-DEVELOPMENT,test,Business Development Manager
 1713,CHEF,train,Line Cook
 1719,HEALTHCARE,train,Surgical Tech I
 1727,DIGITAL-MEDIA,train,Social Media Community Manager 
 1729,HEALTHCARE,train,Physician Assistant - Hospital Medicine - Swing Shift - SSM St. Clare
-1730,ACCOUNTANT,train,Part-Time Night Auditor
-1735,INFORMATION-TECHNOLOGY,val,Software Engineer
-1740,HEALTHCARE,train,Registered Nurse/RN – Operating Room Circulator Full Time Days
-1741,SALES,train,Territory Sales Representative
-1742,INFORMATION-TECHNOLOGY,train,Senior Java Software Engineer
+1730,ACCOUNTANT,test,Part-Time Night Auditor
+1735,INFORMATION-TECHNOLOGY,train,Software Engineer
+1740,HEALTHCARE,val,Registered Nurse/RN – Operating Room Circulator Full Time Days
+1741,SALES,test,Territory Sales Representative
+1742,INFORMATION-TECHNOLOGY,val,Senior Java Software Engineer
 1743,FINANCE,train,"Sr. Finance Manager, Strategic Finance (remote)"
+1744,SALES,test,Sales Coordinator
+1745,SALES,train,Sales Staffing Manager
 1749,ACCOUNTANT,train,Senior Accountant
-1751,SALES,val,Strategic Enterprise Account Executive (Pennsylvania)
-1752,SALES,val,Retail Sales Associate-Marlton Crossing
-1753,SALES,val,"Insurance Sales Manager, Personal Lines - Fresno, CA"
-1754,INFORMATION-TECHNOLOGY,train,Data Engineer
-1758,TEACHER,train,Experienced Spanish II and III Teacher with 10am-6pm EST AVAILABILITY (Part-time)
+1751,SALES,train,Strategic Enterprise Account Executive (Pennsylvania)
+1752,SALES,test,Retail Sales Associate-Marlton Crossing
+1753,SALES,test,"Insurance Sales Manager, Personal Lines - Fresno, CA"
+1754,INFORMATION-TECHNOLOGY,test,Data Engineer
+1758,TEACHER,val,Experienced Spanish II and III Teacher with 10am-6pm EST AVAILABILITY (Part-time)
 1759,HEALTHCARE,train,Occupational Therapist - School ST
-1762,HEALTHCARE,val,Dentist - SCI Coal Township
-1766,BUSINESS-DEVELOPMENT,val,Director of Business Development (Federal)
-1768,INFORMATION-TECHNOLOGY,test,Full Stack Golang developer
-1769,SALES,val,Account Manager (Remote) 
+1762,HEALTHCARE,train,Dentist - SCI Coal Township
+1766,BUSINESS-DEVELOPMENT,train,Director of Business Development (Federal)
+1768,INFORMATION-TECHNOLOGY,train,Full Stack Golang developer
+1769,SALES,train,Account Manager (Remote) 
 1772,INFORMATION-TECHNOLOGY,train,Senior Software Engineer
-1773,BPO,val,"Customer Service Specialist, Contact Center at Avenue North"
-1777,INFORMATION-TECHNOLOGY,train,Senior Machine Learning Engineer
-1778,ENGINEERING,train,Senior Quality Engineer
-1779,ACCOUNTANT,test,Corporate Accountant
-1783,SALES,train,Retail Manager
-1785,SALES,test,Territory Sales Manager
-1786,HEALTHCARE,test,Registered Nurse CDH NICU Part-time Nights Sign-on Bonus
+1773,BPO,train,"Customer Service Specialist, Contact Center at Avenue North"
+1777,INFORMATION-TECHNOLOGY,test,Senior Machine Learning Engineer
+1778,ENGINEERING,val,Senior Quality Engineer
+1779,ACCOUNTANT,train,Corporate Accountant
+1783,SALES,val,Retail Manager
+1785,SALES,train,Territory Sales Manager
+1786,HEALTHCARE,train,Registered Nurse CDH NICU Part-time Nights Sign-on Bonus
 1790,AVIATION,train,Flight Operations Assistant
 1791,ADVOCATE,train,Privacy Lawyer [Future Opportunities]
-1792,ACCOUNTANT,test,Payroll Specialist
-1793,HEALTHCARE,train,Certified Nursing Assistant (CNA) Agency free facility
+1792,ACCOUNTANT,train,Payroll Specialist
+1793,HEALTHCARE,val,Certified Nursing Assistant (CNA) Agency free facility
 1798,SALES,train,Sales Specialist
 1799,SALES,train,Outside Sales Representative
 1801,HEALTHCARE,train,Barista - Cafe Retail Associate (Part-time) - Columbia University Irving Medical Center Bookstore
-1805,INFORMATION-TECHNOLOGY,val,Sr. Data Engineer
+1805,INFORMATION-TECHNOLOGY,train,Sr. Data Engineer
 1806,HEALTHCARE,train,Certified Nursing Assistant in Assisted Living - Full Time NOC Shift 10:30PM - 7:00AM
-1807,ADVOCATE,val,Immigration Attorney
-1813,CONSTRUCTION,val,Pricing Cost Estimator Construction
-1814,FINANCE,test,"Finance Manager, Ops Finance IPAT"
+1807,ADVOCATE,test,Immigration Attorney
+1813,CONSTRUCTION,train,Pricing Cost Estimator Construction
+1814,FINANCE,train,"Finance Manager, Ops Finance IPAT"
 1816,SALES,train,Account Manager - Marketing Agency (Jewish/Israeli Nonprofit Client)
-1822,HEALTHCARE,test,Medical/Surgical/Telemetry Registered Nurse
+1822,HEALTHCARE,train,Medical/Surgical/Telemetry Registered Nurse
 1825,HEALTHCARE,train,Joint and Spine Clinical Coordinator
 1831,CONSTRUCTION,train,Civil Construction Diesel Mechanic
-1832,INFORMATION-TECHNOLOGY,train,Web Developer
-1835,INFORMATION-TECHNOLOGY,test,AWS Cloud Infrastructure and DevOps Technical SME
-1836,CONSULTANT,val,SAP Consultant
-1837,HEALTHCARE,val,Travel/Contract Physical Therapist (PT)
-1842,HEALTHCARE,val,Registered Nurse (RN) Unit Supervisor - Freestanding ER
-1845,HEALTHCARE,test,Patient Care Technician
+1832,INFORMATION-TECHNOLOGY,val,Web Developer
+1835,INFORMATION-TECHNOLOGY,val,AWS Cloud Infrastructure and DevOps Technical SME
+1836,CONSULTANT,train,SAP Consultant
+1837,HEALTHCARE,train,Travel/Contract Physical Therapist (PT)
+1842,HEALTHCARE,test,Registered Nurse (RN) Unit Supervisor - Freestanding ER
+1845,HEALTHCARE,train,Patient Care Technician
 1847,ADVOCATE,train,Corporate Counsel - Transactions and Mergers and Acquisitions
+1849,SALES,train,"Sales Coordinator - Westminster, CO"
 1850,ENGINEERING,train,Manufacturing Engineer
 1852,ACCOUNTANT,train,Operations Controller
-1856,CONSULTANT,train,SAP Logistic Consultant 
+1856,CONSULTANT,val,SAP Logistic Consultant 
 1858,SALES,train,"Hershey's Part-Time Territory Sales Associate (Cullman, AL)"
+1862,SALES,train,Enterprise Sales Development Representative
 1864,BUSINESS-DEVELOPMENT,train,Business Development Manager
-1865,INFORMATION-TECHNOLOGY,test,Senior Network Engineer/Systems Administrator
+1865,INFORMATION-TECHNOLOGY,train,Senior Network Engineer/Systems Administrator
 1869,HEALTHCARE,train,Registered Nurse
 1870,CONSULTANT,train,RISK CONSULTANT
-1872,HEALTHCARE,test,LICENSED PRACTICAL NURSE (LPN) - ROXBORO HEALTHCARE & REHABILITATION CENTER
+1872,HEALTHCARE,train,LICENSED PRACTICAL NURSE (LPN) - ROXBORO HEALTHCARE & REHABILITATION CENTER
 1873,HEALTHCARE,train,RN - Medical Telemetry
-1877,CONSTRUCTION,train,High Voltage Construction Manager (Owners Representative)
-1879,HEALTHCARE,train,Associate Clinical Research Coordinator
+1877,CONSTRUCTION,test,High Voltage Construction Manager (Owners Representative)
+1879,HEALTHCARE,test,Associate Clinical Research Coordinator
 1884,HEALTHCARE,train,Patient Care Assist (SSN)-FIT
 1885,HEALTHCARE,train,Medical Office Specialist
-1887,HEALTHCARE,test,Remote Licensed Psychiatric Nurse Practitioner
+1887,HEALTHCARE,train,Remote Licensed Psychiatric Nurse Practitioner
+1888,SALES,test,Sales Business Development Executive (Culinary Sales)
 1892,HEALTHCARE,train,"Manager, Global Procurement - Clinical"
 1896,BPO,train,Customer Service Representative (Truck Gate)
-1898,HR,train,Recruiter (Entry Level Sales)
-1903,DESIGNER,train,UI DESIGNER
-1908,TEACHER,train,Adjunct Faculty CHS
+1898,SALES,test,Recruiter (Entry Level Sales)
+1903,DESIGNER,test,UI DESIGNER
+1908,TEACHER,val,Adjunct Faculty CHS
 1912,SALES,val,Sales Account Executive
 1914,ENGINEERING,train,Process Engineer 
-1915,HEALTHCARE,train,"Travel - Telemetry - Nurse Job - $1,865/wk - $2,055/wk"
+1915,HEALTHCARE,test,"Travel - Telemetry - Nurse Job - $1,865/wk - $2,055/wk"
 1920,SALES,train,Assistant Store Manager - Leesburg Premium Outlets
 1921,HEALTHCARE,train,Patient Care Tech (CNA/EMT)
 1922,SALES,train,Store Manager
 1923,BPO,train,Customer Service Representative Fueler/Washer
-1925,BPO,val,"Analyst/Sr Analyst, Contact Center - Analytics"
-1926,INFORMATION-TECHNOLOGY,val,Backend Java Senior Software Engineer Developer
+1925,BPO,train,"Analyst/Sr Analyst, Contact Center - Analytics"
+1926,INFORMATION-TECHNOLOGY,train,Backend Java Senior Software Engineer Developer
 1934,CHEF,train,Food Service Director - 1927785
-1943,HEALTHCARE,train,CERTIFIED NURSING ASSISTANT - OAK FOREST HEALTH & REHAB CENTER
-1945,TEACHER,test,Elementary Music Teacher
-1947,HEALTHCARE,train,Medical Assistant - Boh Center (Pediatrics)
+1935,SALES,train,Sales Lead
+1938,SALES,train,"Sales, Inventory & Operations Planning Logistics Director"
+1943,HEALTHCARE,test,CERTIFIED NURSING ASSISTANT - OAK FOREST HEALTH & REHAB CENTER
+1945,TEACHER,train,Elementary Music Teacher
+1947,HEALTHCARE,val,Medical Assistant - Boh Center (Pediatrics)
 1948,ACCOUNTANT,train,IT Audit (Consulting) Internship - Summer 2025
 1949,FITNESS,train,"VP, Platform Risk - Health & Wellness"
 1950,SALES,train,Sales Associate Sellersburg
 1952,CONSTRUCTION,train,Assistant Site Manager
-1959,BPO,test,Customer Service Representative
-1964,HEALTHCARE,train,Licensed Practical Nurse (LPN) - Full Time
+1953,SALES,train,Sales Director
+1959,BPO,val,Customer Service Representative
+1964,HEALTHCARE,val,Licensed Practical Nurse (LPN) - Full Time
 1966,FITNESS,train,Fitness Specialist
 1967,INFORMATION-TECHNOLOGY,train,IT Product Support Analyst/Data Analyst
 1968,HEALTHCARE,train,"Locum Obstetrics/Gynecology Physician job in Palmer, AK - Make $150/hr - $170/hr"
-1969,INFORMATION-TECHNOLOGY,train,Java Developer
+1969,INFORMATION-TECHNOLOGY,val,Java Developer
 1971,SALES,train,Inside Sales Representative
-1979,ENGINEERING,train,Information Technology Field Engineer
+1979,ENGINEERING,test,Information Technology Field Engineer
 1981,INFORMATION-TECHNOLOGY,train,Python Developer
 1983,SALES,train,"Sales Representative Inbound - Dallas, TX"
-1985,HR,test,Staffing and Talent Acquisition Liaison
+1985,HR,train,Staffing and Talent Acquisition Liaison
 1987,BPO,train,Customer Service Representative-3
-1995,HEALTHCARE,train,Nurse Assessor (RN)
+1995,HEALTHCARE,test,Nurse Assessor (RN)
 1998,INFORMATION-TECHNOLOGY,train,Senior Software Engineer - Identity
-2001,BUSINESS-DEVELOPMENT,train,Technical Business Analyst
 2004,SALES,train,"Retail Sales Specialist - $20.00 per hour, plus commission and incentives!"
 2007,HR,train,Healthcare Recruiter
-2011,HEALTHCARE,val,CERTIFIED NURSING ASSISTANT - SOUTHWOOD
-2013,ENGINEERING,val,Systems Engineer
-2019,HEALTHCARE,val,"LPN Licensed Practical Nurse $3,500 Sign-on Bonus - Agency Free Facility"
+2011,HEALTHCARE,train,CERTIFIED NURSING ASSISTANT - SOUTHWOOD
+2013,ENGINEERING,train,Systems Engineer
+2019,HEALTHCARE,train,"LPN Licensed Practical Nurse $3,500 Sign-on Bonus - Agency Free Facility"
 2020,SALES,train,Inside Sales Representative
-2021,HEALTHCARE,train,REGISTERED NURSE - **Medical Services**
-2024,HEALTHCARE,test,Field Medical Director (Ohio & Kentucky)
+2021,HEALTHCARE,val,REGISTERED NURSE - **Medical Services**
+2024,HEALTHCARE,train,Field Medical Director (Ohio & Kentucky)
 2026,HEALTHCARE,train,Clinical RN II - Emergency
 2028,HEALTHCARE,train,Travel/Contract Long Term Care Registered Nurse *
 2029,ADVOCATE,train,Commercial / Business Litigation Attorney
 2030,INFORMATION-TECHNOLOGY,train,Full Stack Developer(Mid)
 2031,CONSULTANT,train,"Lead, Implementation Consultant"
-2042,BUSINESS-DEVELOPMENT,train,Head of Brand Partnerships | Food & Beverage
+2042,BUSINESS-DEVELOPMENT,val,Head of Brand Partnerships | Food & Beverage
 2043,HEALTHCARE,train,LICENSED PRACTICAL NURSE - ROYAL PARK REHABILITATION AND HEALTH CENTER
 2046,CONSTRUCTION,train,Director of Construction Operations
-2048,SALES,train,Account Manager
+2048,SALES,test,Account Manager
 2054,ACCOUNTANT,train,Cost Accountant
-2056,SALES,test,Sales Associate - Part Time - Valley View
-2057,BPO,train,Customer Service Representative
+2056,SALES,train,Sales Associate - Part Time - Valley View
+2057,BPO,val,Customer Service Representative
+2062,SALES,train,Archery Sales Outfitter
 2063,ACCOUNTANT,train,Accounting Manager
-2066,ACCOUNTANT,train,Senior Accountant
+2066,ACCOUNTANT,val,Senior Accountant
 2068,SALES,train,Strategic Account Manager
 2071,HEALTHCARE,train,CNA 2 - Medical Surgical
 2074,CONSTRUCTION,train,Estimator - General Contractor
-2079,INFORMATION-TECHNOLOGY,val,Senior Financial Data Analyst
-2084,INFORMATION-TECHNOLOGY,val,"Software Engineer, Automation & Tooling"
-2086,SALES,train,Account Manager
-2093,ACCOUNTANT,train,Audit Manager
-2095,ACCOUNTANT,val,Sr. Manager - IT Audit
-2097,SALES,val,Retail Sales Associate(s)- Columbus Metro Area
-2098,ACCOUNTANT,test,Accounts Receivable Specialist
-2102,INFORMATION-TECHNOLOGY,val,Machine Learning Engineer
+2079,INFORMATION-TECHNOLOGY,train,Senior Financial Data Analyst
+2082,SALES,test,Agency Sales Leader
+2084,INFORMATION-TECHNOLOGY,train,"Software Engineer, Automation & Tooling"
+2086,SALES,test,Account Manager
+2089,SALES,test,Part Time Sales Supervisor
+2093,ACCOUNTANT,test,Audit Manager
+2095,ACCOUNTANT,train,Sr. Manager - IT Audit
+2097,SALES,train,Retail Sales Associate(s)- Columbus Metro Area
+2098,ACCOUNTANT,train,Accounts Receivable Specialist
+2102,INFORMATION-TECHNOLOGY,train,Machine Learning Engineer
 2106,ACCOUNTANT,train,Inventory Accountant
 2109,SALES,train,IT Solutions Sales Account Manager
-2110,ACCOUNTANT,val,Corporate Controller
-2111,SALES,test,Sales Manager
-2112,ENGINEERING,train,Senior Quality Engineer
-2115,SALES,train,"Prenatal Account Manager, Boston South"
-2117,HEALTHCARE,train,Locum | Physician Pediatric Hospitalist
-2119,HEALTHCARE,test,Certified Nursing Assistant (CNA)
+2110,ACCOUNTANT,test,Corporate Controller
+2111,SALES,train,Sales Manager
+2112,ENGINEERING,test,Senior Quality Engineer
+2115,SALES,test,"Prenatal Account Manager, Boston South"
+2117,HEALTHCARE,test,Locum | Physician Pediatric Hospitalist
+2119,HEALTHCARE,train,Certified Nursing Assistant (CNA)
 2120,ENGINEERING,train,Electrical Engineer
-2122,DESIGNER,train,Graphic Design Intern
+2122,DESIGNER,test,Graphic Design Intern
 2124,SALES,train,Part-Time Sales Associate - Famous Footwear
 2126,CONSULTANT,train,Central Finance (CFIN) Consultant - Direct Client
-2127,ENGINEERING,val,Senior Civil Structural Engineer
+2127,ENGINEERING,train,Senior Civil Structural Engineer
 2129,HEALTHCARE,train,LICENSED PRACTICAL NURSE (LPN) - YADKIN NURSING CARE CENTER
-2131,INFORMATION-TECHNOLOGY,val,Data Scientist I
+2131,INFORMATION-TECHNOLOGY,test,Data Scientist I
 2133,SALES,train,FT Assistant Center Store Manager
-2135,HEALTHCARE,val,YCCI Clinical Research Nurse II (87180BR)
-2137,CONSTRUCTION,train,Construction Manager-Mobile Home Demolition & Replacement
+2135,HEALTHCARE,train,YCCI Clinical Research Nurse II (87180BR)
+2137,CONSTRUCTION,test,Construction Manager-Mobile Home Demolition & Replacement
 2138,CONSULTANT,train,"Senior Consultant, PCI QSA | Remote US"
-2139,BUSINESS-DEVELOPMENT,test,Business Analyst
 2142,INFORMATION-TECHNOLOGY,train,Data Engineer (Internship)
 2143,INFORMATION-TECHNOLOGY,train,"Post Doctoral Research Associate - Machine Learning, AI, and Rural Medicine"
-2146,HR,test,HR Business Partner
+2146,HR,train,HR Business Partner
 2147,DIGITAL-MEDIA,train,"Sr. Associate, Social Media Manager"
 2148,ACCOUNTANT,train,Accounts Payable/Receivable Admin Support I
-2150,ADVOCATE,train,Associate Managing Attorney
+2150,ADVOCATE,val,Associate Managing Attorney
 2153,HR,train,Senior HRIS Analyst
 2155,ACCOUNTANT,train,Controller
-2157,INFORMATION-TECHNOLOGY,test,Java Software Engineer
+2157,INFORMATION-TECHNOLOGY,train,Java Software Engineer
+2161,INFORMATION-TECHNOLOGY,test,Business Analyst with DevOps
 2162,SALES,train,Retail Sales Lead Footwear
-2163,CONSULTANT,train,DeltaV Consultant (Onsite)
+2163,CONSULTANT,val,DeltaV Consultant (Onsite)
 2164,ADVOCATE,train,Attorney
-2168,BUSINESS-DEVELOPMENT,train,Business Analyst
-2169,BUSINESS-DEVELOPMENT,val,"Business Analyst I, University Program"
-2171,CONSTRUCTION,train,Construction Administrator
-2172,HEALTHCARE,test,Med-Surg Registered Nurse
+2171,CONSTRUCTION,val,Construction Administrator
+2172,HEALTHCARE,train,Med-Surg Registered Nurse
 2178,HEALTHCARE,train,Clinical Nurse - Urology Nursing (Part-Time)
 2181,ACCOUNTANT,train,Payroll Specialist
 2189,ACCOUNTANT,train,Staff Accountant
-2191,ENGINEERING,train,Operations Excellence Manager (Industrial Engineer)
+2191,ENGINEERING,test,Operations Excellence Manager (Industrial Engineer)
 2194,TEACHER,train,2024-2025 Kindergarten Teacher - Tarr ES
 2200,INFORMATION-TECHNOLOGY,train,Python Developer
 2204,HEALTHCARE,train,Clinical Contracts Associate
 2206,ACCOUNTANT,train,Staff Accountant
 2208,HEALTHCARE,test,Hospice Licensed Vocational Nurse / LVN
-2210,APPAREL,train,Merchandise Manager / Assistant manager
 2217,ACCOUNTANT,train,Senior Tax Accountant
 2223,HR,train,HR Specialist Senior
 2225,INFORMATION-TECHNOLOGY,train,FE/Fullstack Software Engineer
-2226,APPAREL,test,Merchandise Manager
 2227,SALES,train,Inside Sales Agent
-2229,SALES,test,Sales Associate Part Time - TOMMY HILFIGER - Las Vegas Premium Outlet South
-2237,SALES,train,"Specialty Sales Specialist, Cardiovascular & Metabolism - Central Illinois - Janssen Pharmaceuticals, Inc"
+2229,SALES,train,Sales Associate Part Time - TOMMY HILFIGER - Las Vegas Premium Outlet South
+2231,SALES,val,Sales Rep - Large Format
+2237,SALES,test,"Specialty Sales Specialist, Cardiovascular & Metabolism - Central Illinois - Janssen Pharmaceuticals, Inc"
+2240,SALES,train,Sales and Leadership Representative | Entry Level
 2241,ACCOUNTANT,train,Accountant
-2243,BUSINESS-DEVELOPMENT,train,Agile Business Analyst
 2244,HEALTHCARE,train,Clinical Review Nurse - Concurrent Review
-2250,ADVOCATE,test,Associate Attorney
+2248,SALES,train,Director of Sales Operations
+2250,ADVOCATE,train,Associate Attorney
 2252,ACCOUNTANT,train,Senior Accountant
 2255,HEALTHCARE,train,Physician Assistant
-2257,SALES,train,Sales Representative
-2258,HR,train,Entry Level Recruiter/Sales Trainee (Dayton)
-2260,HEALTHCARE,train,PACU Registered Nurse
-2263,ENGINEERING,train,Mechanical Engineer II - architectural engineering consulting environment
+2257,SALES,test,Sales Representative
+2258,SALES,train,Entry Level Recruiter/Sales Trainee (Dayton)
+2260,HEALTHCARE,test,PACU Registered Nurse
+2263,ENGINEERING,test,Mechanical Engineer II - architectural engineering consulting environment
 2266,HR,train,Human Resources and General Affairs Manager
-2267,INFORMATION-TECHNOLOGY,val,Python Developer for (Google)
-2268,CHEF,train,Kitchen Manager
-2269,DIGITAL-MEDIA,val,"Digital Media Manager, CBG"
+2267,INFORMATION-TECHNOLOGY,train,Python Developer for (Google)
+2268,CHEF,val,Kitchen Manager
+2269,DIGITAL-MEDIA,train,"Digital Media Manager, CBG"
 2270,ENGINEERING,train,Senior Electrical Engineer - Oil/Gas
 2273,CONSTRUCTION,train,Construction Manager - Mission Critical/Data Center
-2278,HEALTHCARE,val,Medical-Surgical Registered Nurse
-2279,HEALTHCARE,test,LICENSED PRACTICAL NURSE - ELIZABETHTOWN HEALTHCARE & REHAB CENTER
+2278,HEALTHCARE,train,Medical-Surgical Registered Nurse
+2279,HEALTHCARE,val,LICENSED PRACTICAL NURSE - ELIZABETHTOWN HEALTHCARE & REHAB CENTER
 2284,PUBLIC-RELATIONS,train,Internal Communications Specialist
 2287,HEALTHCARE,train,Registered Nurse AM Admissions PACU
-2290,ACCOUNTANT,test,Accounting Manager
-2291,SALES,val,Key Account Manager - UniFirst
+2290,ACCOUNTANT,train,Accounting Manager
+2291,SALES,train,Key Account Manager - UniFirst
 2295,HEALTHCARE,train,Graduate Nurse
-2297,CONSULTANT,train,Energy Sales Consultant
+2297,SALES,val,Energy Sales Consultant
 2299,SALES,train,"Account Executive - Remote in Miami, FL"
 2300,ADVOCATE,train,Assistant General Counsel (Global Contracts)
-2305,SALES,val,Sales Associate-SAN TAN VILLAGE
+2304,SALES,train,Bank Sales and Service Representative (Teller)
+2305,SALES,train,Sales Associate-SAN TAN VILLAGE
 2309,HEALTHCARE,train,Part GI Endoscopy Nurse
 2310,HEALTHCARE,train,"Mgr, Physician Training"
 2311,ACCOUNTANT,train,Financial Controller
-2312,TEACHER,train,Special Education Teacher - Augusta Maine
+2312,TEACHER,test,Special Education Teacher - Augusta Maine
 2313,ACCOUNTANT,train,Accounts Payable Assistant
 2315,SALES,train,Key Account Manager
 2317,INFORMATION-TECHNOLOGY,train,Software Engineer
-2320,HEALTHCARE,train,"Registered Nurse, New Graduate, Paid Program"
+2320,HEALTHCARE,test,"Registered Nurse, New Graduate, Paid Program"
 2321,ACCOUNTANT,train,Senior Revenue Accountant
 2322,HEALTHCARE,train,"Travel Nurse RN - PCU in Alma, MI - Excellent Benefits 2024-04-11"
 2329,SALES,val,Enterprise Account Executive - CPQ
 2331,HEALTHCARE,train,LICENSED PRACTICAL NURSE (LPN) - OAK FOREST HEALTH & REHAB CENTER
-2333,ADVOCATE,train,Civil Litigation Attorney
+2333,ADVOCATE,test,Civil Litigation Attorney
 2334,BANKING,train,Personal Banker - Roving North Central District
 2336,HEALTHCARE,test,Patient Care Tech II
-2337,INFORMATION-TECHNOLOGY,train,Senior Azure Cloud Data Engineer
+2337,INFORMATION-TECHNOLOGY,test,Senior Azure Cloud Data Engineer
 2340,HEALTHCARE,train,Forensic Nurse Examiner (RN) - Emergency Department
-2346,ACCOUNTANT,train,Pharmacy System Competency Auditor
-2348,BUSINESS-DEVELOPMENT,test,Business Development Manager – Tech
-2353,CONSULTANT,val,Client Solutions Consultant
-2355,SALES,val,Inside Sales Representative
-2357,BPO,train,"Sales Counselor, Inbound Call Center (Remote – Texas Based Position)"
-2358,ACCOUNTANT,test,Controller
+2346,ACCOUNTANT,test,Pharmacy System Competency Auditor
+2348,BUSINESS-DEVELOPMENT,train,Business Development Manager – Tech
+2353,CONSULTANT,train,Client Solutions Consultant
+2355,SALES,test,Inside Sales Representative
+2357,SALES,train,"Sales Counselor, Inbound Call Center (Remote – Texas Based Position)"
+2358,ACCOUNTANT,train,Controller
 2359,PUBLIC-RELATIONS,train,Freelance Communications Specialist [74521]
 2364,HEALTHCARE,train,RN Registered Nurse Medical Surgical
-2373,TEACHER,test,Performing Arts Teacher
+2373,TEACHER,train,Performing Arts Teacher
 2374,AVIATION,train,Training Specialist for Maritime Patrol Aircraft
 2376,HEALTHCARE,train,"Phlebotomist, Laboratory - Support, $10000 Bonus, FT, 2P-10:30P"
 2378,HR,train,Human Resources Specialist
-2379,ENGINEERING,test,Supplier Quality Engineer
+2379,ENGINEERING,train,Supplier Quality Engineer
 2380,AUTOMOBILE,val,"Mid Level Automotive Technician - Madison Heights, MI"
-2381,SALES,test,Account Manager
+2381,SALES,train,Account Manager
 2383,ACCOUNTANT,train,Senior Associate Auditor
-2384,HEALTHCARE,train,Physical Therapist *Sign on Bonus*
+2384,HEALTHCARE,test,Physical Therapist *Sign on Bonus*
 2388,HEALTHCARE,train,"Licensed Practical Nurse - Med/Surg Ortho/Neuro, FT"
-2391,TEACHER,train,Equipment Operator Instructor NY HELPS (Region 5)
-2394,ENGINEERING,train,MBSE Systems Engineer
+2391,TEACHER,test,Equipment Operator Instructor NY HELPS (Region 5)
+2394,ENGINEERING,val,MBSE Systems Engineer
 2396,BANKING,train,Program Financial Analyst
 2400,BPO,train,Customer Service Representative
 2401,BUSINESS-DEVELOPMENT,train,Federal Business Development Manager
-2403,SALES,train,Account Manager/ Client Partner
-2404,ACCOUNTANT,test,Internal Auditor
+2403,SALES,test,Account Manager/ Client Partner
+2404,ACCOUNTANT,train,Internal Auditor
 2406,ACCOUNTANT,train,Staff Accountant
 2407,ARTS,train,Summer 2024 - Graphic Artist Intern
 2410,SALES,train,Counter Sales Representative
-2412,ADVOCATE,train,Legal Counsel
-2413,CONSULTANT,val,Sales Consultant - PartTime
+2412,ADVOCATE,val,Legal Counsel
+2413,SALES,train,Sales Consultant - PartTime
 2414,ENGINEERING,train,Industrial Engineer
-2417,HEALTHCARE,test,"Travel Nurse RN - Med/Surg in El Paso, TX - Excellent Benefits 2024-04-11"
+2417,HEALTHCARE,train,"Travel Nurse RN - Med/Surg in El Paso, TX - Excellent Benefits 2024-04-11"
 2422,HEALTHCARE,train,Licensed Practical Nurse - Per Diem - Float
-2428,HEALTHCARE,val,Certified Nursing Assistant - Progress Care
+2428,HEALTHCARE,train,Certified Nursing Assistant - Progress Care
 2431,HEALTHCARE,train,Family Medicine Physician - Sign-On Bonus Available
-2432,HEALTHCARE,train,"Full Time Faculty, Physician Assistant"
-2433,ENGINEERING,test,QC Staff Analytical Process Engineer
-2436,SALES,val,"Sales Associate, Part-Time - Bishop Ranch"
-2438,INFORMATION-TECHNOLOGY,val,Web Developer
-2441,SALES,test,Sales Associate - 24H150
-2444,INFORMATION-TECHNOLOGY,train,"Senior Software Engineer, Data Streaming"
+2432,HEALTHCARE,val,"Full Time Faculty, Physician Assistant"
+2433,ENGINEERING,train,QC Staff Analytical Process Engineer
+2436,SALES,train,"Sales Associate, Part-Time - Bishop Ranch"
+2438,INFORMATION-TECHNOLOGY,train,Web Developer
+2441,SALES,train,Sales Associate - 24H150
+2444,INFORMATION-TECHNOLOGY,val,"Senior Software Engineer, Data Streaming"
 2445,HEALTHCARE,test,REGISTERED NURSE - ELIZABETHTOWN HEALTHCARE & REHAB CENTER
-2447,ACCOUNTANT,train,Accounts Receivable Manager
+2447,ACCOUNTANT,val,Accounts Receivable Manager
 2450,INFORMATION-TECHNOLOGY,train,Associate Data Scientist - Recent Bio/Chem Grads
 2452,SALES,train,Full Time - Sales Associate - Flooring - Day
 2453,HEALTHCARE,train,Surgical Technologist OR
-2455,INFORMATION-TECHNOLOGY,train,Data Analyst
-2458,HEALTHCARE,train,Registered Nurse - RN Cardiac Outpatient Recovery and Evaluation
+2455,INFORMATION-TECHNOLOGY,val,Data Analyst
+2458,HEALTHCARE,test,Registered Nurse - RN Cardiac Outpatient Recovery and Evaluation
+2461,SALES,train,Sleep Expert - Sales
 2466,ADVOCATE,train,Counsel
 2467,CONSULTANT,train,Accounting Advisory (Full-time)
-2474,ACCOUNTANT,test,Staff Accountant
-2475,ADVOCATE,train,Associate Attorney
-2486,HEALTHCARE,test,OCCUPATIONAL THERAPIST (OT) - ELIZABETHTOWN HEALTHCARE & REHAB CENTER
+2474,ACCOUNTANT,train,Staff Accountant
+2475,ADVOCATE,val,Associate Attorney
+2486,HEALTHCARE,train,OCCUPATIONAL THERAPIST (OT) - ELIZABETHTOWN HEALTHCARE & REHAB CENTER
 2489,HEALTHCARE,train,Clinical Research Associate
-2505,PUBLIC-RELATIONS,train,"Assistant Vice President, National Media and Public Relations"
+2505,PUBLIC-RELATIONS,val,"Assistant Vice President, National Media and Public Relations"
 2507,ACCOUNTANT,train,Bookkeeper
 2509,DIGITAL-MEDIA,val,Digital Marketing Specialist
 2511,ACCOUNTANT,train,Internal Audit Senior Analyst
 2512,HEALTHCARE,train,Transitional Care Nurse
-2513,HEALTHCARE,train,"Medical Receptionist - First Shift, No weekends, Travel Required"
+2513,HEALTHCARE,test,"Medical Receptionist - First Shift, No weekends, Travel Required"
 2514,HEALTHCARE,train,Licensed Practical Nurse - Telemetry
 2517,HEALTHCARE,train,Clinical Support Associate - PICU
 2520,ACCOUNTANT,train,Payroll Operations Manager US & Canada
 2521,HEALTHCARE,train,Associate Medical Director - Veterinary  (DMV/VMD)
-2529,INFORMATION-TECHNOLOGY,test,Senior Data Engineer
+2529,INFORMATION-TECHNOLOGY,train,Senior Data Engineer
 2537,ADVOCATE,train,Fiduciary Litigation Paralegal
 2538,SALES,train,Sales Representative
-2539,BUSINESS-DEVELOPMENT,train,Market Development Specialist
-2543,SALES,train,Sales Associate Sunglass Hut
-2545,CONSTRUCTION,test,Construction Estimator
+2539,BUSINESS-DEVELOPMENT,val,Market Development Specialist
+2543,SALES,test,Sales Associate Sunglass Hut
+2545,CONSTRUCTION,train,Construction Estimator
 2547,TEACHER,train,"Teacher - Mathematics, Gr. 9-12 (SEI Endorsement Required) (Anticipated Vacancy) (SY24-25)"
 2548,BPO,train,Customer Service Representative
 2550,SALES,train,store manager - Moscow/Palouse
@@ -882,98 +924,103 @@ jd_id,category,split,title
 2554,ADVOCATE,train,Sr Corporate Paralegal - M&A - 1 Day in Office
 2555,TEACHER,val,Adjunct Faculty
 2556,ACCOUNTANT,train,Accounts Payable Supervisor
-2557,HEALTHCARE,train,Clinical Social Worker
+2557,HEALTHCARE,val,Clinical Social Worker
 2562,ENGINEERING,train,Senior Structural Engineer - Data Center
 2563,INFORMATION-TECHNOLOGY,train,Senior BI and Data Analyst
 2577,SALES,train,"Retail Commission Sales Associate - Fine Jewelry, Quaker Bridge Mall - Part Time"
 2579,HEALTHCARE,train,Emergency Room Registered Nurse - 10K sign on bonus
-2581,TEACHER,train,TEACHER-SOCIAL STUDIES
-2585,SALES,val,Salesperson
-2588,INFORMATION-TECHNOLOGY,train,"Senior Software Engineer, Back End"
+2581,TEACHER,val,TEACHER-SOCIAL STUDIES
+2585,SALES,train,Salesperson
+2588,INFORMATION-TECHNOLOGY,val,"Senior Software Engineer, Back End"
 2593,HEALTHCARE,train,Licensed Clinical Social Worker
-2594,ACCOUNTANT,test,Accounting Manager IPA
+2594,ACCOUNTANT,train,Accounting Manager IPA
 2597,DESIGNER,train,Associate Graphic Design Intern
-2600,HR,train,Human Resources Generalist
-2601,SALES,train,Account Executive
+2600,HR,val,Human Resources Generalist
+2601,SALES,val,Account Executive
 2603,BPO,train,"Customer Service Representative (Sedgwick, KS)"
-2605,ACCOUNTANT,train,Senior Accountant
-2607,FITNESS,val,Wellness Associate
+2605,ACCOUNTANT,test,Senior Accountant
+2607,FITNESS,train,Wellness Associate
 2609,ADVOCATE,train,Legal Assistant
 2611,APPAREL,train,Production Associate - Garment Sorter - $15/Hour
-2614,ADVOCATE,test,IP PARALEGAL
+2614,ADVOCATE,val,IP PARALEGAL
 2615,CONSTRUCTION,train,HVAC Technician
 2616,HEALTHCARE,train,Physical Therapist
-2617,CONSULTANT,train,Dealer Territory Sales Consultant
+2617,SALES,val,Dealer Territory Sales Consultant
 2621,BANKING,train,Personal Banker Goodyear
-2623,HEALTHCARE,train,Staff Pharmacist
+2623,HEALTHCARE,test,Staff Pharmacist
 2625,CONSTRUCTION,val,Construction Technician
-2626,HR,train,Corporate Recruiter (100% onsite)
+2626,HR,test,Corporate Recruiter (100% onsite)
 2630,ACCOUNTANT,train,Accounting Manager/Supervisor
+2631,SALES,train,Medical Sales Representative
 2635,AUTOMOBILE,train,Automotive Senior Technician
 2637,HEALTHCARE,train,Supervisor Non Clinical Operations
 2638,CONSTRUCTION,train,Construction Manager
 2641,HEALTHCARE,train,Physical Therapist (Full-Time)
-2642,HEALTHCARE,val,Operating Room Nurse Manager - Allenmore
+2642,HEALTHCARE,train,Operating Room Nurse Manager - Allenmore
 2643,SALES,train,Sales Associate - Spirit
-2644,BANKING,val,Mortgage Loan Originator
-2649,ACCOUNTANT,val,Senior Accountant
+2644,BANKING,train,Mortgage Loan Originator
+2649,ACCOUNTANT,train,Senior Accountant
 2653,SALES,train,Full Time - Sales Specialist - Appliances - Day
 2657,SALES,train,Vans: Store Manager - Valley River Center
-2663,SALES,train,Inside Sales Associate CosmoProf 06062
-2664,HEALTHCARE,test,Clinical Research Assistant
-2665,INFORMATION-TECHNOLOGY,train,Network Engineer
+2663,SALES,val,Inside Sales Associate CosmoProf 06062
+2664,HEALTHCARE,val,Clinical Research Assistant
+2665,INFORMATION-TECHNOLOGY,val,Network Engineer
 2666,ACCOUNTANT,train,Senior Accountant
 2671,HEALTHCARE,train,FULL TIME MEDICAL ASSISTANT Union
-2674,SALES,val,"Trauma Sales Associate - Waco, TX"
-2680,BANKING,test,Senior Financial Analyst (Power BU)
+2674,SALES,train,"Trauma Sales Associate - Waco, TX"
+2680,BANKING,train,Senior Financial Analyst (Power BU)
+2684,SALES,train,Industrial Sales Engineer
 2686,CONSTRUCTION,train,Construction Project Supervisor
 2687,BUSINESS-DEVELOPMENT,train,Director of Enterprise Partnerships - Northeast
-2689,HEALTHCARE,train,Registered Nurse
-2691,HEALTHCARE,val,Medical Assistant (Full-time & Part-time; On-Site)
-2692,BANKING,test,Reinsurance Financial Analyst II
+2689,HEALTHCARE,test,Registered Nurse
+2691,HEALTHCARE,train,Medical Assistant (Full-time & Part-time; On-Site)
+2692,BANKING,train,Reinsurance Financial Analyst II
+2694,SALES,val,"Account Manager II, Clinical Sales"
 2695,ADVOCATE,train,Litigation Paralegal
-2696,AUTOMOBILE,train,(USA) Tire & Battery Technician - Automotive
+2696,AUTOMOBILE,val,(USA) Tire & Battery Technician - Automotive
 2697,TEACHER,train,SPED Teacher - IEP & Assessment Specialist
 2703,ACCOUNTANT,train,Sr. Accountant
-2706,INFORMATION-TECHNOLOGY,val,Senior Frontend Developer
-2708,INFORMATION-TECHNOLOGY,train,Java Developer
-2713,HEALTHCARE,test,Registered Nurse - RN - LTAC
+2706,INFORMATION-TECHNOLOGY,train,Senior Frontend Developer
+2708,INFORMATION-TECHNOLOGY,test,Java Developer
+2709,SALES,train,Sr Sales Development Representative (Cryo-EM Life Sciences)(West Coast)
+2713,HEALTHCARE,train,Registered Nurse - RN - LTAC
 2714,HEALTHCARE,train,Registered Nurse - RN - LTAC
-2715,BUSINESS-DEVELOPMENT,test,Tax Planning Manager - Complex Partnerships M&A
+2715,BUSINESS-DEVELOPMENT,val,Tax Planning Manager - Complex Partnerships M&A
 2717,ADVOCATE,val,Paralegal
-2719,ACCOUNTANT,train,Fund Controller (Private Equity)
-2720,SALES,val,Branch Sales Manager
-2728,HEALTHCARE,test,LPN Licensed Practical Nurse
+2719,ACCOUNTANT,val,Fund Controller (Private Equity)
+2720,SALES,train,Branch Sales Manager
+2728,HEALTHCARE,train,LPN Licensed Practical Nurse
 2730,SALES,train,Inside Sales Representative
 2731,ADVOCATE,train,Trial Attorney
-2732,HEALTHCARE,train,FT Pharmacist (36 Hrs)
+2732,HEALTHCARE,val,FT Pharmacist (36 Hrs)
+2735,SALES,val,Corporate Sales Receptionist
 2737,SALES,train,Sales Manager
-2740,ENGINEERING,test,Lead Control Systems Engineer
+2740,ENGINEERING,train,Lead Control Systems Engineer
 2741,SALES,train,Retail Sales Associate Footwear
-2742,SALES,train,Central Channel Account Manager
+2742,SALES,test,Central Channel Account Manager
 2744,CONSTRUCTION,val,Contract Administrative Specialist Construction
-2746,SALES,train,Selling - Account Manager
+2746,SALES,val,Selling - Account Manager
 2747,HEALTHCARE,train,"Physician: Family Medicine in Freeland, Michigan"
 2748,TEACHER,train,High School Spanish Teacher (2024-2025)
 2752,SALES,train,"Sales Manager, Overland Park, KS"
-2753,INFORMATION-TECHNOLOGY,train,IT Sr Data Engineer Delivery
-2754,BUSINESS-DEVELOPMENT,train,BUSINESS ANALYST
-2755,HEALTHCARE,train,Registered Nurse - Charge - Operating Room
+2753,INFORMATION-TECHNOLOGY,val,IT Sr Data Engineer Delivery
+2755,HEALTHCARE,val,Registered Nurse - Charge - Operating Room
 2756,BUSINESS-DEVELOPMENT,train,Business Development Manager
 2758,SALES,train,"2713 Store Manager - Hartsville, SC"
 2760,INFORMATION-TECHNOLOGY,train,Cybersecurity Data Engineer
-2761,HEALTHCARE,test,"Physician Assistant Program, Chair of Admissions"
-2768,INFORMATION-TECHNOLOGY,val,"Senior Software Engineer, BackEnd"
-2773,ADVOCATE,test,Attorney- Family Law
-2784,ENGINEERING,test,Industrial Engineer - Ambient DC
+2761,HEALTHCARE,train,"Physician Assistant Program, Chair of Admissions"
+2766,SALES,train,Sales Engineer
+2768,INFORMATION-TECHNOLOGY,train,"Senior Software Engineer, BackEnd"
+2771,HR,train,Staffing Consultant - Agency Recruiter
+2773,ADVOCATE,val,Attorney- Family Law
+2784,ENGINEERING,train,Industrial Engineer - Ambient DC
 2786,HR,train,Human Resources Manager
-2787,ACCOUNTANT,val,Staff Accountant
+2787,ACCOUNTANT,train,Staff Accountant
 2788,BANKING,train,Personal Banker Wellington East
 2790,INFORMATION-TECHNOLOGY,train,Cyber Security Software Engineer
 2793,ENGINEERING,train,Electrical Engineer
-2797,BUSINESS-DEVELOPMENT,train,Business Analyst - Intern
-2800,SALES,val,Sales Associate
-2801,INFORMATION-TECHNOLOGY,test,Data Analyst-Tx
+2800,SALES,train,Sales Associate
+2801,INFORMATION-TECHNOLOGY,train,Data Analyst-Tx
 2804,INFORMATION-TECHNOLOGY,train,Sybase Database Administrator - Michigan
 2805,SALES,val,Sales Associate - Chico's
 2807,HEALTHCARE,train,Licensed Practical Nurse - Full-Time All Shifts
@@ -981,290 +1028,302 @@ jd_id,category,split,title
 2810,INFORMATION-TECHNOLOGY,val,Senior QA Engineer
 2813,FITNESS,train,Health And Wellness Coach
 2814,INFORMATION-TECHNOLOGY,train,Full Stack Developer
-2816,HEALTHCARE,test,HOME CARE PHYSICAL THERAPIST (PT)
-2818,CONSTRUCTION,train,"Assistant Site Manager - Locomotive Maintenance – Cumberland, MD"
+2816,HEALTHCARE,train,HOME CARE PHYSICAL THERAPIST (PT)
+2818,CONSTRUCTION,test,"Assistant Site Manager - Locomotive Maintenance – Cumberland, MD"
 2819,ACCOUNTANT,train,Audit Manager- Cyber Security
-2822,CHEF,val,Cook I
-2823,ENGINEERING,val,Quality Engineer
+2822,CHEF,train,Cook I
+2823,ENGINEERING,train,Quality Engineer
 2824,HEALTHCARE,train,Research Nurse Practitioner
 2826,INFORMATION-TECHNOLOGY,train,Data Engineer
-2827,HEALTHCARE,train,REGISTERED NURSE - RN - SKILLED NURSING FACILITY
-2829,SALES,test,Sales Representative
+2827,HEALTHCARE,test,REGISTERED NURSE - RN - SKILLED NURSING FACILITY
+2829,SALES,train,Sales Representative
 2831,SALES,train,Beverage Sales Representative
 2833,FINANCE,train,Chief Compliance Officer
-2834,SALES,train,Account Executive
+2834,SALES,test,Account Executive
 2835,SALES,train,Account Executive
 2838,BANKING,train,Senior Financial Analyst
 2839,HEALTHCARE,train,Cardiovascular LPN (Licensed Practical Nurse)
-2840,APPAREL,test,Luxury Fashion & Timepiece Manager - Jared - West Oaks II
-2841,SALES,test,Store Manager
-2842,ADVOCATE,val,Paralegal - Hybrid
-2845,INFORMATION-TECHNOLOGY,train,Online Data Analyst
+2840,APPAREL,train,Luxury Fashion & Timepiece Manager - Jared - West Oaks II
+2841,SALES,train,Store Manager
+2842,ADVOCATE,train,Paralegal - Hybrid
+2845,INFORMATION-TECHNOLOGY,val,Online Data Analyst
 2846,BUSINESS-DEVELOPMENT,train,Business Development Associate
-2853,HEALTHCARE,train,Registered Nurse (RN)
+2853,HEALTHCARE,val,Registered Nurse (RN)
 2855,HEALTHCARE,train,"Dentist- 4 Days/Week, PPO/FFS Office - Sign on Bonus!"
 2857,HEALTHCARE,train,Registered Nurse - RN - LTAC
-2858,HEALTHCARE,test,Pharmacist (Staff)
+2858,HEALTHCARE,val,Pharmacist (Staff)
 2861,DIGITAL-MEDIA,train,Social Media Strategist
-2862,INFORMATION-TECHNOLOGY,train,"Core Java Developer - W2 - onsite in Reston, VA"
-2866,SALES,train,Inside Sales Representative
+2862,INFORMATION-TECHNOLOGY,val,"Core Java Developer - W2 - onsite in Reston, VA"
+2866,SALES,test,Inside Sales Representative
 2871,HEALTHCARE,train,Staff Nurse - NICU
-2872,HEALTHCARE,test,Research and Developement Engineer (Medical)
-2876,HEALTHCARE,train,Medical Assistant II
+2872,HEALTHCARE,train,Research and Developement Engineer (Medical)
+2876,HEALTHCARE,val,Medical Assistant II
+2878,SALES,train,"Associate, Part Time Sales"
 2879,HEALTHCARE,train,Licensed Practical Nurse (NY HELPS)
-2881,BPO,test,Customer Support Associate
+2881,BPO,train,Customer Support Associate
 2884,CHEF,train,Prep Cook
 2888,CONSTRUCTION,train,Construction Project Engineer
 2892,DIGITAL-MEDIA,train,Digital Content Creator
 2893,HEALTHCARE,train,Nurse Practitioner
-2898,HEALTHCARE,test,Medical Assistant
+2898,HEALTHCARE,train,Medical Assistant
 2900,DIGITAL-MEDIA,train,Digital Marketing Manager
-2904,ACCOUNTANT,train,AR Accountant
+2904,ACCOUNTANT,val,AR Accountant
 2912,HEALTHCARE,train,Supervisor Physician Assistant - Hospitalist Internal Medicine Service - Days/Flex Schedule - Lower Manhattan Campus
 2917,HEALTHCARE,train,Maryland Psychiatric Nurse Practitioner (NP) (DEA-Licensed) (Multi State-Licensed)
 2920,BPO,train,Customer Service Representative Fueler/Washer
 2922,HEALTHCARE,train,Inpatient Facility Medical Coder
 2925,ADVOCATE,train,Litigation Associate
-2927,BUSINESS-DEVELOPMENT,train,DEI Business Analyst – Advisor Productivty Specialist
-2929,CHEF,test,Grill Cook - Corporate Dining
+2929,CHEF,train,Grill Cook - Corporate Dining
 2931,INFORMATION-TECHNOLOGY,train,Network and Systems Administrator
 2933,HEALTHCARE,train,Patient Service Representative - Sharp Rees-Stealy Audiology Services - Medical Plaza - Day - Per Diem
-2938,INFORMATION-TECHNOLOGY,val,Azure DevOps Engineer
+2938,INFORMATION-TECHNOLOGY,train,Azure DevOps Engineer
 2940,TEACHER,train,TEACHER-SPECIAL EDUCATION
-2941,BPO,train,Customer Service Representative - 1st Shifts
+2941,BPO,val,Customer Service Representative - 1st Shifts
 2942,ACCOUNTANT,train,Accounts Receivable / Collections Specialist
 2946,TEACHER,train,Special Education Elementary Resource Teacher (.5 Reagan/.5 Morton)
 2948,ACCOUNTANT,train,Internal Audit Manager
-2953,SALES,test,Area Sales Manager
+2953,SALES,train,Area Sales Manager
 2955,HEALTHCARE,train,Registered Nurse Clinic RN - Pain Management
 2956,TEACHER,train,Curriculum Specialist (9-12 Science) - Part-time (TX)
 2960,ACCOUNTANT,train,Payroll Specialist
-2963,SALES,test,Equipment Sales Specialist
-2964,HEALTHCARE,val,HOSPICE REGISTERED NURSE
+2963,SALES,train,Equipment Sales Specialist
+2964,HEALTHCARE,train,HOSPICE REGISTERED NURSE
 2965,CHEF,train,"Restaurant Crewmember - Cook, Cashier & Customer Service (Daytime Shift)"
-2966,BUSINESS-DEVELOPMENT,test,Business Analyst IV
-2971,INFORMATION-TECHNOLOGY,train,SQL Database Administrator
-2972,HEALTHCARE,train,"Hematology Clinical Account Specialist - Long Island, NY"
+2971,INFORMATION-TECHNOLOGY,test,SQL Database Administrator
+2972,HEALTHCARE,val,"Hematology Clinical Account Specialist - Long Island, NY"
 2973,BANKING,train,Retail Personal Banker Associate I- CLT East
-2978,INFORMATION-TECHNOLOGY,test,Senior Software Engineer
+2976,SALES,train, Marketing/Design/Sales - Commercial Marketing Specialist IV
+2978,INFORMATION-TECHNOLOGY,train,Senior Software Engineer
 2982,SALES,train,Account Executive
 2983,CONSTRUCTION,train,Construction Laborer
-2984,ACCOUNTANT,val,Senior Accountant (1036395)
+2984,ACCOUNTANT,train,Senior Accountant (1036395)
 2987,SALES,train,Strategic Account Executive - Financial Services
 2989,CONSULTANT,train,Application Security Penetration Testing Consultant
-2992,HEALTHCARE,train,Cath-Lab Tech/Nurse
+2992,HEALTHCARE,val,Cath-Lab Tech/Nurse
 2993,HEALTHCARE,val,CERTIFIED NURSING ASSISTANT - LIBERTY COMMONS OF JOHNSTON COUNTY
-2999,INFORMATION-TECHNOLOGY,train,Senior Data Engineer
+2999,INFORMATION-TECHNOLOGY,test,Senior Data Engineer
 3006,HEALTHCARE,train,Licensed Practical Nurse- (LPN)
 3007,INFORMATION-TECHNOLOGY,train,Software Engineer
 3008,CHEF,test,4* Renaissance Marriott Seeks a Talented Chef de Partie!
-3011,HEALTHCARE,train,"Certified Medical Assistant CMA - Family Care - Full-Time, Days"
+3011,HEALTHCARE,val,"Certified Medical Assistant CMA - Family Care - Full-Time, Days"
 3012,HEALTHCARE,train,REGISTERED NURSE - MARY GRAN
 3013,SALES,train,"Account Executive, Diagnostic Imaging - Wisconsin"
 3019,SALES,train,Retail Assistant Store Manager
-3020,HEALTHCARE,train,Staff Nurse- Behavioral Health Services
+3020,HEALTHCARE,test,Staff Nurse- Behavioral Health Services
 3021,CHEF,train,Cook
 3024,HEALTHCARE,train,(US) Solutions Analyst - Clinical - 1 year Contract
-3025,ACCOUNTANT,train,Project Accountant / Bookkeeper
-3026,INFORMATION-TECHNOLOGY,train,Junior Java Developer
+3025,ACCOUNTANT,test,Project Accountant / Bookkeeper
+3026,INFORMATION-TECHNOLOGY,test,Junior Java Developer
 3027,SALES,train,Lead Account Executive
-3028,ADVOCATE,train,"Associate General Counsel, Data Governance"
+3028,ADVOCATE,test,"Associate General Counsel, Data Governance"
 3029,CONSTRUCTION,train,HVAC Superintendent
-3034,HEALTHCARE,train,Med-Surg/Telemetry Registered Nurse
+3034,HEALTHCARE,val,Med-Surg/Telemetry Registered Nurse
+3035,SALES,train,Sales Development Representative
 3038,ACCOUNTANT,train,Staff Accountant
-3040,HEALTHCARE,train,RN Nurse Residency
-3046,ENGINEERING,val,Industrial Engineer - Project Manager
+3040,HEALTHCARE,val,RN Nurse Residency
+3046,ENGINEERING,train,Industrial Engineer - Project Manager
 3049,HEALTHCARE,train,Certified Medical Coder
 3052,HEALTHCARE,train,Registered Nurse - Adult Family Care
-3053,INFORMATION-TECHNOLOGY,train,Software Engineer I/II
-3056,INFORMATION-TECHNOLOGY,val,Principal Embedded Software Engineer
+3053,INFORMATION-TECHNOLOGY,test,Software Engineer I/II
+3056,INFORMATION-TECHNOLOGY,train,Principal Embedded Software Engineer
 3059,SALES,train,Commercial Roofing Salesperson
 3063,ACCOUNTANT,train,Senior Accountant
 3065,ACCOUNTANT,train,Manufacturing Accountant
 3066,CONSTRUCTION,train,CSA Estimator
 3070,INFORMATION-TECHNOLOGY,val,Sr Full Stack Engineer - REMOTE (4262)
-3074,CONSTRUCTION,val,"Welder, 2nd Shift"
-3076,HEALTHCARE,train,Physician Assistant
+3074,CONSTRUCTION,train,"Welder, 2nd Shift"
+3076,HEALTHCARE,test,Physician Assistant
 3080,SALES,train,Assistant Store Manager
-3081,CONSULTANT,val,Finance Investment Consultant
-3083,SALES,val,02417 Store Manager
-3086,ENGINEERING,train,Quality Engineer with AS9100 experience
+3081,CONSULTANT,train,Finance Investment Consultant
+3083,SALES,train,02417 Store Manager
+3084,SALES,train,Sales Engineer
+3086,ENGINEERING,test,Quality Engineer with AS9100 experience
 3087,HEALTHCARE,train,Nurse Practitioner or Physician Assistant - Wound Care - Oklahoma City (PRN)
-3091,INFORMATION-TECHNOLOGY,val,"Senior Software Engineer, AWS Kumo"
+3091,INFORMATION-TECHNOLOGY,train,"Senior Software Engineer, AWS Kumo"
 3092,HR,train,Human Resources Orientation & Internship Program Manager
-3096,INFORMATION-TECHNOLOGY,train,Databricks Data Engineer
-3097,SALES,test,Account Manager
-3098,HEALTHCARE,train,Registered Nurse Supervisor - RN - Long Term Care/Skilled Nursing Facility
+3093,SALES,train,Sales Support Specialist (139975)
+3094,SALES,train,Retail Sales - Men's Apparel - The Shops at La Cantera
+3096,INFORMATION-TECHNOLOGY,test,Databricks Data Engineer
+3097,SALES,val,Account Manager
+3098,HEALTHCARE,val,Registered Nurse Supervisor - RN - Long Term Care/Skilled Nursing Facility
 3100,DIGITAL-MEDIA,train,Digital Marketing Manager
+3103,SALES,train,Sales Development Representative
 3105,ACCOUNTANT,train,Audit Manager I AML
-3107,AVIATION,train,"RS Avionics Electrical Technician Lead - Brunswick, GA"
+3106,SALES,train,Sales Logistics Specialist
+3107,AVIATION,test,"RS Avionics Electrical Technician Lead - Brunswick, GA"
 3109,HEALTHCARE,train,Occupational Therapist
 3110,CONSULTANT,train,"Senior Delivery Consultant, Healthcare Solutions "
 3111,CONSULTANT,train,EDI Ingetration Consultant
 3113,SALES,train,Lead Sales Associate
-3114,AUTOMOBILE,val,Entry-Level Automotive Engineer
-3115,ADVOCATE,train,IP Litigation Paralegal (Temp - Hybrid) 
+3114,AUTOMOBILE,train,Entry-Level Automotive Engineer
+3115,ADVOCATE,val,IP Litigation Paralegal (Temp - Hybrid) 
 3116,ENGINEERING,train,Manufacturing Engineer Supervisor - 3rd shift
-3117,BPO,val,Customer Service Representative
-3119,INFORMATION-TECHNOLOGY,train,"Software Engineer, Front-End"
+3117,BPO,train,Customer Service Representative
+3119,INFORMATION-TECHNOLOGY,test,"Software Engineer, Front-End"
 3127,HR,test,People Operations Manager
 3128,SALES,train,Great Lakes Product Development Manager/Sales Representative
-3131,BUSINESS-DEVELOPMENT,val,"Business Analyst or Product Owner - Lending focus, Banking & Financial Services Consulting"
-3135,CONSTRUCTION,train,Carpenter I
-3138,BANKING,test,Loan Officer Non-Exempt
-3139,DIGITAL-MEDIA,train,Digital Marketing Executive
-3140,HEALTHCARE,val,Medical Assistant II - FT- Plymouth Family Med
+3135,CONSTRUCTION,test,Carpenter I
+3138,BANKING,train,Loan Officer Non-Exempt
+3139,DIGITAL-MEDIA,val,Digital Marketing Executive
+3140,HEALTHCARE,train,Medical Assistant II - FT- Plymouth Family Med
 3141,HR,train,Senior Human Resources Assistant
 3143,SALES,train,"Sales Associate / Jewelry Specialist - Jared - Carle Place Commons - Carle Place, NY"
-3144,HEALTHCARE,train,Nurse - RN - Med Surg
-3147,HEALTHCARE,test,LICENSED PRACTICAL NURSE - BERMUDA COMMONS
+3144,HEALTHCARE,val,Nurse - RN - Med Surg
+3147,HEALTHCARE,train,LICENSED PRACTICAL NURSE - BERMUDA COMMONS
 3150,SALES,train,Sales Account Executive
+3156,SALES,train,Sales Development Internship - Nationwide (Summer '24)
 3159,HEALTHCARE,train,Medical Assistant - NYU Langone Medical Associates - Carle Place
-3160,HEALTHCARE,val,Clinical Medical head
-3161,HEALTHCARE,train,Physical Therapist - Outpatient
-3163,SALES,train,Store Manager / MIT
-3164,ADVOCATE,train,Lateral Partner Attorney
+3160,HEALTHCARE,train,Clinical Medical head
+3161,HEALTHCARE,val,Physical Therapist - Outpatient
+3163,SALES,val,Store Manager / MIT
+3164,ADVOCATE,test,Lateral Partner Attorney
 3169,DIGITAL-MEDIA,train,English Copywriter
-3171,ADVOCATE,train,Attorney
+3171,ADVOCATE,test,Attorney
 3172,HEALTHCARE,train,REGISTERED NURSE SUPERVISOR (RN) - MARY GRAN
 3177,HEALTHCARE,train,REGISTERED NURSE - THE PAVILION HEALTH CENTER
-3178,HEALTHCARE,train,Medical Technologist / Blood Bank / PRN
+3178,HEALTHCARE,test,Medical Technologist / Blood Bank / PRN
 3183,HEALTHCARE,train,Clinical Research Coordinator (onsite)
-3187,SALES,test,Account Executive
+3187,SALES,train,Account Executive
 3188,CONSULTANT,train,Epicor Kinetic / Strategic Epicor ERP Consultant
-3189,INFORMATION-TECHNOLOGY,val,Frontend Developer
-3190,INFORMATION-TECHNOLOGY,test,IT Systems Administrator
+3189,INFORMATION-TECHNOLOGY,train,Frontend Developer
+3190,INFORMATION-TECHNOLOGY,val,IT Systems Administrator
 3191,SALES,train,Sales Representative
-3192,HEALTHCARE,train,CERTIFIED NURSING ASSISTANT - CNA - TEMPLETON OF CARY
+3192,HEALTHCARE,test,CERTIFIED NURSING ASSISTANT - CNA - TEMPLETON OF CARY
 3193,HEALTHCARE,train,"LVN, Licensed Vocational Nurse - Emergency Department - Full Time"
 3197,BANKING,train,Senior Loan Officer
+3198,SALES,val,Entry Level Sales
 3199,CHEF,train,Food Service Worker
-3205,BPO,test,Associate Service Desk Technician
+3205,BPO,train,Associate Service Desk Technician
 3208,BANKING,train,Part Time Associate Banker - Minooka - 25 hours
 3209,AUTOMOBILE,train,Truck Driver - Hiker/Vehicle Transporter/CDL - Part Time
 3211,BPO,train,F135 Depot Customer Support Engineer (Onsite)
-3213,ENGINEERING,test,Quality Engineer
-3215,ENGINEERING,val,Senior Systems Engineer
-3217,ACCOUNTANT,train,"IT SOX Sr. Auditor, Internal Audit"
+3213,ENGINEERING,train,Quality Engineer
+3215,ENGINEERING,train,Senior Systems Engineer
+3217,ACCOUNTANT,val,"IT SOX Sr. Auditor, Internal Audit"
 3220,BANKING,train,Personal Banker
 3222,SALES,train,Inside Sales Associate II
 3223,ACCOUNTANT,train,Accounting Manager
 3227,ENGINEERING,train,Senior Process Engineer - Retread
 3230,ACCOUNTANT,train,Controller
-3231,INFORMATION-TECHNOLOGY,train,Network Engineer
+3231,INFORMATION-TECHNOLOGY,val,Network Engineer
 3233,HEALTHCARE,train,Certified Medical Assistant- Brentwood Center for Women's Health
-3236,CONSULTANT,train,Salesforce Non-Profit Consultant
-3241,PUBLIC-RELATIONS,test,Public Relations Account Supervisor
+3236,CONSULTANT,val,Salesforce Non-Profit Consultant
+3241,PUBLIC-RELATIONS,train,Public Relations Account Supervisor
 3244,ADVOCATE,train,Associate Attorney or Entry Level Attorney- 1 to 5 years experience- plaintiff litigation
-3245,HEALTHCARE,val,LICENSED PRACTICAL NURSE - LIBERTY COMMONS OF HALIFAX COUNTY
+3245,HEALTHCARE,train,LICENSED PRACTICAL NURSE - LIBERTY COMMONS OF HALIFAX COUNTY
 3246,ENGINEERING,train,Senior Mechanical Engineer
-3247,INFORMATION-TECHNOLOGY,val,QA Engineer II
+3247,INFORMATION-TECHNOLOGY,train,QA Engineer II
 3248,SALES,val,Account Executive-Central Texas
-3254,ACCOUNTANT,test,Bookkeeper
-3255,BUSINESS-DEVELOPMENT,train,Business Analyst
+3254,ACCOUNTANT,train,Bookkeeper
 3256,ACCOUNTANT,train,Management Company Controller
-3259,PUBLIC-RELATIONS,train,Communications Manager - Ocean/Marine
+3259,PUBLIC-RELATIONS,test,Communications Manager - Ocean/Marine
 3260,ACCOUNTANT,train,Accounts Receivable Administrator - Real Estate
 3263,ENGINEERING,train,Mechanical Engineer
-3272,BUSINESS-DEVELOPMENT,train,Business Development Manager
-3275,HEALTHCARE,val,Registered Nurse - Home Care
+3268,SALES,train,Entry Level Scrap Metal Sales
+3272,BUSINESS-DEVELOPMENT,val,Business Development Manager
+3275,HEALTHCARE,test,Registered Nurse - Home Care
 3278,SALES,train,"Retail, Sales Associate"
 3279,HEALTHCARE,train,"Registered Nurse, Home Health Full Time"
 3282,HEALTHCARE,train,LICENSED PRACTICAL NURSE - CAPITAL NURSING AND REHABILITATION CENTER
 3285,INFORMATION-TECHNOLOGY,test,Middleware Engineer with DevOps
 3286,HEALTHCARE,train,High Risk Cardiology Student Nurse Tech- PT
 3289,CHEF,train,Cook
-3292,INFORMATION-TECHNOLOGY,val,Java Developer
-3295,HEALTHCARE,test,Licensed Practical Nurse - Long-Term Care
+3292,INFORMATION-TECHNOLOGY,train,Java Developer
+3295,HEALTHCARE,train,Licensed Practical Nurse - Long-Term Care
 3297,CONSULTANT,train,SAP PP-PI consultant
 3298,ADVOCATE,train,Senior Litigation Attorney
-3299,ACCOUNTANT,val,Plant Accountant
+3299,ACCOUNTANT,train,Plant Accountant
 3300,BPO,train,Customer Service Representative - $20/hr (Shift Differentials + Hiring Bonus)
+3302,SALES,test,Real Estate Sales Agent
 3303,SALES,train,Assistant Store Manager FT
-3304,SALES,train,"Sales Representative - Portland, OR"
+3304,SALES,test,"Sales Representative - Portland, OR"
 3306,SALES,train,Lead-Inside Sales
-3308,CONSULTANT,train,Regional In Home Sales Consultant Solar
+3308,SALES,val,Regional In Home Sales Consultant Solar
 3309,HEALTHCARE,train,"Physician (Internal Medicine) - Los Benos, CA"
 3310,ACCOUNTANT,train,Accounts Payable Coordinator
-3311,APPAREL,train,Women’s Apparel Prints & Graphics Designer
-3316,CHEF,val,"Restaurant Crewmember - Cook, Cashier, and Customer Service"
+3311,APPAREL,val,Women’s Apparel Prints & Graphics Designer
+3316,CHEF,train,"Restaurant Crewmember - Cook, Cashier, and Customer Service"
 3319,INFORMATION-TECHNOLOGY,train,Senior Data Analyst - Alteryx 
-3325,HEALTHCARE,test,"Associate Director, Regional Pharmacist Operations Support"
+3322,SALES,test,Sales And Marketing Representative
+3325,HEALTHCARE,train,"Associate Director, Regional Pharmacist Operations Support"
 3327,BANKING,train,Customer Experience Banker- Johnstown Oh
-3330,INFORMATION-TECHNOLOGY,val,GCP Data Engineer
+3330,INFORMATION-TECHNOLOGY,train,GCP Data Engineer
 3332,ENGINEERING,val,Industrial Engineer
 3334,ACCOUNTANT,train,Bookkeeper
-3335,INFORMATION-TECHNOLOGY,train,Senior Systems Administrator
+3335,INFORMATION-TECHNOLOGY,test,Senior Systems Administrator
 3338,ACCOUNTANT,train,Accounting Manager
 3344,INFORMATION-TECHNOLOGY,test,Entry Level Software Engineer
-3345,ADVOCATE,test,Associate Corporate Counsel
+3345,ADVOCATE,train,Associate Corporate Counsel
 3346,AVIATION,train,Program Manager - Aviation Security
 3349,HEALTHCARE,train,Licensed Practical Nurse (LPN)
-3351,ACCOUNTANT,val,Property Accountant
+3351,ACCOUNTANT,train,Property Accountant
 3352,HEALTHCARE,train,Registered Nurse ( RN ) - 8th Floor
 3353,HEALTHCARE,train,Nurse - RN - LTC
 3356,SALES,train,Retail Sales Associate
-3363,HEALTHCARE,val,LPN Licensed Practical Nurse
-3369,HR,val,Bilingual Human Resources Assistant
+3363,HEALTHCARE,train,LPN Licensed Practical Nurse
+3369,HR,train,Bilingual Human Resources Assistant
 3372,HEALTHCARE,train,REGISTERED NURSE - RN - SKILLED NURSING FACILITY
-3376,HR,train,Talent Acquisition Specialist
+3373,SALES,train,Medical Device Sales Representative
+3376,HR,val,Talent Acquisition Specialist
 3380,HEALTHCARE,train,"Registered Nurse (RN)-Acute Care, Family Birthplace Labor and Delivery, FT, Nights"
-3381,BANKING,test,"Customer Experience Banker- (Bilingual Spanish) Cicero, IL"
-3382,FINANCE,train,Control Room Compliance Officer
-3383,HEALTHCARE,train,Patient Care Technician II (Dayshifts) - Trauma ICU
-3385,HEALTHCARE,train,Healthcare Clinical System Support Analyst
+3381,BANKING,train,"Customer Experience Banker- (Bilingual Spanish) Cicero, IL"
+3382,FINANCE,test,Control Room Compliance Officer
+3383,HEALTHCARE,val,Patient Care Technician II (Dayshifts) - Trauma ICU
+3385,HEALTHCARE,val,Healthcare Clinical System Support Analyst
 3387,HEALTHCARE,train,Registered Nurse (RN)
 3388,HEALTHCARE,train,Physical Therapist PRN
 3389,ADVOCATE,test,Legal Assistant
-3390,TEACHER,train,Lead Teacher
+3390,TEACHER,val,Lead Teacher
 3396,INFORMATION-TECHNOLOGY,train,Data Analyst-CA
-3397,ADVOCATE,train,Migrant/ Farmworker Bilingual Attorney
-3405,SALES,test,Long-Term Care Regional Account Manager - Northeast
+3397,ADVOCATE,val,Migrant/ Farmworker Bilingual Attorney
+3405,SALES,train,Long-Term Care Regional Account Manager - Northeast
 3407,HEALTHCARE,test,Registered Nurse - Med/Surg 4th
 3409,ACCOUNTANT,train,Accounts Payable Specialist
 3413,ENGINEERING,train,Senior Electrical Engineer
 3414,HEALTHCARE,train,Clinical Audiologist
-3415,HEALTHCARE,test,Bilingual Spanish Medical Asst. Family Medicine - Vista #4076
+3415,HEALTHCARE,train,Bilingual Spanish Medical Asst. Family Medicine - Vista #4076
 3416,SALES,test,Real Estate Salesperson
-3419,CHEF,train,Chef De Cuisine Upscale Pizzeria
-3421,CONSULTANT,test,Process Improvement Consultant
+3419,CHEF,val,Chef De Cuisine Upscale Pizzeria
+3421,CONSULTANT,val,Process Improvement Consultant
 3425,HEALTHCARE,val,Medical Coding Compliance Specialist ONSITE
-3429,CONSTRUCTION,test,National Team  Manager - Construction Materials Testing
+3429,CONSTRUCTION,train,National Team  Manager - Construction Materials Testing
 3432,HR,train,HR Business Partner (Onsite)
 3433,HEALTHCARE,train,CNA (Certified Nursing Assistant) - ST
-3434,INFORMATION-TECHNOLOGY,test,Property & Casualty Insurance - Senior Data Analyst
+3434,INFORMATION-TECHNOLOGY,train,Property & Casualty Insurance - Senior Data Analyst
 3437,CONSULTANT,train,Financial Crime Americas Sanctions Advisory Director
 3439,HEALTHCARE,val,Emergency Medicine Physician
-3440,HEALTHCARE,test,REGISTERED NURSE - LIBERTY COMMONS  NURSING & REHAB CENTER OF ROWAN COUNTY
+3440,HEALTHCARE,val,REGISTERED NURSE - LIBERTY COMMONS  NURSING & REHAB CENTER OF ROWAN COUNTY
 3441,INFORMATION-TECHNOLOGY,train,Software Engineer
 3442,SALES,train,"Sales Associate / Key Sales / Seasonal Opportunities - Banter by Piercing Pagoda - Los Cerritos Center - Cerritos, CA"
-3444,HEALTHCARE,train,"Physical Therapist - $5,000 Sign On Bonus!!"
+3444,HEALTHCARE,test,"Physical Therapist - $5,000 Sign On Bonus!!"
 3445,SALES,train,Assistant Retail Manager
 3447,INFORMATION-TECHNOLOGY,train,Software Engineer
 3449,INFORMATION-TECHNOLOGY,val,"Software Engineer III, Platforms Infrastructure Engineering"
 3450,INFORMATION-TECHNOLOGY,train,Software Engineer - Senior
-3454,SALES,test,Retail Sales Technology Supervisor
+3454,SALES,train,Retail Sales Technology Supervisor
 3458,HEALTHCARE,train,Physical Therapist
-3459,INFORMATION-TECHNOLOGY,val,Data Engineer
-3463,ACCOUNTANT,train,Assistant Controller - Cal State LA
+3459,INFORMATION-TECHNOLOGY,train,Data Engineer
+3461,SALES,val,"FT Sales Supervisor - Venice, CA"
+3463,ACCOUNTANT,val,Assistant Controller - Cal State LA
 3465,BANKING,train,Personal Banker SAFE Act - LaGuardia Place Branch - On-Site
-3466,CONSTRUCTION,val,"Director, Construction Management & Inspection"
-3469,HEALTHCARE,train,LICENSED PRACTICAL NURSE - LIBERTY COMMONS OF ALAMANCE COUNTY
-3470,CONSTRUCTION,train,Plumber
+3466,CONSTRUCTION,train,"Director, Construction Management & Inspection"
+3469,HEALTHCARE,test,LICENSED PRACTICAL NURSE - LIBERTY COMMONS OF ALAMANCE COUNTY
+3470,CONSTRUCTION,test,Plumber
 3473,HEALTHCARE,train,Progressive Care Clinical Nurse Coordinator
+3474,SALES,train,Director of Sales
 3475,ENGINEERING,train,Quality Engineer
 3476,HEALTHCARE,train,Surgical ICU Nursing Assistant 36 hr days
-3480,ACCOUNTANT,test,Night Auditor -DoubleTree Cedar Rapids
-3482,HEALTHCARE,train,Physician: General Ophthalmology Opportunity - Chicago's Western Suburbs
+3480,ACCOUNTANT,val,Night Auditor -DoubleTree Cedar Rapids
+3482,HEALTHCARE,val,Physician: General Ophthalmology Opportunity - Chicago's Western Suburbs
 3484,HEALTHCARE,train,Pharmacist Intern
 3485,HR,train,Human Resources Manager
 3487,HEALTHCARE,train,Critical Care Clinical Nurse Coordinator RN
 3488,HR,train,Technical/College Recruiter
-3491,SALES,val,Buy-Side Solutions Sales Specialist
+3491,SALES,train,Buy-Side Solutions Sales Specialist
 3492,BANKING,train,Mortgage Fulfillment Manager
-3495,HEALTHCARE,val,Physical Therapist PT Home Health PRN
-3502,HR,train,People Operations Intern
-3503,SALES,test,"Sr Account Executive, Healthcare Workforce Solutions"
+3495,HEALTHCARE,train,Physical Therapist PT Home Health PRN
+3502,HR,val,People Operations Intern
+3503,SALES,train,"Sr Account Executive, Healthcare Workforce Solutions"
 3507,HEALTHCARE,train,"Nurse, (LVN)"
 3512,HR,train,Human Resources Generalist 3
 3516,HEALTHCARE,train,"RN Registered Nurse $3,500 Sign-on Bonus"
@@ -1273,311 +1332,316 @@ jd_id,category,split,title
 3527,FITNESS,train,Health Fitness Professional - Substitute
 3531,TEACHER,train,Child Care Classroom Teacher
 3532,ACCOUNTANT,train,Senior Accountant
-3533,HEALTHCARE,train,"Sr. Professional Staff Nurse BSN (Part Time) Operating Room, UPMC Carlisle"
+3533,HEALTHCARE,test,"Sr. Professional Staff Nurse BSN (Part Time) Operating Room, UPMC Carlisle"
 3534,ENGINEERING,train,Mechanical Engineer
-3535,HEALTHCARE,train,Physical Therapist *$5k Sign-on!*
-3538,BUSINESS-DEVELOPMENT,test,Business Analyst
-3541,INFORMATION-TECHNOLOGY,val,Senior Federal DevOps Engineer
+3535,HEALTHCARE,val,Physical Therapist *$5k Sign-on!*
+3541,INFORMATION-TECHNOLOGY,train,Senior Federal DevOps Engineer
 3542,BANKING,train,"Financial Analyst Senior, Hybrid, New Brunswick"
-3543,HEALTHCARE,val,"Locum Gastroenterology Physician job in Las Cruces, NM - Make $295/hr - $320/hr"
-3545,CONSTRUCTION,test,Collision Estimator
+3543,HEALTHCARE,train,"Locum Gastroenterology Physician job in Las Cruces, NM - Make $295/hr - $320/hr"
+3545,CONSTRUCTION,train,Collision Estimator
 3546,HEALTHCARE,train,OCCUPATIONAL THERAPIST (OT) - YADKIN NURSING CARE CENTER
 3547,HEALTHCARE,train,Charge Registered Nurse - FT DAYS | New Braunfels LTACH/Rehab
 3549,HR,train,Human Resources Director
+3551,SALES,train,Remote Sales
 3554,ACCOUNTANT,train,Gaming Tax Accountant
 3557,TEACHER,train,"Dean of Curriculum, Instruction, and Assessment (DCI-24)"
 3559,SALES,train,Store Manager - 24005634
-3561,ARTS,test,"MAC Artist - Part Time - Memorial City - Houston, TX"
+3561,ARTS,train,"MAC Artist - Part Time - Memorial City - Houston, TX"
 3562,HEALTHCARE,train,Clinical Project Manager
 3564,ADVOCATE,train,Corporate Lawyer
 3565,ACCOUNTANT,train,Project Accountant
 3566,BANKING,test,Cons Bnkng Relationship Spec (Relationship Banker)
 3567,FITNESS,test,"Outreach Athletic Trainer - Sport Medicine - PartTime, Rotating Shift"
-3571,CONSTRUCTION,train,Site Cost Estimator
-3575,ACCOUNTANT,test,Senior Accountant- Management Company
-3578,ACCOUNTANT,val,Financial Controller
+3571,CONSTRUCTION,test,Site Cost Estimator
+3575,ACCOUNTANT,train,Senior Accountant- Management Company
+3578,ACCOUNTANT,train,Financial Controller
 3581,SALES,train,Sports-Minded Sales Representative
-3583,CONSULTANT,train,Workforce Development Consultant II
-3587,ADVOCATE,train,Legal Assistant - Washington DC
-3593,ACCOUNTANT,train,Accounting Manager
-3603,HEALTHCARE,val,Physical Therapist Assistant
-3620,HEALTHCARE,val, Medical Lab Scientist
+3583,CONSULTANT,test,Workforce Development Consultant II
+3587,ADVOCATE,test,Legal Assistant - Washington DC
+3593,ACCOUNTANT,test,Accounting Manager
+3603,HEALTHCARE,test,Physical Therapist Assistant
+3611,SALES,train,Wireless Sales Pro
+3620,HEALTHCARE,train, Medical Lab Scientist
 3621,ENGINEERING,train,Quality Engineer - Aerospace
 3624,INFORMATION-TECHNOLOGY,train,"Lead Software Engineer, Front End"
 3625,AUTOMOBILE,train,Vehicle Acquisition Specialist - Honda on Arapahoe
-3629,HEALTHCARE,train,Registered Nurse - Community Based Mental Health Programs
-3635,HEALTHCARE,val,"Travel Nurse RN - ICU/Critical Care in Monroe, MI - Excellent Benefits 2024-04-12"
-3636,ARTS,test,Ophthalmic Photographer
-3641,ENGINEERING,val,Mechanical Engineer
+3629,HEALTHCARE,test,Registered Nurse - Community Based Mental Health Programs
+3635,HEALTHCARE,train,"Travel Nurse RN - ICU/Critical Care in Monroe, MI - Excellent Benefits 2024-04-12"
+3636,ARTS,val,Ophthalmic Photographer
+3641,ENGINEERING,train,Mechanical Engineer
 3643,HR,train,Recruiter & Employee Engagement Coordinator
 3644,CONSULTANT,train,Sr. Principal Consultant - Wholesale Distribution / Retail
 3646,SALES,train,Key Account Manager
 3648,HEALTHCARE,test,Registered Nurse (RN) – Emergency Department
 3653,SALES,train,Industrial Sales Manager
-3656,INFORMATION-TECHNOLOGY,train,Software Engineer - Workday Integrations
+3656,INFORMATION-TECHNOLOGY,test,Software Engineer - Workday Integrations
 3660,CONSTRUCTION,train,Regional Maintenance Mechanic- Electrician (Redmond)
-3670,INFORMATION-TECHNOLOGY,val,Data Analyst
-3672,SALES,train,Grants Account Manager
+3670,INFORMATION-TECHNOLOGY,test,Data Analyst
+3672,SALES,val,Grants Account Manager
+3678,SALES,test,Sales Engineer - Semiconductor Capital Equipment OEM
 3679,HEALTHCARE,train,Clinical Fellow Speech Language Pathologist 
-3682,INFORMATION-TECHNOLOGY,train,Senior Data Engineer
+3682,INFORMATION-TECHNOLOGY,test,Senior Data Engineer
 3684,CONSULTANT,train,"Senior Consultant, Total Rewards"
 3685,CONSTRUCTION,val,Project Engineer - Heavy Civil Construction
 3686,HEALTHCARE,train,Registered Nurse (RN)
-3687,BUSINESS-DEVELOPMENT,test,Business Analyst
 3688,ADVOCATE,train,Personal Injury Legal Assistant
 3694,HEALTHCARE,test,"Patient Care Associate II, Cardiac Svcs Full Time Night"
-3695,ACCOUNTANT,train,Accounting Manager
-3700,ACCOUNTANT,test,Accounting Manager
+3695,ACCOUNTANT,test,Accounting Manager
+3700,ACCOUNTANT,train,Accounting Manager
 3706,SALES,train,Sales Associate - Full Time
-3710,BUSINESS-DEVELOPMENT,test,Business Development Coordinator
+3710,BUSINESS-DEVELOPMENT,train,Business Development Coordinator
 3712,INFORMATION-TECHNOLOGY,val,Web Developer
-3713,HEALTHCARE,train,Clinical Psychologist
+3713,HEALTHCARE,val,Clinical Psychologist
 3720,ADVOCATE,train,Senior Counsel - Corporate and Securities
-3721,HEALTHCARE,train,Home Care Registered Nurse
+3721,HEALTHCARE,val,Home Care Registered Nurse
 3722,ACCOUNTANT,train,Accounts Payable Specialist
-3727,SALES,test,Outside Sales Rep.- Document Solutions
+3727,SALES,train,Outside Sales Rep.- Document Solutions
 3728,CONSTRUCTION,train,Project Manager/Estimator (Earthwork)
 3730,INFORMATION-TECHNOLOGY,train,Data Engineer II
 3736,AUTOMOBILE,test,Automotive Technician / Mechanic | Up to $50/Hr* & Weekends Off | South Scottsdale
-3737,CHEF,test,"Pastry Cook, Baker l (Full-Time) - Hilton Orlando Buena Vista Palace"
-3740,ACCOUNTANT,train,Payroll Analyst
+3737,CHEF,train,"Pastry Cook, Baker l (Full-Time) - Hilton Orlando Buena Vista Palace"
+3740,ACCOUNTANT,test,Payroll Analyst
 3741,HEALTHCARE,train,Vanderbilt Laboratory Services Hiring Event - Clinical Laboratory Associate 2
-3745,HEALTHCARE,train,Supervisor-Food + Nutrition (Patient Care Services)
-3752,CONSULTANT,test,Sales Consultant
-3754,HEALTHCARE,test,Medical Laboratory Scientist (MT/MLT) (ASCP) - Microbiology - 10K Sign on bonus
+3745,HEALTHCARE,val,Supervisor-Food + Nutrition (Patient Care Services)
+3752,SALES,train,Sales Consultant
+3754,HEALTHCARE,train,Medical Laboratory Scientist (MT/MLT) (ASCP) - Microbiology - 10K Sign on bonus
 3757,BANKING,train,Financial Analyst
 3762,BUSINESS-DEVELOPMENT,train,Assistant Director of Business Development
-3763,BUSINESS-DEVELOPMENT,val,Business Development Coordinator
+3763,BUSINESS-DEVELOPMENT,train,Business Development Coordinator
 3766,SALES,train,"Specialist 4, Product Sales Support & Analysis - Inside Sales, Voice Strategy (Inbound) (1 of 4)"
-3767,INFORMATION-TECHNOLOGY,test,Software Engineer II – Fulfillment
+3767,INFORMATION-TECHNOLOGY,train,Software Engineer II – Fulfillment
 3768,HEALTHCARE,train,Physician Advisor
 3769,SALES,train,Technical Account Manager
-3772,BUSINESS-DEVELOPMENT,val,Business Development Manager
-3773,HR,train,Real Estate Agent Recruiter
-3775,HEALTHCARE,val,Summer 2024 Nurse Extern Program - Ephrata Hospital
+3772,BUSINESS-DEVELOPMENT,train,Business Development Manager
+3773,HR,val,Real Estate Agent Recruiter
+3775,HEALTHCARE,train,Summer 2024 Nurse Extern Program - Ephrata Hospital
 3776,HEALTHCARE,train,ROI Medical Records Specialist - On Site
-3778,HEALTHCARE,test,New Braunfels Home Health Nurse - Part Time
-3782,SALES,train,"Account Executive, Climate"
-3783,SALES,train,Commercial Insurance Account Manager
+3778,HEALTHCARE,val,New Braunfels Home Health Nurse - Part Time
+3782,SALES,val,"Account Executive, Climate"
+3783,SALES,test,Commercial Insurance Account Manager
 3786,HEALTHCARE,val,OB Surgical Technologist (Non-Exempt)
 3788,SALES,train,"Retail Sales Associate, Manhasset - Full Time"
+3790,SALES,test,Firearm Sales Outfitter-3
 3791,ADVOCATE,train,M&A/PE Associate (Attorney) - Various Locations
 3798,SALES,train,Field Sales Manager
-3800,FINANCE,train,Senior Portfolio Investment Analyst – Equity
-3805,HEALTHCARE,train,"Biomedical Science Faculty, Clinical Chairs"
-3807,HR,val,Sales Trainee/Recruiter
-3808,INFORMATION-TECHNOLOGY,train,Data Engineer
-3809,INFORMATION-TECHNOLOGY,val,"Senior Software Engineer, Embedded Systems/Firmware, Pixel"
+3800,FINANCE,test,Senior Portfolio Investment Analyst – Equity
+3804,SALES,train,Full Desk Legal Search Consultant/Recruiter and Sales
+3805,HEALTHCARE,test,"Biomedical Science Faculty, Clinical Chairs"
+3807,SALES,test,Sales Trainee/Recruiter
+3808,INFORMATION-TECHNOLOGY,test,Data Engineer
+3809,INFORMATION-TECHNOLOGY,train,"Senior Software Engineer, Embedded Systems/Firmware, Pixel"
 3813,CHEF,train,Cook - Wisconsin Room - Destination Kohler
-3815,SALES,val,Store Manager - Circle Centre Mall
+3815,SALES,test,Store Manager - Circle Centre Mall
 3816,INFORMATION-TECHNOLOGY,train,Full Stack Engineer
 3819,HEALTHCARE,train,Certified Nursing Assistant (CNA) Agency free facility
 3820,HEALTHCARE,train,Clinical Psychologist - Yuma AZ
 3822,CONSTRUCTION,train,Construction Superintendent
-3824,HEALTHCARE,test,Physical Therapist Assistant - SNF
+3824,HEALTHCARE,train,Physical Therapist Assistant - SNF
 3827,SALES,train,Personal Lines Account Manager
 3828,ACCOUNTANT,train,Controller
-3830,CONSTRUCTION,train,HVAC/R Technician
+3830,CONSTRUCTION,test,HVAC/R Technician
 3833,INFORMATION-TECHNOLOGY,test,"Software Engineer III, Payments"
 3834,ACCOUNTANT,test,Senior Accountant
 3838,CONSULTANT,train,Compliance Advisory & Monitoring Leader
 3839,HEALTHCARE,train,Clinical Documentation Abstractor
-3840,BUSINESS-DEVELOPMENT,val,New Business Development- Mfg (West Coast)
-3842,BANKING,val,Financial Advisor - wealth management 
-3844,INFORMATION-TECHNOLOGY,test,Network Engineer
-3846,HEALTHCARE,train,"TravelNurseSource - Travel Registered Nurse - CVICU - $2,540 to $2,816 / week"
-3847,CONSULTANT,test,HashiCorp Consultant
-3848,HR,train,Recruiter (Entry Level)
-3853,HEALTHCARE,test,Traveling Phlebotomist
+3840,BUSINESS-DEVELOPMENT,train,New Business Development- Mfg (West Coast)
+3842,BANKING,test,Financial Advisor - wealth management 
+3844,INFORMATION-TECHNOLOGY,val,Network Engineer
+3846,HEALTHCARE,test,"TravelNurseSource - Travel Registered Nurse - CVICU - $2,540 to $2,816 / week"
+3847,CONSULTANT,train,HashiCorp Consultant
+3848,HR,val,Recruiter (Entry Level)
+3853,HEALTHCARE,train,Traveling Phlebotomist
 3854,HEALTHCARE,train,Occupational Health Nurse
-3856,ADVOCATE,train,Associate Attorney
+3856,ADVOCATE,test,Associate Attorney
 3857,HEALTHCARE,train,"Occupational Health Registered Nurse, Wood River"
 3858,ENGINEERING,val,Mechanical Engineer
-3860,ACCOUNTANT,val,Senior Accountant – Inventory & Job Costing
+3860,ACCOUNTANT,train,Senior Accountant – Inventory & Job Costing
 3861,SALES,val,Account Executive
 3862,ACCOUNTANT,train,Accounting Manager - Fixed Assets and Lease Accounting
 3865,HEALTHCARE,train,"Senior Director, Clinical Development (exclusive)"
 3866,SALES,train,Independent Insurance Agent - Outside Sales
-3869,INFORMATION-TECHNOLOGY,val,Software Engineer- Federal
+3869,INFORMATION-TECHNOLOGY,train,Software Engineer- Federal
 3872,INFORMATION-TECHNOLOGY,train,Data Analyst - Power BI & SQL
 3877,SALES,train,"Retail Sales Associate, Lakeside - Full Time"
 3878,SALES,train,Inside Sales Representative
-3880,ENGINEERING,test,Embedded Systems Engineer
+3880,ENGINEERING,train,Embedded Systems Engineer
 3881,INFORMATION-TECHNOLOGY,train,DevOps Engineer
-3883,ADVOCATE,test,Corporate Paralegal
-3891,APPAREL,test,Merchandise and Stocking Associate
+3883,ADVOCATE,train,Corporate Paralegal
 3892,ENGINEERING,train,Sr Robotics Manufacturing Engineer
 3894,HEALTHCARE,train,"Travel Nurse RN - Dialysis - $2,026 per week in Jersey City, NJ"
-3896,CHEF,train,Chef de Cuisine - Chez Maggy Restaurant 
-3897,SALES,train,"Sr Account Manager, Oil & Gas Process Solutions"
+3896,CHEF,val,Chef de Cuisine - Chez Maggy Restaurant 
+3897,SALES,val,"Sr Account Manager, Oil & Gas Process Solutions"
 3898,INFORMATION-TECHNOLOGY,train,Sr. Software Engineer/API Developer
-3900,SALES,train,Store Manager Trainee
+3900,SALES,val,Store Manager Trainee
 3901,INFORMATION-TECHNOLOGY,train,Principal Software Developer
-3906,BUSINESS-DEVELOPMENT,train,Business Development Manager
-3907,DESIGNER,test,Product UX Designer- Pet DNA (Contractor)
-3912,SALES,train,Sales Account Manager
-3917,DIGITAL-MEDIA,val,Content Creator
-3922,SALES,test,District Sales Manager
+3906,BUSINESS-DEVELOPMENT,val,Business Development Manager
+3907,DESIGNER,train,Product UX Designer- Pet DNA (Contractor)
+3912,SALES,val,Sales Account Manager
+3917,DIGITAL-MEDIA,train,Content Creator
+3922,SALES,train,District Sales Manager
 3928,HEALTHCARE,train,Physical Therapist / PT - Rehab
 3931,TEACHER,test,Lead Teacher
 3936,PUBLIC-RELATIONS,train,IT Communications Specialist
-3938,INFORMATION-TECHNOLOGY,train,Network Engineer (contract to hire)
+3938,INFORMATION-TECHNOLOGY,val,Network Engineer (contract to hire)
 3943,CONSULTANT,train,Benefits Consultant
 3948,HEALTHCARE,train,Registered Nurse - NICU
 3951,HEALTHCARE,test,"Travel - Med Surg - Nurse Job - $1,885/wk - $2,074/wk"
-3953,HEALTHCARE,train,Nurse Navigator Mabry Cancer Center
-3955,AUTOMOBILE,test,Automotive Sales Lot Attendant
-3957,SALES,train,PRS Account Executive
-3959,BUSINESS-DEVELOPMENT,test,Senior Business Analyst
+3953,HEALTHCARE,test,Nurse Navigator Mabry Cancer Center
+3955,SALES,train,Automotive Sales Lot Attendant
+3957,SALES,test,PRS Account Executive
 3963,HEALTHCARE,train,Medical Assistant Internal Medicine
-3966,HR,test,Regional HR Business Partner
-3968,PUBLIC-RELATIONS,test,Communications Specialist (Must have a Secret Clearance)
-3971,BUSINESS-DEVELOPMENT,train,Financial Systems Business Analyst-Jr
-3973,INFORMATION-TECHNOLOGY,train,Senior/Lead Cloud Database Administrator (Cloud DBA)
-3975,ENGINEERING,test,Quality Engineer with solid IATF knowledge
-3977,HEALTHCARE,val,Travel OR Tech (Surgical Tech) CVOR (Cardiovascular Operating room)
+3966,HR,train,Regional HR Business Partner
+3968,PUBLIC-RELATIONS,train,Communications Specialist (Must have a Secret Clearance)
+3973,INFORMATION-TECHNOLOGY,test,Senior/Lead Cloud Database Administrator (Cloud DBA)
+3975,ENGINEERING,val,Quality Engineer with solid IATF knowledge
+3977,HEALTHCARE,train,Travel OR Tech (Surgical Tech) CVOR (Cardiovascular Operating room)
 3978,INFORMATION-TECHNOLOGY,train,"Senior Software Engineer II-Hybrid in Boca Raton, FL"
 3981,ENGINEERING,train,Staff Design Assurance Quality Engineer - SW
 3983,HEALTHCARE,train,Onsite Medical Representative
 3984,INFORMATION-TECHNOLOGY,train,"MS SQL, Database Administrator- Washington DC"
 3985,INFORMATION-TECHNOLOGY,train,Lead Cloud Software Engineer
-3987,HEALTHCARE,train,CERTIFIED NURSING ASSISTANT - THE KEMPTON of CHARLESTON
-3991,BUSINESS-DEVELOPMENT,train,Business Analyst with ESG
-3992,HR,val,Human Resources Co-Op - Fall 2024
+3987,HEALTHCARE,test,CERTIFIED NURSING ASSISTANT - THE KEMPTON of CHARLESTON
+3992,HR,train,Human Resources Co-Op - Fall 2024
 3993,SALES,train,Account Executive - Inner Loop
 3996,INFORMATION-TECHNOLOGY,train,Full Stack Engineer
 3998,SALES,train,Outside Sales Representative Outside Sales
-4001,CONSULTANT,train,"SAP Ariba Consultant : : USC, GC"
+3999,SALES,train,Digital Marketing Sales Representative: Cincinnati OH
+4001,CONSULTANT,test,"SAP Ariba Consultant : : USC, GC"
 4004,ACCOUNTANT,train,Accounts Payable Specialist
 4005,HEALTHCARE,test,Physician - Gastroenterology
 4010,HEALTHCARE,train,*Licensed Practical Nurse - PRN Days| Heritage Valley LTACH
-4012,BANKING,train,Senior Underwriter
+4012,BANKING,val,Senior Underwriter
 4016,HEALTHCARE,test,"Occupational Therapist (OT) Clinical Specialist, Day Shift, Inpatient Rehabilitation"
-4021,HR,val,Senior HRIS Analyst
-4027,SALES,test,Outside Sales Representative
-4030,HEALTHCARE,test,LICENSED PRACTICAL NURSE (LPN) - THE FOLEY CENTER AT CHESTNUT RIDGE
+4021,HR,train,Senior HRIS Analyst
+4027,SALES,train,Outside Sales Representative
+4030,HEALTHCARE,train,LICENSED PRACTICAL NURSE (LPN) - THE FOLEY CENTER AT CHESTNUT RIDGE
 4035,CONSTRUCTION,train,Countertop Installer (construction/install) - Full-time
-4037,SALES,train,PT Produce Sales Associate
+4037,SALES,test,PT Produce Sales Associate
 4043,CONSTRUCTION,train,"Civil Engineer -Superior WI (Duluth, MN) or St. Paul, MN"
-4045,ACCOUNTANT,val,ACCOUNTANT II
+4045,ACCOUNTANT,train,ACCOUNTANT II
 4046,CONSTRUCTION,train,Construction Quality Manager
 4048,SALES,train,FT Produce Sales Manager (H)
-4049,CONSULTANT,test,Gen AI Consultant/Developer
+4049,CONSULTANT,train,Gen AI Consultant/Developer
 4060,FINANCE,train,Specialty Lines Pricing Actuary - PR12703
 4062,HR,train,Human Resources Coordinator
 4063,ACCOUNTANT,train,Internal Auditor Intern
 4065,INFORMATION-TECHNOLOGY,train,Principal Linux Systems Administrator
-4069,HEALTHCARE,train,Clinical Supervisor - Physical Therapist - InMotion Downtown Suffolk
-4071,HEALTHCARE,test,Registered Nurse - RN - LTAC
-4074,BANKING,val,Senior Financial Analyst - Supply Chain
-4076,CONSULTANT,train,Customer Relationship Management Consultant
-4077,ENGINEERING,val,Senior Quality Engineer
-4082,BUSINESS-DEVELOPMENT,val,Business Development/Sales Director (Remote)
+4069,HEALTHCARE,test,Clinical Supervisor - Physical Therapist - InMotion Downtown Suffolk
+4071,HEALTHCARE,train,Registered Nurse - RN - LTAC
+4074,BANKING,train,Senior Financial Analyst - Supply Chain
+4076,CONSULTANT,val,Customer Relationship Management Consultant
+4077,ENGINEERING,train,Senior Quality Engineer
+4082,SALES,val,Business Development/Sales Director (Remote)
 4087,HEALTHCARE,train,Registered Nurse (RN)--PACU --THCDS --PRN II Days
-4088,HEALTHCARE,val,Patient Care Technician
+4088,HEALTHCARE,train,Patient Care Technician
 4089,BUSINESS-DEVELOPMENT,train,Market Development Manager
-4090,HEALTHCARE,train,Center Manager Physical Therapist
+4090,HEALTHCARE,test,Center Manager Physical Therapist
 4092,HEALTHCARE,train,"Medical Assistant, Per Diem, Ambulatory Cardiology"
 4097,CHEF,train,EXECUTIVE CHEF - Waterfront Restaurant
 4100,SALES,train,H&M Sales Associate
-4105,SALES,train,Sales Executive
+4105,SALES,val,Sales Executive
 4112,INFORMATION-TECHNOLOGY,train,Sr. Software Engineer
 4115,ARTS,train,Photographer
-4119,ENGINEERING,train,Manufacturing Engineer
-4121,ACCOUNTANT,train,Bookkeeper and Administrative/HR Assistant
+4119,ENGINEERING,test,Manufacturing Engineer
+4121,ACCOUNTANT,val,Bookkeeper and Administrative/HR Assistant
 4124,BUSINESS-DEVELOPMENT,train,Business Development Representative
 4127,ACCOUNTANT,train,Payroll Manager
-4131,HEALTHCARE,val,Dialysis Patient Care Technician - WILL TRAIN
-4132,CONSTRUCTION,val,Plumber
+4131,HEALTHCARE,train,Dialysis Patient Care Technician - WILL TRAIN
+4132,CONSTRUCTION,train,Plumber
 4135,SALES,train,Store Manager
 4138,INFORMATION-TECHNOLOGY,train,Data Analyst
+4141,SALES,train,"Manager, Sales and Customer Service"
 4143,HEALTHCARE,train,Medical Lab Scientist (MLS II)
 4147,HEALTHCARE,train,"Nurse Navigator, Heart Failure Clinic"
-4155,ACCOUNTANT,test,Senior Accountant
+4155,ACCOUNTANT,train,Senior Accountant
 4162,HEALTHCARE,train,Certified Nursing Assistant (CNA)
-4163,HEALTHCARE,train,Limited Casual Professional Staff Nurse
+4163,HEALTHCARE,val,Limited Casual Professional Staff Nurse
 4165,HEALTHCARE,test,Hospitalist Physician - $185/yearly
 4168,HEALTHCARE,train,Seeking Registered Nurse (RN) ~ Dialysis Experienced (Part-time)!!
 4169,FINANCE,train,Economist / Quantitative Risk Analyst Senior
+4171,SALES,train,Outside Pest Control Sales Inspector
 4173,HEALTHCARE,train,Phlebotomist
 4175,DESIGNER,train,Senior Visual Designer
-4176,HEALTHCARE,train,Licensed Practical Nurse
+4176,HEALTHCARE,val,Licensed Practical Nurse
 4177,FITNESS,train,Family Wellness Assistant - AmeriCorps Member
-4181,INFORMATION-TECHNOLOGY,val,Big Data Engineer with AWS (Only W2 Candidates)
-4182,SALES,test,Sales Account Executive
+4181,INFORMATION-TECHNOLOGY,train,Big Data Engineer with AWS (Only W2 Candidates)
+4182,SALES,train,Sales Account Executive
 4185,BPO,train,"Customer Service Representative, Full or Part Time"
-4187,HEALTHCARE,test,"Travel - Med Surg - Nurse Job - $2,736/wk - $2,925/wk"
-4188,HEALTHCARE,train,"Clinical Sales Professional, Community Specialties "
+4187,HEALTHCARE,val,"Travel - Med Surg - Nurse Job - $2,736/wk - $2,925/wk"
+4188,SALES,test,"Clinical Sales Professional, Community Specialties "
 4191,HEALTHCARE,train,Clinical Program Coordinator RN *Remote*
-4192,ENGINEERING,val,Line Quality Engineer
+4192,ENGINEERING,train,Line Quality Engineer
 4193,HR,train,Senior Corporate Recruiter
 4195,HEALTHCARE,train,Registered Nurse
-4199,AUTOMOBILE,train,Vehicle Service Technician (Fleet)
+4199,AUTOMOBILE,val,Vehicle Service Technician (Fleet)
 4200,HEALTHCARE,test,Medical Office Admin Support
 4203,SALES,train,Consumer Experience and Specialty Retail Sales Director
 4204,ENGINEERING,train,Procurement Quality Engineer
-4206,SALES,val,Salesperson- No experience needed! Remote position! 60k-185k
+4206,SALES,test,Salesperson- No experience needed! Remote position! 60k-185k
 4210,ACCOUNTANT,train,Credit Fund Controller
 4213,INFORMATION-TECHNOLOGY,train,Software Engineer III - Machine Learning
-4215,HEALTHCARE,train,REGISTERED NURSE-F/T-INTENSIVE CARE NURSERY
-4217,SALES,val,"Sales Representative - Only for Indianapolis, IN Residents"
+4215,HEALTHCARE,test,REGISTERED NURSE-F/T-INTENSIVE CARE NURSERY
+4216,SALES,train,"Retail Ready to Wear Sales Support Associate, Easton - Full Time"
+4217,SALES,train,"Sales Representative - Only for Indianapolis, IN Residents"
 4218,DESIGNER,train,UX Designer III
 4226,SALES,train,Senior Commercial Insurance Account Manager - Cyber & Technology 9501
-4230,CONSTRUCTION,train,Senior Construction Manager
-4233,CONSULTANT,train,Project Delivery Manager - SAP PP/QM (Production Planning/Quality Management) Consultant - TSP
-4234,HEALTHCARE,test,LICENSED PRACTICAL NURSE - LIBERTY COMMONS OF COLUMBUS COUNTY
-4235,APPAREL,train,Apparel Graphic Designer - Licensing
+4230,CONSTRUCTION,test,Senior Construction Manager
+4233,CONSULTANT,val,Project Delivery Manager - SAP PP/QM (Production Planning/Quality Management) Consultant - TSP
+4234,HEALTHCARE,train,LICENSED PRACTICAL NURSE - LIBERTY COMMONS OF COLUMBUS COUNTY
+4235,APPAREL,test,Apparel Graphic Designer - Licensing
 4238,HEALTHCARE,train,Health Solutions – U.S. Broking Medical COE Manager (AVP)
 4242,SALES,train,Assistant Store Manager
-4244,TEACHER,train,CNA Course Instructor
+4244,TEACHER,val,CNA Course Instructor
 4250,HEALTHCARE,train,NURSE PRACTITIONER - 1206d ONCOLOGY SPEC CLINIC
 4252,TEACHER,train,Training Instructor I/MLO
-4254,HEALTHCARE,train,Registered Nurse - RN - Rehab
+4254,HEALTHCARE,test,Registered Nurse - RN - Rehab
+4258,BANKING,train,Part Time - Member Consultant (Personal Banker) - Thurston County Branches
 4259,INFORMATION-TECHNOLOGY,train,Machine Learning Engineer
-4265,HEALTHCARE,test,"Travel Nurse RN - Telemetry - $1,849 per week in Fayetteville, NC"
+4265,HEALTHCARE,train,"Travel Nurse RN - Telemetry - $1,849 per week in Fayetteville, NC"
 4266,ACCOUNTANT,train,Senior Audit Associate
-4267,APPAREL,train,"Manager, Merchandise Execution"
-4268,FITNESS,test,Health Fitness Professional (substitute)
+4268,FITNESS,train,Health Fitness Professional (substitute)
 4271,INFORMATION-TECHNOLOGY,train,Apprentice/Intern - QA Engineer
-4278,SALES,val,Full Line Sales Specialist
-4287,ENGINEERING,val,Electrical Engineer IV - Building Design
+4278,SALES,train,Full Line Sales Specialist
+4286,SALES,val,Sales Engineer
+4287,ENGINEERING,train,Electrical Engineer IV - Building Design
 4289,HEALTHCARE,train,Pharmacist (Full or Part Time)
-4300,DIGITAL-MEDIA,train,Social Media Marketing Specialist
+4290,SALES,train,Sales Assistant (Part Time)
+4300,DIGITAL-MEDIA,val,Social Media Marketing Specialist
 4306,HEALTHCARE,train,000300 - Clinical Operations Management - Medical Assistant
-4316,INFORMATION-TECHNOLOGY,val,"Android Software Engineer, Core and Monetization"
+4316,INFORMATION-TECHNOLOGY,train,"Android Software Engineer, Core and Monetization"
 4318,HEALTHCARE,train,Clinical Addictions Coordinator (Exempt)
-4324,APPAREL,train,General Merchandise
-4325,ACCOUNTANT,train,Staff Accountant (140531)
+4325,ACCOUNTANT,test,Staff Accountant (140531)
 4328,HEALTHCARE,train,Phlebotomy - Phlebotomist II
 4332,HEALTHCARE,train,Medical Scientist
 4333,SALES,train,Sales Representative
-4337,HEALTHCARE,train,Physical Therapist
-4339,ENGINEERING,train,Quality Engineer
+4337,HEALTHCARE,val,Physical Therapist
+4339,ENGINEERING,test,Quality Engineer
 4342,SALES,val,Sales Representative
 4343,INFORMATION-TECHNOLOGY,train,Software Engineer II (Hybrid)
 4349,SALES,train,Investment Sales Specialist
-4350,HEALTHCARE,test,Registered Nurse
+4350,HEALTHCARE,train,Registered Nurse
 4351,SALES,train,Sales Executive (U.S.A)
 4352,TEACHER,train,Durham Tableau Tutor
 4363,HEALTHCARE,train,STAFF NURSE I/II
-4365,CHEF,train,Cook - Cocinero
-4370,CONSTRUCTION,val,Maintenance/Construction Technician III
-4373,AUTOMOBILE,test,"Product Manager, App Execution for a Global Automotive Company in Torrance, CA"
-4374,CHEF,train,AM Prep Cook - Thompson Denver 
+4365,CHEF,val,Cook - Cocinero
+4370,CONSTRUCTION,train,Maintenance/Construction Technician III
+4373,AUTOMOBILE,train,"Product Manager, App Execution for a Global Automotive Company in Torrance, CA"
+4374,CHEF,test,AM Prep Cook - Thompson Denver 
 4375,HEALTHCARE,train,Physical Therapist - Springfield - Rehab - FT/First Shift
 4384,INFORMATION-TECHNOLOGY,train,Systems Administrator Intern
 4386,ADVOCATE,val,Senior Privacy Counsel
-4394,HEALTHCARE,train,Registered Nurse (RN) + $5000 Sign on Bonus!
-4397,ADVOCATE,test,Mid-Senior Level Patent Litigation Associate
+4388,SALES,train,Sales Lead - Chico's
+4394,HEALTHCARE,test,Registered Nurse (RN) + $5000 Sign on Bonus!
+4397,ADVOCATE,val,Mid-Senior Level Patent Litigation Associate
 4398,INFORMATION-TECHNOLOGY,train,Senior Software Engineer - Applications
-4404,HEALTHCARE,val,Registered Nurse
+4404,HEALTHCARE,test,Registered Nurse
 4407,ACCOUNTANT,train,Senior Accountant
 4412,ACCOUNTANT,train,Grants and Contracts Accountant
 4413,SALES,train,Field Sales Representative
-4416,SALES,test,Commercial Insurance Sr. Account Executive (VT) 
+4416,SALES,val,Commercial Insurance Sr. Account Executive (VT) 
 4417,INFORMATION-TECHNOLOGY,train,"Senior Associate, Full-Stack Engineer"
-4418,HEALTHCARE,train,Phlebotomist
-4421,ACCOUNTANT,test,Senior Accountant/Accounting Manager
+4418,HEALTHCARE,val,Phlebotomist
+4421,ACCOUNTANT,train,Senior Accountant/Accounting Manager
 4428,ADVOCATE,train,Labor & Employment Litigation Attorney (Completely Remote)
 4431,HEALTHCARE,train,Registered Nurse - RN - Correctional Facility
 4432,BANKING,train,Universal Banker II | Swansea
@@ -1587,35 +1651,36 @@ jd_id,category,split,title
 4446,CHEF,train,Cashier Food Service
 4448,ACCOUNTANT,train,Accounts Receivable
 4450,INFORMATION-TECHNOLOGY,train,Lead QA Analyst
-4452,ACCOUNTANT,val,Controller – Washington DC
+4452,ACCOUNTANT,train,Controller – Washington DC
 4453,SALES,train,Industry Sales Executive
 4455,SALES,train,Territory Sales Manager
-4457,SALES,val,Sales Associate
+4457,SALES,test,Sales Associate
 4458,ACCOUNTANT,val,Tax Accountant
-4459,HR,val,Human Resources & Risk Mitigation Specialist
-4462,HR,train,"Director, Human Resources"
+4459,HR,test,Human Resources & Risk Mitigation Specialist
+4462,HR,test,"Director, Human Resources"
 4464,HEALTHCARE,train,"Travel Nurse RN - Long-Term Care in Honokaa, HI"
 4467,HEALTHCARE,train,Patient Care Tech- Acute Care Peds 12- Nights
-4468,HEALTHCARE,train,Locum | Physician Psychiatry
+4468,HEALTHCARE,test,Locum | Physician Psychiatry
 4469,HEALTHCARE,train,"Travel Long-Term Care Licensed Practical Nurse**up to 1,800/wk** (LPN)"
-4471,HEALTHCARE,train,Patient Care Technician
+4471,HEALTHCARE,test,Patient Care Technician
 4472,SALES,train,Commercial Insurance Account Manager
+4474,SALES,train,Bridal Sales
 4481,CONSTRUCTION,train,Site Manager
 4483,ACCOUNTANT,train,Accounts Receivable Specialist
-4486,INFORMATION-TECHNOLOGY,train,Senior Software Engineer
+4486,INFORMATION-TECHNOLOGY,val,Senior Software Engineer
 4489,SALES,train,PT Sales Associate Cashier
 4490,ENGINEERING,test,Quality Engineer
-4493,ACCOUNTANT,train,Accounting Manager
+4493,ACCOUNTANT,test,Accounting Manager
 4495,INFORMATION-TECHNOLOGY,train,Software Developer - Intern
-4496,SALES,val,"Outside Sales Representative (Pump & Power) - Nashville, TN"
+4496,SALES,train,"Outside Sales Representative (Pump & Power) - Nashville, TN"
 4498,ACCOUNTANT,train,Accountant
-4505,ARTS,test,Graphic Artist (Temporary)
-4506,HEALTHCARE,val,Registered Nurse RN - Neuro Surgical and Surgical Step Down
+4505,ARTS,train,Graphic Artist (Temporary)
+4506,HEALTHCARE,test,Registered Nurse RN - Neuro Surgical and Surgical Step Down
 4513,AUTOMOBILE,val,Automotive Technician
 4514,SALES,train,Diagnostics Sales Representative
 4516,HEALTHCARE,train,Senior Director Clinical Programs
 4520,ENGINEERING,train,Electrical Engineer (Power Supply)
-4522,CONSTRUCTION,test,"HVAC Technician - St. Cloud, MN"
+4522,CONSTRUCTION,val,"HVAC Technician - St. Cloud, MN"
 4525,HEALTHCARE,train,Patient Care Technician WILL TRAIN
 4526,HEALTHCARE,val,Medical Assistant
 4529,CONSTRUCTION,train,Construction Engineer Warehousing
@@ -1630,71 +1695,73 @@ jd_id,category,split,title
 4557,SALES,train,Entry-Level Sales Representative
 4559,HEALTHCARE,train,"Nurse Practitioner (NP)/Physician Assistant (PA) (Greenville, TX)"
 4560,HEALTHCARE,train,Medical Social Worker Bachelor&#8217;s (Hospice)
-4564,ENGINEERING,train,Principal Manufacturing Engineer
+4564,ENGINEERING,test,Principal Manufacturing Engineer
 4570,HEALTHCARE,train,Value Based Care Medical Director - New Jersey (Hybrid)
-4571,CONSULTANT,train,Sales Consultant
-4573,HR,val,HR Director - Front Line Care
+4571,SALES,train,Sales Consultant
+4573,HR,train,HR Director - Front Line Care
 4577,SALES,train,Vans: Store Manager - Santa Monica Promenade
 4582,ADVOCATE,train,"STAFF ATTORNEY – Housing – Detroit, MI"
 4585,HEALTHCARE,train,Registered Nurse
 4586,CONSTRUCTION,train,FTTH Construction Coordinator
 4587,SALES,train,Store Manager
-4588,ADVOCATE,test,Criminal Defense Attorney
+4588,ADVOCATE,train,Criminal Defense Attorney
 4590,BANKING,train,Loan Officer
+4598,SALES,train,Sales Development Representative
 4600,HEALTHCARE,train,Registered Nurse (RN) Cardiac Cath Lab FT Days
 4602,HEALTHCARE,train,Registered Nurse (RN) - ICU - Intensive Care Unit - $32-52 per hour - R88972
 4607,SALES,train,Inside Sales Engineer
-4611,HEALTHCARE,train,CERTIFIED NURSING ASSISTANT - OAK FOREST HEALTH & REHAB CENTER
+4610,SALES,train,VyStar Insurance Sales Agent
+4611,HEALTHCARE,test,CERTIFIED NURSING ASSISTANT - OAK FOREST HEALTH & REHAB CENTER
 4612,ADVOCATE,train,Attorney
 4613,ACCOUNTANT,train,Accounts Receivable Contractor - $22/HR
-4616,CHEF,train,Executive Chef
+4616,CHEF,test,Executive Chef
 4617,SALES,train,Sales Representative Lead
-4618,HEALTHCARE,test,Registered Nurse (RN) - ICU - Intensive Care Unit - $32-58 per hour - 116397
+4618,HEALTHCARE,train,Registered Nurse (RN) - ICU - Intensive Care Unit - $32-58 per hour - 116397
+4623,SALES,val,Sales Compensation Analyst
 4626,HEALTHCARE,train,Licensed Physical Therapist Assistant Agency Free Facility
 4629,ADVOCATE,train,Associate Attorney
 4631,BPO,val,Customer Service Representative
 4633,ACCOUNTANT,val,Senior Internal Auditor
-4638,SALES,train,Key Account Manager - Injectable Drug Delivery Devices 
-4639,SALES,val,Account Manager - Enterprise
-4640,TEACHER,val,"Class Teacher (Early Years) – St John’s Church of England Primary School, Enfield"
+4638,SALES,test,Key Account Manager - Injectable Drug Delivery Devices 
+4639,SALES,train,Account Manager - Enterprise
+4640,TEACHER,train,"Class Teacher (Early Years) – St John’s Church of England Primary School, Enfield"
 4641,BPO,test,Call Center Representative (ON SITE)
 4642,HR,train,Human Resources Director - Benefits and Compensation
-4647,HEALTHCARE,train,Clinical Supervisor
-4650,ACCOUNTANT,test,Accounting Manager
-4656,HEALTHCARE,train,"Registered Nurse, Medical Intensive Care Unit"
+4647,HEALTHCARE,test,Clinical Supervisor
+4650,ACCOUNTANT,val,Accounting Manager
+4656,HEALTHCARE,test,"Registered Nurse, Medical Intensive Care Unit"
 4659,INFORMATION-TECHNOLOGY,val,Java Developer
-4660,HR,test,Talent Acquisition Specialist
+4660,HR,train,Talent Acquisition Specialist
 4662,HEALTHCARE,test,"Travel - PCU - Nurse Job - $2,296/wk - $2,486/wk"
-4663,ADVOCATE,test,Associate Attorney - Personal Injury (Plaintiff)
+4663,ADVOCATE,train,Associate Attorney - Personal Injury (Plaintiff)
 4664,INFORMATION-TECHNOLOGY,train,Database Administrator
 4672,PUBLIC-RELATIONS,val,Communications Specialist II
-4673,SALES,train,Field Sales Representative
+4673,SALES,val,Field Sales Representative
 4675,DIGITAL-MEDIA,train,Social Media Marketing Intern
-4678,HR,val,Director of Human Resources
-4686,BUSINESS-DEVELOPMENT,test,Senior Business Analyst
+4678,HR,train,Director of Human Resources
 4697,HEALTHCARE,train,REGISTERED NURSE - THE PAVILION HEALTH CENTER
-4699,HEALTHCARE,train,MEDICAL EDUCATION COORD
-4700,ACCOUNTANT,train,Payroll/HR Associate (Pharma/Biotech/Med Devices/Healthcare) - Hybrid!!
-4701,FITNESS,train,Fitness Attendant
+4699,HEALTHCARE,val,MEDICAL EDUCATION COORD
+4700,ACCOUNTANT,test,Payroll/HR Associate (Pharma/Biotech/Med Devices/Healthcare) - Hybrid!!
+4701,FITNESS,val,Fitness Attendant
 4703,ACCOUNTANT,train,Accounting Manager
 4710,HEALTHCARE,train,Hospice Registered Nurse (RN) Case Manager
-4711,HEALTHCARE,test,Patient Care Tech (PCT) / Palliative Care Fulltime Nights
-4713,INFORMATION-TECHNOLOGY,train,Senior Machine Learning Research Engineer
+4711,HEALTHCARE,train,Patient Care Tech (PCT) / Palliative Care Fulltime Nights
+4713,INFORMATION-TECHNOLOGY,val,Senior Machine Learning Research Engineer
 4716,HEALTHCARE,train,NP/PA - Surgical Oncology
 4721,TEACHER,train,3rd Grade Teacher - Tucson - 2024-2025
-4725,INFORMATION-TECHNOLOGY,train,Full-stack Engineer
+4725,INFORMATION-TECHNOLOGY,test,Full-stack Engineer
 4728,TEACHER,train,Tutor
 4732,INFORMATION-TECHNOLOGY,train,"SAP Data Analyst, MN/Remote - Direct Client"
-4734,SALES,train,Part Time Sales Associate- Tommy Hilfiger
+4734,SALES,val,Part Time Sales Associate- Tommy Hilfiger
 4736,CHEF,train,"Restaurant Crewmember - Cook, Cashier, and Customer Service - Part Time"
-4740,HEALTHCARE,train,Per Diem Surgical Care Associate - OR Support Staff - Mount Sinai Hospital
+4740,HEALTHCARE,test,Per Diem Surgical Care Associate - OR Support Staff - Mount Sinai Hospital
 4743,HEALTHCARE,train,"Contract Physical Therapist Opportunity - $2,140/wk"
 4744,ENGINEERING,train,Manufacturing Engineer
-4745,SALES,train,Sales Associate Sunglass Hut
-4750,SALES,val,Full-Time Assistant Store Manager
+4745,SALES,test,Sales Associate Sunglass Hut
+4750,SALES,train,Full-Time Assistant Store Manager
 4751,FINANCE,train,"Vice President - Lead CIB Portfolio Manager, TMT"
-4752,ADVOCATE,train,Corporate Counsel 
-4755,ADVOCATE,val,Associate Attorney
+4752,ADVOCATE,val,Corporate Counsel 
+4755,ADVOCATE,train,Associate Attorney
 4758,ACCOUNTANT,train,Staff Accountant
 4759,CONSTRUCTION,train,"Traveling Superintendent, Construction"
 4762,AUTOMOBILE,train,Automotive Service Concierge
@@ -1702,28 +1769,28 @@ jd_id,category,split,title
 4766,ENGINEERING,train,Manufacturing Engineer
 4767,INFORMATION-TECHNOLOGY,train,Data Scientist - Interdisciplinary
 4769,HEALTHCARE,train,RN - Homecare Nurse
-4771,ENGINEERING,train,Principal Quality Engineer
+4771,ENGINEERING,test,Principal Quality Engineer
 4772,BPO,train,Customer Support Specialist - Onsite
-4778,INFORMATION-TECHNOLOGY,train,"Senior Machine Learning Engineer (Python, PySpark, SQL)"
-4782,CONSULTANT,test,User Experience Consultant
-4783,SALES,train,Part Time - Sales Associate - ProServices - Flexible
-4785,SALES,test,Sales Executive
+4778,INFORMATION-TECHNOLOGY,val,"Senior Machine Learning Engineer (Python, PySpark, SQL)"
+4782,CONSULTANT,val,User Experience Consultant
+4783,SALES,val,Part Time - Sales Associate - ProServices - Flexible
+4785,SALES,train,Sales Executive
 4788,HEALTHCARE,test,Nurse Assistant - 6W Cardiac Stepdown - Full Time - Nights
-4789,CONSULTANT,val,Oracle SCM(P2P/O2C) functional consultant
-4790,INFORMATION-TECHNOLOGY,test,Senior Data Engineer
+4789,CONSULTANT,train,Oracle SCM(P2P/O2C) functional consultant
+4790,INFORMATION-TECHNOLOGY,train,Senior Data Engineer
 4798,HEALTHCARE,train,Medical-Surgical Registered Nurse
 4799,AVIATION,train,Pilot Plant R&D Technician
 4803,INFORMATION-TECHNOLOGY,train,Java Developer
 4807,SALES,test,Global Account Manager
 4809,ACCOUNTANT,test,HR Payroll Operations Support TRVJP5545
 4810,SALES,test,Sales Account Executive
-4811,SALES,train,Senior Account Executive
-4812,ACCOUNTANT,test,Staff Accountant
-4816,CONSTRUCTION,val,Estimator
+4811,SALES,test,Senior Account Executive
+4812,ACCOUNTANT,val,Staff Accountant
+4816,CONSTRUCTION,train,Estimator
 4817,HEALTHCARE,train,Patient Care Tech I
 4818,TEACHER,train,"Self-Contained Special Education Teacher, Elementary (Grades 3-5) → $5,000 Sign-on Bonus!"
 4819,SALES,train,Outside Sales Professional
-4822,SALES,test,Store-in-Store Manager
+4822,SALES,train,Store-in-Store Manager
 4825,ENGINEERING,train,Senior Advanced Manufacturing Engineer - Fabrication
 4826,CHEF,train,COOK - PART TIME
 4829,SALES,train,Account Executive

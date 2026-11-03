@@ -211,11 +211,29 @@ class TestMapTitle:
         cat = map_title("SALES MANAGER", rules)
         assert cat == "SALES"
 
+    def test_sales_precedence(self, rules: list) -> None:
+        """'sales' on word boundary maps to SALES even with consultant or associate."""
+        assert map_title("Sales Consultant", rules) == "SALES"
+        assert map_title("In-Home Sales Consultant", rules) == "SALES"
+        assert map_title("Sales Associate", rules) == "SALES"
+
+    def test_domain_beats_generic_role(self, rules: list) -> None:
+        """Domain keyword wins over generic role word (consultant, specialist, associate, manager, analyst)."""
+        assert map_title("attorney consultant", rules) == "ADVOCATE"
+        assert map_title("Medical Consultant", rules) == "HEALTHCARE"
+        assert map_title("Senior Consultant - DevOps", rules) == "INFORMATION-TECHNOLOGY"
+
     def test_ambiguous_excluded(self, rules: list) -> None:
-        """A title matching more than one category returns None."""
-        # 'attorney consultant' matches ADVOCATE (attorney) AND CONSULTANT (consultant)
-        cat = map_title("attorney consultant", rules)
+        """A title matching more than one domain category returns None."""
+        # 'construction accountant' matches CONSTRUCTION and ACCOUNTANT
+        cat = map_title("construction accountant", rules)
         assert cat is None
+        assert map_title("automotive recruiter", rules) is None
+
+    def test_excluded_rules(self, rules: list) -> None:
+        """Business analyst and general merchandise rules are removed (excluded/unmapped)."""
+        assert map_title("Business Analyst", rules) is None
+        assert map_title("General Merchandise", rules) is None
 
     def test_unmapped_returns_none(self, rules: list) -> None:
         """A title matching no rule returns None."""
