@@ -15,7 +15,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-SCHEMA_VERSION: str = "1.1.0"
+SCHEMA_VERSION: str = "1.2.0"
 
 
 # ---------------------------------------------------------------------------
@@ -64,6 +64,7 @@ class EducationEntry(BaseModel):
     institution: str = ""
     start_year: int | None = None
     end_year: int | None = None
+    graduation_year: int | None = None
     gpa: float | None = None
 
 
@@ -78,6 +79,8 @@ class ExperienceEntry(BaseModel):
     company: str = ""
     start_date: str = ""         # ISO date string or free-form, e.g. "2021-06"
     end_date: str = ""
+    start: str = ""              # Format-compatible alias e.g. "2021-06"
+    end: str = ""                # Format-compatible alias e.g. "Present"
     is_current: bool = False
     duration_months: int = 0
     bullets: list[str] = Field(default_factory=list)
@@ -150,6 +153,7 @@ class JobDescription(BaseModel):
     text: str = ""
     required_skills: list[str] = Field(default_factory=list)
     preferred_skills: list[str] = Field(default_factory=list)
+    min_years: float | None = None
     min_years_experience: float | None = None
 
 

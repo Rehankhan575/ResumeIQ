@@ -47,7 +47,7 @@ def test_schema_version_is_string() -> None:
     """SCHEMA_VERSION must be a non-empty string."""
     assert isinstance(SCHEMA_VERSION, str)
     assert len(SCHEMA_VERSION) > 0
-    assert SCHEMA_VERSION == "1.1.0"
+    assert SCHEMA_VERSION == "1.2.0"
 
 
 # ---------------------------------------------------------------------------
@@ -161,6 +161,8 @@ def test_education_entry_valid() -> None:
 def test_education_entry_nullable_fields() -> None:
     e = EducationEntry()
     assert e.start_year is None
+    assert e.end_year is None
+    assert e.graduation_year is None
     assert e.gpa is None
 
 
@@ -172,6 +174,10 @@ def test_experience_entry_defaults() -> None:
     ex = ExperienceEntry()
     assert ex.is_current is False
     assert ex.bullets == []
+    assert ex.start == ""
+    assert ex.end == ""
+    assert ex.start_date == ""
+    assert ex.end_date == ""
 
 
 def test_experience_entry_valid() -> None:
@@ -245,6 +251,7 @@ def test_parsed_resume_with_nested_models() -> None:
 def test_job_description_defaults() -> None:
     jd = JobDescription()
     assert jd.min_years_experience is None
+    assert jd.min_years is None
 
 
 def test_job_description_valid() -> None:

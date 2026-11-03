@@ -1,0 +1,382 @@
+{
+  "timestamp": "2026-11-03T17:11:04Z",
+  "fixtures": {
+    "micro_precision": 0.8,
+    "micro_recall": 1.0,
+    "micro_f1": 0.8889,
+    "total_trap_violations": 0,
+    "fixtures": {
+      "accountant_table.pdf": {
+        "type": "resume",
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positives": [],
+        "misses": [],
+        "trap_hits": [],
+        "education_match": true,
+        "experience_match": true,
+        "got_years": 12.4,
+        "expected_years": 12.4,
+        "years_diff": 0.0,
+        "years_pass": true
+      },
+      "chef_plain.docx": {
+        "type": "resume",
+        "precision": 0.4286,
+        "recall": 1.0,
+        "f1": 0.6,
+        "false_positives": [
+          "butchery",
+          "catering",
+          "culinary arts",
+          "word"
+        ],
+        "misses": [],
+        "trap_hits": [],
+        "education_match": true,
+        "experience_match": true,
+        "got_years": 10.7,
+        "expected_years": 10.6,
+        "years_diff": 0.1,
+        "years_pass": true
+      },
+      "ds_clean.pdf": {
+        "type": "resume",
+        "precision": 0.8333,
+        "recall": 1.0,
+        "f1": 0.9091,
+        "false_positives": [
+          "machine learning"
+        ],
+        "misses": [],
+        "trap_hits": [],
+        "education_match": true,
+        "experience_match": true,
+        "got_years": 7.4,
+        "expected_years": 7.4,
+        "years_diff": 0.0,
+        "years_pass": true
+      },
+      "nurse_scanned.pdf": {
+        "type": "resume",
+        "precision": 0.7143,
+        "recall": 1.0,
+        "f1": 0.8333,
+        "false_positives": [
+          "clinical documentation",
+          "react native"
+        ],
+        "misses": [],
+        "trap_hits": [],
+        "education_match": true,
+        "experience_match": true,
+        "got_years": 8.4,
+        "expected_years": 8.4,
+        "years_diff": 0.0,
+        "years_pass": true
+      },
+      "swe_two_column.pdf": {
+        "type": "resume",
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "false_positives": [],
+        "misses": [],
+        "trap_hits": [],
+        "education_match": true,
+        "experience_match": true,
+        "got_years": 7.2,
+        "expected_years": 7.2,
+        "years_diff": 0.0,
+        "years_pass": true
+      },
+      "jd_data_scientist.txt": {
+        "type": "job_description",
+        "req_precision": 1.0,
+        "req_recall": 1.0,
+        "req_f1": 1.0,
+        "req_misses": [],
+        "req_fp": [],
+        "pref_precision": 1.0,
+        "pref_recall": 1.0,
+        "pref_f1": 1.0,
+        "pref_misses": [],
+        "pref_fp": [],
+        "min_years_got": 4,
+        "min_years_expected": 4,
+        "min_years_pass": true
+      },
+      "jd_software_engineer.txt": {
+        "type": "job_description",
+        "req_precision": 1.0,
+        "req_recall": 1.0,
+        "req_f1": 1.0,
+        "req_misses": [],
+        "req_fp": [],
+        "pref_precision": 1.0,
+        "pref_recall": 1.0,
+        "pref_f1": 1.0,
+        "pref_misses": [],
+        "pref_fp": [],
+        "min_years_got": 3,
+        "min_years_expected": 3,
+        "min_years_pass": true
+      },
+      "jd_chef.txt": {
+        "type": "job_description",
+        "req_precision": 0.6667,
+        "req_recall": 1.0,
+        "req_f1": 0.8,
+        "req_misses": [],
+        "req_fp": [
+          "kitchen sanitation",
+          "management"
+        ],
+        "pref_precision": 0.6667,
+        "pref_recall": 1.0,
+        "pref_f1": 0.8,
+        "pref_misses": [],
+        "pref_fp": [
+          "butchery",
+          "management"
+        ],
+        "min_years_got": 5,
+        "min_years_expected": 5,
+        "min_years_pass": true
+      }
+    }
+  },
+  "real_text_stress_test": {
+    "section_detection": {
+      "OVERALL": {
+        "total": 370,
+        "pct_exp": 0.0,
+        "pct_edu": 0.3,
+        "pct_skills": 0.3
+      },
+      "INFORMATION-TECHNOLOGY": {
+        "total": 18,
+        "pct_exp": 0.0,
+        "pct_edu": 0.0,
+        "pct_skills": 0.0
+      },
+      "HEALTHCARE": {
+        "total": 17,
+        "pct_exp": 0.0,
+        "pct_edu": 0.0,
+        "pct_skills": 0.0
+      },
+      "ACCOUNTANT": {
+        "total": 17,
+        "pct_exp": 0.0,
+        "pct_edu": 0.0,
+        "pct_skills": 0.0
+      },
+      "CHEF": {
+        "total": 17,
+        "pct_exp": 0.0,
+        "pct_edu": 0.0,
+        "pct_skills": 0.0
+      },
+      "SALES": {
+        "total": 17,
+        "pct_exp": 0.0,
+        "pct_edu": 0.0,
+        "pct_skills": 0.0
+      }
+    },
+    "skills_distribution": {
+      "mean": 12.95,
+      "median": 12.0,
+      "p5": 5.0,
+      "pct_under_5": 4.05
+    },
+    "top_20_skills": [
+      {
+        "skill": "management",
+        "count": 284,
+        "pct": 76.76
+      },
+      {
+        "skill": "sales",
+        "count": 202,
+        "pct": 54.59
+      },
+      {
+        "skill": "communication",
+        "count": 184,
+        "pct": 49.73
+      },
+      {
+        "skill": "customer service",
+        "count": 154,
+        "pct": 41.62
+      },
+      {
+        "skill": "leadership",
+        "count": 150,
+        "pct": 40.54
+      },
+      {
+        "skill": "project",
+        "count": 145,
+        "pct": 39.19
+      },
+      {
+        "skill": "organizational skills",
+        "count": 145,
+        "pct": 39.19
+      },
+      {
+        "skill": "excel",
+        "count": 130,
+        "pct": 35.14
+      },
+      {
+        "skill": "word",
+        "count": 103,
+        "pct": 27.84
+      },
+      {
+        "skill": "project management",
+        "count": 93,
+        "pct": 25.14
+      },
+      {
+        "skill": "attention to detail",
+        "count": 89,
+        "pct": 24.05
+      },
+      {
+        "skill": "problem solving",
+        "count": 85,
+        "pct": 22.97
+      },
+      {
+        "skill": "powerpoint",
+        "count": 66,
+        "pct": 17.84
+      },
+      {
+        "skill": "talent acquisition",
+        "count": 64,
+        "pct": 17.3
+      },
+      {
+        "skill": "mentoring",
+        "count": 63,
+        "pct": 17.03
+      },
+      {
+        "skill": "outlook",
+        "count": 59,
+        "pct": 15.95
+      },
+      {
+        "skill": "make",
+        "count": 54,
+        "pct": 14.59
+      },
+      {
+        "skill": "time management",
+        "count": 49,
+        "pct": 13.24
+      },
+      {
+        "skill": "access",
+        "count": 48,
+        "pct": 12.97
+      },
+      {
+        "skill": "public relations",
+        "count": 46,
+        "pct": 12.43
+      }
+    ],
+    "suspect_skills": [
+      {
+        "skill": "customer service",
+        "count": 154,
+        "pct": 41.62
+      },
+      {
+        "skill": "organizational skills",
+        "count": 145,
+        "pct": 39.19
+      },
+      {
+        "skill": "project management",
+        "count": 93,
+        "pct": 25.14
+      },
+      {
+        "skill": "attention to detail",
+        "count": 89,
+        "pct": 24.05
+      },
+      {
+        "skill": "problem solving",
+        "count": 85,
+        "pct": 22.97
+      },
+      {
+        "skill": "powerpoint",
+        "count": 66,
+        "pct": 17.84
+      },
+      {
+        "skill": "talent acquisition",
+        "count": 64,
+        "pct": 17.3
+      },
+      {
+        "skill": "mentoring",
+        "count": 63,
+        "pct": 17.03
+      },
+      {
+        "skill": "outlook",
+        "count": 59,
+        "pct": 15.95
+      },
+      {
+        "skill": "time management",
+        "count": 49,
+        "pct": 13.24
+      },
+      {
+        "skill": "public relations",
+        "count": 46,
+        "pct": 12.43
+      },
+      {
+        "skill": "business development",
+        "count": 43,
+        "pct": 11.62
+      },
+      {
+        "skill": "financial reporting",
+        "count": 39,
+        "pct": 10.54
+      },
+      {
+        "skill": "strategic planning",
+        "count": 38,
+        "pct": 10.27
+      }
+    ],
+    "entries_yield": {
+      "pct_education_parsed": 74.86,
+      "pct_experience_parsed": 95.95,
+      "total_years_mean": 10.63,
+      "total_years_median": 11.8,
+      "total_years_p95": 20.4,
+      "total_years_pct_over_40": 0.28
+    },
+    "latency_ms": {
+      "mean": 5.06,
+      "p95": 9.03
+    }
+  }
+}

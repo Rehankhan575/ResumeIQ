@@ -157,14 +157,17 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
 
 ## Schemas
 
-`SCHEMA_VERSION = "1.1.0"`
+`SCHEMA_VERSION = "1.2.0"`
 
 Core models defined in `app/schemas.py`:
 - `ContactInfo`: `name`, `email`, `phone`, `linkedin`, `github`, `other_links`
 - `LayoutMeta`: `file_type`, `page_count`, `word_count`, `has_tables`, `has_images`, `is_multi_column`, `font_count`, `ocr_used`, `needs_ocr`, `extraction_method`
-- `EducationEntry`, `ExperienceEntry`, `ProjectEntry`, `Entity`
+- `EducationEntry`: `degree`, `field`, `institution`, `start_year`, `end_year`, `graduation_year`, `gpa`
+- `ExperienceEntry`: `title`, `company`, `start_date`, `end_date`, `start`, `end`, `is_current`, `duration_months`, `bullets`
+- `ProjectEntry`: `name`, `description`, `technologies`
+- `Entity`: `text`, `label`, `start`, `end`, `score`, `source`
 - `ParsedResume`: `raw_text`, `sections`, `contact`, `layout`, `skills`, `entities`, `education`, `experience`, `projects`, `certifications`, `total_years_experience`, `warnings`
-- `CategoryPrediction`, `JobDescription`, `MatchResult`, `Issue`, `Highlight`, `Suggestion`, `ScoreResult`
+- `CategoryPrediction`, `JobDescription` (`title`, `text`, `required_skills`, `preferred_skills`, `min_years`, `min_years_experience`), `MatchResult`, `Issue`, `Highlight`, `Suggestion`, `ScoreResult`
 
 ---
 
@@ -216,10 +219,20 @@ Core models defined in `app/schemas.py`:
 | 18 | 2026-11-03 | OCR triggered when chars/page < 50; rasterised at 300 DPI with grayscale + autocontrast | Prevents silent blank extraction on scanned or image-based résumés while maintaining high character recognition accuracy |
 | 19 | 2026-11-03 | Two-column layout detected via x0 clustering (gutter ≥ 50pt, vertical overlap ≥ 20%); read left then right | Prevents interleaving of sidebar metadata (contact, skills, education) into main work experience streams |
 | 20 | 2026-11-03 | Typed parser errors subclassing `ParseError` (empty, oversize, corrupted, locked, unsupported) | Prevents unhandled bare library exceptions from leaking through the ingestion boundary |
+| 21 | 2026-11-03 | `SCHEMA_VERSION` bumped to 1.2.0 (additive: `JobDescription.min_years`, `EducationEntry.graduation_year`, `ExperienceEntry.start`, `ExperienceEntry.end`) | Stage 2 extraction requires graduation year for education and compact start/end alias keys for experience and JD minimum experience |
 
 ---
 
 ## CHANGELOG
+
+### v0.5.0 — 2026-11-03
+- `app/extraction/`: implemented Stage 2 text tokenization (`text_utils.py`, 100% parity with `taxonomy_stats.py`), rule-based taxonomy skill extractor (`skills.py`, active-only, 1-5 n-grams, longest-match first, non-overlapping spans, `ambiguous_terms.csv` context & case validation, JD required/preferred splitting and `min_years` parsing), structured entry extractor (`entries.py`, normalized education, date-anchored experience, non-overlapping interval union `total_years_experience`), and unified orchestrator (`extractor.py`, `extract_entities` preserving pipeline signature)
+- `app/schemas.py`: bumped `SCHEMA_VERSION` to 1.2.0 with additive fields (`JobDescription.min_years`, `EducationEntry.graduation_year`, `ExperienceEntry.start`, `ExperienceEntry.end`)
+- `app/config.py`: added Stage 2 extraction settings (`skills_csv_path`, `ambiguous_terms_csv_path`, `skills_stats_csv_path`, `default_as_of_date`)
+- `tests/test_schemas.py`: updated schema tests for v1.2.0 version assertion and defaults of new additive fields
+- `tests/test_extraction.py`: 13 comprehensive tests covering 50-string tokenizer parity, negative traps ("go-to-market", "R&D", "Grade C", "excelled at"), positive contexts, alias normalizations, longest match, inactive skill filtering, all date formats, fixed as_of determinism, overlapping interval union, empty inputs, and JD required/preferred splitting
+- `scripts/eval_extraction.py`: Stage 2 evaluation benchmark suite testing 5 resume fixtures, 3 JDs, and 370-resume real-text stress test on `classifier_val.parquet`, exporting `artifacts/metrics/extraction_eval.json` (micro-averaged skill F1: 0.8889, recall: 1.0000, 0 trap violations, 100% education/experience/years pass)
+- `docs/extraction.md`: Stage 2 documentation detailing architecture, disambiguation rules, entry normalization, evaluation benchmark results, and limitations
 
 ### v0.4.0 — 2026-11-03
 - `app/parsing/`: implemented Stage 1 parser orchestrator (`parser.py`), format detection (`detect_file_type` via magic bytes first, extension second), column-aware layout ordering (`_order_page_blocks`), table extraction, Tesseract OCR fallback (`min_chars_per_page=50`, 300 DPI, grayscale + autocontrast), text cleaning (`cleaner.py`), canonical section splitting (`sections.py`, 11 sections, exact + rapidfuzz >= 92), and contact info extraction (`contact.py`)

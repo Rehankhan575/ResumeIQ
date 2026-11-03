@@ -108,6 +108,12 @@ class Settings(BaseSettings):
     reports_dir: Path = REPORTS_DIR
     taxonomies_dir: Path = TAXONOMIES_DIR
 
+    # ── Stage 2: Extraction ────────────────────────────────────────────────
+    skills_csv_path: Path = TAXONOMIES_DIR / "skills.csv"
+    ambiguous_terms_csv_path: Path = TAXONOMIES_DIR / "ambiguous_terms.csv"
+    skills_stats_csv_path: Path = TAXONOMIES_DIR / "skills_stats.csv"
+    default_as_of_date: str = "2026-11-01"
+
     # ── NER model ───────────────────────────────────────────────────────────
     ner_model_name: str = "dslim/distilbert-NER"
     ner_batch_size: int = 16
