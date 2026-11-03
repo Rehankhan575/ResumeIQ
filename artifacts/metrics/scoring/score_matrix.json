@@ -1,0 +1,27 @@
+{
+  "accountant_table.pdf": {
+    "jd_chef.txt": 39.43,
+    "jd_data_scientist.txt": 39.87,
+    "jd_software_engineer.txt": 39.69
+  },
+  "chef_plain.docx": {
+    "jd_chef.txt": 69.92,
+    "jd_data_scientist.txt": 44.68,
+    "jd_software_engineer.txt": 44.54
+  },
+  "ds_clean.pdf": {
+    "jd_chef.txt": 42.98,
+    "jd_data_scientist.txt": 74.22,
+    "jd_software_engineer.txt": 43.76
+  },
+  "nurse_scanned.pdf": {
+    "jd_chef.txt": 41.27,
+    "jd_data_scientist.txt": 40.83,
+    "jd_software_engineer.txt": 41.09
+  },
+  "swe_two_column.pdf": {
+    "jd_chef.txt": 37.56,
+    "jd_data_scientist.txt": 38.11,
+    "jd_software_engineer.txt": 58.92
+  }
+}

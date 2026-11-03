@@ -1,0 +1,15 @@
+{
+  "matched_pair_pass": true,
+  "faithfulness": {
+    "n_evaluated": 20,
+    "mean_top_k_drop": 0.26,
+    "mean_random_k_drop": 0.0,
+    "is_faithful": true
+  },
+  "timing": {
+    "mean_ms": 17.33,
+    "median_ms": 17.03,
+    "p95_ms": 19.03
+  },
+  "total_compute_seconds": 6.56
+}

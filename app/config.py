@@ -72,6 +72,44 @@ def set_seed(seed: int) -> None:
 
 
 # ---------------------------------------------------------------------------
+# ATS Scoring Weights & Action Verbs
+# ---------------------------------------------------------------------------
+
+SCORE_WEIGHTS: dict[str, float] = {
+    "semantic_match": 0.25,
+    "keyword_coverage": 0.20,
+    "section_completeness": 0.10,
+    "formatting": 0.10,
+    "experience_fit": 0.10,
+    "quantified_achievements": 0.10,
+    "action_verbs": 0.05,
+    "readability": 0.05,
+    "contact_completeness": 0.05,
+}
+
+ACTION_VERBS: set[str] = {
+    "accelerated", "achieved", "administered", "advanced", "advised", "analyzed",
+    "architected", "authored", "automated", "boosted", "built", "championed",
+    "collaborated", "composed", "conducted", "configured", "constructed",
+    "coordinated", "created", "customized", "delivered", "deployed", "designed",
+    "developed", "devised", "directed", "documented", "drove", "engineered",
+    "enhanced", "established", "executed", "expanded", "expedited", "fabricated",
+    "facilitated", "formulated", "founded", "generated", "guided", "headed",
+    "identified", "implemented", "improved", "increased", "initiated", "innovated",
+    "installed", "instituted", "instructed", "integrated", "introduced", "invented",
+    "launched", "led", "managed", "maximized", "mentored", "minimized",
+    "modernized", "monitored", "negotiated", "operated", "optimized", "orchestrated",
+    "organized", "overhauled", "oversaw", "pioneered", "planned", "prepared",
+    "produced", "programmed", "promoted", "proposed", "published", "rebuilt",
+    "redesigned", "reduced", "reengineered", "refined", "remodeled", "reorganized",
+    "resolved", "restructured", "revamped", "reviewed", "revitalized", "saved",
+    "scaled", "scheduled", "secured", "simplified", "spearheaded", "standardized",
+    "streamlined", "structured", "supervised", "supported", "surpassed", "synthesized",
+    "trained", "transformed", "upgraded", "utilized", "validated",
+}
+
+
+# ---------------------------------------------------------------------------
 # Settings (loaded from .env if present)
 # ---------------------------------------------------------------------------
 
@@ -129,15 +167,16 @@ class Settings(BaseSettings):
     matcher_top_k: int = 5
 
     # ── ATS Score weights (must sum to 1.0) ─────────────────────────────────
-    # Placeholder values — will be tuned after ablation study.
-    weight_semantic_match: float = 0.30
+    score_weights: dict[str, float] = SCORE_WEIGHTS
+    weight_semantic_match: float = 0.25
     weight_keyword_coverage: float = 0.20
-    weight_section_completeness: float = 0.15
+    weight_section_completeness: float = 0.10
     weight_formatting: float = 0.10
+    weight_experience_fit: float = 0.10
     weight_quantified_achievements: float = 0.10
     weight_action_verbs: float = 0.05
     weight_readability: float = 0.05
-    weight_length: float = 0.05
+    weight_contact_completeness: float = 0.05
 
     # ── LLM / Generative ────────────────────────────────────────────────────
     openai_api_key: str = ""

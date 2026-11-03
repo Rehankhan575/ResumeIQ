@@ -222,10 +222,21 @@ Core models defined in `app/schemas.py`:
 | 21 | 2026-11-03 | `SCHEMA_VERSION` bumped to 1.2.0 (additive: `JobDescription.min_years`, `EducationEntry.graduation_year`, `ExperienceEntry.start`, `ExperienceEntry.end`) | Stage 2 extraction requires graduation year for education and compact start/end alias keys for experience and JD minimum experience |
 | 22 | 2026-11-03 | In full-text fallback mode, ambiguous terms require strong list evidence (2+ non-ambiguous skills within 6 tokens) | Prevents soft skill and verb leaks (`make`, `word`, `access`, `project`, `management`, `sales`) when document layout collapses without section headings |
 | 23 | 2026-11-03 | Classifier trained across 4 models (TF-IDF+LR, TF-IDF+MLP, BiLSTM, DistilBERT) on masked text; best val F1 saved, test set accessed strictly via --final-eval | Prevents title leak, adheres to 20-min compute budget, provides graceful on-the-fly fallback if checkpoints missing |
+| 24 | 2026-11-03 | Composite ATS score (0-100) across 9 weighted components; issues prioritized by estimated gain; explainability via batched LOSO and TF-IDF+LR linear attribution | Reflects absence of ground-truth ATS scores; guarantees deterministic sub-second CPU explainability without SHAP/LIME overhead |
 
 ---
 
 ## CHANGELOG
+
+### v0.7.0 — 2026-11-03
+- `data/taxonomies/ambiguous_terms.csv`: added rule `rn,require_context` preventing clinical "RN" (Registered Nurse) from colliding with software framework React Native without context
+- `app/config.py`: defined `SCORE_WEIGHTS` across all 9 components summing to 1.0 (`semantic_match: 0.25`, `keyword_coverage: 0.20`, `section_completeness: 0.10`, `formatting: 0.10`, `experience_fit: 0.10`, `quantified_achievements: 0.10`, `action_verbs: 0.05`, `readability: 0.05`, `contact_completeness: 0.05`), plus curated `ACTION_VERBS` set
+- `app/scoring/formatting.py`: layout scoring engine deriving parsability deductions from `LayoutMeta` (multi-column, tables, images, page count, word count, OCR)
+- `app/scoring/ats.py`: Stage 5 ATS composite scorer `score_resume(parsed_resume, jd)` generating 0-100 score, letter grade (A-F), components dict, missing skills, issues sorted by estimated point gain, graceful empty/corrupted document handling, and calibrated TF-IDF cosine matcher fallback
+- `app/scoring/explain.py`: Stage 6 explainability engine combining batched Leave-One-Sentence-Out (LOSO) sentence contributions (capped at 40 sentences), sub-millisecond TF-IDF + Logistic Regression linear coefficient attribution, keyword highlights, and safe `render_html()` with entity escaping
+- `scripts/eval_scoring.py`: comprehensive benchmark evaluating 5x3 score matrix (100% matched pair pass), component ablation table (`artifacts/metrics/scoring/ablation.csv`), XAI feature erasure faithfulness on 20 val resumes (`artifacts/reports/xai_faithfulness.png`, top-3 drop 0.26 vs random-3 drop 0.00), and latency benchmarking (17.33 ms/resume)
+- `tests/test_scoring.py`: 12 tests covering weight sum to 1.0, range bounds, determinism, keyword addition monotonicity, empty input resilience, issue sorting, offset accuracy, XSS escaping, and "rn" rule verification (197 total passing tests)
+- `docs/scoring.md`: comprehensive documentation detailing mathematical formulations, point gain derivations, LOSO/linear XAI algorithms, experimental results, and ATS ground-truth limitations
 
 ### v0.6.0 — 2026-11-03
 - `scripts/train_classifier.py`: implemented 4-model classifier training pipeline (TF-IDF+LR, TF-IDF+MLP, BiLSTM, DistilBERT) with smoke testing, val-only hyperparameter tuning, early stopping, confusion matrix plotting, loss curve generation, and isolated `--final-eval` test evaluation

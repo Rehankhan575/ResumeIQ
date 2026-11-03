@@ -34,3 +34,4 @@ leadership,exclude_standalone
 teamwork,exclude_standalone
 carpentry,exclude_standalone
 grading,exclude_standalone
+rn,require_context
