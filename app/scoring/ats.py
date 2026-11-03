@@ -72,6 +72,25 @@ def _compute_tfidf_cosine(resume_text: str, jd_text: str) -> float:
         return 0.0
 
 
+# In-memory caching for sentence transformer to prevent reloading per inference
+_orig_load_sentence_model = getattr(matcher_module, "load_sentence_model", None)
+_CACHED_SBERT_MODEL: Any = None
+
+
+def _cached_load_sentence_model(model_path: Any = None) -> Tuple[Any, str]:
+    global _CACHED_SBERT_MODEL
+    if _CACHED_SBERT_MODEL is not None:
+        return _CACHED_SBERT_MODEL
+    if callable(_orig_load_sentence_model):
+        _CACHED_SBERT_MODEL = _orig_load_sentence_model(model_path)
+        return _CACHED_SBERT_MODEL
+    return None, "tfidf_cosine"
+
+
+if callable(_orig_load_sentence_model):
+    matcher_module.load_sentence_model = _cached_load_sentence_model
+
+
 def _get_matcher_result(parsed: ParsedResume, jd: JobDescription | None) -> MatchResult:
     """Call matcher or fall back to TF-IDF cosine if matcher is a stub or missing."""
     if jd is None:
@@ -84,24 +103,45 @@ def _get_matcher_result(parsed: ParsedResume, jd: JobDescription | None) -> Matc
         )
 
     # Check public function in app.models.matcher
-    match_fn = getattr(matcher_module, "match", getattr(matcher_module, "match_resume_jd", None))
     is_stub = True
     result: Optional[MatchResult] = None
 
-    if callable(match_fn):
-        try:
-            result = match_fn(parsed, jd)
-            # Detect dummy stub output: static 0.73 score with hardcoded skills
-            if result and (
-                result.score != 0.73
-                or set(result.matched_skills) != {"Python", "Machine Learning"}
+    try:
+        if hasattr(matcher_module, "match") and callable(matcher_module.match):
+            raw_match = matcher_module.match(parsed.raw_text, jd.text)
+            if isinstance(raw_match, dict):
+                score = float(raw_match.get("score", 0.0))
+                matched_skills = list(raw_match.get("matched_skills", []))
+                missing_skills = list(raw_match.get("missing_skills", []))
+                method = raw_match.get("method", "matcher")
+                # Detect dummy stub output: static 0.73 score with hardcoded skills or method == "stub"
+                if method != "stub" and not (
+                    score == 0.73
+                    and set(matched_skills) == {"Python", "Machine Learning"}
+                ):
+                    is_stub = False
+                    result = MatchResult(
+                        score=score,
+                        section_scores=raw_match.get("section_similarity", {}),
+                        matched_skills=matched_skills,
+                        missing_skills=missing_skills,
+                        method=method,
+                    )
+        elif hasattr(matcher_module, "match_resume_jd") and callable(matcher_module.match_resume_jd):
+            res = matcher_module.match_resume_jd(parsed, jd)
+            if res and (
+                res.score != 0.73
+                or set(res.matched_skills) != {"Python", "Machine Learning"}
             ):
                 is_stub = False
-        except Exception as e:
-            logger.warning("Matcher invocation raised error: %s", e)
+                result = res
+    except Exception as e:
+        logger.warning("Matcher invocation raised error: %s", e)
 
     if is_stub or result is None:
-        logger.info("app.models.matcher is a stub or missing; falling back to TF-IDF cosine inside ats.py.")
+        msg = "app.models.matcher is a stub or missing; falling back to TF-IDF cosine inside ats.py."
+        logger.info(msg)
+        print(msg)
         sim_score = _compute_tfidf_cosine(parsed.raw_text, jd.text)
 
         # Keyword overlap for matched and missing skills

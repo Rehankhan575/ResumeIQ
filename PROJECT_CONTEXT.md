@@ -228,10 +228,16 @@ Core models defined in `app/schemas.py`:
 | 24 | 2026-11-03 | Composite ATS score (0-100) across 9 weighted components; issues prioritized by estimated gain; explainability via batched LOSO and TF-IDF+LR linear attribution | Reflects absence of ground-truth ATS scores; guarantees deterministic sub-second CPU explainability without SHAP/LIME overhead |
 | 25 | 2026-11-04 | Siamese bi-encoder (`all-MiniLM-L6-v2`) fine-tuned with `MultipleNegativesRankingLoss` on MPS; fallback to TF-IDF | Optimizes dense embeddings for resume-JD matching within 15-min budget; centroid-based cross-category hard negative mining and per-category JD caps prevent class skew |
 | 26 | 2026-11-04 | Matcher evaluation explicitly discloses weak label circularity | Shared title-rule category definitions govern both training triplets and evaluation qrels; metrics measure category separation rather than recruiter qualification |
+| 27 | 2026-11-04 | Stage 5 ATS scorer routes to public `app.models.matcher.match()` and `app.models.classifier.classify()` with cached neural bi-encoder and TF-IDF fallback | Connects fine-tuned Siamese bi-encoder to ATS scoring while maintaining sub-second inference caching and robust TF-IDF fallback for missing checkpoints |
 
 ---
 
 ## CHANGELOG
+
+### v0.8.1 — 2026-11-04
+- `app/scoring/ats.py`: connected Stage 5 scorer to public `app.models.matcher.match()` and `app.models.classifier.classify()` with in-memory model caching and graceful TF-IDF cosine fallback; updated score matrix and ablation metrics
+- `docs/scoring.md`: updated score matrix results (100% matched-pair pass with fine-tuned bi-encoder), component ablation table, and honesty disclosure for XAI faithfulness feature erasure
+- `artifacts/metrics/scoring/`: updated `score_matrix.json`, `ablation.csv`, `scoring_eval.json`, and `artifacts/reports/xai_faithfulness.png`
 
 ### v0.8.0 — 2026-11-04
 - `app/models/matcher.py`: implemented Stage 4 Résumé–JD matcher supporting TF-IDF cosine baseline and fine-tuned Siamese bi-encoder (`sentence-transformers/all-MiniLM-L6-v2`), with `match(resume_text, jd_text)` computing composite score (0-1) and section similarities (skills overlap via `TaxonomySkillExtractor`, experience vs JD text), and graceful TF-IDF fallback

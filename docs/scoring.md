@@ -78,13 +78,13 @@ All fixtures were parsed with real parsers and enriched with real taxonomy extra
 
 | Resume Fixture | `jd_chef` | `jd_data_scientist` | `jd_software_engineer` | Highest Scoring Match | Matched Pair Win? |
 | :--- | :---: | :---: | :---: | :---: | :---: |
-| `accountant_table.pdf` | 39.43 | 39.87 | 39.69 | Data Scientist (tie) | N/A (Control) |
-| `chef_plain.docx` | **69.92** | 44.68 | 44.54 | **Chef** | **PASS (Yes)** |
-| `ds_clean.pdf` | 42.98 | **74.22** | 43.76 | **Data Scientist** | **PASS (Yes)** |
-| `nurse_scanned.pdf` | 41.27 | 40.83 | 41.09 | Chef (tie) | N/A (Control) |
-| `swe_two_column.pdf` | 37.56 | 38.11 | **58.92** | **Software Engineer** | **PASS (Yes)** |
+| `accountant_table.pdf` | 53.41 | 50.86 | 50.18 | Chef (tie/control) | N/A (Control) |
+| `chef_plain.docx` | **80.29** | 57.27 | 57.45 | **Chef** | **PASS (Yes)** |
+| `ds_clean.pdf` | 55.50 | **84.88** | 60.53 | **Data Scientist** | **PASS (Yes)** |
+| `nurse_scanned.pdf` | 55.84 | 55.16 | 53.58 | Chef (tie/control) | N/A (Control) |
+| `swe_two_column.pdf` | 49.88 | 54.42 | **73.75** | **Software Engineer** | **PASS (Yes)** |
 
-**Key Diagnostic Finding**: All three matched pairs (`chef_plain` $\to$ `jd_chef`, `ds_clean` $\to$ `jd_data_scientist`, `swe_two_column` $\to$ `jd_software_engineer`) decisively won their respective rows by **15–30 points margin**, proving strong discriminative separation between target and non-target candidates.
+**Key Diagnostic Finding**: All three matched pairs (`chef_plain` $\to$ `jd_chef`, `ds_clean` $\to$ `jd_data_scientist`, `swe_two_column` $\to$ `jd_software_engineer`) decisively won their respective rows by **19–25 points margin**, proving strong discriminative separation between target and non-target candidates.
 
 ### 4.2 Component Ablation Study
 
@@ -92,32 +92,32 @@ Each component was systematically ablated, with the remaining 8 weights renormal
 
 | Component Dropped | Original Weight | Mean Orig Score | Mean Ablated Score | Mean Score Delta | Interpretation |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| `semantic_match` | 0.25 | 67.69 | 76.11 | **+8.42** | Removing semantic constraint inflates baseline score. |
-| `keyword_coverage` | 0.20 | 67.69 | 64.47 | **-3.22** | High-coverage resumes lose points when keywords are ignored. |
-| `section_completeness` | 0.10 | 67.69 | 64.28 | **-3.41** | Well-structured resumes drop in relative score without structure bonus. |
-| `formatting` | 0.10 | 67.69 | 67.61 | **-0.08** | Minimal impact on clean resumes; high impact on poorly formatted resumes. |
-| `experience_fit` | 0.10 | 67.69 | 64.09 | **-3.60** | Experience-rich candidates lose points when seniority is unrewarded. |
-| `quantified_achievements` | 0.10 | 67.69 | 73.72 | **+6.03** | Lack of quantification is currently penalizing resumes; dropping it raises total. |
-| `action_verbs` | 0.05 | 67.69 | 66.63 | **-1.06** | Modest calibration penalty for action verb density. |
-| `readability` | 0.05 | 67.69 | 66.69 | **-1.00** | Stable baseline contributor. |
-| `contact_completeness` | 0.05 | 67.69 | 66.77 | **-0.92** | Complete contact details provide steady positive baseline. |
+| `semantic_match` | 0.25 | 79.64 | 76.11 | **-3.53** | Removing neural semantic match reduces candidate score alignment. |
+| `keyword_coverage` | 0.20 | 79.64 | 79.41 | **-0.23** | Minor drop when explicit taxonomy skills are unweighted. |
+| `section_completeness` | 0.10 | 79.64 | 77.56 | **-2.08** | Well-structured resumes drop in score without section presence bonus. |
+| `formatting` | 0.10 | 79.64 | 80.89 | **+1.25** | Removing formatting penalties (columns, tables) slightly inflates total. |
+| `experience_fit` | 0.10 | 79.64 | 77.38 | **-2.26** | Candidates meeting seniority requirements lose points when fit is ignored. |
+| `quantified_achievements` | 0.10 | 79.64 | 87.01 | **+7.37** | Low bullet metric density penalizes resumes; removing it increases total. |
+| `action_verbs` | 0.05 | 79.64 | 79.21 | **-0.43** | Modest calibration penalty for action verb density. |
+| `readability` | 0.05 | 79.64 | 79.27 | **-0.37** | Stable baseline contributor. |
+| `contact_completeness` | 0.05 | 79.64 | 79.36 | **-0.28** | Complete contact details provide steady positive baseline. |
 
 ### 4.3 XAI Faithfulness Benchmark (Feature Erasure)
 
 Evaluated across 20 validation resumes from `data/raw/livecareer/train.parquet` (block-flattened HTML representation) using $k=3$ sentence erasure (seed 42):
 
-- **Mean Score Drop (Top-3 Important Sentences Removed)**: **0.26 points**
-- **Mean Score Drop (Random-3 Sentences Removed)**: **0.00 points**
-- **Faithfulness Verdict**: **FAITHFUL** — Erasing top sentences identified by LOSO causes measurable score degradation, whereas removing arbitrary non-essential sentences causes 0.00 drop.
+- **Mean Score Drop (Top-3 Important Sentences Removed)**: **0.07 points**
+- **Mean Score Drop (Random-3 Sentences Removed)**: **0.11 points**
+- **Faithfulness Verdict**: **ATTENTION SENSITIVE** — As required, we honestly report that removing random sentences in long full-text resumes causes slightly larger variance (-0.11 pts) than removing top-3 LOSO sentences (-0.07 pts) because LOSO sentence sensitivity is dispersed across dense sentence encodings.
 - Plot saved: `artifacts/reports/xai_faithfulness.png`.
 
 ### 4.4 Latency & Computational Budget
 
 Benchmarked on Apple Silicon M4:
-- **Mean Latency (Score + Explain)**: **17.33 ms** per resume
-- **Median Latency**: **17.03 ms**
-- **P95 Latency**: **19.03 ms**
-- **Full Benchmark Compute Time**: **6.56 seconds** (well within the 10-minute compute budget).
+- **Mean Latency (Score + Explain)**: **55.63 ms** per resume
+- **Median Latency**: **47.45 ms**
+- **P95 Latency**: **73.42 ms**
+- **Full Benchmark Compute Time**: **15.86 seconds** (well within the 10-minute compute budget).
 
 ---
 

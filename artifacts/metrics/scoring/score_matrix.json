@@ -1,27 +1,27 @@
 {
   "accountant_table.pdf": {
-    "jd_chef.txt": 39.43,
-    "jd_data_scientist.txt": 39.87,
-    "jd_software_engineer.txt": 39.69
+    "jd_chef.txt": 53.41,
+    "jd_data_scientist.txt": 50.86,
+    "jd_software_engineer.txt": 50.18
   },
   "chef_plain.docx": {
-    "jd_chef.txt": 69.92,
-    "jd_data_scientist.txt": 44.68,
-    "jd_software_engineer.txt": 44.54
+    "jd_chef.txt": 80.29,
+    "jd_data_scientist.txt": 57.27,
+    "jd_software_engineer.txt": 57.45
   },
   "ds_clean.pdf": {
-    "jd_chef.txt": 42.98,
-    "jd_data_scientist.txt": 74.22,
-    "jd_software_engineer.txt": 43.76
+    "jd_chef.txt": 55.5,
+    "jd_data_scientist.txt": 84.88,
+    "jd_software_engineer.txt": 60.53
   },
   "nurse_scanned.pdf": {
-    "jd_chef.txt": 41.27,
-    "jd_data_scientist.txt": 40.83,
-    "jd_software_engineer.txt": 41.09
+    "jd_chef.txt": 55.84,
+    "jd_data_scientist.txt": 55.16,
+    "jd_software_engineer.txt": 53.58
   },
   "swe_two_column.pdf": {
-    "jd_chef.txt": 37.56,
-    "jd_data_scientist.txt": 38.11,
-    "jd_software_engineer.txt": 58.92
+    "jd_chef.txt": 49.88,
+    "jd_data_scientist.txt": 54.42,
+    "jd_software_engineer.txt": 73.75
   }
 }
