@@ -1,0 +1,245 @@
+keyword,category
+accountant,ACCOUNTANT
+accounting manager,ACCOUNTANT
+staff accountant,ACCOUNTANT
+senior accountant,ACCOUNTANT
+cpa,ACCOUNTANT
+bookkeeper,ACCOUNTANT
+controller,ACCOUNTANT
+accounts payable,ACCOUNTANT
+accounts receivable,ACCOUNTANT
+tax accountant,ACCOUNTANT
+payroll,ACCOUNTANT
+auditor,ACCOUNTANT
+audit,ACCOUNTANT
+attorney,ADVOCATE
+lawyer,ADVOCATE
+paralegal,ADVOCATE
+legal counsel,ADVOCATE
+litigation,ADVOCATE
+legal assistant,ADVOCATE
+associate attorney,ADVOCATE
+public defender,ADVOCATE
+counsel,ADVOCATE
+legal secretary,ADVOCATE
+farm,AGRICULTURE
+agriculture,AGRICULTURE
+agronomist,AGRICULTURE
+horticultur,AGRICULTURE
+livestock,AGRICULTURE
+crop,AGRICULTURE
+rancher,AGRICULTURE
+vineyard,AGRICULTURE
+fashion,APPAREL
+apparel,APPAREL
+textile,APPAREL
+merchandise,APPAREL
+buyer.*fashion,APPAREL
+garment,APPAREL
+clothing,APPAREL
+artist,ARTS
+musician,ARTS
+actor,ARTS
+photographer,ARTS
+illustrator,ARTS
+curator,ARTS
+art director,ARTS
+animator,ARTS
+fine art,ARTS
+automotive,AUTOMOBILE
+auto technician,AUTOMOBILE
+car dealer,AUTOMOBILE
+auto mechanic,AUTOMOBILE
+vehicle,AUTOMOBILE
+dealership,AUTOMOBILE
+auto sales,AUTOMOBILE
+pilot,AVIATION
+aviation,AVIATION
+flight,AVIATION
+airline,AVIATION
+aircraft,AVIATION
+air traffic,AVIATION
+avionics,AVIATION
+banker,BANKING
+bank teller,BANKING
+loan officer,BANKING
+mortgage,BANKING
+credit analyst,BANKING
+branch manager.*bank,BANKING
+investment banker,BANKING
+underwriter,BANKING
+financial analyst,BANKING
+wealth management,BANKING
+bpo,BPO
+call center,BPO
+customer service representative,BPO
+customer support,BPO
+contact center,BPO
+help desk,BPO
+service desk,BPO
+business development,BUSINESS-DEVELOPMENT
+business analyst,BUSINESS-DEVELOPMENT
+strategy manager,BUSINESS-DEVELOPMENT
+partnerships,BUSINESS-DEVELOPMENT
+corporate development,BUSINESS-DEVELOPMENT
+growth manager,BUSINESS-DEVELOPMENT
+market development,BUSINESS-DEVELOPMENT
+chef,CHEF
+cook,CHEF
+sous chef,CHEF
+pastry,CHEF
+culinary,CHEF
+line cook,CHEF
+head cook,CHEF
+food service,CHEF
+kitchen manager,CHEF
+executive chef,CHEF
+construction,CONSTRUCTION
+civil engineer,CONSTRUCTION
+project engineer.*construct,CONSTRUCTION
+site manager,CONSTRUCTION
+superintendent.*construct,CONSTRUCTION
+carpenter,CONSTRUCTION
+electrician,CONSTRUCTION
+plumber,CONSTRUCTION
+estimator,CONSTRUCTION
+foreman,CONSTRUCTION
+hvac,CONSTRUCTION
+welder,CONSTRUCTION
+consultant,CONSULTANT
+management consultant,CONSULTANT
+strategy consultant,CONSULTANT
+advisory,CONSULTANT
+principal consultant,CONSULTANT
+graphic design,DESIGNER
+ux designer,DESIGNER
+ui designer,DESIGNER
+product designer,DESIGNER
+visual designer,DESIGNER
+web designer,DESIGNER
+interior design,DESIGNER
+industrial designer,DESIGNER
+motion designer,DESIGNER
+brand designer,DESIGNER
+digital media,DIGITAL-MEDIA
+social media,DIGITAL-MEDIA
+content creator,DIGITAL-MEDIA
+seo,DIGITAL-MEDIA
+digital marketing,DIGITAL-MEDIA
+content strategist,DIGITAL-MEDIA
+email marketing,DIGITAL-MEDIA
+influencer,DIGITAL-MEDIA
+video editor,DIGITAL-MEDIA
+content manager,DIGITAL-MEDIA
+copywriter,DIGITAL-MEDIA
+mechanical engineer,ENGINEERING
+electrical engineer,ENGINEERING
+industrial engineer,ENGINEERING
+systems engineer,ENGINEERING
+manufacturing engineer,ENGINEERING
+chemical engineer,ENGINEERING
+quality engineer,ENGINEERING
+process engineer,ENGINEERING
+structural engineer,ENGINEERING
+field engineer,ENGINEERING
+finance manager,FINANCE
+financial planner,FINANCE
+cfo,FINANCE
+treasurer,FINANCE
+risk analyst,FINANCE
+investment analyst,FINANCE
+portfolio manager,FINANCE
+equity analyst,FINANCE
+fund manager,FINANCE
+actuary,FINANCE
+compliance officer,FINANCE
+personal trainer,FITNESS
+fitness,FITNESS
+gym manager,FITNESS
+strength coach,FITNESS
+yoga,FITNESS
+pilates,FITNESS
+nutritionist,FITNESS
+wellness,FITNESS
+physical education,FITNESS
+sports coach,FITNESS
+athletic trainer,FITNESS
+nurse,HEALTHCARE
+registered nurse,HEALTHCARE
+physician,HEALTHCARE
+doctor,HEALTHCARE
+medical,HEALTHCARE
+pharmacist,HEALTHCARE
+physical therapist,HEALTHCARE
+occupational therapist,HEALTHCARE
+dentist,HEALTHCARE
+radiologist,HEALTHCARE
+surgical,HEALTHCARE
+clinical,HEALTHCARE
+patient care,HEALTHCARE
+phlebotomist,HEALTHCARE
+healthcare administrator,HEALTHCARE
+certified nursing assistant,HEALTHCARE
+human resources,HR
+hr manager,HR
+hr specialist,HR
+talent acquisition,HR
+recruiter,HR
+hr director,HR
+hr business partner,HR
+people operations,HR
+compensation.*benefits,HR
+hris,HR
+software engineer,INFORMATION-TECHNOLOGY
+software developer,INFORMATION-TECHNOLOGY
+data engineer,INFORMATION-TECHNOLOGY
+data scientist,INFORMATION-TECHNOLOGY
+data analyst,INFORMATION-TECHNOLOGY
+machine learning,INFORMATION-TECHNOLOGY
+devops,INFORMATION-TECHNOLOGY
+cloud engineer,INFORMATION-TECHNOLOGY
+network engineer,INFORMATION-TECHNOLOGY
+it manager,INFORMATION-TECHNOLOGY
+systems administrator,INFORMATION-TECHNOLOGY
+cybersecurity,INFORMATION-TECHNOLOGY
+web developer,INFORMATION-TECHNOLOGY
+java developer,INFORMATION-TECHNOLOGY
+python developer,INFORMATION-TECHNOLOGY
+full.?stack,INFORMATION-TECHNOLOGY
+frontend developer,INFORMATION-TECHNOLOGY
+backend developer,INFORMATION-TECHNOLOGY
+database administrator,INFORMATION-TECHNOLOGY
+qa engineer,INFORMATION-TECHNOLOGY
+qa analyst,INFORMATION-TECHNOLOGY
+public relations,PUBLIC-RELATIONS
+pr manager,PUBLIC-RELATIONS
+communications manager,PUBLIC-RELATIONS
+communications specialist,PUBLIC-RELATIONS
+media relations,PUBLIC-RELATIONS
+brand communications,PUBLIC-RELATIONS
+corporate communications,PUBLIC-RELATIONS
+press secretary,PUBLIC-RELATIONS
+spokesperson,PUBLIC-RELATIONS
+sales manager,SALES
+sales representative,SALES
+account executive,SALES
+account manager,SALES
+sales executive,SALES
+sales associate,SALES
+retail sales,SALES
+inside sales,SALES
+outside sales,SALES
+salesperson,SALES
+sales specialist,SALES
+store manager,SALES
+retail manager,SALES
+teacher,TEACHER
+professor,TEACHER
+instructor,TEACHER
+educator,TEACHER
+tutor,TEACHER
+principal.*school,TEACHER
+school counselor,TEACHER
+librarian,TEACHER
+curriculum,TEACHER
+adjunct,TEACHER

@@ -14,3 +14,5 @@ requests==2.34.2
 tqdm==4.70.1
 huggingface_hub==2.4.0
 scikit-learn==1.9.1
+beautifulsoup4==4.15.0
+scipy==1.17.1

@@ -192,10 +192,27 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
 | 7 | 2026-11-02 | All stubs return valid dummy data typed to schemas | Enables end-to-end pytest validation before any model is trained |
 | 8 | 2026-11-02 | Resume text never logged or stored | Privacy rule; enforced at pipeline and API layer |
 | 9 | 2026-11-02 | `extractor.py` is the extraction orchestrator; Steps 3a/3b add `skills.py` and `ner.py` next to it | Modular design separating rule-based and neural extraction under a unified orchestrator |
+| 10 | 2026-11-03 | `ner_real_skills` REJECTED as ground truth | Dictionary-style auto-tags; 12,695 distinct strings, only 1.5% in O*NET. Kept on disk, never used for training or evaluation. |
+| 11 | 2026-11-03 | NER training uses `ner_synthetic` with template-disjoint splits | Honest evaluation on hand-corrected gold set of real LiveCareer resumes (IDs reserved in data/splits/ner_gold_ids.csv). |
+| 12 | 2026-11-03 | `job_resume_fit` (23 JDs) NOT used for matcher training | Only 23 distinct JDs; used solely as external validation (Spearman vs ai_match_score on test-split resumes). Training/eval JDs come from `linkedin_sample` mapped by title rules. |
+| 13 | 2026-11-03 | One shared resume split keyed on LiveCareer ID, group-aware | Groups defined by exact-duplicate Resume_str OR TF-IDF cosine ≥ 0.90. Split serves classifier, matcher, and NER gold selection. |
+| 14 | 2026-11-03 | Classifier reports results with and without the leading title header | LiveCareer resumes begin with job title (div.PARAGRAPH_NAME); masking it removes the dominant signal to measure label leak. |
 
 ---
 
 ## CHANGELOG
+
+### v0.2.0 — 2026-11-03
+- `scripts/make_splits.py`: group-aware 70/15/15 resume split (seed 42), TF-IDF dedup,
+  header-masking with leak measurement, NER gold candidate selection
+- `scripts/build_jd_pool.py`: LinkedIn JD dedup, title→category mapping, JD split, jrf_eval
+- `scripts/verify_splits.py`: independent PASS/FAIL integrity check for all splits
+- `tests/test_splits.py`: offline unit tests for union-find, group split, masking, title map
+- `data/splits/`: classifier_split.csv, jd_split.csv, ner_gold_ids.csv (IDs only, no text)
+- `data/processed/`: classifier_{train,val,test}.parquet, jd_{train,val,test}.parquet, jrf_eval.parquet
+- `data/taxonomies/title_category_map.csv`: keyword→category rules for 24 categories
+- `docs/splits.md`: split design, counts, limitations
+- `requirements.txt`: added `beautifulsoup4`, `scipy` (for sparse cosine)
 
 ### v0.1.0 — 2026-11-02
 - Repo scaffold created: all folders, `__init__.py` files, placeholder files
