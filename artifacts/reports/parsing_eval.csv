@@ -1,0 +1,6 @@
+fixture,duration_ms,sections_precision,sections_recall,contact_pass,page_count,is_multi_column,has_tables,needs_ocr
+ds_clean.pdf,120.14,1.0,1.0,True,1,False,False,False
+swe_two_column.pdf,87.27,1.0,1.0,True,1,True,True,False
+accountant_table.pdf,137.68,1.0,1.0,True,1,False,True,False
+chef_plain.docx,10.56,1.0,1.0,True,1,False,False,False
+nurse_scanned.pdf,2690.62,1.0,1.0,True,1,False,False,True

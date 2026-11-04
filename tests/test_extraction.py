@@ -442,3 +442,29 @@ def test_acceptance_reason_counter() -> None:
     extractor.reset_reason_counts()
     assert extractor.get_reason_counts() == {}
 
+
+def test_rn_not_extracted_as_react_native() -> None:
+    """Verify Registered Nurse (RN) is not extracted as 'react native'."""
+    from pathlib import Path
+    from app.parsing.parser import parse_resume
+
+    pdf_path = Path(__file__).resolve().parent / "fixtures" / "nurse_scanned.pdf"
+    if pdf_path.exists():
+        with open(pdf_path, "rb") as f:
+            pdf_bytes = f.read()
+        parsed = parse_resume(pdf_bytes, "nurse_scanned.pdf")
+        enriched = extract_entities(parsed)
+        skills_lower = [s.lower() for s in enriched.skills]
+        assert "react native" not in skills_lower
+        assert "basic life support" in skills_lower
+
+    extractor = get_skill_extractor()
+    nurse_text = "Experienced Registered Nurse (RN) providing compassionate patient care."
+    nurse_skills = [s.lower() for s in extractor.extract_canonical_skills(nurse_text, section_name="skills")]
+    assert "react native" not in nurse_skills
+
+    software_text = "Built mobile applications using React Native, TypeScript, and Redux."
+    software_skills = [s.lower() for s in extractor.extract_canonical_skills(software_text, section_name="skills")]
+    assert "react native" in software_skills
+
+

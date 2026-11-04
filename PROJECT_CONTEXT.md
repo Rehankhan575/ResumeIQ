@@ -232,10 +232,20 @@ Core models defined in `app/schemas.py`:
 | 28 | 2026-11-04 | Stage 7 GenAI provider abstraction (Gemini, Groq, Ollama) with 8s timeout, 2 retries, in-memory SHA-256 caching, and Grounding Guard | Prevents API stalls, guarantees zero disk/log credential leakage, and strictly drops ungrounded hallucinated numbers, orgs, and skills |
 | 29 | 2026-11-04 | Modular extras: Multi-JD ranking, 70-skill URL-free courseware mapping, privacy-preserving bias audit, and opt-in SQLite history | Provides comprehensive resume optimization while preserving candidate privacy (no personal text in logs, bias labels, or SQLite) |
 | 30 | 2026-11-04 | `SCHEMA_VERSION` bumped to 1.3.0 (additive: `ScoreResult.warnings`) | Pipeline graceful degradation surfaces non-fatal stage warnings in result object without raising exceptions |
+| 31 | 2026-11-04 | Remove `rn` alias from `react native` in skills.csv | Prevents Registered Nurse false positives in medical resumes; taxonomy ambiguity rules only apply to canonical terms and skills sections |
 
 ---
 
 ## CHANGELOG
+
+### v1.1.0 — 2026-11-04
+- `data/taxonomies/skills.csv`: removed `rn` alias from `react native` (line 1240) preventing Registered Nurse false positives in nursing and healthcare resumes (`nurse_scanned.pdf`) while preserving `react native` in technical contexts
+- `tests/test_extraction.py`: added `test_rn_not_extracted_as_react_native` unit test verifying zero "react native" matches on nursing fixtures and correct extraction in mobile software contexts
+- `scripts/collect_results.py`: implemented read-only evaluation collector and aggregator reading `artifacts/metrics/` and generating `artifacts/reports/results_summary.md` and 7 standalone CSV reports
+- `README.md`: created comprehensive technical guide including setup instructions, running guides, 7-stage Mermaid pipeline diagram, exact empirical metric tables, syllabus unit mapping (Units I–V), and plain 9-point limitations disclosure
+- `DEMO_SCRIPT.md`: crafted timed 5-minute live demonstration script with pre-demo checklist, click-by-click instructions, expected scores (84.9 / B vs 55.5 / F), and fallback recovery procedures
+- `VIVA_QA.md`: authored 25 viva voce questions and answers with honest, metric-backed explanations across 7 modular topic groups
+- `docs/results.md`: added cross-stage benchmark summary document for documentation suite
 
 ### v1.0.0 — 2026-11-04
 - `app/pipeline.py`: implemented full 7-stage chain with `warm_up()` lazy singleton, rich `run_pipeline(file_bytes, filename, jd_text, jd_title="", use_genai=True)` supporting graceful degradation with `warnings` tracking, 5MB file-size and type validation, and segfault-mitigation env vars (`TOKENIZERS_PARALLELISM=false`, `OMP_NUM_THREADS=1`, `PYTORCH_ENABLE_MPS_FALLBACK=1`)

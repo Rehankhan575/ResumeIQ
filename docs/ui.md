@@ -80,3 +80,4 @@ The UI provides 7 tabs styled with underline navigation (muted text, 2px teal ac
 2. **ATS Ground Truth**: No universal ground-truth ATS score exists; composite weights (0–100) are transparent heuristics designed for candidate actionable feedback.
 3. **XAI Faithfulness**: Leave-One-Sentence-Out (LOSO) and linear feature attribution provide fast sub-second attributions; however, empirical faithfulness erasure benchmarks remain approximate on short résumés.
 4. **Candidate Privacy**: Uploaded résumé text and contact information are held in transient memory only; no personal details are written to disk, SQLite, or server log files.
+

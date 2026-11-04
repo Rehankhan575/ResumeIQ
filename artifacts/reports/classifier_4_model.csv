@@ -1,0 +1,5 @@
+model_key,model_name,train_accuracy,train_macro_f1,val_accuracy,val_macro_f1,test_accuracy,test_macro_f1,gen_gap_f1
+tfidf_lr,TF-IDF + Logistic Regression,0.9902,0.9882,0.6405,0.5913,0.6631,0.5959,0.3969
+tfidf_mlp,TF-IDF + MLP (2-layer),1.0,1.0,0.6459,0.6001,0.6524,0.6181,0.3999
+bilstm,BiLSTM + Pretrained Embeddings,0.743,0.7091,0.2351,0.186,0.2513,0.1966,0.5231
+distilbert,"DistilBERT (Fine-tuned, 3 epochs)",0.7585,0.6748,0.6514,0.5675,0.7273,0.6454,0.1073

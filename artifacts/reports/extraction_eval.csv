@@ -1,0 +1,9 @@
+fixture,type,precision,recall,f1,trap_hits,years_pass
+accountant_table.pdf,resume,1.0,1.0,1.0,0,True
+chef_plain.docx,resume,0.5,1.0,0.6667,0,True
+ds_clean.pdf,resume,0.8333,1.0,0.9091,0,True
+nurse_scanned.pdf,resume,0.7143,1.0,0.8333,0,True
+swe_two_column.pdf,resume,1.0,1.0,1.0,0,True
+jd_data_scientist.txt,job_description,0.0,0.0,0.0,0,True
+jd_software_engineer.txt,job_description,0.0,0.0,0.0,0,True
+jd_chef.txt,job_description,0.0,0.0,0.0,0,True

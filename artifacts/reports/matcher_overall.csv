@@ -1,0 +1,4 @@
+model_key,model_name,val_mrr,val_ndcg10,val_recall5,val_recall10,test_mrr,test_ndcg10,test_recall5,test_recall10
+tfidf,TF-IDF Baseline,0.6121,0.4537,0.2209,0.3239,0.6333,0.4854,0.2337,0.3456
+zero_shot,Zero-Shot SBERT (all-MiniLM-L6-v2),0.6377,0.4414,0.2107,0.309,0.6311,0.4532,0.1964,0.3007
+fine_tuned,Fine-Tuned Siamese SBERT (MNRL),0.8567,0.6821,0.3286,0.4671,0.7798,0.7286,0.3755,0.5338

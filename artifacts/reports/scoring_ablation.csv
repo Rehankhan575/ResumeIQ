@@ -1,0 +1,10 @@
+component,original_weight,mean_original_score,mean_ablated_score,mean_score_delta
+semantic_match,0.25,79.64,76.11,-3.53
+keyword_coverage,0.2,79.64,79.41,-0.23
+section_completeness,0.1,79.64,77.56,-2.08
+formatting,0.1,79.64,80.89,1.25
+experience_fit,0.1,79.64,77.38,-2.26
+quantified_achievements,0.1,79.64,87.01,7.37
+action_verbs,0.05,79.64,79.21,-0.43
+readability,0.05,79.64,79.27,-0.37
+contact_completeness,0.05,79.64,79.36,-0.28

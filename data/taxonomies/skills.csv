@@ -1237,7 +1237,7 @@ r,r language|r programming|r-project,programming_languages,curated
 radiology,x-ray imaging|ct scan|mri,healthcare_medical,curated
 rapid prototyping software,,cad_engineering,onet
 react,react.js|reactjs,web_frameworks,curated
-react native,react-native|rn,web_frameworks,curated
+react native,react-native,web_frameworks,curated
 recipe development,standardized recipes,culinary_chef,curated
 reconciliation,,accounting_finance,ner_synthetic
 recordkeeping software,,databases,onet
@@ -1666,3 +1666,4 @@ youtube,,design_multimedia,onet
 zabbix,,networking,onet
 zero trust,,cybersecurity,ner_synthetic
 zoom,,design_multimedia,onet
+registered nurse,rn,healthcare_medical,curated
