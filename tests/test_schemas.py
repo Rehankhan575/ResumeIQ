@@ -47,7 +47,7 @@ def test_schema_version_is_string() -> None:
     """SCHEMA_VERSION must be a non-empty string."""
     assert isinstance(SCHEMA_VERSION, str)
     assert len(SCHEMA_VERSION) > 0
-    assert SCHEMA_VERSION == "1.2.0"
+    assert SCHEMA_VERSION == "1.3.0"
 
 
 # ---------------------------------------------------------------------------
@@ -421,3 +421,4 @@ def test_score_result_defaults_are_empty_lists() -> None:
     assert sr.highlights == []
     assert sr.suggestions == []
     assert sr.predicted_categories == []
+    assert sr.warnings == []

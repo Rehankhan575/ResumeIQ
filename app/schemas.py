@@ -15,7 +15,7 @@ from typing import Literal
 
 from pydantic import BaseModel, Field, field_validator, model_validator
 
-SCHEMA_VERSION: str = "1.2.0"
+SCHEMA_VERSION: str = "1.3.0"
 
 
 # ---------------------------------------------------------------------------
@@ -259,6 +259,7 @@ class ScoreResult(BaseModel):
     match: MatchResult | None = None
     suggestions: list[Suggestion] = Field(default_factory=list)
     timings_ms: dict[str, float] = Field(default_factory=dict)
+    warnings: list[str] = Field(default_factory=list)   # additive v1.3.0: pipeline stage warnings
 
     @field_validator("total")
     @classmethod

@@ -157,7 +157,7 @@ resume-ai/  (root = /Users/rehan/Desktop/DL_PROJECT)
 
 ## Schemas
 
-`SCHEMA_VERSION = "1.2.0"`
+`SCHEMA_VERSION = "1.3.0"`
 
 Core models defined in `app/schemas.py`:
 - `ContactInfo`: `name`, `email`, `phone`, `linkedin`, `github`, `other_links`
@@ -167,7 +167,7 @@ Core models defined in `app/schemas.py`:
 - `ProjectEntry`: `name`, `description`, `technologies`
 - `Entity`: `text`, `label`, `start`, `end`, `score`, `source`
 - `ParsedResume`: `raw_text`, `sections`, `contact`, `layout`, `skills`, `entities`, `education`, `experience`, `projects`, `certifications`, `total_years_experience`, `warnings`
-- `CategoryPrediction`, `JobDescription` (`title`, `text`, `required_skills`, `preferred_skills`, `min_years`, `min_years_experience`), `MatchResult`, `Issue`, `Highlight`, `Suggestion`, `ScoreResult`
+- `CategoryPrediction`, `JobDescription` (`title`, `text`, `required_skills`, `preferred_skills`, `min_years`, `min_years_experience`), `MatchResult`, `Issue`, `Highlight`, `Suggestion`, `ScoreResult` (`total`, `grade`, `components`, `missing_skills`, `issues`, `highlights`, `predicted_categories`, `match`, `suggestions`, `timings_ms`, `warnings`)
 
 ---
 
@@ -231,10 +231,22 @@ Core models defined in `app/schemas.py`:
 | 27 | 2026-11-04 | Stage 5 ATS scorer routes to public `app.models.matcher.match()` and `app.models.classifier.classify()` with cached neural bi-encoder and TF-IDF fallback | Connects fine-tuned Siamese bi-encoder to ATS scoring while maintaining sub-second inference caching and robust TF-IDF fallback for missing checkpoints |
 | 28 | 2026-11-04 | Stage 7 GenAI provider abstraction (Gemini, Groq, Ollama) with 8s timeout, 2 retries, in-memory SHA-256 caching, and Grounding Guard | Prevents API stalls, guarantees zero disk/log credential leakage, and strictly drops ungrounded hallucinated numbers, orgs, and skills |
 | 29 | 2026-11-04 | Modular extras: Multi-JD ranking, 70-skill URL-free courseware mapping, privacy-preserving bias audit, and opt-in SQLite history | Provides comprehensive resume optimization while preserving candidate privacy (no personal text in logs, bias labels, or SQLite) |
+| 30 | 2026-11-04 | `SCHEMA_VERSION` bumped to 1.3.0 (additive: `ScoreResult.warnings`) | Pipeline graceful degradation surfaces non-fatal stage warnings in result object without raising exceptions |
 
 ---
 
 ## CHANGELOG
+
+### v1.0.0 — 2026-11-04
+- `app/pipeline.py`: implemented full 7-stage chain with `warm_up()` lazy singleton, rich `run_pipeline(file_bytes, filename, jd_text, jd_title="", use_genai=True)` supporting graceful degradation with `warnings` tracking, 5MB file-size and type validation, and segfault-mitigation env vars (`TOKENIZERS_PARALLELISM=false`, `OMP_NUM_THREADS=1`, `PYTORCH_ENABLE_MPS_FALLBACK=1`)
+- `app/extras/ranking.py`: fixed item 0 bug where empty `required_skills` inflated keyword coverage by +20; now populates skills via `extract_jd_skills`
+- `app/schemas.py`: bumped `SCHEMA_VERSION` to 1.3.0 with additive `ScoreResult.warnings`
+- `app/ui/`: polished developer-tools Streamlit dashboard with custom CSS tokens (`app/ui/styles.css`), self-hosted Inter & JetBrains Mono WOFF2 fonts (`app/ui/static/fonts/`), SVG circular score ring, component breakdown bars, stat tiles, gain-sorted issues, 7 underline tabs, and no default Streamlit chrome
+- `scripts/preflight.py`: preflight verification runner evaluating all 15 fixture × JD combinations, measuring cold-start warm-up time (7.87s–8.38s), and asserting zero failures
+- `tests/test_ui.py`: headless `streamlit.testing.v1.AppTest` suite testing initial state, sample analysis, empty input, corrupted files, and multiple JDs
+- `tests/test_pipeline.py`: 30 comprehensive pipeline tests covering ranking score gap, graceful degradation, and log privacy
+- `docs/ui.md`: documentation detailing execution instructions, design tokens, tab overviews, and system limitations
+- `docs/screenshots/`: 30 visual verification screenshots captured via automated headless Chrome CDP across 1440x900, 1280x720, and 1920x1080
 
 ### v0.9.0 — 2026-11-04
 - `app/genai/`: implemented Stage 7 Generative AI provider abstraction supporting Google Gemini, Groq, and Ollama with strict 8s timeout, max 2 retries, transient in-memory caching, and rule-based fallback
