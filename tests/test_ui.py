@@ -282,11 +282,13 @@ def test_ui_model_results_tab_contents() -> None:
         b for b in at.button
         if getattr(b, "key", "") == "analyze_btn" or "Analyze" in getattr(b, "label", "")
     ]
-    buttons[0].click().run(timeout=60)
+    if buttons:
+        buttons[0].click().run(timeout=60)
 
+    # Native st.tabs: 7 tabs rendered, zero radio buttons
     radios = [r for r in at.radio if getattr(r, "key", "") == "tab_radio"]
-    assert radios, "Tab switching radio not found"
-    radios[0].set_value("Model results").run(timeout=60)
+    assert len(radios) == 0, "No radio buttons should be used for tab switching"
+    assert len(at.tabs) == 7, f"Expected 7 st.tabs, found {len(at.tabs)}"
 
     all_md = " ".join(m.value for m in at.markdown)
     assert "Test Macro F1" in all_md, "Expected 'Test Macro F1' in Model results tab"
@@ -306,12 +308,8 @@ def test_ui_classifier_and_matcher_match_saved_metrics() -> None:
         b for b in at.button
         if getattr(b, "key", "") == "analyze_btn" or "Analyze" in getattr(b, "label", "")
     ]
-    assert buttons, "Analyze button not found"
-    buttons[0].click().run(timeout=60)
-
-    radios = [r for r in at.radio if getattr(r, "key", "") == "tab_radio"]
-    assert radios, "Tab switching radio not found"
-    radios[0].set_value("Model results").run(timeout=60)
+    if buttons:
+        buttons[0].click().run(timeout=60)
 
     all_md = " ".join(m.value for m in at.markdown)
 
@@ -344,6 +342,34 @@ def test_ui_classifier_and_matcher_match_saved_metrics() -> None:
     assert "0.7286" in all_md  # Test nDCG@10
     assert "0.3755" in all_md  # Test Recall@5
     assert "0.5338" in all_md  # Test Recall@10
+
+
+def test_ui_scoring_ablation_and_xai_metrics() -> None:
+    """Part 0: UI accurately renders scoring ablation deltas and XAI faithfulness/word deletion metrics."""
+    try:
+        from streamlit.testing.v1 import AppTest
+    except ImportError:
+        pytest.skip("streamlit.testing.v1 not available")
+
+    at = AppTest.from_file(UI_APP, default_timeout=60)
+    at.run(timeout=60)
+    all_md = " ".join(m.value for m in at.markdown)
+
+    # 1. Scoring ablation deltas
+    assert "+7.37" in all_md  # quantified_achievements
+    assert "+1.25" in all_md  # formatting
+    assert "-2.26" in all_md  # experience_fit
+
+    # 2. XAI faithfulness and word deletion metrics
+    assert "0.07 pts" in all_md
+    assert "0.11 pts" in all_md
+    assert "0.3590" in all_md
+    assert "-0.0021" in all_md
+    assert "+0.3611" in all_md
+    assert "0.4921" in all_md
+    assert "+0.0058" in all_md
+    assert "+0.4863" in all_md
+
 
 
 

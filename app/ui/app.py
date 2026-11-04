@@ -151,29 +151,29 @@ def _fmt_component_name(key: str) -> str:
 
 
 def _svg_ring(score: float, grade: str) -> str:
-    """Generate an SVG circular score ring."""
+    """Generate an SVG circular score ring with inline stroke attributes."""
     r = 56
     cx = cy = 68
     stroke_w = 8
     circumference = 2 * math.pi * r
-    offset = circumference * (1 - score / 100)
+    clamped_score = max(0.0, min(100.0, float(score)))
+    offset = circumference * (1.0 - clamped_score / 100.0)
 
     if grade in ("A", "A-"):
-        colour = "var(--good)"
+        stroke_color = "#6EE7A0"
     elif grade in ("B", "C"):
-        colour = "var(--warn)"
+        stroke_color = "#F5B454"
     else:
-        colour = "var(--bad)"
+        stroke_color = "#F2777A"
 
-    return f"""
-<svg width="136" height="136" viewBox="0 0 136 136" fill="none"
+    return f"""<svg width="136" height="136" viewBox="0 0 136 136" fill="none"
      xmlns="http://www.w3.org/2000/svg" aria-label="Score ring: {score:.0f}">
   <!-- Background track -->
   <circle cx="{cx}" cy="{cy}" r="{r}"
-          stroke="var(--surface-raised)" stroke-width="{stroke_w}" fill="none"/>
+          stroke="#212B38" stroke-width="{stroke_w}" fill="none"/>
   <!-- Progress arc -->
   <circle cx="{cx}" cy="{cy}" r="{r}"
-          stroke="{colour}" stroke-width="{stroke_w}" fill="none"
+          stroke="{stroke_color}" stroke-width="{stroke_w}" fill="none"
           stroke-linecap="round"
           stroke-dasharray="{circumference:.2f}"
           stroke-dashoffset="{offset:.2f}"
@@ -212,6 +212,7 @@ def _run_analysis(
         parsed_doc = parse_document(file_bytes, filename)
         extracted = extract_entities(parsed_doc)
         result._parsed = extracted
+        result._file_bytes = file_bytes
         st.session_state["parsed_resume"] = extracted
     except Exception:
         pass
@@ -219,7 +220,7 @@ def _run_analysis(
     st.session_state["result"] = result
     st.session_state["elapsed"] = elapsed
     st.session_state["jd_text"] = jd_text
-    st.session_state["active_tab"] = "Highlights"
+    st.session_state["ranking_result"] = None  # Invalidate cached ranking for new resume
 
     # Optional history recording
     if st.session_state.get("history_opt_in") and result.total > 0:
@@ -236,32 +237,27 @@ def _run_analysis(
 
 def _render_header() -> None:
     status_txt = "Models loaded" if _models_ready else "Models loading..."
-    st.markdown(
-        f"""
-<div class="ra-header">
-  <span class="ra-wordmark">Resume Analyzer</span>
-  <div class="ra-header-right">
-    <div class="ra-status-chip">
-      <span class="ra-status-dot"></span>
-      <span>{_escape(status_txt)}</span>
-    </div>
-  </div>
-</div>
-""",
-        unsafe_allow_html=True,
-    )
-
-    # Settings expander (inline, below header)
-    with st.expander("Settings", expanded=False):
-        st.caption("Privacy: resume text is processed in-memory only and never stored.")
-        st.session_state["history_opt_in"] = st.checkbox(
-            "Save score history (opt-in, no resume text stored)",
-            value=st.session_state["history_opt_in"],
-        )
-        st.session_state["use_genai"] = st.checkbox(
-            "Enable AI suggestions (requires API key in .env)",
-            value=st.session_state["use_genai"],
-        )
+    col_wordmark, col_right = st.columns([0.7, 0.3], vertical_alignment="center")
+    with col_wordmark:
+        st.markdown('<span class="ra-wordmark">Resume Analyzer</span>', unsafe_allow_html=True)
+    with col_right:
+        c_status, c_pop = st.columns([0.55, 0.45], vertical_alignment="center")
+        with c_status:
+            st.markdown(
+                f'<div class="ra-status-chip"><span class="ra-status-dot ready"></span><span>{_escape(status_txt)}</span></div>',
+                unsafe_allow_html=True,
+            )
+        with c_pop:
+            with st.popover("Settings"):
+                st.caption("Privacy: resume text is processed in-memory only and never stored.")
+                st.session_state["history_opt_in"] = st.checkbox(
+                    "Save score history (opt-in, no resume text stored)",
+                    value=st.session_state["history_opt_in"],
+                )
+                st.session_state["use_genai"] = st.checkbox(
+                    "Enable AI suggestions (requires API key in .env)",
+                    value=st.session_state["use_genai"],
+                )
 
 
 # ---------------------------------------------------------------------------
@@ -270,106 +266,100 @@ def _render_header() -> None:
 
 def _render_input() -> None:
     """Two-card input section with explicit mode toggles: Resume + Job Description."""
-    st.markdown('<div class="ra-section">', unsafe_allow_html=True)
-
     col_resume, col_jd = st.columns(2, gap="large")
 
     with col_resume:
-        st.markdown('<div class="ra-card">', unsafe_allow_html=True)
-        st.markdown('<span class="ra-card-label">Resume</span>', unsafe_allow_html=True)
+        with st.container(key="card_resume"):
+            st.markdown('<span class="ra-card-label">Resume</span>', unsafe_allow_html=True)
 
-        resume_mode = st.segmented_control(
-            "Resume mode",
-            options=["Sample", "Upload"],
-            default="Sample",
-            key="resume_mode",
-            label_visibility="collapsed",
-        )
-        if not resume_mode:
-            resume_mode = "Sample"
-
-        # Preselect ds_clean.pdf for first-load demo
-        default_idx = 0
-        if "ds_clean.pdf" in SAMPLE_RESUMES:
-            default_idx = SAMPLE_RESUMES.index("ds_clean.pdf")
-
-        if resume_mode == "Sample":
-            resume_choice = st.selectbox(
-                "Sample resume",
-                options=SAMPLE_RESUMES,
-                index=default_idx if SAMPLE_RESUMES else 0,
+            resume_mode = st.segmented_control(
+                "Resume mode",
+                options=["Sample", "Upload"],
+                default="Sample",
+                key="resume_mode",
                 label_visibility="collapsed",
-                key="resume_choice",
             )
-            uploaded_resume = None
-            using_resume = resume_choice or "None"
-        else:
-            resume_choice = None
-            uploaded_resume = st.file_uploader(
-                "Upload a PDF / DOCX / image",
-                type=["pdf", "docx", "png", "jpg", "jpeg"],
-                label_visibility="visible",
-                key="resume_upload",
-            )
-            using_resume = uploaded_resume.name if uploaded_resume is not None else "No file uploaded"
+            if not resume_mode:
+                resume_mode = "Sample"
 
-        st.caption(f"Using: {using_resume}")
-        st.markdown("</div>", unsafe_allow_html=True)
+            # Preselect ds_clean.pdf for first-load demo
+            default_idx = 0
+            if "ds_clean.pdf" in SAMPLE_RESUMES:
+                default_idx = SAMPLE_RESUMES.index("ds_clean.pdf")
+
+            if resume_mode == "Sample":
+                resume_choice = st.selectbox(
+                    "Sample resume",
+                    options=SAMPLE_RESUMES,
+                    index=default_idx if SAMPLE_RESUMES else 0,
+                    label_visibility="collapsed",
+                    key="resume_choice",
+                )
+                uploaded_resume = None
+                using_resume = resume_choice or "None"
+            else:
+                resume_choice = None
+                uploaded_resume = st.file_uploader(
+                    "Upload a PDF / DOCX / image",
+                    type=["pdf", "docx", "png", "jpg", "jpeg"],
+                    label_visibility="visible",
+                    key="resume_upload",
+                )
+                using_resume = uploaded_resume.name if uploaded_resume is not None else "No file uploaded"
+
+            st.caption(f"Using: {using_resume}")
 
     with col_jd:
-        st.markdown('<div class="ra-card">', unsafe_allow_html=True)
-        st.markdown('<span class="ra-card-label">Job Description</span>', unsafe_allow_html=True)
+        with st.container(key="card_jd"):
+            st.markdown('<span class="ra-card-label">Job Description</span>', unsafe_allow_html=True)
 
-        jd_mode = st.segmented_control(
-            "JD mode",
-            options=["Sample", "Paste"],
-            default="Sample",
-            key="jd_mode",
-            label_visibility="collapsed",
-        )
-        if not jd_mode:
-            jd_mode = "Sample"
-
-        default_jd_idx = 0
-        if "jd_data_scientist.txt" in SAMPLE_JDS:
-            default_jd_idx = SAMPLE_JDS.index("jd_data_scientist.txt")
-
-        if jd_mode == "Sample":
-            jd_choice = st.selectbox(
-                "Sample JD",
-                options=SAMPLE_JDS,
-                index=default_jd_idx if SAMPLE_JDS else 0,
+            jd_mode = st.segmented_control(
+                "JD mode",
+                options=["Sample", "Paste"],
+                default="Sample",
+                key="jd_mode",
                 label_visibility="collapsed",
-                key="jd_choice",
             )
-            jd_pasted = None
-            jd_title_input = ""
-            using_jd = jd_choice or "None"
-        else:
-            jd_choice = None
-            jd_pasted = st.text_area(
-                "Paste job description text",
-                height=120,
-                label_visibility="visible",
-                key="jd_text_input",
-                placeholder="Paste job description text here…",
-            )
-            jd_title_input = st.text_input(
-                "Job title (optional)",
-                key="jd_title_input",
-                placeholder="e.g. Senior Data Scientist",
-            )
-            if jd_title_input and jd_title_input.strip():
-                using_jd = jd_title_input.strip()
-            elif jd_pasted and jd_pasted.strip():
-                using_jd = "Pasted text"
+            if not jd_mode:
+                jd_mode = "Sample"
+
+            default_jd_idx = 0
+            if "jd_data_scientist.txt" in SAMPLE_JDS:
+                default_jd_idx = SAMPLE_JDS.index("jd_data_scientist.txt")
+
+            if jd_mode == "Sample":
+                jd_choice = st.selectbox(
+                    "Sample JD",
+                    options=SAMPLE_JDS,
+                    index=default_jd_idx if SAMPLE_JDS else 0,
+                    label_visibility="collapsed",
+                    key="jd_choice",
+                )
+                jd_pasted = None
+                jd_title_input = ""
+                using_jd = jd_choice or "None"
             else:
-                using_jd = "No JD entered"
+                jd_choice = None
+                jd_pasted = st.text_area(
+                    "Paste job description text",
+                    height=120,
+                    label_visibility="visible",
+                    key="jd_text_input",
+                    placeholder="Paste job description text here…",
+                )
+                jd_title_input = st.text_input(
+                    "Job title (optional)",
+                    key="jd_title_input",
+                    placeholder="e.g. Senior Data Scientist",
+                )
+                if jd_title_input and jd_title_input.strip():
+                    using_jd = jd_title_input.strip()
+                elif jd_pasted and jd_pasted.strip():
+                    using_jd = "Pasted text"
+                else:
+                    using_jd = "No JD entered"
 
-        st.caption(f"Using: {using_jd}")
-        st.markdown("</div>", unsafe_allow_html=True)
-
-    st.markdown("</div>", unsafe_allow_html=True)
+            st.caption(f"Using: {using_jd}")
 
     # Resolve inputs strictly decided by active mode toggle
     file_bytes: Optional[bytes] = None
@@ -398,6 +388,8 @@ def _render_input() -> None:
             if p.exists():
                 jd_text = p.read_text(encoding="utf-8")
                 jd_title = jd_choice.replace("jd_", "").replace(".txt", "").replace("_", " ").title()
+
+    st.markdown("<div style='margin-top:16px'></div>", unsafe_allow_html=True)
 
     # Analyze button
     analyze_clicked = st.button(
@@ -488,30 +480,37 @@ def _render_hero(result) -> None:
     qual_weighted = sum(weights[k] * components.get(k, 0.0) for k in qual_keys)
     resume_quality = (qual_weighted / w_qual) * 100.0 if w_qual > 0 else 0.0
 
-    st.markdown(f"""
-<div class="ra-row ra-row-hero ra-section">
-  <div class="ra-card ra-score-ring-wrap">
+    col_ring, col_breakdown = st.columns([1, 2], gap="large")
+
+    with col_ring:
+        with st.container(key="card_score_ring"):
+            st.markdown(f"""
+<div class="ra-score-ring-wrap">
+  <div class="ra-score-ring-center-wrap">
     {ring_svg}
-    <span class="ra-score-number">{total:.0f}</span>
-    <span class="ra-grade-chip {gc}">{_escape(grade)}</span>
-    <div class="ra-subscores" style="display:flex; gap:16px; margin-top:14px; align-items:center; justify-content:center; width:100%; border-top:1px solid var(--border); padding-top:12px;">
-      <div style="text-align:center;">
-        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); font-family:var(--font-mono);">Job fit</div>
-        <div style="font-family:var(--font-mono); font-size:16px; color:var(--text); font-variant-numeric:tabular-nums; margin-top:2px;">{job_fit:.0f} <span style="font-size:11px; color:var(--faint);">/ 100</span></div>
-      </div>
-      <div style="width:1px; background:var(--border); height:24px;"></div>
-      <div style="text-align:center;">
-        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); font-family:var(--font-mono);">Resume quality</div>
-        <div style="font-family:var(--font-mono); font-size:16px; color:var(--text); font-variant-numeric:tabular-nums; margin-top:2px;">{resume_quality:.0f} <span style="font-size:11px; color:var(--faint);">/ 100</span></div>
-      </div>
+    <div class="ra-score-ring-inner">
+      <div class="ra-score-number">{total:.0f}</div>
+      <div><span class="ra-grade-chip {gc}">{_escape(grade)}</span></div>
     </div>
   </div>
-  <div class="ra-card">
-    <span class="ra-card-label">Component Breakdown</span>
-    <div class="ra-bars" style="margin-top:16px">{bars_html}</div>
+  <div class="ra-subscores">
+    <div class="ra-subscore-item">
+      <div class="ra-subscore-label">Job fit</div>
+      <div class="ra-subscore-val">{job_fit:.0f}</div>
+    </div>
+    <div class="ra-subscore-divider"></div>
+    <div class="ra-subscore-item">
+      <div class="ra-subscore-label">Resume quality</div>
+      <div class="ra-subscore-val">{resume_quality:.0f}</div>
+    </div>
   </div>
 </div>
 """, unsafe_allow_html=True)
+
+    with col_breakdown:
+        with st.container(key="card_breakdown"):
+            st.markdown('<span class="ra-card-label">Component Breakdown</span>', unsafe_allow_html=True)
+            st.markdown(f'<div class="ra-bars">{bars_html}</div>', unsafe_allow_html=True)
 
 
 # ---------------------------------------------------------------------------
@@ -574,23 +573,24 @@ def _render_stat_tiles(result) -> None:
         ),
     ]
 
+    st.markdown("<div style='margin-top:24px'></div>", unsafe_allow_html=True)
     cols = st.columns(4, gap="large")
-    for col, (label, value, subtitle) in zip(cols, tiles):
+    for i, (col, (label, value, subtitle)) in enumerate(zip(cols, tiles)):
         with col:
-            sub_html = (
-                f'<div style="font-size:11px;color:var(--faint);font-family:var(--font-mono);margin-top:4px">{_escape(subtitle)}</div>'
-                if subtitle
-                else ""
-            )
-            st.markdown(
-                f"""
-<div class="ra-card">
-  <span class="ra-card-label">{_escape(label)}</span>
-  <div class="ra-stat-value">{_escape(value)}</div>
-  {sub_html}
-</div>""",
-                unsafe_allow_html=True,
-            )
+            with st.container(key=f"card_stat_{i}"):
+                sub_html = (
+                    f'<div style="font-size:11px;color:var(--faint);font-family:var(--font-mono);margin-top:4px">{_escape(subtitle)}</div>'
+                    if subtitle
+                    else ""
+                )
+                val_class = "ra-stat-value long" if len(value) > 14 else "ra-stat-value"
+                st.markdown(
+                    f"""
+<span class="ra-card-label">{_escape(label)}</span>
+<div class="{val_class}">{_escape(value)}</div>
+{sub_html}""",
+                    unsafe_allow_html=True,
+                )
 
 
 # ---------------------------------------------------------------------------
@@ -622,32 +622,10 @@ def _render_issues(result) -> None:
 
 
 # ---------------------------------------------------------------------------
-# Render: Custom tab bar
+# Tabs List
 # ---------------------------------------------------------------------------
 
 TABS = ["Highlights", "Suggestions", "Ranking", "Skill gap", "Bias check", "History", "Model results"]
-
-
-def _render_tabbar() -> str:
-    active = st.session_state["active_tab"]
-    tabs_html = ""
-    for tab in TABS:
-        cls = "ra-tab active" if tab == active else "ra-tab"
-        tabs_html += f'<button class="{cls}" id="tab-{_escape(tab.replace(" ", "-"))}" onclick="">{_escape(tab)}</button>'
-
-    # Render invisible radio for actual tab switching
-    chosen = st.radio(
-        "tab",
-        TABS,
-        index=TABS.index(active),
-        horizontal=True,
-        label_visibility="collapsed",
-        key="tab_radio",
-    )
-    if chosen != active:
-        st.session_state["active_tab"] = chosen
-
-    return st.session_state["active_tab"]
 
 
 # ---------------------------------------------------------------------------
@@ -772,7 +750,7 @@ def _render_ranking_tab() -> None:
     st.markdown('<span class="ra-section-title">JD Ranking</span>', unsafe_allow_html=True)
 
     result = st.session_state.get("result")
-    if result is None or not hasattr(result, "_file_bytes"):
+    if result is None:
         st.markdown(
             '<div class="ra-empty-state"><span class="ra-empty-msg">Run an analysis first to rank against multiple JDs.</span></div>',
             unsafe_allow_html=True,
@@ -780,30 +758,32 @@ def _render_ranking_tab() -> None:
         st.markdown("</div>", unsafe_allow_html=True)
         return
 
-    # Rank against all sample JDs
-    from app.extras.ranking import rank_jds
-    from app.schemas import JobDescription
+    ranked = st.session_state.get("ranking_result")
+    if ranked is None:
+        from app.extras.ranking import rank_jds
+        from app.schemas import JobDescription
 
-    jd_list = []
-    for jd_file in SAMPLE_JDS:
-        p = FIXTURES_DIR / jd_file
-        if p.exists():
-            title = jd_file.replace("jd_", "").replace(".txt", "").replace("_", " ").title()
-            jd_list.append(JobDescription(text=p.read_text(encoding="utf-8"), title=title))
+        jd_list = []
+        for jd_file in SAMPLE_JDS:
+            p = FIXTURES_DIR / jd_file
+            if p.exists():
+                title = jd_file.replace("jd_", "").replace(".txt", "").replace("_", " ").title()
+                jd_list.append(JobDescription(text=p.read_text(encoding="utf-8"), title=title))
 
-    if not jd_list:
-        st.markdown('<div class="ra-empty-state"><span class="ra-empty-msg">No sample JD files found in tests/fixtures/.</span></div>', unsafe_allow_html=True)
-        st.markdown("</div>", unsafe_allow_html=True)
-        return
+        if not jd_list:
+            st.markdown('<div class="ra-empty-state"><span class="ra-empty-msg">No sample JD files found in tests/fixtures/.</span></div>', unsafe_allow_html=True)
+            st.markdown("</div>", unsafe_allow_html=True)
+            return
 
-    parsed = result._parsed if hasattr(result, "_parsed") else None
-    if parsed is None:
-        st.markdown('<div class="ra-empty-state"><span class="ra-empty-msg">Parsed resume not available for ranking.</span></div>', unsafe_allow_html=True)
-        st.markdown("</div>", unsafe_allow_html=True)
-        return
+        parsed = getattr(result, "_parsed", None) or st.session_state.get("parsed_resume")
+        if parsed is None:
+            st.markdown('<div class="ra-empty-state"><span class="ra-empty-msg">Parsed resume not available for ranking.</span></div>', unsafe_allow_html=True)
+            st.markdown("</div>", unsafe_allow_html=True)
+            return
 
-    with st.spinner("Ranking…"):
-        ranked = rank_jds(parsed, jd_list)
+        with st.spinner("Ranking…"):
+            ranked = rank_jds(parsed, jd_list)
+            st.session_state["ranking_result"] = ranked
 
     rows_html = ""
     for item in ranked:
@@ -989,12 +969,58 @@ def _render_history_tab() -> None:
 # Tab: Model results
 # ---------------------------------------------------------------------------
 
+@st.cache_data
+def _load_model_reports():
+    reports_dir = ROOT_DIR / "artifacts" / "reports"
+    metrics_dir = ROOT_DIR / "artifacts" / "metrics"
+
+    # 1. Classifier
+    c4_path = reports_dir / "classifier_4_model.csv"
+    ci_path = reports_dir / "classifier_ci.csv"
+    paired_path = reports_dir / "classifier_paired_comparison.csv"
+    metrics_json_path = metrics_dir / "classifier" / "metrics.json"
+
+    raw_metrics = {}
+    if metrics_json_path.exists():
+        with open(metrics_json_path, "r", encoding="utf-8") as f:
+            raw_metrics = json.load(f)
+
+    df_c4 = pd.read_csv(c4_path) if c4_path.exists() else None
+    df_ci = pd.read_csv(ci_path) if ci_path.exists() else None
+    df_paired = pd.read_csv(paired_path) if paired_path.exists() else None
+
+    # 2. Matcher
+    m_overall_path = reports_dir / "matcher_overall.csv"
+    m_cat_path = reports_dir / "matcher_per_category.csv"
+    df_mo = pd.read_csv(m_overall_path) if m_overall_path.exists() else None
+    df_mcat = pd.read_csv(m_cat_path) if m_cat_path.exists() else None
+
+    # 3. Ablation
+    abl_path = reports_dir / "scoring_ablation.csv"
+    if not abl_path.exists():
+        abl_path = metrics_dir / "scoring" / "ablation.csv"
+    df_abl = pd.read_csv(abl_path) if abl_path.exists() else None
+
+    # 4. XAI
+    xai_path = reports_dir / "xai_faithfulness.csv"
+    df_xai = pd.read_csv(xai_path) if xai_path.exists() else None
+
+    wdel_path = metrics_dir / "scoring" / "classifier_word_deletion.json"
+    wdata = None
+    if wdel_path.exists():
+        with open(wdel_path, "r", encoding="utf-8") as f:
+            wdata = json.load(f)
+
+    return (raw_metrics, df_c4, df_ci, df_paired, df_mo, df_mcat, df_abl, df_xai, wdata)
+
+
+# ---------------------------------------------------------------------------
+# Tab: Model results
+# ---------------------------------------------------------------------------
+
 def _render_model_results_tab() -> None:
     st.markdown('<div class="ra-section">', unsafe_allow_html=True)
     st.markdown('<span class="ra-section-title">Model Results</span>', unsafe_allow_html=True)
-
-    reports_dir = ROOT_DIR / "artifacts" / "reports"
-    metrics_dir = ROOT_DIR / "artifacts" / "metrics"
 
     def _render_missing(msg: str = "Results file missing: run scripts/collect_results.py") -> None:
         st.markdown(
@@ -1002,28 +1028,17 @@ def _render_model_results_tab() -> None:
             unsafe_allow_html=True,
         )
 
+    raw_metrics, df_c4, df_ci, df_paired, df_mo, df_mcat, df_abl, df_xai, wdata = _load_model_reports()
+
     # -----------------------------------------------------------------------
     # 1. Classifier section
     # -----------------------------------------------------------------------
     st.markdown('<span class="ra-card-label">Classifier</span>', unsafe_allow_html=True)
-    c4_path = reports_dir / "classifier_4_model.csv"
-    ci_path = reports_dir / "classifier_ci.csv"
-    paired_path = reports_dir / "classifier_paired_comparison.csv"
-    metrics_json_path = metrics_dir / "classifier" / "metrics.json"
 
-    if not metrics_json_path.exists() and not c4_path.exists():
+    if not raw_metrics and df_c4 is None:
         _render_missing("Results file missing: run scripts/collect_results.py")
     else:
         try:
-            # Load raw metrics.json to ensure val macro-F1 and train-val gap match exactly
-            raw_metrics = {}
-            if metrics_json_path.exists():
-                with open(metrics_json_path, "r", encoding="utf-8") as f:
-                    raw_metrics = json.load(f)
-
-            df_c4 = pd.read_csv(c4_path) if c4_path.exists() else None
-            df_ci = pd.read_csv(ci_path) if ci_path.exists() else None
-
             ci_map = {}
             if df_ci is not None:
                 for _, r in df_ci.iterrows():
@@ -1041,7 +1056,7 @@ def _render_model_results_tab() -> None:
             for m_key in model_keys:
                 m_name = readable_names.get(m_key, m_key)
                 is_served = (m_key == "tfidf_mlp")
-                served_badge = ' <span class="ra-chip ra-chip-good" style="margin-left:6px;font-size:10px;padding:2px 6px">SERVED</span>' if is_served else ""
+                served_badge = ' <span class="ra-chip-served">SERVED</span>' if is_served else ""
 
                 m_data = raw_metrics.get(m_key, {})
                 val_f1_val = m_data.get("val_macro_f1")
@@ -1073,7 +1088,11 @@ def _render_model_results_tab() -> None:
                 else:
                     gap_str = "—"
 
-                rows_html += f"<tr><td>{_escape(m_name)}{served_badge}</td><td>{val_f1}</td><td>{test_f1_str}</td><td>{test_acc_str}</td><td>{gap_str}</td></tr>"
+                val_f1_cls = ' class="best"' if m_key == "tfidf_mlp" else ""
+                test_f1_cls = ' class="best"' if m_key == "distilbert" else ""
+                test_acc_cls = ' class="best"' if m_key == "distilbert" else ""
+
+                rows_html += f"<tr><td>{_escape(m_name)}{served_badge}</td><td{val_f1_cls}>{val_f1}</td><td{test_f1_cls}>{test_f1_str}</td><td{test_acc_cls}>{test_acc_str}</td><td>{gap_str}</td></tr>"
 
             table1_html = f"""
 <div class="ra-table-wrap">
@@ -1093,8 +1112,7 @@ def _render_model_results_tab() -> None:
             st.markdown(table1_html, unsafe_allow_html=True)
 
             # Table 2: Paired tests
-            if paired_path.exists():
-                df_paired = pd.read_csv(paired_path)
+            if df_paired is not None:
                 p_rows_html = ""
                 for _, pr in df_paired.iterrows():
                     metric_label = "Macro-F1" if pr["metric"] == "macro_f1" else "Accuracy"
@@ -1142,14 +1160,11 @@ def _render_model_results_tab() -> None:
     # 2. Matcher section
     # -----------------------------------------------------------------------
     st.markdown('<span class="ra-card-label" style="margin-top:32px;display:block">Matcher</span>', unsafe_allow_html=True)
-    m_overall_path = reports_dir / "matcher_overall.csv"
-    m_cat_path = reports_dir / "matcher_per_category.csv"
 
-    if not m_overall_path.exists():
+    if df_mo is None:
         _render_missing("Results file missing: run scripts/collect_results.py")
     else:
         try:
-            df_mo = pd.read_csv(m_overall_path)
             row_labels = {
                 "tfidf": "TF-IDF Baseline",
                 "zero_shot": "Zero-Shot SBERT",
@@ -1157,13 +1172,17 @@ def _render_model_results_tab() -> None:
             }
             m_rows_html = ""
             for _, r in df_mo.iterrows():
-                label = row_labels.get(str(r["model_key"]), str(r["model_key"]))
+                m_key = str(r["model_key"])
+                label = row_labels.get(m_key, m_key)
+                is_served = (m_key == "fine_tuned")
+                served_badge = ' <span class="ra-chip-served">SERVED</span>' if is_served else ""
+                best_cls = ' class="best"' if is_served else ""
                 m_rows_html += (
-                    f"<tr><td>{_escape(label)}</td>"
-                    f"<td>{r['val_mrr']:.4f}</td><td>{r['val_ndcg10']:.4f}</td>"
-                    f"<td>{r['val_recall5']:.4f}</td><td>{r['val_recall10']:.4f}</td>"
-                    f"<td>{r['test_mrr']:.4f}</td><td>{r['test_ndcg10']:.4f}</td>"
-                    f"<td>{r['test_recall5']:.4f}</td><td>{r['test_recall10']:.4f}</td></tr>"
+                    f"<tr><td>{_escape(label)}{served_badge}</td>"
+                    f"<td{best_cls}>{r['val_mrr']:.4f}</td><td{best_cls}>{r['val_ndcg10']:.4f}</td>"
+                    f"<td{best_cls}>{r['val_recall5']:.4f}</td><td{best_cls}>{r['val_recall10']:.4f}</td>"
+                    f"<td{best_cls}>{r['test_mrr']:.4f}</td><td{best_cls}>{r['test_ndcg10']:.4f}</td>"
+                    f"<td{best_cls}>{r['test_recall5']:.4f}</td><td{best_cls}>{r['test_recall10']:.4f}</td></tr>"
                 )
             mo_table_html = f"""
 <div class="ra-table-wrap">
@@ -1186,16 +1205,15 @@ def _render_model_results_tab() -> None:
 </div>"""
             st.markdown(mo_table_html, unsafe_allow_html=True)
 
-            if m_cat_path.exists():
+            if df_mcat is not None:
                 with st.expander("Per-category matcher results (15 categories)", expanded=False):
-                    df_mcat = pd.read_csv(m_cat_path)
                     cat_rows_html = ""
                     for _, cr in df_mcat.iterrows():
                         cat_rows_html += (
                             f"<tr><td>{_escape(str(cr['category']))}</td>"
                             f"<td>{int(cr['val_count'])}</td><td>{int(cr['test_count'])}</td>"
-                            f"<td>{cr['val_tfidf_mrr']:.4f}</td><td>{cr['val_zs_mrr']:.4f}</td><td>{cr['val_ft_mrr']:.4f}</td>"
-                            f"<td>{cr['test_tfidf_mrr']:.4f}</td><td>{cr['test_zs_mrr']:.4f}</td><td>{cr['test_ft_mrr']:.4f}</td></tr>"
+                            f"<td>{cr['val_tfidf_mrr']:.4f}</td><td>{cr['val_zs_mrr']:.4f}</td><td class='best'>{cr['val_ft_mrr']:.4f}</td>"
+                            f"<td>{cr['test_tfidf_mrr']:.4f}</td><td>{cr['test_zs_mrr']:.4f}</td><td class='best'>{cr['test_ft_mrr']:.4f}</td></tr>"
                         )
                     mcat_table_html = f"""
 <div class="ra-table-wrap">
@@ -1223,13 +1241,11 @@ def _render_model_results_tab() -> None:
     # 3. Scoring section (Ablation)
     # -----------------------------------------------------------------------
     st.markdown('<span class="ra-card-label" style="margin-top:32px;display:block">Scoring</span>', unsafe_allow_html=True)
-    abl_path = reports_dir / "scoring_ablation.csv"
 
-    if not abl_path.exists():
+    if df_abl is None:
         _render_missing("Results file missing: run scripts/collect_results.py")
     else:
         try:
-            df_abl = pd.read_csv(abl_path)
             abl_rows_html = ""
             for _, ar in df_abl.iterrows():
                 comp_name = _fmt_component_name(str(ar["component"]))
@@ -1270,34 +1286,28 @@ def _render_model_results_tab() -> None:
     # 4. XAI section
     # -----------------------------------------------------------------------
     st.markdown('<span class="ra-card-label" style="margin-top:32px;display:block">Explainability (XAI)</span>', unsafe_allow_html=True)
-    xai_path = reports_dir / "xai_faithfulness.csv"
-    wdel_path = metrics_dir / "scoring" / "classifier_word_deletion.json"
 
-    if not xai_path.exists() and not wdel_path.exists():
+    if df_xai is None and wdata is None:
         _render_missing("Results file missing: run scripts/collect_results.py")
     else:
         try:
             # Row 1: ATS sentence deletion
             sent_drop_top = "0.07 pts"
             sent_drop_rand = "0.11 pts"
-            if xai_path.exists():
-                df_xai = pd.read_csv(xai_path)
-                if len(df_xai) > 0:
-                    sent_drop_top = f"{df_xai.iloc[0]['mean_top_k_drop']:.2f} pts"
-                    sent_drop_rand = f"{df_xai.iloc[0]['mean_random_k_drop']:.2f} pts"
+            if df_xai is not None and len(df_xai) > 0:
+                sent_drop_top = f"{df_xai.iloc[0]['mean_top_k_drop']:.2f} pts"
+                sent_drop_rand = f"{df_xai.iloc[0]['mean_random_k_drop']:.2f} pts"
 
             # Row 2: Classifier word deletion
             wdel_lr_str = "Top-10 drop 0.3590 vs Random -0.0021 (+0.3611 gap)"
             wdel_served_str = "Top-10 drop 0.4921 vs Random 0.0058 (+0.4863 gap)"
-            if wdel_path.exists():
-                with open(wdel_path, "r", encoding="utf-8") as f:
-                    wdata = json.load(f)
-                    lr_sub = wdata.get("lr_self_attribution", {})
-                    mlp_sub = wdata.get("served_classifier_transfer", {})
-                    if lr_sub:
-                        wdel_lr_str = f"Top-10 drop {lr_sub.get('mean_top_k_drop', 0.359):.4f} vs Random {lr_sub.get('mean_random_k_drop', -0.0021):+.4f} (gap: {lr_sub.get('attribution_gap', 0.3611):+.4f})"
-                    if mlp_sub:
-                        wdel_served_str = f"Top-10 drop {mlp_sub.get('mean_top_k_drop', 0.4921):.4f} vs Random {mlp_sub.get('mean_random_k_drop', 0.0058):+.4f} (gap: {mlp_sub.get('attribution_gap', 0.4863):+.4f})"
+            if wdata is not None:
+                lr_sub = wdata.get("lr_self_attribution", {})
+                mlp_sub = wdata.get("served_classifier_transfer", {})
+                if lr_sub:
+                    wdel_lr_str = f"Top-10 drop {lr_sub.get('mean_top_k_drop', 0.359):.4f} vs Random {lr_sub.get('mean_random_k_drop', -0.0021):+.4f} (gap: {lr_sub.get('attribution_gap', 0.3611):+.4f})"
+                if mlp_sub:
+                    wdel_served_str = f"Top-10 drop {mlp_sub.get('mean_top_k_drop', 0.4921):.4f} vs Random {mlp_sub.get('mean_random_k_drop', 0.0058):+.4f} (gap: {mlp_sub.get('attribution_gap', 0.4863):+.4f})"
 
             xai_rows_html = f"""
 <tr>
@@ -1380,16 +1390,27 @@ def _render_download(result) -> None:
 # Main layout
 # ---------------------------------------------------------------------------
 
-_render_header()
+# First load: auto-populate result with sample pair so page is never empty
+if "result" not in st.session_state or st.session_state["result"] is None:
+    default_resume = FIXTURES_DIR / "ds_clean.pdf"
+    default_jd = FIXTURES_DIR / "jd_data_scientist.txt"
+    if default_resume.exists() and default_jd.exists():
+        _run_analysis(
+            file_bytes=default_resume.read_bytes(),
+            filename="ds_clean.pdf",
+            jd_text=default_jd.read_text(encoding="utf-8"),
+            jd_title="Data Scientist",
+            use_genai=st.session_state.get("use_genai", True),
+        )
 
-st.markdown('<div style="max-width:var(--max-w);margin:0 auto;padding:0 24px">', unsafe_allow_html=True)
+_render_header()
 
 _render_input()
 
 result = st.session_state.get("result")
 
 if result is None:
-    # First load: show empty state
+    # First load fallback if sample files missing
     st.markdown("""
 <div class="ra-empty-state" style="margin-top:32px">
   <span class="ra-empty-msg">Select a sample resume and job description above, then click <strong>Analyze</strong> to see your ATS score, component breakdown, and improvement suggestions.</span>
@@ -1434,6 +1455,7 @@ else:
             )
 
         # Result hero
+        st.markdown("<div style='margin-top:24px'></div>", unsafe_allow_html=True)
         _render_hero(result)
 
         # Stat tiles
@@ -1443,30 +1465,28 @@ else:
         st.markdown('<span class="ra-section-title" style="margin-top:48px;display:block">Issues & Opportunities</span>', unsafe_allow_html=True)
         _render_issues(result)
 
-        st.markdown("<div style='margin-top:48px'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='margin-top:32px'></div>", unsafe_allow_html=True)
 
         # Download report button
         _render_download(result)
 
-        st.markdown("<div style='margin-top:32px'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='margin-top:24px'></div>", unsafe_allow_html=True)
 
-        # Tab bar + content
-        active_tab = _render_tabbar()
-
-        if active_tab == "Highlights":
+        # Native Tabs (st.tabs)
+        tabs = st.tabs(TABS)
+        with tabs[0]:
             _render_highlights_tab(result)
-        elif active_tab == "Suggestions":
+        with tabs[1]:
             _render_suggestions_tab(result)
-        elif active_tab == "Ranking":
+        with tabs[2]:
             _render_ranking_tab()
-        elif active_tab == "Skill gap":
+        with tabs[3]:
             _render_skill_gap_tab(result)
-        elif active_tab == "Bias check":
+        with tabs[4]:
             _render_bias_tab(result)
-        elif active_tab == "History":
+        with tabs[5]:
             _render_history_tab()
-        elif active_tab == "Model results":
+        with tabs[6]:
             _render_model_results_tab()
 
-st.markdown("</div>", unsafe_allow_html=True)
 
