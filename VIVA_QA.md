@@ -7,7 +7,7 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 ## Group 1: Dataset & Data Pipeline
 
 ### Q1. What dataset was used, and what was your splitting strategy?
-**Answer:** We used the Kaggle Resume Dataset comprising 2,483 resumes across 24 balanced job categories. We applied a stratified 70/15/15 train/val/test split resulting in 1,739 training, 370 validation, and 374 testing resumes. Stratification was locked with a fixed random seed to guarantee class representation across splits.
+**Answer:** We used the Kaggle Resume Dataset comprising 2,483 resumes across 24 job categories (per-class resume counts range from 22 in BPO to 120 in INFORMATION-TECHNOLOGY, a 445.5% difference; not balanced). We applied a stratified 70/15/15 train/val/test split resulting in 1,739 training, 370 validation, and 374 testing resumes. Stratification was locked with a fixed random seed to guarantee class representation across splits.
 
 ### Q2. How did you prevent data leakage during preprocessing?
 **Answer:** Resumes often contain explicit title headers (e.g., "HR Manager Resume"). We implemented automated header detection and category token sanitization, stripping explicit target labels prior to text vectorization. Additionally, TF-IDF vectorizers and label encoders were fit strictly on the 1,739 training resumes and only applied as transforms to validation and test splits.
@@ -70,14 +70,14 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 **Answer:** Removing Semantic Match caused the largest intended drop (-3.53 pts). Removing Section Completeness dropped scores by -2.08 pts and Experience Fit by -2.26 pts. Conversely, ablating Quantified Achievements increased mean scores by +7.37 pts, proving that the rubric aggressively penalizes resumes that lack numeric metrics.
 
 ### Q15. What explainability methods does the platform use, and how did the faithfulness test turn out?
-**Answer:** The explainer uses leave-one-sentence-out (LOSO) for sentence importance and TF-IDF+LR coefficients for word importance (neither LIME nor SHAP is used). The faithfulness test was inconclusive: removing the top-3 keywords produced a mean score drop of 0.07 pts compared to 0.11 pts for random-3 word removal. Therefore, the explanations are not validated.
+**Answer:** The explainer uses leave-one-sentence-out (LOSO) for sentence importance and TF-IDF+LR coefficients for word importance. The faithfulness test was inconclusive: removing the top-3 most important sentences produced a mean score drop of 0.07 pts compared to 0.11 pts for 3 random sentences across 20 validation resumes (k=3). Therefore, the explanations are not validated.
 
 ---
 
 ## Group 5: Stage 2 Taxonomy Skill Extraction & Disambiguation Rules (NER Fine-Tuning Not Implemented)
 
 ### Q16. How does your entity extraction work without fine-tuned BERT-NER?
-**Answer:** NER fine-tuning was NOT implemented; entity extraction is taxonomy-based utilizing 2,800+ canonical terms and aliases, longest-match-first n-gram tokenization (up to 5-grams), and 19 ambiguous term disambiguation rules. This yields a deterministic 4.45 ms extraction latency with zero GPU dependency.
+**Answer:** NER fine-tuning was NOT implemented; entity extraction is taxonomy-based utilizing 1,668 skills (488 with aliases, 2,404 total terms, 833 active skills in skills_stats.csv), longest-match-first n-gram tokenization (up to 5-grams), and 36 ambiguous term disambiguation rules in ambiguous_terms.csv. This yields a deterministic 4.45 ms extraction latency on collapsed val text with zero GPU dependency.
 
 ### Q17. How was the false positive "RN" $\rightarrow$ "React Native" resolved?
 **Answer:** In `nurse_scanned.pdf`, "RN" (Registered Nurse) was erroneously mapped to React Native via an alias. We tested an ambiguous context rule, but discovered skills-section extraction bypassed alias checks. We cleanly resolved it by removing `rn` from React Native aliases in `data/taxonomies/skills.csv`, eliminating the false positive while preserving "React Native" in software contexts.

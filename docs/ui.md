@@ -74,6 +74,21 @@ The UI provides 7 tabs styled with underline navigation (muted text, 2px teal ac
 
 ---
 
+## UI Layout & P5 Spec Alignment (Deviations Report)
+
+The implemented Streamlit interface in `app/ui/app.py` organizes the workflow as follows:
+
+| Component | P5 Prototype Spec | Implemented UI (`app/ui/app.py`) | Status |
+| :--- | :--- | :--- | :--- |
+| **Ingestion Controls** | Dedicated Streamlit Sidebar (`st.sidebar`) | Two-column card layout on main canvas (`col_resume`, `col_jd`) | **Deviation:** Main canvas side-by-side cards replace sidebar to optimize screen width for split comparison |
+| **Settings Controls** | Popover or Sidebar widget | Inline expandable drawer (`st.expander("Settings", expanded=False)`) directly below header | **Deviation:** Inline expander below header preserves single-column vertical flow |
+| **Primary Action** | Button | Primary `Analyze` button (`st.button("Analyze", type="primary")`) | Aligned |
+| **Stat Summary Tiles** | 4 Tiles (e.g. including Latency) | 3 Stat Tiles (`Experience`, `Skills Matched`, `Top Category`) via `st.columns(3)` | **Deviation:** 3 tiles rendered; latency logged in execution toast/diagnostics |
+| **Score Breakdown** | Visual breakdown | Circular SVG score ring with grade chip + 9 horizontal progress bars | Aligned |
+| **Tab Navigation** | 7 Tabs | 7 custom styled tabs: `Highlights`, `Suggestions`, `Ranking`, `Skill gap`, `Bias check`, `History`, `Model results` | Aligned |
+
+---
+
 ## Known Limitations & Disclosures
 
 1. **Weak Labels & Circularity**: Job description category relevance labels are derived via title-matching heuristic rules rather than human recruiter annotation; matching metrics partly reflect category separation.

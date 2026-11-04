@@ -6,7 +6,7 @@ This document presents the complete empirical benchmark across all stages of the
 
 ## 1. Resume Category Classifier (24 Classes)
 
-Evaluated on 2,483 stratified resumes (Train: 1,739, Val: 370, Test: 374):
+Evaluated on 2,483 stratified resumes across 24 job categories (per-class counts range from 22 in BPO to 120 in INFORMATION-TECHNOLOGY; Train: 1,739, Val: 370, Test: 374):
 
 | Architecture | Train Acc | Train Macro F1 | Val Acc | Val Macro F1 | Test Acc | Test Macro F1 | Gen Gap (F1) |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -78,14 +78,14 @@ Ablation of each of the 9 scoring components. Scores for unrelated pairs sit nea
 | `contact_completeness` | 0.05 | 79.64 | 79.36 | **-0.28** |
 
 ### Explainability Architecture & Faithfulness Test
-- **Methods:** Leave-one-sentence-out (LOSO) for sentence-level contribution and TF-IDF + Logistic Regression linear model coefficients for word importance (neither LIME nor SHAP is used).
-- **Faithfulness Benchmark:** Inconclusive (top-3 keyword removal dropped scores by 0.07 pts vs 0.11 pts for random-3 word removal). Explanations are not experimentally validated.
+- **Methods:** Leave-one-sentence-out (LOSO) for sentence-level contribution and TF-IDF + Logistic Regression linear model coefficients for word importance.
+- **Faithfulness Benchmark:** Inconclusive (top-3 most important sentence removal dropped scores by 0.07 pts vs 0.11 pts for 3 random sentences across 20 validation resumes, k=3). Explanations are not experimentally validated.
 - **Scoring Latency:** Mean 55.63 ms, Median 47.45 ms, P95 73.42 ms.
 
 ---
 
 ## 4. Multi-Format Parsing & Extraction Yield
 
-- **Parsing Precision/Recall:** 100% on 6 evaluation fixtures (`ds_clean.pdf`, `swe_two_column.pdf`, `accountant_table.pdf`, `chef_plain.docx`, `hr_docx.docx`, `nurse_scanned.pdf`).
-- **Extraction Micro F1:** 0.8980 with 0 trap violations. NER fine-tuning was not implemented; extraction is taxonomy-based with disambiguation rules.
-- **Real-Text Extraction Yield:** 95.95% experience parsing yield, 74.86% education parsing yield on 370 raw resumes.
+- **Parsing Precision/Recall:** 100% on 5 synthetic resumes (and 0 JDs in `parsing_eval.json`: `ds_clean.pdf`, `swe_two_column.pdf`, `accountant_table.pdf`, `chef_plain.docx`, `nurse_scanned.pdf`).
+- **Extraction Micro F1:** 0.8980 with 0 trap violations on 5 synthetic resumes and 3 JDs. NER fine-tuning was not implemented; extraction is taxonomy-based with 36 disambiguation rules.
+- **Real-Text Extraction Yield:** 95.95% experience parsing yield, 74.86% education parsing yield on collapsed val text (370 raw resumes); mean extraction latency 4.45 ms.
