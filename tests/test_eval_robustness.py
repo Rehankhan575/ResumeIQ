@@ -11,6 +11,7 @@ from __future__ import annotations
 from pathlib import Path
 import pytest
 import numpy as np
+from sklearn.metrics import f1_score
 
 from scripts.eval_robustness import evaluate_folder
 from scripts.classifier_ci import compute_paired_comparison, run_bootstrap_ci
@@ -65,7 +66,7 @@ def test_classifier_ci_bootstrap_math() -> None:
     flip_idx = rng.choice(50, size=10, replace=False)
     y_pred[flip_idx] = (y_pred[flip_idx] + 1) % 3
 
-    ci_res, boot_dists = run_bootstrap_ci(
+    ci_res, boot_f1, boot_acc = run_bootstrap_ci(
         y_true,
         {"test_model": y_pred},
         n_resamples=100,
@@ -83,19 +84,27 @@ def test_classifier_ci_paired_comparison() -> None:
     preds_lr = np.array([0, 1, 2, 0, 1, 0, 0, 1, 2, 1])   # 8/10 correct
     preds_mlp = np.array([0, 1, 2, 0, 1, 2, 0, 0, 2, 1])  # 8/10 correct
 
-    boot_dist_mlp = np.array([0.8, 0.82, 0.79])
-    boot_dist_lr = np.array([0.8, 0.80, 0.81])
+    boot_dist_mlp_f1 = np.array([0.8, 0.82, 0.79])
+    boot_dist_lr_f1 = np.array([0.8, 0.80, 0.81])
+    boot_dist_mlp_acc = np.array([0.8, 0.8, 0.8])
+    boot_dist_lr_acc = np.array([0.8, 0.8, 0.8])
 
     paired = compute_paired_comparison(
         y_true,
         preds_mlp,
         preds_lr,
-        boot_dist_mlp,
-        boot_dist_lr,
+        boot_dist_mlp_f1,
+        boot_dist_lr_f1,
+        boot_dist_mlp_acc,
+        boot_dist_lr_acc,
+        "MLP",
+        "LR",
     )
 
-    assert "diff_macro_f1" in paired
-    assert "mcnemar_p_value" in paired
-    assert "contingency_table" in paired
-    tbl = paired["contingency_table"]
-    assert tbl["both_correct"] + tbl["both_wrong"] + tbl["lr_correct_mlp_wrong"] + tbl["mlp_correct_lr_wrong"] == 10
+    assert "macro_f1" in paired
+    assert "accuracy" in paired
+    assert "mcnemar" in paired
+    assert paired["macro_f1"]["diff"] == round(float(f1_score(y_true, preds_mlp, average="macro") - f1_score(y_true, preds_lr, average="macro")), 4)
+    tbl = paired["mcnemar"]
+    assert tbl["both_correct"] + tbl["both_wrong"] + tbl["b_correct_a_wrong"] + tbl["a_correct_b_wrong"] == 10
+

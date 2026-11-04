@@ -25,12 +25,21 @@ Evaluated via 1,000 bootstrap resamples (seed 42) on the 374 test set samples wi
 | **BiLSTM + Pretrained Embeddings** | 0.1966 | 0.1610 | 0.2290 | 0.0680 | 25.13% |
 | **DistilBERT (Fine-tuned, 3 epochs)** | 0.6454 | 0.5970 | 0.6874 | 0.0904 | 72.73% |
 
-#### Paired Comparison: MLP vs. Logistic Regression
-- **Point Macro-F1 Difference (MLP − LR):** +0.0222 (+2.22 macro-F1 pts)
-- **Bootstrap 95% CI of Difference:** `[-0.0220, +0.0569]` (spans zero; differences are within noise)
-- **Bootstrap Difference p-value:** 0.3480 (not statistically significant)
-- **Paired McNemar Test:** 227 both correct, 109 both incorrect, 21 LR correct/MLP incorrect, 17 MLP correct/LR incorrect. Continuity-corrected $\chi^2 = 0.2368$ (df=1), $p = 0.6265$.
-- **Conclusion:** There is no statistically significant difference between MLP and Logistic Regression on the test split.
+#### Paired Comparisons: DistilBERT vs. LR, DistilBERT vs. MLP, and MLP vs. LR
+Evaluated via paired bootstrap differences (1,000 resamples, seed 42) and paired McNemar tests on the 374 test set samples (`scripts/classifier_ci.py`):
+
+| Comparison | Metric | Diff (A − B) | 95% CI Lower | 95% CI Upper | Boot p-value | McNemar $\chi^2$ (df=1) | McNemar p-value |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **DistilBERT vs. LR** | Macro-F1 | **+0.0495** | +0.0056 | +0.0931 | 0.0360 | — | — |
+| **DistilBERT vs. LR** | Accuracy | **+0.0642** | +0.0160 | +0.1096 | 0.0220 | 6.6125 | 0.0101 |
+| **DistilBERT vs. MLP** | Macro-F1 | +0.0273 | -0.0250 | +0.0901 | 0.2800 | — | — |
+| **DistilBERT vs. MLP** | Accuracy | **+0.0749** | +0.0241 | +0.1257 | 0.0100 | 7.0096 | 0.0081 |
+| **MLP vs. LR** | Macro-F1 | +0.0222 | -0.0220 | +0.0569 | 0.3480 | — | — |
+| **MLP vs. LR** | Accuracy | -0.0107 | -0.0428 | +0.0214 | 0.5980 | 0.2368 | 0.6265 |
+
+- **DistilBERT vs. LR:** DistilBERT outperforms Logistic Regression with statistical significance on both Macro-F1 (+0.0495, $p=0.0360$) and Accuracy (+0.0642, $p=0.0220$, McNemar $p=0.0101$).
+- **DistilBERT vs. MLP:** DistilBERT achieves a statistically significant accuracy advantage (+0.0749, $p=0.0100$, McNemar $p=0.0081$), but its Macro-F1 difference (+0.0273, 95% CI `[-0.0250, +0.0901]`, $p=0.2800$) spans zero, meaning the advantage on balanced category representation is within noise.
+- **MLP vs. LR:** Neither Macro-F1 (diff +0.0222, 95% CI `[-0.0220, +0.0569]`, $p=0.3480$) nor Accuracy (diff -0.0107, 95% CI `[-0.0428, +0.0214]`, $p=0.5980$, McNemar $p=0.6265$) shows any statistically significant difference.
 
 ### Key Takeaways
 - **Validation Macro-F1:** Logistic Regression: 0.5913, MLP: 0.6001, DistilBERT: 0.5675.
@@ -96,12 +105,20 @@ Ablation of each of the 9 scoring components. Scores for unrelated pairs sit nea
 
 ### Explainability Architecture & Faithfulness Tests
 - **Methods:** Leave-one-sentence-out (LOSO) for sentence-level contribution and TF-IDF + Logistic Regression linear model coefficients for classifier word importance.
-- **Sentence-Level Erasure (ATS Score):** Inconclusive (top-3 most important sentence removal dropped scores by 0.07 pts vs 0.11 pts for 3 random sentences across 20 validation resumes, k=3, seed 42). Composite ATS score explanations are not experimentally validated.
-- **Classifier Word Deletion Test (Feature Attribution):** Evaluated across 50 validation resumes (k=10 words, seed 42, `scripts/eval_scoring.py`):
-  - Mean predicted-class probability drop after removing top-10 LR words: **0.3590** (35.90 percentage points drop).
-  - Mean predicted-class probability drop after removing 10 random words: **-0.0021** (-0.21 percentage points drop).
-  - Net attribution gap: **+0.3611** (36.11 percentage points degradation).
-  - Verdict: **Validated** for classifier feature importance; linear model coefficients accurately isolate class-discriminative vocabulary.
+- **Sentence-Level Erasure (ATS Score):** Inconclusive (top-3 most important sentence removal dropped scores by 0.07 pts vs 0.11 pts for 3 random sentences across 20 validation resumes, k=3, seed 42). Composite ATS score explanations are inconclusive and unvalidated.
+- **Classifier Word Deletion Test (Feature Attribution):** Evaluated across 50 validation resumes ($k=10$ words, seed 42, `scripts/eval_scoring.py`):
+  - **Coefficients Picker:** Words are selected strictly by highest positive linear coefficients from the TF-IDF + Logistic Regression model (`clf_lr.coef_[pred_idx]`).
+  - **Random Baseline:** 10 random words that occur in the document AND in the TF-IDF vocabulary, strictly excluding English stopwords (`ENGLISH_STOP_WORDS`).
+  - **Variant 1 — LR Model (Self-Attribution):**
+    - Top-10 LR words mean probability drop: **0.3590** (35.90 percentage points drop)
+    - Random-10 non-stopwords mean probability drop: **-0.0021** (-0.21 percentage points drop)
+    - Net attribution gap: **+0.3611** (36.11 percentage points degradation)
+    - Verdict: **faithful to the linear model (verified by deletion)**
+  - **Variant 2 — Served Classifier `classify()` [TF-IDF + 2-layer MLP] (Cross-Model Transfer):**
+    - Top-10 LR words mean probability drop: **0.4921** (49.21 percentage points drop)
+    - Random-10 non-stopwords mean probability drop: **0.0058** (0.58 percentage points drop)
+    - Net attribution gap: **+0.4863** (48.63 percentage points degradation)
+    - Verdict: **faithful to the linear model (verified by deletion)** and transfers strongly to the served non-linear MLP classifier.
 - **Sub-Score Decomposition (UI Result Hero):** The composite ATS score is partitioned into two orthogonal sub-scores:
   - **Job fit** ($w=0.55$): weighted combination of `semantic_match` (0.25), `keyword_coverage` (0.20), and `experience_fit` (0.10) renormalized to 0–100.
   - **Resume quality** ($w=0.45$): weighted combination of the remaining 6 components (`section_completeness` 0.10, `formatting` 0.10, `quantified_achievements` 0.10, `action_verbs` 0.05, `readability` 0.05, `contact_completeness` 0.05) renormalized to 0–100.

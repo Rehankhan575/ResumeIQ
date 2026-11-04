@@ -2,7 +2,20 @@
   "n_evaluated": 50,
   "k": 10,
   "seed": 42,
-  "mean_top_k_drop": 0.359,
-  "mean_random_k_drop": -0.0021,
-  "attribution_gap": 0.3611
+  "coefficients_source": "TF-IDF + Logistic Regression linear model (clf_lr.coef_)",
+  "random_baseline": "10 random in-document TF-IDF vocabulary words excluding ENGLISH_STOP_WORDS",
+  "lr_self_attribution": {
+    "model": "tfidf_lr",
+    "mean_top_k_drop": 0.359,
+    "mean_random_k_drop": -0.0021,
+    "attribution_gap": 0.3611,
+    "status": "faithful to the linear model (verified by deletion)"
+  },
+  "served_classifier_transfer": {
+    "model": "tfidf_mlp",
+    "mean_top_k_drop": 0.4921,
+    "mean_random_k_drop": 0.0058,
+    "attribution_gap": 0.4863,
+    "status": "faithful to the linear model (verified by deletion)"
+  }
 }

@@ -9,42 +9,113 @@
       "ci_95_lower": 0.5465,
       "ci_95_upper": 0.6352,
       "ci_width": 0.0887,
-      "test_accuracy": 0.6631
+      "test_accuracy": 0.6631,
+      "acc_ci_95_lower": 0.615,
+      "acc_ci_95_upper": 0.7086
     },
     "tfidf_mlp": {
       "test_macro_f1": 0.6181133587512179,
       "ci_95_lower": 0.5606,
       "ci_95_upper": 0.6587,
       "ci_width": 0.0981,
-      "test_accuracy": 0.6524
+      "test_accuracy": 0.6524,
+      "acc_ci_95_lower": 0.6043,
+      "acc_ci_95_upper": 0.6952
     },
     "bilstm": {
       "test_macro_f1": 0.19658941977988809,
       "ci_95_lower": 0.161,
       "ci_95_upper": 0.229,
       "ci_width": 0.068,
-      "test_accuracy": 0.2513
+      "test_accuracy": 0.2513,
+      "acc_ci_95_lower": 0.2086,
+      "acc_ci_95_upper": 0.2995
     },
     "distilbert": {
       "test_macro_f1": 0.6453704750445796,
       "ci_95_lower": 0.597,
       "ci_95_upper": 0.6874,
       "ci_width": 0.0904,
-      "test_accuracy": 0.7273
+      "test_accuracy": 0.7273,
+      "acc_ci_95_lower": 0.6818,
+      "acc_ci_95_upper": 0.7727
     }
   },
-  "paired_mlp_vs_lr": {
-    "diff_macro_f1": 0.0222,
-    "diff_ci_95_lower": -0.022,
-    "diff_ci_95_upper": 0.0569,
-    "bootstrap_p_value": 0.348,
-    "contingency_table": {
-      "both_wrong": 109,
-      "lr_correct_mlp_wrong": 21,
-      "mlp_correct_lr_wrong": 17,
-      "both_correct": 227
+  "paired_comparisons": [
+    {
+      "comparison": "DistilBERT vs LR",
+      "name_a": "DistilBERT",
+      "name_b": "LR",
+      "macro_f1": {
+        "diff": 0.0495,
+        "ci_95_lower": 0.0056,
+        "ci_95_upper": 0.0931,
+        "p_value": 0.036
+      },
+      "accuracy": {
+        "diff": 0.0642,
+        "ci_95_lower": 0.016,
+        "ci_95_upper": 0.1096,
+        "p_value": 0.022
+      },
+      "mcnemar": {
+        "a_correct_b_wrong": 52,
+        "b_correct_a_wrong": 28,
+        "both_correct": 220,
+        "both_wrong": 74,
+        "chi2": 6.6125,
+        "p_value": 0.0101
+      }
     },
-    "mcnemar_chi2": 0.2368,
-    "mcnemar_p_value": 0.6265
-  }
+    {
+      "comparison": "DistilBERT vs MLP",
+      "name_a": "DistilBERT",
+      "name_b": "MLP",
+      "macro_f1": {
+        "diff": 0.0273,
+        "ci_95_lower": -0.025,
+        "ci_95_upper": 0.0901,
+        "p_value": 0.28
+      },
+      "accuracy": {
+        "diff": 0.0749,
+        "ci_95_lower": 0.0241,
+        "ci_95_upper": 0.1257,
+        "p_value": 0.01
+      },
+      "mcnemar": {
+        "a_correct_b_wrong": 66,
+        "b_correct_a_wrong": 38,
+        "both_correct": 206,
+        "both_wrong": 64,
+        "chi2": 7.0096,
+        "p_value": 0.0081
+      }
+    },
+    {
+      "comparison": "MLP vs LR",
+      "name_a": "MLP",
+      "name_b": "LR",
+      "macro_f1": {
+        "diff": 0.0222,
+        "ci_95_lower": -0.022,
+        "ci_95_upper": 0.0569,
+        "p_value": 0.348
+      },
+      "accuracy": {
+        "diff": -0.0107,
+        "ci_95_lower": -0.0428,
+        "ci_95_upper": 0.0214,
+        "p_value": 0.598
+      },
+      "mcnemar": {
+        "a_correct_b_wrong": 17,
+        "b_correct_a_wrong": 21,
+        "both_correct": 227,
+        "both_wrong": 109,
+        "chi2": 0.2368,
+        "p_value": 0.6265
+      }
+    }
+  ]
 }

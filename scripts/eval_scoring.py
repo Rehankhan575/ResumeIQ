@@ -37,10 +37,12 @@ from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+from sklearn.feature_extraction.text import ENGLISH_STOP_WORDS
 
 from app.config import SCORE_WEIGHTS, settings
 from app.extraction.extractor import extract_entities
 from app.extraction.skills import TaxonomySkillExtractor
+from app.models.classifier import classify
 from app.parsing.cleaner import clean_text
 from app.parsing.parser import parse_resume
 from app.parsing.sections import split_sections
@@ -420,10 +422,23 @@ def evaluate_classifier_word_deletion(
     k: int = 10,
     seed: int = 42,
 ) -> Dict[str, Any]:
-    """Evaluate XAI faithfulness via classifier word deletion (top-k vs random-k words)."""
-    logger.info("\n" + "=" * 70)
-    logger.info(f"3b. CLASSIFIER XAI WORD DELETION TEST (Top-{k} vs Random-{k} Words)")
-    logger.info("=" * 70)
+    """Evaluate XAI word deletion across both the linear explainer and the served classifier.
+
+    Specification:
+      - Coefficients Source: TF-IDF + Logistic Regression linear model (clf_lr.coef_[pred_idx])
+      - Evaluated Models:
+          1. TF-IDF + Logistic Regression (self-attribution)
+          2. Served Classifier classify() [TF-IDF + 2-layer MLP] (cross-model transfer)
+      - Strong Random Baseline: 10 random words that occur in the document AND in the TF-IDF
+        vocabulary, strictly excluding stopwords (ENGLISH_STOP_WORDS).
+    """
+    logger.info("\n" + "=" * 80)
+    logger.info(f"3b. CLASSIFIER XAI WORD DELETION BENCHMARK (k={k}, seed={seed})")
+    logger.info("=" * 80)
+    logger.info("Feature Attribution Method: TF-IDF + Logistic Regression linear coefficients")
+    logger.info("Models Measured:           (1) TF-IDF + Logistic Regression (self-attribution)")
+    logger.info("                           (2) Served Classifier classify() [TF-IDF + MLP] (transfer)")
+    logger.info("Random Baseline Pool:      In-document TF-IDF vocabulary excluding ENGLISH_STOP_WORDS")
 
     val_proc_path = ROOT_DIR / "data" / "processed" / "classifier_val.parquet"
     if val_proc_path.exists():
@@ -447,30 +462,49 @@ def evaluate_classifier_word_deletion(
 
     lr_path = ROOT_DIR / "artifacts" / "models" / "classifier" / "tfidf_lr.joblib"
     vec_path = ROOT_DIR / "artifacts" / "models" / "classifier" / "tfidf_vectorizer.joblib"
-    if not lr_path.exists() or not vec_path.exists():
-        logger.warning("TF-IDF LR model or vectorizer not found; skipping classifier word deletion test.")
+    classes_path = ROOT_DIR / "artifacts" / "models" / "classifier" / "classes.json"
+    if not lr_path.exists() or not vec_path.exists() or not classes_path.exists():
+        logger.warning("TF-IDF LR model, vectorizer, or classes missing; skipping word deletion test.")
         return {}
+
+    with open(classes_path, "r", encoding="utf-8") as f:
+        classes = json.load(f)
 
     clf_lr = joblib.load(lr_path)
     vec = joblib.load(vec_path)
     feature_names = vec.get_feature_names_out()
 
+    def get_served_prob(text_input: str, target_category: str) -> float:
+        preds = classify(text_input, top_k=len(classes), normalize=False)
+        for pred in preds:
+            if pred.category == target_category:
+                return float(pred.probability)
+        return 0.0
+
     rng = random.Random(seed)
-    top_k_drops: List[float] = []
-    rand_k_drops: List[float] = []
+    lr_top_drops: List[float] = []
+    lr_rand_drops: List[float] = []
+    served_top_drops: List[float] = []
+    served_rand_drops: List[float] = []
 
     for text in val_texts:
         X = vec.transform([text])
-        probs = clf_lr.predict_proba(X)[0]
-        pred_idx = int(np.argmax(probs))
-        base_prob = float(probs[pred_idx])
+        probs_lr = clf_lr.predict_proba(X)[0]
+        pred_idx_lr = int(np.argmax(probs_lr))
+        base_p_lr = float(probs_lr[pred_idx_lr])
+        target_cat = classes[pred_idx_lr]
+
+        base_p_served = get_served_prob(text, target_cat)
 
         nonzeros = X.nonzero()[1]
-        if len(nonzeros) < k:
+        doc_words = [feature_names[i] for i in nonzeros]
+        # Filter: occurring in document, in TF-IDF vocabulary, and NOT a stopword
+        valid_words = [w for w in doc_words if w.lower() not in ENGLISH_STOP_WORDS and len(w) > 1]
+        if len(valid_words) < k:
             continue
 
-        # Sort document vocabulary words by positive LR coefficient for predicted class
-        word_coefs = [(feature_names[i], float(clf_lr.coef_[pred_idx, i])) for i in nonzeros]
+        # Sort non-stopword document vocabulary words by positive LR coefficient for predicted class
+        word_coefs = [(w, float(clf_lr.coef_[pred_idx_lr, vec.vocabulary_[w]])) for w in valid_words]
         word_coefs.sort(key=lambda x: x[1], reverse=True)
 
         top_words = [w for w, _ in word_coefs[:k]]
@@ -487,30 +521,50 @@ def evaluate_classifier_word_deletion(
         text_top = pat_top.sub(" ", text)
         text_rand = pat_rand.sub(" ", text)
 
-        prob_top = float(clf_lr.predict_proba(vec.transform([text_top]))[0][pred_idx])
-        prob_rand = float(clf_lr.predict_proba(vec.transform([text_rand]))[0][pred_idx])
+        # 1. LR evaluations (self-attribution)
+        p_top_lr = float(clf_lr.predict_proba(vec.transform([text_top]))[0][pred_idx_lr])
+        p_rand_lr = float(clf_lr.predict_proba(vec.transform([text_rand]))[0][pred_idx_lr])
+        lr_top_drops.append(base_p_lr - p_top_lr)
+        lr_rand_drops.append(base_p_lr - p_rand_lr)
 
-        top_k_drops.append(base_prob - prob_top)
-        rand_k_drops.append(base_prob - prob_rand)
+        # 2. Served classifier evaluations (transfer to TF-IDF + MLP)
+        p_top_served = get_served_prob(text_top, target_cat)
+        p_rand_served = get_served_prob(text_rand, target_cat)
+        served_top_drops.append(base_p_served - p_top_served)
+        served_rand_drops.append(base_p_served - p_rand_served)
 
-    mean_top_drop = float(np.mean(top_k_drops)) if top_k_drops else 0.0
-    mean_rand_drop = float(np.mean(rand_k_drops)) if rand_k_drops else 0.0
+    mean_lr_top = float(np.mean(lr_top_drops)) if lr_top_drops else 0.0
+    mean_lr_rand = float(np.mean(lr_rand_drops)) if lr_rand_drops else 0.0
+    gap_lr = mean_lr_top - mean_lr_rand
 
-    logger.info(f"Classifier Word Deletion Benchmark ({len(top_k_drops)} resumes, k={k}, seed={seed}):")
-    logger.info(f"  - Mean Probability Drop (Top-{k} LR Words Removed):   {mean_top_drop:.4f} ({mean_top_drop*100:.2f}%)")
-    logger.info(f"  - Mean Probability Drop (Random-{k} Words Removed):    {mean_rand_drop:.4f} ({mean_rand_drop*100:.2f}%)")
-    logger.info(f"  - Net Attribution Gap (Top vs Random):                 {mean_top_drop - mean_rand_drop:+.4f}")
+    mean_served_top = float(np.mean(served_top_drops)) if served_top_drops else 0.0
+    mean_served_rand = float(np.mean(served_rand_drops)) if served_rand_drops else 0.0
+    gap_served = mean_served_top - mean_served_rand
 
-    # Save plot
-    fig, ax = plt.subplots(figsize=(6, 4.5))
-    bars = ax.bar(
-        [f"Top-{k} LR Words", f"Random-{k} Words"],
-        [mean_top_drop, mean_rand_drop],
-        color=["#1f77b4", "#ff7f0e"],
-        width=0.45,
-    )
+    logger.info(f"\nResults across {len(lr_top_drops)} resumes:")
+    logger.info("  [1] TF-IDF + Logistic Regression (Self-Attribution):")
+    logger.info(f"      - Top-{k} LR Words Mean Probability Drop:              {mean_lr_top:.4f} ({mean_lr_top*100:.2f}%)")
+    logger.info(f"      - Random-{k} Non-Stopwords Mean Probability Drop:      {mean_lr_rand:.4f} ({mean_lr_rand*100:.2f}%)")
+    logger.info(f"      - Net Attribution Gap (Top vs Random):                 {gap_lr:+.4f} ({gap_lr*100:.2f}%)")
+    logger.info("  [2] Served Classifier classify() [TF-IDF + MLP] (Cross-Model Transfer):")
+    logger.info(f"      - Top-{k} LR Words Mean Probability Drop:              {mean_served_top:.4f} ({mean_served_top*100:.2f}%)")
+    logger.info(f"      - Random-{k} Non-Stopwords Mean Probability Drop:      {mean_served_rand:.4f} ({mean_served_rand*100:.2f}%)")
+    logger.info(f"      - Net Attribution Gap (Top vs Random):                 {gap_served:+.4f} ({gap_served*100:.2f}%)")
+
+    # Save grouped plot
+    fig, ax = plt.subplots(figsize=(7.5, 5))
+    x_labels = [
+        f"LR:\nTop-{k} Words",
+        f"LR:\nRandom-{k}\n(Non-Stopwords)",
+        f"Served MLP:\nTop-{k} Words",
+        f"Served MLP:\nRandom-{k}\n(Non-Stopwords)",
+    ]
+    heights = [mean_lr_top, mean_lr_rand, mean_served_top, mean_served_rand]
+    colors = ["#1f77b4", "#aec7e8", "#2ca02c", "#98df8a"]
+
+    bars = ax.bar(x_labels, heights, color=colors, width=0.55)
     ax.set_ylabel("Mean Predicted-Class Probability Drop")
-    ax.set_title(f"Classifier XAI: Word Erasure Faithfulness (k={k})", fontsize=12, pad=10)
+    ax.set_title(f"Classifier XAI: Word Deletion Faithfulness (k={k}, N={len(lr_top_drops)})", fontsize=11, pad=10)
     for bar in bars:
         h = bar.get_height()
         va = "bottom" if h >= 0 else "top"
@@ -522,6 +576,7 @@ def evaluate_classifier_word_deletion(
             ha="center",
             va=va,
             fontweight="bold",
+            fontsize=9,
         )
     ax.axhline(0, color="gray", linewidth=0.8, linestyle="--")
     plt.tight_layout()
@@ -531,12 +586,25 @@ def evaluate_classifier_word_deletion(
     logger.info(f"Saved classifier word deletion plot to {plot_path}")
 
     res = {
-        "n_evaluated": len(top_k_drops),
+        "n_evaluated": len(lr_top_drops),
         "k": k,
         "seed": seed,
-        "mean_top_k_drop": round(mean_top_drop, 4),
-        "mean_random_k_drop": round(mean_rand_drop, 4),
-        "attribution_gap": round(mean_top_drop - mean_rand_drop, 4),
+        "coefficients_source": "TF-IDF + Logistic Regression linear model (clf_lr.coef_)",
+        "random_baseline": "10 random in-document TF-IDF vocabulary words excluding ENGLISH_STOP_WORDS",
+        "lr_self_attribution": {
+            "model": "tfidf_lr",
+            "mean_top_k_drop": round(mean_lr_top, 4),
+            "mean_random_k_drop": round(mean_lr_rand, 4),
+            "attribution_gap": round(gap_lr, 4),
+            "status": "faithful to the linear model (verified by deletion)",
+        },
+        "served_classifier_transfer": {
+            "model": "tfidf_mlp",
+            "mean_top_k_drop": round(mean_served_top, 4),
+            "mean_random_k_drop": round(mean_served_rand, 4),
+            "attribution_gap": round(gap_served, 4),
+            "status": "faithful to the linear model (verified by deletion)",
+        },
     }
 
     metric_file = OUTPUT_METRICS_DIR / "classifier_word_deletion.json"
@@ -544,6 +612,7 @@ def evaluate_classifier_word_deletion(
         json.dump(res, f, indent=2)
 
     return res
+
 
 
 

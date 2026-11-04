@@ -80,7 +80,7 @@ Evaluated on paired and un-paired resumes with 9 distinct weighted score compone
 - **Mean Top-k Keyword Perturbation Drop:** 0.0700
 - **Mean Random Keyword Perturbation Drop:** 0.1100
 - **LIME/Perturbation Faithfulness Check:** `False` (honest empirical observation: top keyword removal causes smaller score drop than random word drop due to broad TF-IDF term overlap in long text).
-- **Scoring Latency:** Mean 46.05 ms, Median 43.36 ms, P95 57.50 ms (Total compute time: 17.79 s).
+- **Scoring Latency:** Mean 48.49 ms, Median 48.34 ms, P95 54.80 ms (Total compute time: 17.16 s).
 
 ## 4. Stage 1 & 2 Parsing and Extraction Verification
 

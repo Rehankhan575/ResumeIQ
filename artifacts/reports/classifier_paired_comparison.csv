@@ -1,0 +1,7 @@
+comparison,metric,diff,ci_95_lower,ci_95_upper,bootstrap_p,mcnemar_chi2,mcnemar_p
+DistilBERT vs LR,macro_f1,0.0495,0.0056,0.0931,0.036,,
+DistilBERT vs LR,accuracy,0.0642,0.016,0.1096,0.022,6.6125,0.0101
+DistilBERT vs MLP,macro_f1,0.0273,-0.025,0.0901,0.28,,
+DistilBERT vs MLP,accuracy,0.0749,0.0241,0.1257,0.01,7.0096,0.0081
+MLP vs LR,macro_f1,0.0222,-0.022,0.0569,0.348,,
+MLP vs LR,accuracy,-0.0107,-0.0428,0.0214,0.598,0.2368,0.6265

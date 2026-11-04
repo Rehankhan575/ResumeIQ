@@ -30,10 +30,14 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 
 ### Q7. Why are TF-IDF models so close to DistilBERT on validation F1, and is MLP vs LR difference significant?
 **Answer:** Professional resumes are heavily keyword-driven: distinctive domain vocabulary (e.g., "culinary", "GAAP", "litigation") provides linearly separable bag-of-words features for most categories. On 370 validation resumes, LR (0.591), MLP (0.600), and DistilBERT (0.568) are statistically within noise of each other. Furthermore, bootstrap 95% confidence intervals (1,000 resamples, seed 42) on test macro-F1 show:
-- TF-IDF + LR: 0.5959 (95% CI: `[0.5465, 0.6352]`)
-- TF-IDF + MLP: 0.6181 (95% CI: `[0.5606, 0.6587]`)
-- DistilBERT: 0.6454 (95% CI: `[0.5970, 0.6874]`)
-A paired difference analysis between MLP and LR gives a 95% CI of `[-0.0220, +0.0569]` (spans zero, bootstrap $p = 0.3480$), and a paired McNemar test on discordant samples yields $\chi^2 = 0.2368, p = 0.6265$. The performance difference between MLP and LR is statistically insignificant. DistilBERT reached 0.645 on the test split, but was constrained by a 3-epoch training budget and was not chosen by the validation selection criterion.
+- TF-IDF + LR: 0.5959 (95% CI: `[0.5465, 0.6352]`, Acc: 66.31%)
+- TF-IDF + MLP: 0.6181 (95% CI: `[0.5606, 0.6587]`, Acc: 65.24%)
+- DistilBERT: 0.6454 (95% CI: `[0.5970, 0.6874]`, Acc: 72.73%)
+
+Paired hypothesis tests on the 374 test set samples (`scripts/classifier_ci.py`):
+1. **MLP vs. LR:** Macro-F1 diff +0.0222 (95% CI `[-0.0220, +0.0569]`, $p = 0.3480$); Accuracy diff -0.0107 (95% CI `[-0.0428, +0.0214]`, $p=0.5980$, McNemar $p=0.6265$). Statistically indistinguishable.
+2. **DistilBERT vs. LR:** Macro-F1 diff +0.0495 (95% CI `[+0.0056, +0.0931]`, $p = 0.0360$); Accuracy diff +0.0642 (95% CI `[+0.0160, +0.1096]`, $p=0.0220$, McNemar $p=0.0101$). Statistically significant.
+3. **DistilBERT vs. MLP:** Macro-F1 diff +0.0273 (95% CI `[-0.0250, +0.0901]`, $p = 0.2800$, spans zero); Accuracy diff +0.0749 (95% CI `[+0.0241, +0.1257]`, $p=0.0100$, McNemar $p=0.0081$). DistilBERT shows a significant accuracy gain, but macro-F1 difference remains within noise across 24 categories.
 
 ---
 
@@ -80,8 +84,11 @@ In the UI result hero, the score is decomposed into two orthogonal sub-scores:
 
 ### Q15. What explainability methods does the platform use, and how did the faithfulness tests turn out?
 **Answer:** The platform uses two complementary XAI techniques:
-1. **Sentence Importance for ATS Score (LOSO):** Leave-one-sentence-out on semantic match. In faithfulness testing (20 validation resumes, k=3), removing the top-3 sentences caused a 0.07 pt drop compared to 0.11 pts for 3 random sentences. This test was inconclusive, and sentence-level ATS explanations are not experimentally validated.
-2. **Word Importance for Classifier (Linear Coefficients):** TF-IDF + Logistic Regression linear model coefficients for the predicted category. In a 50-resume validation deletion test (k=10 words, seed 42), removing top-10 coefficient words dropped class probability by **0.3590** (35.90 percentage points) versus **-0.0021** (-0.21 percentage points) for 10 random words. This confirms a validated **+0.3611** attribution gap.
+1. **Sentence Importance for ATS Score (LOSO):** Leave-one-sentence-out on semantic match. In faithfulness testing (20 validation resumes, k=3), removing the top-3 sentences caused a 0.07 pt drop compared to 0.11 pts for 3 random sentences. This test was inconclusive, and sentence-level ATS explanations are inconclusive and unvalidated.
+2. **Word Importance for Classifier (Linear Coefficients):** Feature attribution uses TF-IDF + Logistic Regression linear model coefficients (`clf_lr.coef_`) for the predicted category. In a 50-resume validation deletion test ($k=10$ words, seed 42) evaluated against a strong random baseline of 10 in-document words excluding `ENGLISH_STOP_WORDS`:
+   - *LR Model (Self-Attribution):* Removing top-10 LR words dropped class probability by **0.3590** (35.90 percentage points) versus **-0.0021** (-0.21 percentage points) for random non-stopwords, yielding a net attribution gap of **+0.3611**.
+   - *Served Classifier `classify()` [TF-IDF + MLP] (Cross-Model Transfer):* Removing the same top-10 LR words dropped the served MLP's probability by **0.4921** (49.21 percentage points) versus **0.0058** (0.58 percentage points) for random non-stopwords, yielding a net attribution gap of **+0.4863**.
+   - *Verdict:* Classifier word importance is **faithful to the linear model (verified by deletion)** and transfers strongly to the served non-linear MLP classifier, while composite ATS score sentence explanations remain inconclusive and unvalidated.
 
 ---
 
