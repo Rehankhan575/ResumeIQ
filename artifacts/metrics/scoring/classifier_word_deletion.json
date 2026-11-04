@@ -1,0 +1,8 @@
+{
+  "n_evaluated": 50,
+  "k": 10,
+  "seed": 42,
+  "mean_top_k_drop": 0.359,
+  "mean_random_k_drop": -0.0021,
+  "attribution_gap": 0.3611
+}

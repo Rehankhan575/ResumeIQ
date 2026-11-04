@@ -21,11 +21,14 @@ from __future__ import annotations
 
 import json
 import logging
-import random
-import time
 from pathlib import Path
+import random
+import re
 import sys
+import time
 from typing import Any, Dict, List, Tuple
+
+import joblib
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT_DIR))
@@ -412,6 +415,138 @@ def evaluate_faithfulness(
     }
 
 
+def evaluate_classifier_word_deletion(
+    sample_size: int = 50,
+    k: int = 10,
+    seed: int = 42,
+) -> Dict[str, Any]:
+    """Evaluate XAI faithfulness via classifier word deletion (top-k vs random-k words)."""
+    logger.info("\n" + "=" * 70)
+    logger.info(f"3b. CLASSIFIER XAI WORD DELETION TEST (Top-{k} vs Random-{k} Words)")
+    logger.info("=" * 70)
+
+    val_proc_path = ROOT_DIR / "data" / "processed" / "classifier_val.parquet"
+    if val_proc_path.exists():
+        val_df = pd.read_parquet(val_proc_path).head(sample_size)
+        val_texts = val_df["text_masked"].tolist()
+    elif SPLIT_CSV.exists() and RAW_LIVECREER_PARQUET.exists():
+        val_split = pd.read_csv(SPLIT_CSV)
+        val_ids = set(val_split[val_split["split"] == "val"]["id"].astype(str))
+        raw_df = pd.read_parquet(RAW_LIVECREER_PARQUET)
+        raw_val_df = raw_df[raw_df["ID"].astype(str).isin(val_ids)].copy().head(sample_size)
+        val_texts = []
+        for _, row in raw_val_df.iterrows():
+            soup = BeautifulSoup(str(row["Resume_html"]), "html.parser")
+            for tag in soup.find_all(["div", "p", "li", "br", "tr"]):
+                tag.insert_before("\n")
+                tag.insert_after("\n")
+            val_texts.append(clean_text(soup.get_text()))
+    else:
+        logger.warning("Validation data not found; skipping classifier word deletion test.")
+        return {}
+
+    lr_path = ROOT_DIR / "artifacts" / "models" / "classifier" / "tfidf_lr.joblib"
+    vec_path = ROOT_DIR / "artifacts" / "models" / "classifier" / "tfidf_vectorizer.joblib"
+    if not lr_path.exists() or not vec_path.exists():
+        logger.warning("TF-IDF LR model or vectorizer not found; skipping classifier word deletion test.")
+        return {}
+
+    clf_lr = joblib.load(lr_path)
+    vec = joblib.load(vec_path)
+    feature_names = vec.get_feature_names_out()
+
+    rng = random.Random(seed)
+    top_k_drops: List[float] = []
+    rand_k_drops: List[float] = []
+
+    for text in val_texts:
+        X = vec.transform([text])
+        probs = clf_lr.predict_proba(X)[0]
+        pred_idx = int(np.argmax(probs))
+        base_prob = float(probs[pred_idx])
+
+        nonzeros = X.nonzero()[1]
+        if len(nonzeros) < k:
+            continue
+
+        # Sort document vocabulary words by positive LR coefficient for predicted class
+        word_coefs = [(feature_names[i], float(clf_lr.coef_[pred_idx, i])) for i in nonzeros]
+        word_coefs.sort(key=lambda x: x[1], reverse=True)
+
+        top_words = [w for w, _ in word_coefs[:k]]
+        pool_rand = [w for w, _ in word_coefs[k:]]
+        if len(pool_rand) >= k:
+            rand_words = rng.sample(pool_rand, k)
+        else:
+            rand_words = rng.sample([w for w, _ in word_coefs], k)
+
+        # Regex deletion
+        pat_top = re.compile(r"\b(" + "|".join(re.escape(w) for w in top_words) + r")\b", re.IGNORECASE)
+        pat_rand = re.compile(r"\b(" + "|".join(re.escape(w) for w in rand_words) + r")\b", re.IGNORECASE)
+
+        text_top = pat_top.sub(" ", text)
+        text_rand = pat_rand.sub(" ", text)
+
+        prob_top = float(clf_lr.predict_proba(vec.transform([text_top]))[0][pred_idx])
+        prob_rand = float(clf_lr.predict_proba(vec.transform([text_rand]))[0][pred_idx])
+
+        top_k_drops.append(base_prob - prob_top)
+        rand_k_drops.append(base_prob - prob_rand)
+
+    mean_top_drop = float(np.mean(top_k_drops)) if top_k_drops else 0.0
+    mean_rand_drop = float(np.mean(rand_k_drops)) if rand_k_drops else 0.0
+
+    logger.info(f"Classifier Word Deletion Benchmark ({len(top_k_drops)} resumes, k={k}, seed={seed}):")
+    logger.info(f"  - Mean Probability Drop (Top-{k} LR Words Removed):   {mean_top_drop:.4f} ({mean_top_drop*100:.2f}%)")
+    logger.info(f"  - Mean Probability Drop (Random-{k} Words Removed):    {mean_rand_drop:.4f} ({mean_rand_drop*100:.2f}%)")
+    logger.info(f"  - Net Attribution Gap (Top vs Random):                 {mean_top_drop - mean_rand_drop:+.4f}")
+
+    # Save plot
+    fig, ax = plt.subplots(figsize=(6, 4.5))
+    bars = ax.bar(
+        [f"Top-{k} LR Words", f"Random-{k} Words"],
+        [mean_top_drop, mean_rand_drop],
+        color=["#1f77b4", "#ff7f0e"],
+        width=0.45,
+    )
+    ax.set_ylabel("Mean Predicted-Class Probability Drop")
+    ax.set_title(f"Classifier XAI: Word Erasure Faithfulness (k={k})", fontsize=12, pad=10)
+    for bar in bars:
+        h = bar.get_height()
+        va = "bottom" if h >= 0 else "top"
+        ax.annotate(
+            f"{h:+.4f}",
+            xy=(bar.get_x() + bar.get_width() / 2, h),
+            xytext=(0, 4 if h >= 0 else -12),
+            textcoords="offset points",
+            ha="center",
+            va=va,
+            fontweight="bold",
+        )
+    ax.axhline(0, color="gray", linewidth=0.8, linestyle="--")
+    plt.tight_layout()
+    plot_path = OUTPUT_REPORTS_DIR / "classifier_word_deletion.png"
+    fig.savefig(plot_path, dpi=200)
+    plt.close(fig)
+    logger.info(f"Saved classifier word deletion plot to {plot_path}")
+
+    res = {
+        "n_evaluated": len(top_k_drops),
+        "k": k,
+        "seed": seed,
+        "mean_top_k_drop": round(mean_top_drop, 4),
+        "mean_random_k_drop": round(mean_rand_drop, 4),
+        "attribution_gap": round(mean_top_drop - mean_rand_drop, 4),
+    }
+
+    metric_file = OUTPUT_METRICS_DIR / "classifier_word_deletion.json"
+    with open(metric_file, "w", encoding="utf-8") as f:
+        json.dump(res, f, indent=2)
+
+    return res
+
+
+
 def evaluate_timing(
     resumes: Dict[str, ParsedResume],
     jds: Dict[str, JobDescription],
@@ -469,6 +604,9 @@ def main() -> None:
     # 3. Faithfulness
     faith_res = evaluate_faithfulness(skill_ext, sample_size=20, k=3, seed=42)
 
+    # 3b. Classifier Word Deletion Test
+    word_del_res = evaluate_classifier_word_deletion(sample_size=50, k=10, seed=42)
+
     # 4. Latency
     timing_res = evaluate_timing(resumes, jds)
 
@@ -479,6 +617,7 @@ def main() -> None:
     summary = {
         "matched_pair_pass": matrix_res["matched_pair_pass"],
         "faithfulness": faith_res,
+        "classifier_word_deletion": word_del_res,
         "timing": timing_res,
         "total_compute_seconds": round(total_elapsed, 2),
     }

@@ -28,8 +28,12 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 ### Q6. Why did the BiLSTM perform so poorly compared to other models?
 **Answer:** The training split contained 1,739 samples across 24 classes (~72 samples per class). Recurrent networks lack the strong inductive bias of pretrained self-attention and have high parameter complexity. Without a massive corpus to learn sequence transitions from scratch, the BiLSTM failed to optimize effectively, achieving only 25.13% test accuracy.
 
-### Q7. Why are TF-IDF models so close to DistilBERT on validation F1?
-**Answer:** Professional resumes are heavily keyword-driven: distinctive domain vocabulary (e.g., "culinary", "GAAP", "litigation") provides linearly separable bag-of-words features for most categories. On 370 validation resumes, LR (0.591), MLP (0.600), and DistilBERT (0.568) are statistically within noise of each other. DistilBERT reached 0.645 on the test split, but was constrained by a 3-epoch training budget and was not chosen by the validation selection criterion.
+### Q7. Why are TF-IDF models so close to DistilBERT on validation F1, and is MLP vs LR difference significant?
+**Answer:** Professional resumes are heavily keyword-driven: distinctive domain vocabulary (e.g., "culinary", "GAAP", "litigation") provides linearly separable bag-of-words features for most categories. On 370 validation resumes, LR (0.591), MLP (0.600), and DistilBERT (0.568) are statistically within noise of each other. Furthermore, bootstrap 95% confidence intervals (1,000 resamples, seed 42) on test macro-F1 show:
+- TF-IDF + LR: 0.5959 (95% CI: `[0.5465, 0.6352]`)
+- TF-IDF + MLP: 0.6181 (95% CI: `[0.5606, 0.6587]`)
+- DistilBERT: 0.6454 (95% CI: `[0.5970, 0.6874]`)
+A paired difference analysis between MLP and LR gives a 95% CI of `[-0.0220, +0.0569]` (spans zero, bootstrap $p = 0.3480$), and a paired McNemar test on discordant samples yields $\chi^2 = 0.2368, p = 0.6265$. The performance difference between MLP and LR is statistically insignificant. DistilBERT reached 0.645 on the test split, but was constrained by a 3-epoch training budget and was not chosen by the validation selection criterion.
 
 ---
 
@@ -51,7 +55,7 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 
 ## Group 4: Stage 5 ATS Scoring & Explainability (Units II & V)
 
-### Q12. What are the 9 components of your ATS scoring formula?
+### Q12. What are the 9 components of your ATS scoring formula, and how are sub-scores computed?
 **Answer:** The score is a deterministic weighted linear combination bounded in $[0, 100]$:
 1. Semantic Match (25%)
 2. Keyword Coverage (20%)
@@ -63,14 +67,21 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 8. Readability (5%)
 9. Contact Completeness (5%)
 
+In the UI result hero, the score is decomposed into two orthogonal sub-scores:
+- **Job fit (55% total weight):** $(0.25 \cdot c_{\text{sem}} + 0.20 \cdot c_{\text{kw}} + 0.10 \cdot c_{\text{exp}}) / 0.55 \times 100$. Measures role-specific qualification.
+- **Resume quality (45% total weight):** Renormalized combination of the remaining 6 structural and readability components. Measures formatting and presentation clarity.
+- **Invariant:** $0.55 \cdot \text{Job fit} + 0.45 \cdot \text{Resume quality} \equiv \text{Total ATS Score}$.
+
 ### Q13. Why does an unrelated resume-JD pair score around 50 rather than 0?
 **Answer:** Scores for unrelated pairs sit near 50 (e.g., Data Scientist vs Executive Chef scores 55.5) because the formatting (10%) and contact components (5%) give every resume free points, and the weights are transparent heuristics with no ground truth. Pure job-fit components (semantic match and keyword coverage) plunge to zero, bringing the grade to F.
 
 ### Q14. What did the ablation study reveal about individual scoring components?
 **Answer:** Removing Semantic Match caused the largest intended drop (-3.53 pts). Removing Section Completeness dropped scores by -2.08 pts and Experience Fit by -2.26 pts. Conversely, ablating Quantified Achievements increased mean scores by +7.37 pts, proving that the rubric aggressively penalizes resumes that lack numeric metrics.
 
-### Q15. What explainability methods does the platform use, and how did the faithfulness test turn out?
-**Answer:** The explainer uses leave-one-sentence-out (LOSO) for sentence importance and TF-IDF+LR coefficients for word importance. The faithfulness test was inconclusive: removing the top-3 most important sentences produced a mean score drop of 0.07 pts compared to 0.11 pts for 3 random sentences across 20 validation resumes (k=3). Therefore, the explanations are not validated.
+### Q15. What explainability methods does the platform use, and how did the faithfulness tests turn out?
+**Answer:** The platform uses two complementary XAI techniques:
+1. **Sentence Importance for ATS Score (LOSO):** Leave-one-sentence-out on semantic match. In faithfulness testing (20 validation resumes, k=3), removing the top-3 sentences caused a 0.07 pt drop compared to 0.11 pts for 3 random sentences. This test was inconclusive, and sentence-level ATS explanations are not experimentally validated.
+2. **Word Importance for Classifier (Linear Coefficients):** TF-IDF + Logistic Regression linear model coefficients for the predicted category. In a 50-resume validation deletion test (k=10 words, seed 42), removing top-10 coefficient words dropped class probability by **0.3590** (35.90 percentage points) versus **-0.0021** (-0.21 percentage points) for 10 random words. This confirms a validated **+0.3611** attribution gap.
 
 ---
 
@@ -113,3 +124,6 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 
 ### Q25. What is the single biggest engineering takeaway from this project?
 **Answer:** Deep learning model accuracy is only one piece of an effective hiring platform. Transparent heuristic scoring, robust multi-format document parsing, context-aware disambiguation, and strict privacy guards are what transform raw neural predictions into a reliable, fair, and actionable decision-support tool.
+
+### Q26. How do you evaluate parser and entity extraction robustness on arbitrary candidate documents?
+**Answer:** We implemented `scripts/eval_robustness.py`, an audit script that processes folders of PDF and DOCX files (default: `data/real_samples/`). It extracts pages, detection method (native vs OCR fallback), latency, sections detected, skill count, and years of experience without printing or logging any candidate text, names, emails, or phone numbers. Across the test fixture suite, it achieved 100% extraction success with 0 unhandled exceptions.

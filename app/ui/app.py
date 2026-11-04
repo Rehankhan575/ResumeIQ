@@ -403,12 +403,43 @@ def _render_hero(result) -> None:
   <span class="ra-bar-weight">{w*100:.0f}pt</span>
 </div>"""
 
+    # Sub-scores (display only):
+    # Job fit: semantic_match (0.25), keyword_coverage (0.20), experience_fit (0.10) -> sum=0.55
+    fit_keys = ["semantic_match", "keyword_coverage", "experience_fit"]
+    w_fit = sum(weights[k] for k in fit_keys)
+    fit_weighted = sum(weights[k] * components.get(k, 0.0) for k in fit_keys)
+    job_fit = (fit_weighted / w_fit) * 100.0 if w_fit > 0 else 0.0
+
+    # Resume quality: remaining 6 components -> sum=0.45
+    qual_keys = [
+        "section_completeness",
+        "formatting",
+        "quantified_achievements",
+        "action_verbs",
+        "readability",
+        "contact_completeness",
+    ]
+    w_qual = sum(weights[k] for k in qual_keys)
+    qual_weighted = sum(weights[k] * components.get(k, 0.0) for k in qual_keys)
+    resume_quality = (qual_weighted / w_qual) * 100.0 if w_qual > 0 else 0.0
+
     st.markdown(f"""
 <div class="ra-row ra-row-hero ra-section">
   <div class="ra-card ra-score-ring-wrap">
     {ring_svg}
     <span class="ra-score-number">{total:.0f}</span>
     <span class="ra-grade-chip {gc}">{_escape(grade)}</span>
+    <div class="ra-subscores" style="display:flex; gap:16px; margin-top:14px; align-items:center; justify-content:center; width:100%; border-top:1px solid var(--border); padding-top:12px;">
+      <div style="text-align:center;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); font-family:var(--font-mono);">Job fit</div>
+        <div style="font-family:var(--font-mono); font-size:16px; color:var(--text); font-variant-numeric:tabular-nums; margin-top:2px;">{job_fit:.0f} <span style="font-size:11px; color:var(--faint);">/ 100</span></div>
+      </div>
+      <div style="width:1px; background:var(--border); height:24px;"></div>
+      <div style="text-align:center;">
+        <div style="font-size:11px; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); font-family:var(--font-mono);">Resume quality</div>
+        <div style="font-family:var(--font-mono); font-size:16px; color:var(--text); font-variant-numeric:tabular-nums; margin-top:2px;">{resume_quality:.0f} <span style="font-size:11px; color:var(--faint);">/ 100</span></div>
+      </div>
+    </div>
   </div>
   <div class="ra-card">
     <span class="ra-card-label">Component Breakdown</span>

@@ -15,6 +15,23 @@ Evaluated on 2,483 stratified resumes across 24 job categories (per-class counts
 | **BiLSTM + Pretrained Embeddings** | 74.30% | 0.7091 | 23.51% | 0.1860 | 25.13% | 0.1966 | 0.5231 |
 | **DistilBERT (Fine-tuned, 3 epochs)** | 75.85% | 0.6748 | 65.14% | 0.5675 | 72.73% | 0.6454 | **0.1073** |
 
+### Bootstrap 95% Confidence Intervals & Paired Hypothesis Tests
+Evaluated via 1,000 bootstrap resamples (seed 42) on the 374 test set samples without retraining (`scripts/classifier_ci.py`):
+
+| Model | Test Macro F1 | 95% CI Lower | 95% CI Upper | CI Width | Test Acc |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **TF-IDF + Logistic Regression** | 0.5959 | 0.5465 | 0.6352 | 0.0887 | 66.31% |
+| **TF-IDF + MLP (2-layer)** | 0.6181 | 0.5606 | 0.6587 | 0.0981 | 65.24% |
+| **BiLSTM + Pretrained Embeddings** | 0.1966 | 0.1610 | 0.2290 | 0.0680 | 25.13% |
+| **DistilBERT (Fine-tuned, 3 epochs)** | 0.6454 | 0.5970 | 0.6874 | 0.0904 | 72.73% |
+
+#### Paired Comparison: MLP vs. Logistic Regression
+- **Point Macro-F1 Difference (MLP − LR):** +0.0222 (+2.22 macro-F1 pts)
+- **Bootstrap 95% CI of Difference:** `[-0.0220, +0.0569]` (spans zero; differences are within noise)
+- **Bootstrap Difference p-value:** 0.3480 (not statistically significant)
+- **Paired McNemar Test:** 227 both correct, 109 both incorrect, 21 LR correct/MLP incorrect, 17 MLP correct/LR incorrect. Continuity-corrected $\chi^2 = 0.2368$ (df=1), $p = 0.6265$.
+- **Conclusion:** There is no statistically significant difference between MLP and Logistic Regression on the test split.
+
 ### Key Takeaways
 - **Validation Macro-F1:** Logistic Regression: 0.5913, MLP: 0.6001, DistilBERT: 0.5675.
 - **Test Macro-F1:** Logistic Regression: 0.5959, MLP: 0.6181, DistilBERT: 0.6454.
@@ -77,10 +94,19 @@ Ablation of each of the 9 scoring components. Scores for unrelated pairs sit nea
 | `readability` | 0.05 | 79.64 | 79.27 | **-0.37** |
 | `contact_completeness` | 0.05 | 79.64 | 79.36 | **-0.28** |
 
-### Explainability Architecture & Faithfulness Test
-- **Methods:** Leave-one-sentence-out (LOSO) for sentence-level contribution and TF-IDF + Logistic Regression linear model coefficients for word importance.
-- **Faithfulness Benchmark:** Inconclusive (top-3 most important sentence removal dropped scores by 0.07 pts vs 0.11 pts for 3 random sentences across 20 validation resumes, k=3). Explanations are not experimentally validated.
-- **Scoring Latency:** Mean 55.63 ms, Median 47.45 ms, P95 73.42 ms.
+### Explainability Architecture & Faithfulness Tests
+- **Methods:** Leave-one-sentence-out (LOSO) for sentence-level contribution and TF-IDF + Logistic Regression linear model coefficients for classifier word importance.
+- **Sentence-Level Erasure (ATS Score):** Inconclusive (top-3 most important sentence removal dropped scores by 0.07 pts vs 0.11 pts for 3 random sentences across 20 validation resumes, k=3, seed 42). Composite ATS score explanations are not experimentally validated.
+- **Classifier Word Deletion Test (Feature Attribution):** Evaluated across 50 validation resumes (k=10 words, seed 42, `scripts/eval_scoring.py`):
+  - Mean predicted-class probability drop after removing top-10 LR words: **0.3590** (35.90 percentage points drop).
+  - Mean predicted-class probability drop after removing 10 random words: **-0.0021** (-0.21 percentage points drop).
+  - Net attribution gap: **+0.3611** (36.11 percentage points degradation).
+  - Verdict: **Validated** for classifier feature importance; linear model coefficients accurately isolate class-discriminative vocabulary.
+- **Sub-Score Decomposition (UI Result Hero):** The composite ATS score is partitioned into two orthogonal sub-scores:
+  - **Job fit** ($w=0.55$): weighted combination of `semantic_match` (0.25), `keyword_coverage` (0.20), and `experience_fit` (0.10) renormalized to 0–100.
+  - **Resume quality** ($w=0.45$): weighted combination of the remaining 6 components (`section_completeness` 0.10, `formatting` 0.10, `quantified_achievements` 0.10, `action_verbs` 0.05, `readability` 0.05, `contact_completeness` 0.05) renormalized to 0–100.
+  - Invariant: $0.55 \cdot \text{Job fit} + 0.45 \cdot \text{Resume quality} \equiv \text{Total ATS Score}$.
+- **Scoring Latency:** Mean 46.05 ms, Median 43.36 ms, P95 57.50 ms.
 
 ---
 
@@ -89,3 +115,17 @@ Ablation of each of the 9 scoring components. Scores for unrelated pairs sit nea
 - **Parsing Precision/Recall:** 100% on 5 synthetic resumes (and 0 JDs in `parsing_eval.json`: `ds_clean.pdf`, `swe_two_column.pdf`, `accountant_table.pdf`, `chef_plain.docx`, `nurse_scanned.pdf`).
 - **Extraction Micro F1:** 0.8980 with 0 trap violations on 5 synthetic resumes and 3 JDs. NER fine-tuning was not implemented; extraction is taxonomy-based with 36 disambiguation rules.
 - **Real-Text Extraction Yield:** 95.95% experience parsing yield, 74.86% education parsing yield on collapsed val text (370 raw resumes); mean extraction latency 4.45 ms.
+
+---
+
+## 5. Parser & Extraction Robustness CLI (`scripts/eval_robustness.py`)
+
+A privacy-safe evaluation utility for real-world document sets (.pdf and .docx; default folder `data/real_samples/`, gitignored). Outputs per-file metadata only: pages, parse method, seconds, sections found, skills count, years experience, and warnings count. Strictly zero candidate text, names, emails, or phone numbers are logged.
+
+### Fixture Suite Benchmark (5 documents: 4 PDF, 1 DOCX)
+- **Processing Success Rate:** 5/5 (100.0%)
+- **OCR Fallback Invocations:** 1 (`nurse_scanned.pdf`, 2.66s via Tesseract)
+- **Native Document Speeds:** Native PDF: 0.085s–0.240s; Native DOCX: 0.011s
+- **Average Skills Extracted:** 5.2 skills per document
+- **Average Experience Detected:** 9.2 years
+- **Total Warnings Recorded:** 1 (OCR fallback notification)

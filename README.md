@@ -124,13 +124,15 @@ Evaluated on 2,483 stratified resumes across 24 job categories (per-class resume
 | **BiLSTM + Pretrained Embeddings** | 74.30% | 0.7091 | 23.51% | 0.1860 | 25.13% | 0.1966 | 0.5231 |
 | **DistilBERT (Fine-tuned, 3 epochs)** | 75.85% | 0.6748 | 65.14% | 0.5675 | 72.73% | 0.6454 | **0.1073** |
 
-*Takeaways:*
-- **Validation Macro-F1:** Logistic Regression: 0.5913, MLP: 0.6001, DistilBERT: 0.5675.
-- **Test Macro-F1:** Logistic Regression: 0.5959, MLP: 0.6181, DistilBERT: 0.6454.
-- Differences are within noise on about 370 validation resumes (~15 resumes per class across 24 classes).
-- The production model was selected by validation F1 (MLP at 0.6001).
-- DistilBERT achieved the best test numbers (0.6454 test macro-F1, 72.73% test accuracy) but was not selected on test metrics and was trained for only 3 epochs due to compute budgets.
-- BiLSTM underfits significantly (0.1966 test macro-F1, 25.13% test accuracy) at this sample size.
+*Takeaways & Bootstrap 95% Confidence Intervals:*
+- **Validation Macro-F1:** Logistic Regression: 0.5913, MLP: 0.6001, DistilBERT: 0.5675. Differences are within noise on about 370 validation resumes (~15 resumes per class across 24 classes).
+- **Test Macro-F1 with 95% Bootstrap CIs (1,000 resamples, seed 42):**
+  - **TF-IDF + LR:** 0.5959 (95% CI: `[0.5465, 0.6352]`, test accuracy: 66.31%)
+  - **TF-IDF + MLP:** 0.6181 (95% CI: `[0.5606, 0.6587]`, test accuracy: 65.24%)
+  - **BiLSTM:** 0.1966 (95% CI: `[0.1610, 0.2290]`, test accuracy: 25.13%)
+  - **DistilBERT:** 0.6454 (95% CI: `[0.5970, 0.6874]`, test accuracy: 72.73%)
+- **Paired Hypothesis Testing (MLP vs. LR):** Point difference +0.0222 macro-F1, bootstrap 95% CI `[-0.0220, +0.0569]` (spans zero, bootstrap $p = 0.3480$). Paired McNemar test on discordant sample predictions: continuity-corrected $\chi^2 = 0.2368$ (df=1), $p = 0.6265$. The difference is statistically indistinguishable from zero.
+- The production model was selected by validation F1 (MLP at 0.6001). DistilBERT achieved the best test numbers but was not selected on test metrics and was trained for only 3 epochs due to compute budgets. BiLSTM underfits significantly at this sample size.
 
 ### 2. Semantic Matcher Retrieval Performance (15 Categories)
 
@@ -181,15 +183,21 @@ Ablation of each of the 9 scoring components (tested across candidate-job pairs)
 | `readability` | 0.05 | 79.64 | 79.27 | **-0.37** |
 | `contact_completeness` | 0.05 | 79.64 | 79.36 | **-0.28** |
 
-### XAI Explainability & Faithfulness Test
+### XAI Explainability & Faithfulness Tests
 - **Explainer Architecture:** Leave-one-sentence-out (LOSO) for sentence-level contribution and TF-IDF + Logistic Regression linear model coefficients for classifier word importance.
-- **Faithfulness Benchmark:** Inconclusive (top-3 sentence removal caused a mean drop of 0.07 pts vs 3 random sentence removal drop of 0.11 pts across 20 validation resumes, k=3). The explanations are not validated.
-- **Scoring Latency:** Mean 55.63 ms, Median 47.45 ms, P95 73.42 ms.
+- **Faithfulness Benchmark (Sentence Erasure on ATS Total):** Inconclusive (top-3 sentence removal caused a mean drop of 0.07 pts vs 3 random sentence removal drop of 0.11 pts across 20 validation resumes, k=3, seed 42). Explanations for the composite ATS score are not experimentally validated.
+- **Classifier Word Deletion Test (Feature Importance):** Evaluated across 50 validation resumes (k=10 words, seed 42): removing the top-10 positive LR words dropped the predicted class probability by **0.3590** (35.90 percentage points), whereas deleting 10 random words produced a drop of **-0.0021** (-0.21 percentage points), establishing a net attribution gap of **+0.3611**. Linear coefficient feature importance is verified to drive classifier predictions directly.
+- **Sub-Score Decomposition (UI Result Hero):** The UI presents two sub-scores beside the total:
+  - **Job fit** ($w=0.55$): `semantic_match` (0.25), `keyword_coverage` (0.20), `experience_fit` (0.10) renormalized to 0–100.
+  - **Resume quality** ($w=0.45$): `section_completeness` (0.10), `formatting` (0.10), `quantified_achievements` (0.10), `action_verbs` (0.05), `readability` (0.05), `contact_completeness` (0.05) renormalized to 0–100.
+  - Invariant: $0.55 \cdot \text{Job fit} + 0.45 \cdot \text{Resume quality} \equiv \text{Total ATS Score}$.
+- **Scoring Latency:** Mean 46.05 ms, Median 43.36 ms, P95 57.50 ms.
 
 ### 4. Parsing & Extraction Accuracy
 - **Parsing Section Accuracy:** 100.0% precision and 100.0% recall on 5 synthetic resumes (and 0 JDs in `parsing_eval.json`: `ds_clean.pdf`, `swe_two_column.pdf`, `accountant_table.pdf`, `chef_plain.docx`, `nurse_scanned.pdf`).
 - **Extraction Micro F1:** 0.8980 (Micro Precision: 81.48%, Micro Recall: 100.00%) with 0 trap violations on 5 synthetic resumes and 3 JDs. NER fine-tuning was not implemented; extraction is taxonomy-based with 36 disambiguation rules.
 - **Real-Text Extraction Yield:** 95.95% experience section parsing yield, 74.86% education section parsing yield on collapsed val text (370 resumes); mean extraction latency 4.45 ms.
+- **Document Robustness Evaluation:** `scripts/eval_robustness.py` provides a privacy-safe audit CLI for real resume collections (.pdf/.docx), logging per-file metadata without candidate PII (100% processed successfully across fixture test suite with 1 OCR fallback on `nurse_scanned.pdf`).
 
 ---
 
@@ -198,10 +206,10 @@ Ablation of each of the 9 scoring components (tested across candidate-job pairs)
 We document the real constraints and trade-offs of this platform plainly:
 1. **Resume NER Fine-Tuning Not Implemented:** Token-level entity extraction relies on a curated skill taxonomy of 1,668 skills (488 with aliases, 2,404 total terms, 833 active skills) with 36 context disambiguation rules in `ambiguous_terms.csv` rather than a custom token-classification model (e.g., token-level BERT-NER).
 2. **Scope Boundaries:** Interview-question generation, FastAPI REST deployment, Docker packaging, and cloud hosting are deliberately out of scope; the application is designed to operate locally.
-3. **Classifier Selection & Data Noise:** On validation macro-F1, Logistic Regression (0.5913), MLP (0.6001), and DistilBERT (0.5675) are statistically close on about 370 validation resumes (~15 per class across 24 classes). The production model was selected by validation F1 (MLP). DistilBERT achieved the highest test macro-F1 (0.6454) and test accuracy (72.73%), but was not selected on test metrics and was trained for only 3 epochs due to compute constraints. BiLSTM underfits (0.1966 test macro-F1, 25.13% test accuracy) at this data volume.
+3. **Classifier Selection & Data Noise:** On validation macro-F1, Logistic Regression (0.5913), MLP (0.6001), and DistilBERT (0.5675) are statistically close on about 370 validation resumes (~15 per class across 24 classes). The production model was selected by validation F1 (MLP). DistilBERT achieved the highest test macro-F1 (0.6454) and test accuracy (72.73%), but was not selected on test metrics and was trained for only 3 epochs due to compute constraints. BiLSTM underfits (0.1966 test macro-F1, 25.13% test accuracy) at this data volume. Paired bootstrap difference (95% CI `[-0.0220, +0.0569]`, $p=0.3480$) and McNemar test ($p=0.6265$) confirm MLP and LR test differences are within statistical noise.
 4. **Matcher Weak Labels & Circularity:** Matcher ground truth uses title-derived category matching; labels are weak and the retrieval evaluation metric is partly circular. While fine-tuned SBERT achieved 0.7798 test MRR (+14.87 points vs zero-shot, +14.65 points vs TF-IDF), broad categories (BPO test MRR 0.0326, CONSULTANT test MRR 0.2032) perform poorly. For categories with >10 true positives, Recall@5 is mathematically capped below 50%; MRR is the primary evaluation metric.
 5. **Heuristic ATS Baseline & Free Points:** No objective universal ATS ground-truth score exists in industry. Weights are transparent heuristics. Scores for unrelated resume-job pairs sit near 50 (e.g., Data Scientist vs Executive Chef scores 55.5) because formatting (10%) and contact information (5%) award every resume free points regardless of job fit.
-6. **XAI Inconclusive & Unvalidated:** The explainer uses leave-one-sentence-out for sentence importance and TF-IDF+LR coefficients for word importance. The faithfulness test was inconclusive (top-3 most important sentence removal dropped scores by 0.07 pts vs 0.11 pts for 3 random sentences on 20 validation resumes, k=3), and the explanations are not validated.
+6. **XAI Distinction & ATS Unvalidated:** The explainer uses leave-one-sentence-out for sentence importance and TF-IDF+LR coefficients for word importance. While the classifier word-deletion test demonstrated a validated +0.3611 net probability gap for category attribution, the composite ATS sentence erasure test was inconclusive (top-3 sentence drop 0.07 pts vs random-3 sentence drop 0.11 pts on 20 validation resumes, k=3), and ATS score sentence explanations are not experimentally validated.
 7. **Optional GenAI Dependency:** Personalized rewriting suggestions depend on third-party cloud APIs (Gemini/Claude/OpenAI). When no key is provided, the platform gracefully switches to deterministic rule-based advice.
 8. **OCR Quality Dependency:** Tesseract OCR performance depends directly on image DPI and scan resolution. Scanned documents with non-standard fonts or low contrast may experience minor word corruption.
 9. **Single Stratified Split:** Models were evaluated on a deterministic 70/15/15 train/val/test split; k-fold cross-validation was not run due to training budget constraints.
