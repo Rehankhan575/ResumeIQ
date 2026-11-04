@@ -1,0 +1,592 @@
+{
+  "python": [
+    {
+      "title": "Python for Everybody Specialization",
+      "provider": "Coursera",
+      "level": "Beginner",
+      "estimated_hours": 35
+    },
+    {
+      "title": "Advanced Python Programming",
+      "provider": "edX",
+      "level": "Advanced",
+      "estimated_hours": 25
+    }
+  ],
+  "sql": [
+    {
+      "title": "The Complete SQL Bootcamp",
+      "provider": "Udemy",
+      "level": "Beginner",
+      "estimated_hours": 20
+    },
+    {
+      "title": "Advanced SQL for Data Scientists",
+      "provider": "LinkedIn Learning",
+      "level": "Advanced",
+      "estimated_hours": 15
+    }
+  ],
+  "machine learning": [
+    {
+      "title": "Machine Learning Specialization",
+      "provider": "DeepLearning.AI",
+      "level": "Intermediate",
+      "estimated_hours": 60
+    },
+    {
+      "title": "Applied Machine Learning in Python",
+      "provider": "Coursera",
+      "level": "Intermediate",
+      "estimated_hours": 30
+    }
+  ],
+  "deep learning": [
+    {
+      "title": "Deep Learning Specialization",
+      "provider": "DeepLearning.AI",
+      "level": "Advanced",
+      "estimated_hours": 75
+    },
+    {
+      "title": "Practical Deep Learning for Coders",
+      "provider": "fast.ai",
+      "level": "Intermediate",
+      "estimated_hours": 50
+    }
+  ],
+  "pytorch": [
+    {
+      "title": "PyTorch for Deep Learning Bootcamp",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 25
+    },
+    {
+      "title": "Deep Learning with PyTorch",
+      "provider": "edX",
+      "level": "Intermediate",
+      "estimated_hours": 30
+    }
+  ],
+  "tensorflow": [
+    {
+      "title": "DeepLearning.AI TensorFlow Developer Certificate",
+      "provider": "Coursera",
+      "level": "Intermediate",
+      "estimated_hours": 45
+    }
+  ],
+  "scikit-learn": [
+    {
+      "title": "Machine Learning with scikit-learn",
+      "provider": "INRIA",
+      "level": "Intermediate",
+      "estimated_hours": 35
+    }
+  ],
+  "pandas": [
+    {
+      "title": "Data Analysis with Pandas and Python",
+      "provider": "Udemy",
+      "level": "Beginner",
+      "estimated_hours": 20
+    }
+  ],
+  "numpy": [
+    {
+      "title": "Scientific Computing with NumPy",
+      "provider": "edX",
+      "level": "Beginner",
+      "estimated_hours": 15
+    }
+  ],
+  "data analysis": [
+    {
+      "title": "Google Data Analytics Professional Certificate",
+      "provider": "Coursera",
+      "level": "Beginner",
+      "estimated_hours": 180
+    }
+  ],
+  "data visualization": [
+    {
+      "title": "Data Visualization with Tableau Specialization",
+      "provider": "Coursera",
+      "level": "Beginner",
+      "estimated_hours": 40
+    }
+  ],
+  "r": [
+    {
+      "title": "R Programming for Data Science",
+      "provider": "Johns Hopkins University",
+      "level": "Intermediate",
+      "estimated_hours": 25
+    }
+  ],
+  "docker": [
+    {
+      "title": "Docker Mastery: with Kubernetes + Swarm",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 22
+    }
+  ],
+  "kubernetes": [
+    {
+      "title": "Certified Kubernetes Administrator (CKA) Prep",
+      "provider": "The Linux Foundation",
+      "level": "Advanced",
+      "estimated_hours": 40
+    }
+  ],
+  "git": [
+    {
+      "title": "Version Control with Git",
+      "provider": "Atlassian",
+      "level": "Beginner",
+      "estimated_hours": 12
+    }
+  ],
+  "aws": [
+    {
+      "title": "AWS Certified Solutions Architect Associate Prep",
+      "provider": "AWS Training",
+      "level": "Intermediate",
+      "estimated_hours": 50
+    }
+  ],
+  "azure": [
+    {
+      "title": "Microsoft Azure Fundamentals (AZ-900)",
+      "provider": "Microsoft Learn",
+      "level": "Beginner",
+      "estimated_hours": 20
+    }
+  ],
+  "gcp": [
+    {
+      "title": "Google Cloud Associate Cloud Engineer Track",
+      "provider": "Google Cloud Skills Boost",
+      "level": "Intermediate",
+      "estimated_hours": 40
+    }
+  ],
+  "linux": [
+    {
+      "title": "Linux Command Line Basics",
+      "provider": "edX",
+      "level": "Beginner",
+      "estimated_hours": 18
+    }
+  ],
+  "bash": [
+    {
+      "title": "Bash Scripting and Shell Programming",
+      "provider": "Udemy",
+      "level": "Beginner",
+      "estimated_hours": 15
+    }
+  ],
+  "java": [
+    {
+      "title": "Java Programming Masterclass",
+      "provider": "Udemy",
+      "level": "Beginner",
+      "estimated_hours": 80
+    }
+  ],
+  "c++": [
+    {
+      "title": "C++ for Programmers",
+      "provider": "Udacity",
+      "level": "Intermediate",
+      "estimated_hours": 35
+    }
+  ],
+  "c": [
+    {
+      "title": "Introduction to Programming in C Specialization",
+      "provider": "Duke University",
+      "level": "Beginner",
+      "estimated_hours": 40
+    }
+  ],
+  "c#": [
+    {
+      "title": "C# Basics for Beginners",
+      "provider": "Mosh Hamedani",
+      "level": "Beginner",
+      "estimated_hours": 15
+    }
+  ],
+  "golang": [
+    {
+      "title": "Programming with Google Go Specialization",
+      "provider": "UC Irvine",
+      "level": "Intermediate",
+      "estimated_hours": 30
+    }
+  ],
+  "rust": [
+    {
+      "title": "Rust Programming for Beginners",
+      "provider": "freeCodeCamp",
+      "level": "Intermediate",
+      "estimated_hours": 25
+    }
+  ],
+  "javascript": [
+    {
+      "title": "The Complete JavaScript Course",
+      "provider": "Udemy",
+      "level": "Beginner",
+      "estimated_hours": 70
+    }
+  ],
+  "typescript": [
+    {
+      "title": "Understanding TypeScript",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 20
+    }
+  ],
+  "react": [
+    {
+      "title": "React - The Complete Guide",
+      "provider": "Academind",
+      "level": "Intermediate",
+      "estimated_hours": 50
+    }
+  ],
+  "node.js": [
+    {
+      "title": "The Complete Node.js Developer Course",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 35
+    }
+  ],
+  "angular": [
+    {
+      "title": "Angular - The Complete Guide",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 40
+    }
+  ],
+  "vue": [
+    {
+      "title": "Vue - The Complete Guide",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 30
+    }
+  ],
+  "html": [
+    {
+      "title": "Responsive Web Design Certification",
+      "provider": "freeCodeCamp",
+      "level": "Beginner",
+      "estimated_hours": 60
+    }
+  ],
+  "css": [
+    {
+      "title": "Advanced CSS and Sass",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 28
+    }
+  ],
+  "postgresql": [
+    {
+      "title": "PostgreSQL Bootcamp: Go from Beginner to Advanced",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 20
+    }
+  ],
+  "mysql": [
+    {
+      "title": "The Ultimate MySQL Bootcamp",
+      "provider": "Udemy",
+      "level": "Beginner",
+      "estimated_hours": 22
+    }
+  ],
+  "mongodb": [
+    {
+      "title": "MongoDB Basics",
+      "provider": "MongoDB University",
+      "level": "Beginner",
+      "estimated_hours": 15
+    }
+  ],
+  "redis": [
+    {
+      "title": "Redis for Developers",
+      "provider": "Redis University",
+      "level": "Intermediate",
+      "estimated_hours": 16
+    }
+  ],
+  "apache spark": [
+    {
+      "title": "Spark and Python for Big Data with PySpark",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 25
+    }
+  ],
+  "kafka": [
+    {
+      "title": "Apache Kafka Series - Learn Apache Kafka for Beginners",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 18
+    }
+  ],
+  "airflow": [
+    {
+      "title": "Apache Airflow: The Hands-On Guide",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 15
+    }
+  ],
+  "snowflake": [
+    {
+      "title": "Snowflake Masterclass: Complete Guide",
+      "provider": "Udemy",
+      "level": "Beginner",
+      "estimated_hours": 20
+    }
+  ],
+  "tableau": [
+    {
+      "title": "Tableau Desktop Specialist Certification Prep",
+      "provider": "Tableau",
+      "level": "Beginner",
+      "estimated_hours": 25
+    }
+  ],
+  "power bi": [
+    {
+      "title": "Microsoft Power BI Desktop for Business Intelligence",
+      "provider": "Udemy",
+      "level": "Beginner",
+      "estimated_hours": 20
+    }
+  ],
+  "excel": [
+    {
+      "title": "Excel Skills for Business Specialization",
+      "provider": "Macquarie University",
+      "level": "Beginner",
+      "estimated_hours": 45
+    }
+  ],
+  "statistics": [
+    {
+      "title": "Statistics with Python Specialization",
+      "provider": "University of Michigan",
+      "level": "Intermediate",
+      "estimated_hours": 35
+    }
+  ],
+  "linear algebra": [
+    {
+      "title": "Mathematics for Machine Learning: Linear Algebra",
+      "provider": "Imperial College London",
+      "level": "Beginner",
+      "estimated_hours": 20
+    }
+  ],
+  "natural language processing": [
+    {
+      "title": "Natural Language Processing Specialization",
+      "provider": "DeepLearning.AI",
+      "level": "Advanced",
+      "estimated_hours": 55
+    }
+  ],
+  "computer vision": [
+    {
+      "title": "Computer Vision Specialization",
+      "provider": "DeepLearning.AI",
+      "level": "Advanced",
+      "estimated_hours": 45
+    }
+  ],
+  "mlops": [
+    {
+      "title": "Machine Learning Engineering for Production (MLOps)",
+      "provider": "DeepLearning.AI",
+      "level": "Advanced",
+      "estimated_hours": 50
+    }
+  ],
+  "ci/cd": [
+    {
+      "title": "DevOps, CI/CD, and System Administration",
+      "provider": "Coursera",
+      "level": "Intermediate",
+      "estimated_hours": 25
+    }
+  ],
+  "terraform": [
+    {
+      "title": "HashiCorp Certified: Terraform Associate",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 20
+    }
+  ],
+  "graphql": [
+    {
+      "title": "GraphQL with React: The Complete Developers Guide",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 16
+    }
+  ],
+  "rest api": [
+    {
+      "title": "REST APIs with Flask and Python",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 18
+    }
+  ],
+  "fastapi": [
+    {
+      "title": "FastAPI - The Complete Course",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 18
+    }
+  ],
+  "django": [
+    {
+      "title": "Django for Everybody Specialization",
+      "provider": "University of Michigan",
+      "level": "Intermediate",
+      "estimated_hours": 40
+    }
+  ],
+  "flask": [
+    {
+      "title": "Python and Flask Bootcamp",
+      "provider": "Udemy",
+      "level": "Beginner",
+      "estimated_hours": 20
+    }
+  ],
+  "spring boot": [
+    {
+      "title": "Spring Boot 3, Spring 6 & Hibernate",
+      "provider": "Udemy",
+      "level": "Intermediate",
+      "estimated_hours": 45
+    }
+  ],
+  "agile": [
+    {
+      "title": "Agile with Atlassian Jira",
+      "provider": "Atlassian",
+      "level": "Beginner",
+      "estimated_hours": 14
+    }
+  ],
+  "scrum": [
+    {
+      "title": "Scrum Master Certification Prep",
+      "provider": "Scrum Alliance",
+      "level": "Beginner",
+      "estimated_hours": 16
+    }
+  ],
+  "project management": [
+    {
+      "title": "Google Project Management Professional Certificate",
+      "provider": "Coursera",
+      "level": "Beginner",
+      "estimated_hours": 140
+    }
+  ],
+  "product management": [
+    {
+      "title": "Become a Product Manager",
+      "provider": "Udemy",
+      "level": "Beginner",
+      "estimated_hours": 25
+    }
+  ],
+  "financial modeling": [
+    {
+      "title": "Business and Financial Modeling Specialization",
+      "provider": "Wharton School",
+      "level": "Intermediate",
+      "estimated_hours": 35
+    }
+  ],
+  "accounting": [
+    {
+      "title": "Introduction to Financial Accounting",
+      "provider": "Wharton School",
+      "level": "Beginner",
+      "estimated_hours": 20
+    }
+  ],
+  "risk management": [
+    {
+      "title": "Financial Risk Management with R",
+      "provider": "Coursera",
+      "level": "Intermediate",
+      "estimated_hours": 25
+    }
+  ],
+  "auditing": [
+    {
+      "title": "Auditing I: Conceptual Foundations of Auditing",
+      "provider": "University of Illinois",
+      "level": "Intermediate",
+      "estimated_hours": 20
+    }
+  ],
+  "communication": [
+    {
+      "title": "Effective Communication: Writing, Design, and Presentation",
+      "provider": "University of Colorado Boulder",
+      "level": "Beginner",
+      "estimated_hours": 16
+    }
+  ],
+  "leadership": [
+    {
+      "title": "Strategic Leadership and Management Specialization",
+      "provider": "University of Illinois",
+      "level": "Intermediate",
+      "estimated_hours": 45
+    }
+  ],
+  "cybersecurity": [
+    {
+      "title": "Google Cybersecurity Professional Certificate",
+      "provider": "Google",
+      "level": "Beginner",
+      "estimated_hours": 160
+    }
+  ],
+  "microservices": [
+    {
+      "title": "Microservices Software Architecture: Patterns and Techniques",
+      "provider": "Udemy",
+      "level": "Advanced",
+      "estimated_hours": 20
+    }
+  ]
+}

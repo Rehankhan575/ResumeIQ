@@ -229,10 +229,21 @@ Core models defined in `app/schemas.py`:
 | 25 | 2026-11-04 | Siamese bi-encoder (`all-MiniLM-L6-v2`) fine-tuned with `MultipleNegativesRankingLoss` on MPS; fallback to TF-IDF | Optimizes dense embeddings for resume-JD matching within 15-min budget; centroid-based cross-category hard negative mining and per-category JD caps prevent class skew |
 | 26 | 2026-11-04 | Matcher evaluation explicitly discloses weak label circularity | Shared title-rule category definitions govern both training triplets and evaluation qrels; metrics measure category separation rather than recruiter qualification |
 | 27 | 2026-11-04 | Stage 5 ATS scorer routes to public `app.models.matcher.match()` and `app.models.classifier.classify()` with cached neural bi-encoder and TF-IDF fallback | Connects fine-tuned Siamese bi-encoder to ATS scoring while maintaining sub-second inference caching and robust TF-IDF fallback for missing checkpoints |
+| 28 | 2026-11-04 | Stage 7 GenAI provider abstraction (Gemini, Groq, Ollama) with 8s timeout, 2 retries, in-memory SHA-256 caching, and Grounding Guard | Prevents API stalls, guarantees zero disk/log credential leakage, and strictly drops ungrounded hallucinated numbers, orgs, and skills |
+| 29 | 2026-11-04 | Modular extras: Multi-JD ranking, 70-skill URL-free courseware mapping, privacy-preserving bias audit, and opt-in SQLite history | Provides comprehensive resume optimization while preserving candidate privacy (no personal text in logs, bias labels, or SQLite) |
 
 ---
 
 ## CHANGELOG
+
+### v0.9.0 — 2026-11-04
+- `app/genai/`: implemented Stage 7 Generative AI provider abstraction supporting Google Gemini, Groq, and Ollama with strict 8s timeout, max 2 retries, transient in-memory caching, and rule-based fallback
+- `app/genai/grounding.py`: implemented `check_grounding(original, rewritten)` detecting ungrounded numbers, capitalized organizations, and taxonomy skills, immediately dropping hallucinated bullets in favor of safe placeholders
+- `app/genai/prompts/`: prompt templates for bullet rewriting, cover letter drafting, and prioritized improvement plans enforcing hard anti-hallucination rules
+- `data/courses.json`: curated learning catalog spanning 70 in-demand skills with 1-2 resources (title, provider, level, estimated hours) and zero external URLs
+- `app/extras/`: implemented multi-JD ranking (`rank_jds`), skill gap courseware recommendation (`skill_gap`), unconscious demographic bias auditing (`bias_check` with abstract privacy labels), and strictly opt-in SQLite history tracking (`record_history` with zero text fields)
+- `tests/test_genai.py` & `tests/test_extras.py`: 12 comprehensive unit and integration tests (215 total passing tests across repository)
+- `docs/genai.md` & `docs/extras.md`: comprehensive documentation for generative pipelines, grounding guard, bias checks, and course recommendations
 
 ### v0.8.1 — 2026-11-04
 - `app/scoring/ats.py`: connected Stage 5 scorer to public `app.models.matcher.match()` and `app.models.classifier.classify()` with in-memory model caching and graceful TF-IDF cosine fallback; updated score matrix and ablation metrics
