@@ -214,13 +214,14 @@ def test_ui_tile_experience_contains_7_4() -> None:
     assert buttons, "Analyze button not found"
     buttons[0].click().run(timeout=60)
 
-    # Check that tile value contains 7.4
-    all_md = " ".join(m.value for m in at.markdown)
-    assert "7.4 yrs" in all_md or "7.4" in all_md, f"Expected '7.4' in tile markdown: {all_md[:1000]}"
+    # Check that tile value contains 7.4 in at.metric
+    exp_metrics = [m for m in at.metric if getattr(m, "label", "") == "Experience"]
+    assert exp_metrics, f"Experience metric tile not found in {[m.label for m in at.metric]}"
+    assert "7.4" in str(exp_metrics[0].value), f"Expected '7.4' in experience metric: {exp_metrics[0].value}"
 
 
 def test_ui_input_mode_toggle_selection() -> None:
-    """Mode toggles select the active source and hide the inactive widget."""
+    """Inputs provide sample selectboxes, file uploader, and pasted text overrides sample."""
     try:
         from streamlit.testing.v1 import AppTest
     except ImportError:
@@ -229,25 +230,17 @@ def test_ui_input_mode_toggle_selection() -> None:
     at = AppTest.from_file(UI_APP, default_timeout=60)
     at.run(timeout=60)
 
-    # Initially in Sample mode
+    # Initially sample selectboxes are present
     init_selectboxes = [s.key for s in at.selectbox]
     assert "resume_choice" in init_selectboxes
     assert "jd_choice" in init_selectboxes
 
-    # Switch JD to Paste mode
-    if hasattr(at, "segmented_control"):
-        at.segmented_control(key="jd_mode").set_value("Paste").run(timeout=60)
-        # Inactive selectbox hidden
-        post_selectboxes = [s.key for s in at.selectbox]
-        assert "jd_choice" not in post_selectboxes
-        assert "resume_choice" in post_selectboxes
-        # Active text area shown
-        post_textareas = [t.key for t in at.text_area]
-        assert "jd_text_input" in post_textareas
+    # Pasted text area is present
+    assert any(t.key == "pasted_jd" for t in at.text_area)
 
 
 def test_ui_junk_jd_shows_warning_chip() -> None:
-    """Junk JD shows the warning chip 'JD too short or no skills detected; keyword coverage not measured'."""
+    """Junk JD shows the warning 'JD too short or no skills detected; keyword coverage not measured'."""
     try:
         from streamlit.testing.v1 import AppTest
     except ImportError:
@@ -256,21 +249,19 @@ def test_ui_junk_jd_shows_warning_chip() -> None:
     at = AppTest.from_file(UI_APP, default_timeout=60)
     at.run(timeout=60)
 
-    if hasattr(at, "segmented_control"):
-        at.segmented_control(key="jd_mode").set_value("Paste").run(timeout=60)
-        at.text_area(key="jd_text_input").set_value("n nnvhhv").run(timeout=60)
-        buttons = [
-            b for b in at.button
-            if getattr(b, "key", "") == "analyze_btn" or "Analyze" in getattr(b, "label", "")
-        ]
-        buttons[0].click().run(timeout=60)
+    at.text_area(key="pasted_jd").set_value("n nnvhhv").run(timeout=60)
+    buttons = [
+        b for b in at.button
+        if getattr(b, "key", "") == "analyze_btn" or "Analyze" in getattr(b, "label", "")
+    ]
+    buttons[0].click().run(timeout=60)
 
-        all_md = " ".join(m.value for m in at.markdown)
-        assert "JD too short or no skills detected; keyword coverage not measured" in all_md
+    all_warns = " ".join(str(w.value) for w in at.warning)
+    assert "JD too short or no skills detected; keyword coverage not measured" in all_warns
 
 
 def test_ui_model_results_tab_contents() -> None:
-    """Model results tab contains Test Macro F1 column and no internal keys like matched_pair_pass."""
+    """Model results tab contains Test Macro F1 column and 8 native tabs."""
     try:
         from streamlit.testing.v1 import AppTest
     except ImportError:
@@ -285,14 +276,19 @@ def test_ui_model_results_tab_contents() -> None:
     if buttons:
         buttons[0].click().run(timeout=60)
 
-    # Native st.tabs: 7 tabs rendered, zero radio buttons
+    # Native st.tabs: 8 tabs rendered, zero radio buttons
     radios = [r for r in at.radio if getattr(r, "key", "") == "tab_radio"]
     assert len(radios) == 0, "No radio buttons should be used for tab switching"
-    assert len(at.tabs) == 7, f"Expected 7 st.tabs, found {len(at.tabs)}"
+    assert len(at.tabs) == 8, f"Expected 8 st.tabs, found {len(at.tabs)}"
 
-    all_md = " ".join(m.value for m in at.markdown)
-    assert "Test Macro F1" in all_md, "Expected 'Test Macro F1' in Model results tab"
-    assert "matched_pair_pass" not in all_md, "'matched_pair_pass' internal key must not be exposed"
+    # Find classifier dataframe
+    dfs = [df.value for df in at.dataframe if hasattr(df.value, "columns")]
+    c_df = next((d for d in dfs if "Test Macro F1 (95% CI)" in d.columns), None)
+    assert c_df is not None, "Classifier dataframe not found in dataframes"
+    assert "Test Macro F1 (95% CI)" in c_df.columns
+
+    all_text = " ".join(str(m.value) for m in at.markdown) + " " + " ".join(str(c.value) for c in at.caption)
+    assert "matched_pair_pass" not in all_text, "'matched_pair_pass' internal key must not be exposed"
 
 
 def test_ui_classifier_and_matcher_match_saved_metrics() -> None:
@@ -311,41 +307,48 @@ def test_ui_classifier_and_matcher_match_saved_metrics() -> None:
     if buttons:
         buttons[0].click().run(timeout=60)
 
-    all_md = " ".join(m.value for m in at.markdown)
+    dfs = [df.value for df in at.dataframe if hasattr(df.value, "columns")]
+    c_df = next((d for d in dfs if "Val Macro F1" in d.columns), None)
+    assert c_df is not None, "Classifier dataframe not found"
+    c_text = c_df.to_string()
 
     # 1. Classifier table columns and models
-    assert "Val Macro F1" in all_md
-    assert "Test Macro F1" in all_md
-    assert "Test Accuracy" in all_md
-    assert "Train-Val Gap" in all_md
-    assert "TF-IDF + LR" in all_md
-    assert "TF-IDF + MLP" in all_md
-    assert "BiLSTM" in all_md
-    assert "DistilBERT" in all_md
+    assert "Val Macro F1" in c_df.columns
+    assert "Test Macro F1 (95% CI)" in c_df.columns
+    assert "Test Accuracy" in c_df.columns
+    assert "Train-Val Gap" in c_df.columns
+    assert "TF-IDF + LR" in c_text
+    assert "TF-IDF + MLP" in c_text
+    assert "BiLSTM" in c_text
+    assert "DistilBERT" in c_text
 
     # Check exact val macro-F1 values from metrics.json
-    assert "0.5913" in all_md
-    assert "0.6001" in all_md
-    assert "0.1860" in all_md
-    assert "0.5675" in all_md
+    assert "0.5913" in c_text
+    assert "0.6001" in c_text
+    assert "0.1860" in c_text
+    assert "0.5675" in c_text
 
     # Check train-val gaps
-    assert "+0.3969" in all_md
-    assert "+0.3999" in all_md
-    assert "+0.5231" in all_md
-    assert "+0.1073" in all_md
+    assert "+0.3969" in c_text
+    assert "+0.3999" in c_text
+    assert "+0.5231" in c_text
+    assert "+0.1073" in c_text
 
     # 2. Matcher table and fine-tuned test row metrics
-    assert "Fine-Tuned Siamese SBERT" in all_md
-    assert "0.8567" in all_md  # Val MRR
-    assert "0.7798" in all_md  # Test MRR
-    assert "0.7286" in all_md  # Test nDCG@10
-    assert "0.3755" in all_md  # Test Recall@5
-    assert "0.5338" in all_md  # Test Recall@10
+    m_df = next((d for d in dfs if "Val MRR" in d.columns), None)
+    assert m_df is not None, "Matcher dataframe not found"
+    m_text = m_df.to_string()
+
+    assert "Fine-Tuned Siamese SBERT" in m_text
+    assert "0.8567" in m_text  # Val MRR
+    assert "0.7798" in m_text  # Test MRR
+    assert "0.7286" in m_text  # Test nDCG@10
+    assert "0.3755" in m_text  # Test Recall@5
+    assert "0.5338" in m_text  # Test Recall@10
 
 
 def test_ui_scoring_ablation_and_xai_metrics() -> None:
-    """Part 0: UI accurately renders scoring ablation deltas and XAI faithfulness/word deletion metrics."""
+    """UI accurately renders scoring ablation deltas and XAI faithfulness/word deletion metrics."""
     try:
         from streamlit.testing.v1 import AppTest
     except ImportError:
@@ -353,22 +356,29 @@ def test_ui_scoring_ablation_and_xai_metrics() -> None:
 
     at = AppTest.from_file(UI_APP, default_timeout=60)
     at.run(timeout=60)
-    all_md = " ".join(m.value for m in at.markdown)
+
+    dfs = [df.value for df in at.dataframe if hasattr(df.value, "columns")]
 
     # 1. Scoring ablation deltas
-    assert "+7.37" in all_md  # quantified_achievements
-    assert "+1.25" in all_md  # formatting
-    assert "-2.26" in all_md  # experience_fit
+    abl_df = next((d for d in dfs if "Mean Change (Delta)" in d.columns), None)
+    assert abl_df is not None, "Ablation dataframe not found"
+    abl_text = abl_df.to_string()
+    assert "+7.37" in abl_text  # quantified_achievements
+    assert "+1.25" in abl_text  # formatting
+    assert "-2.26" in abl_text  # experience_fit
 
     # 2. XAI faithfulness and word deletion metrics
-    assert "0.07 pts" in all_md
-    assert "0.11 pts" in all_md
-    assert "0.3590" in all_md
-    assert "-0.0021" in all_md
-    assert "+0.3611" in all_md
-    assert "0.4921" in all_md
-    assert "+0.0058" in all_md
-    assert "+0.4863" in all_md
+    xai_df = next((d for d in dfs if "Attribution Level" in d.columns), None)
+    assert xai_df is not None, "XAI dataframe not found"
+    xai_text = xai_df.to_string()
+    assert "0.07 pts" in xai_text
+    assert "0.11 pts" in xai_text
+    assert "0.3590" in xai_text
+    assert "-0.0021" in xai_text
+    assert "+0.3611" in xai_text
+    assert "0.4921" in xai_text
+    assert "+0.0058" in xai_text
+    assert "+0.4863" in xai_text
 
 
 

@@ -1,5 +1,4 @@
 [server]
-# Allow Streamlit to serve files from app/ui/static/ so fonts load offline
 enableStaticServing = true
 maxUploadSize = 5
 
@@ -7,21 +6,18 @@ maxUploadSize = 5
 gatherUsageStats = false
 
 [runner]
-# Avoids hash mismatches when modules are reloaded
 magicEnabled = false
 
 [logger]
 level = "warning"
 
 [theme]
-# Dark developer-tools palette matching CSS tokens
-base = "dark"
-backgroundColor      = "#0A0E14"
-secondaryBackgroundColor = "#111720"
-primaryColor         = "#5EEAD4"
-textColor            = "#E8EDF3"
+base = "light"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F3F5FA"
+primaryColor = "#4F46E5"
+textColor = "#111827"
 
 [client]
 toolbarMode = "minimal"
 showErrorDetails = false
-
