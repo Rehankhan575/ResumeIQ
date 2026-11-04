@@ -1,6 +1,6 @@
 # End-to-End Pipeline Evaluation & Empirical Results
 
-This document presents the complete empirical benchmark across all 7 stages of the Resume Screening and Job Fit platform, compiled directly from stored metrics in `artifacts/metrics/`.
+This document presents the complete empirical benchmark across all stages of the Resume Screening and Job Fit platform, compiled directly from stored metrics in `artifacts/metrics/`.
 
 ---
 
@@ -15,11 +15,20 @@ Evaluated on 2,483 stratified resumes (Train: 1,739, Val: 370, Test: 374):
 | **BiLSTM + Pretrained Embeddings** | 74.30% | 0.7091 | 23.51% | 0.1860 | 25.13% | 0.1966 | 0.5231 |
 | **DistilBERT (Fine-tuned, 3 epochs)** | 75.85% | 0.6748 | 65.14% | 0.5675 | 72.73% | 0.6454 | **0.1073** |
 
+### Key Takeaways
+- **Validation Macro-F1:** Logistic Regression: 0.5913, MLP: 0.6001, DistilBERT: 0.5675.
+- **Test Macro-F1:** Logistic Regression: 0.5959, MLP: 0.6181, DistilBERT: 0.6454.
+- Differences are within noise on about 370 validation resumes (~15 samples per class across 24 classes).
+- The production model was selected by validation F1 (MLP at 0.6001).
+- DistilBERT achieved the highest test number (0.6454 test macro-F1, 72.73% test accuracy) but was not selected on test metrics and was trained for only 3 epochs due to compute constraints.
+- BiLSTM underfits significantly (0.1966 test macro-F1, 25.13% test accuracy) at this sample size.
+
 ---
 
 ## 2. Siamese Resume-JD Matcher (15 Target Categories)
 
-Evaluated against gold category pairings:
+> [!WARNING]
+> **Weak Labels & Circularity:** Ground truth labels are weak, title-derived category pairings. The evaluation metric is partly circular, measuring separation between occupational clusters rather than human recruiter qualification.
 
 | Model Architecture | Val MRR | Val nDCG@10 | Val Recall@5 | Val Recall@10 | Test MRR | Test nDCG@10 | Test Recall@5 | Test Recall@10 |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -27,7 +36,11 @@ Evaluated against gold category pairings:
 | **Zero-Shot SBERT (all-MiniLM-L6-v2)** | 0.6377 | 0.4414 | 0.2107 | 0.3090 | 0.6311 | 0.4532 | 0.1964 | 0.3007 |
 | **Fine-Tuned Siamese SBERT (MNRL)** | **0.8567** | **0.6821** | **0.3286** | **0.4671** | **0.7798** | **0.7286** | **0.3755** | **0.5338** |
 
+*Takeaway:* Fine-tuned Siamese SBERT achieves **0.7798 Test MRR**, representing a **+14.87 point increase vs zero-shot** (0.7798 vs 0.6311) and **+14.65 points vs TF-IDF baseline** (0.7798 vs 0.6333). Note that labels are weak and title-derived, and the retrieval metric is partly circular. Broad domains such as BPO (test MRR 0.0326) and CONSULTANT (test MRR 0.2032) suffer from high cross-category overlap.
+
 ### Per-Category Reciprocal Rank (MRR)
+*Evaluated across 15 target categories; labels are weak, title-derived and metrics are partly circular.*
+
 | Category | Val N | Test N | TF-IDF Val | Zero-Shot Val | Fine-Tuned Val | TF-IDF Test | Zero-Shot Test | Fine-Tuned Test |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | ACCOUNTANT | 17 | 18 | 0.8693 | 1.0000 | 1.0000 | 0.9008 | 0.9352 | 1.0000 |
@@ -48,7 +61,9 @@ Evaluated against gold category pairings:
 
 ---
 
-## 3. ATS Scoring Ablation & XAI
+## 3. ATS Scoring Ablation & Explainability
+
+Ablation of each of the 9 scoring components. Scores for unrelated pairs sit near 50 because formatting and contact components give every resume free points, and weights are transparent heuristics with no ground truth.
 
 | Component | Default Weight | Mean Original Score | Mean Ablated Score | Mean Score Delta (Δ) |
 | :--- | :---: | :---: | :---: | :---: |
@@ -62,14 +77,15 @@ Evaluated against gold category pairings:
 | `readability` | 0.05 | 79.64 | 79.27 | **-0.37** |
 | `contact_completeness` | 0.05 | 79.64 | 79.36 | **-0.28** |
 
-### XAI Latency & Faithfulness
+### Explainability Architecture & Faithfulness Test
+- **Methods:** Leave-one-sentence-out (LOSO) for sentence-level contribution and TF-IDF + Logistic Regression linear model coefficients for word importance (neither LIME nor SHAP is used).
+- **Faithfulness Benchmark:** Inconclusive (top-3 keyword removal dropped scores by 0.07 pts vs 0.11 pts for random-3 word removal). Explanations are not experimentally validated.
 - **Scoring Latency:** Mean 55.63 ms, Median 47.45 ms, P95 73.42 ms.
-- **Top-k Keyword Drop:** 0.07 vs Random Word Drop 0.11 (`is_faithful: False` due to high document length vs small perturbation size).
 
 ---
 
 ## 4. Multi-Format Parsing & Extraction Yield
 
 - **Parsing Precision/Recall:** 100% on 6 evaluation fixtures (`ds_clean.pdf`, `swe_two_column.pdf`, `accountant_table.pdf`, `chef_plain.docx`, `hr_docx.docx`, `nurse_scanned.pdf`).
-- **Extraction Micro F1:** 0.8980 with 0 trap violations.
+- **Extraction Micro F1:** 0.8980 with 0 trap violations. NER fine-tuning was not implemented; extraction is taxonomy-based with disambiguation rules.
 - **Real-Text Extraction Yield:** 95.95% experience parsing yield, 74.86% education parsing yield on 370 raw resumes.

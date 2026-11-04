@@ -23,17 +23,13 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 **Answer:** To systematically evaluate the trade-off between model complexity, inference latency, and generalization across syllabus units: Linear models (Unit I: TF-IDF + Logistic Regression), Feedforward Networks (Unit I: TF-IDF + 2-layer MLP), Recurrent Architectures (Unit III: BiLSTM), and Pretrained Transformers (Unit IV: DistilBERT).
 
 ### Q5. What were the empirical results across the four models?
-**Answer:** On the held-out test split of 374 resumes across 24 classes:
-- **DistilBERT:** 72.73% Accuracy | 0.6454 Macro F1 (Lowest generalization gap: 0.1073)
-- **TF-IDF + Logistic Regression:** 66.31% Accuracy | 0.5959 Macro F1 (Trained in < 1 second)
-- **TF-IDF + MLP:** 65.24% Accuracy | 0.6181 Macro F1 (Overfitted: 1.0000 Train F1 vs 0.6001 Val F1)
-- **BiLSTM:** 25.13% Accuracy | 0.1966 Macro F1 (Severely underfitted)
+**Answer:** On validation macro-F1: Logistic Regression achieved 0.5913, MLP achieved 0.6001, and DistilBERT achieved 0.5675. On test macro-F1: Logistic Regression achieved 0.5959, MLP achieved 0.6181, and DistilBERT achieved 0.6454. Differences are within noise on about 370 validation resumes (~15 samples per class across 24 classes). The production model was selected by validation F1 (MLP). DistilBERT achieved the highest test number (0.6454 macro-F1, 72.73% test accuracy) but was not selected on it and trained for only 3 epochs due to compute limits. The BiLSTM underfits significantly (0.1966 test macro-F1, 25.13% test accuracy).
 
 ### Q6. Why did the BiLSTM perform so poorly compared to other models?
-**Answer:** The training split contained 1,739 samples across 24 classes (~72 samples per class). Recurrent networks lack the strong inductive bias of pretrained self-attention and have high parameter complexity. Without a massive corpus to learn sequence transitions, the BiLSTM failed to optimize effectively, achieving only 25.13% test accuracy.
+**Answer:** The training split contained 1,739 samples across 24 classes (~72 samples per class). Recurrent networks lack the strong inductive bias of pretrained self-attention and have high parameter complexity. Without a massive corpus to learn sequence transitions from scratch, the BiLSTM failed to optimize effectively, achieving only 25.13% test accuracy.
 
-### Q7. Why is TF-IDF Logistic Regression so competitive with DistilBERT?
-**Answer:** Professional resumes are heavily keyword-driven: distinctive domain vocabulary (e.g., "culinary", "GAAP", "litigation") provides linearly separable bag-of-words features for most categories. DistilBERT outperformed it by +6.42% accuracy by modeling contextual semantics, but was constrained by a 3-epoch training budget.
+### Q7. Why are TF-IDF models so close to DistilBERT on validation F1?
+**Answer:** Professional resumes are heavily keyword-driven: distinctive domain vocabulary (e.g., "culinary", "GAAP", "litigation") provides linearly separable bag-of-words features for most categories. On 370 validation resumes, LR (0.591), MLP (0.600), and DistilBERT (0.568) are statistically within noise of each other. DistilBERT reached 0.645 on the test split, but was constrained by a 3-epoch training budget and was not chosen by the validation selection criterion.
 
 ---
 
@@ -42,11 +38,8 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 ### Q8. What architecture and loss function were used for resume-JD matching?
 **Answer:** We used a Siamese bi-encoder based on `sentence-transformers/all-MiniLM-L6-v2` (384-dimensional dense representations) fine-tuned with `MultipleNegativesRankingLoss` (MNRL). Resumes and job descriptions are encoded independently into a shared metric space where cosine distance reflects domain and responsibility fit.
 
-### Q9. How much did fine-tuning improve over the zero-shot baseline?
-**Answer:** Fine-tuning yielded major retrieval gains across 15 target categories:
-- **Test MRR:** Improved from 0.6311 (zero-shot) to **0.7798 (+14.87 points)**.
-- **Test nDCG@10:** Improved from 0.4532 to **0.7286 (+27.54 points)**.
-- **Test Recall@10:** Increased from 0.3007 to **0.5338 (+23.31 points)**.
+### Q9. How much did fine-tuning improve retrieval performance?
+**Answer:** Fine-tuned Siamese SBERT achieved **0.7798 Test MRR**, representing **+14.87 points vs zero-shot** (0.7798 vs 0.6311) and **+14.65 points vs TF-IDF baseline** (0.7798 vs 0.6333); Test nDCG@10 reached **0.7286** (+27.54 points vs zero-shot, +24.32 points vs TF-IDF). **Note on Evaluation:** Labels are weak, title-derived category pairings and the retrieval metric is partly circular, measuring separation between occupational clusters rather than human recruiter qualification.
 
 ### Q10. Why is Recall@k relatively low for certain categories despite high MRR?
 **Answer:** In our evaluation setup, categories contain 14 to 18 resumes. Because $k=5$ can retrieve at most 5 documents, the maximum possible Recall@5 is mathematically capped at $5 / 18 \approx 27.78\%$. Mean Reciprocal Rank (MRR) evaluates whether the first true positive ranks at position 1, which reached 1.0000 for Chef, Accountant, Engineering, and Sales.
@@ -71,20 +64,20 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 9. Contact Completeness (5%)
 
 ### Q13. Why does an unrelated resume-JD pair score around 50 rather than 0?
-**Answer:** ATS scoring models real-world document hygiene. An unrelated pair (e.g., Data Scientist vs Executive Chef) scores ~55.5 because the candidate possesses intact contact info (5%), standard sections (10%), accredited degrees (10%), and clean formatting (10%). Pure job-fit components (semantic match and keyword coverage) plunge to baseline, dropping the grade to F.
+**Answer:** Scores for unrelated pairs sit near 50 (e.g., Data Scientist vs Executive Chef scores 55.5) because the formatting (10%) and contact components (5%) give every resume free points, and the weights are transparent heuristics with no ground truth. Pure job-fit components (semantic match and keyword coverage) plunge to zero, bringing the grade to F.
 
 ### Q14. What did the ablation study reveal about individual scoring components?
 **Answer:** Removing Semantic Match caused the largest intended drop (-3.53 pts). Removing Section Completeness dropped scores by -2.08 pts and Experience Fit by -2.26 pts. Conversely, ablating Quantified Achievements increased mean scores by +7.37 pts, proving that the rubric aggressively penalizes resumes that lack numeric metrics.
 
-### Q15. Why did your LIME/perturbation test flag `is_faithful: False`?
-**Answer:** Masking the top 5 keywords produced a mean score drop of 0.07 compared to 0.11 for random word masking. In a 500-word resume, removing 5 words has minimal impact on dense cosine similarity or global TF-IDF vectors. Rather than disguising this, we document it as an honest limitation of word-level perturbation on long-form documents.
+### Q15. What explainability methods does the platform use, and how did the faithfulness test turn out?
+**Answer:** The explainer uses leave-one-sentence-out (LOSO) for sentence importance and TF-IDF+LR coefficients for word importance (neither LIME nor SHAP is used). The faithfulness test was inconclusive: removing the top-3 keywords produced a mean score drop of 0.07 pts compared to 0.11 pts for random-3 word removal. Therefore, the explanations are not validated.
 
 ---
 
-## Group 5: Stage 2 NER & Disambiguation Rules
+## Group 5: Stage 2 Taxonomy Skill Extraction & Disambiguation Rules (NER Fine-Tuning Not Implemented)
 
 ### Q16. How does your entity extraction work without fine-tuned BERT-NER?
-**Answer:** We implemented a taxonomy-based extractor utilizing 2,800+ canonical skills with alias mapping, longest-match-first n-gram tokenization (up to 5-grams), and 19 ambiguous term disambiguation rules. This yields a deterministic 4.45 ms extraction latency with zero GPU dependency.
+**Answer:** NER fine-tuning was NOT implemented; entity extraction is taxonomy-based utilizing 2,800+ canonical terms and aliases, longest-match-first n-gram tokenization (up to 5-grams), and 19 ambiguous term disambiguation rules. This yields a deterministic 4.45 ms extraction latency with zero GPU dependency.
 
 ### Q17. How was the false positive "RN" $\rightarrow$ "React Native" resolved?
 **Answer:** In `nurse_scanned.pdf`, "RN" (Registered Nurse) was erroneously mapped to React Native via an alias. We tested an ambiguous context rule, but discovered skills-section extraction bypassed alias checks. We cleanly resolved it by removing `rn` from React Native aliases in `data/taxonomies/skills.csv`, eliminating the false positive while preserving "React Native" in software contexts.
@@ -113,12 +106,7 @@ Rigorous, evidence-backed answers citing exact project metrics, architectural de
 **Answer:** The parser uses `pdfplumber` bounding-box coordinates to detect columns and tables. Multi-column text is extracted column-by-column rather than line-by-line across columns, preventing sentences from interleaving. Scanned image documents trigger an automatic Tesseract OCR fallback.
 
 ### Q23. What is the total latency of the end-to-end pipeline?
-**Answer:** After singleton model loading via `warm_up()`, total pipeline execution for a clean PDF takes ~200–500 ms:
-- Parsing: ~80–120 ms
-- Skill Extraction: ~4.5 ms
-- DistilBERT Classification: ~40 ms
-- Siamese Embedding & Scoring: ~55 ms
-- Rule-based suggestions: < 5 ms
+**Answer:** Cold-start model loading takes about 8 s (measured 8.31 s online, 7.95 s offline). Once warm, end-to-end processing takes 0.06 to 0.6 s per resume (measured 0.05–0.07 s for clean DOCX, 0.13–0.17 s for clean PDF, 0.20–0.59 s for table-based PDF). Scanned image PDFs take about 2.8 s (measured 2.70–2.88 s) because of Tesseract OCR rasterization at 300 DPI.
 
 ### Q24. How does the pipeline handle corrupted or oversized uploads?
 **Answer:** `app.pipeline.run_pipeline` enforces an upfront 5 MB size limit and checks MIME magic bytes. If a file is oversized or corrupted, it returns a structured `ScoreResult` with a descriptive message in `warnings`, ensuring the Streamlit UI or API never crashes with an unhandled exception.

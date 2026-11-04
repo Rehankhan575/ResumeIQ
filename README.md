@@ -19,11 +19,11 @@ flowchart LR
 
 The system executes a strictly sequential 7-stage pipeline orchestrated by `app.pipeline.run_pipeline`:
 1. **Multi-Format Parsing (`app.parsing`)**: Extracts raw text, detects document structure (multi-column, tables, scanned images), and extracts contact info using pdfplumber, python-docx, and Tesseract OCR fallback.
-2. **Entity & Skill Extraction (`app.extraction`)**: Maps skills against a curated 2,800+ skill taxonomy with longest-match-first token scanning and 19 ambiguous term disambiguation rules. Extracts education and date-normalized experience spans.
-3. **Resume Classification (`app.classifier`)**: Classifies candidate resumes into 24 industry categories using fine-tuned DistilBERT (or fast TF-IDF Logistic Regression fallback).
+2. **Entity & Skill Extraction (`app.extraction`)**: Maps skills against a curated 2,800+ skill taxonomy with longest-match-first token scanning and 19 ambiguous term disambiguation rules. Extracts education and date-normalized experience spans. (NER fine-tuning was not implemented).
+3. **Resume Classification (`app.classifier`)**: Classifies candidate resumes into 24 industry categories using TF-IDF + MLP (selected by validation F1), with DistilBERT and fast Logistic Regression available.
 4. **Semantic Resume-JD Matching (`app.matcher`)**: Encodes resumes and job descriptions into dense embeddings via fine-tuned Siamese SBERT (`sentence-transformers/all-MiniLM-L6-v2` trained with MultipleNegativesRankingLoss).
-5. **Transparent ATS Scoring (`app.scoring`)**: Computes a deterministic 0–100 score across 9 weighted dimensions: Semantic Match (25%), Keyword Coverage (20%), Section Completeness (10%), Experience Fit (10%), Formatting (10%), Quantified Achievements (10%), Action Verbs (5%), Readability (5%), and Contact Info (5%).
-6. **Counterfactual Explainability (`app.explainability`)**: Runs LIME-style feature attribution, keyword masking, and category-level counterfactual suggestions without black-box opacity.
+5. **Transparent ATS Scoring (`app.scoring`)**: Computes a deterministic 0–100 score across 9 weighted dimensions: Semantic Match (25%), Keyword Coverage (20%), Section Completeness (10%), Experience Fit (10%), Formatting (10%), Quantified Achievements (10%), Action Verbs (5%), Readability (5%), and Contact Info (5%). Unrelated pairs sit near ~50 because formatting and contact award free points.
+6. **Sentence & Word Explainability (`app.explainability`)**: Uses leave-one-sentence-out (LOSO) for sentence importance and TF-IDF + Logistic Regression coefficients for classifier word importance.
 7. **Targeted Suggestions (`app.suggestions`)**: Generates actionable, ATS-improving suggestions using Google Gemini / Anthropic / OpenAI APIs when configured, falling back seamlessly to deterministic rule-based advice offline.
 
 ---
@@ -124,9 +124,18 @@ Evaluated on 2,483 stratified resumes (Train: 1,739, Val: 370, Test: 374).
 | **BiLSTM + Pretrained Embeddings** | 74.30% | 0.7091 | 23.51% | 0.1860 | 25.13% | 0.1966 | 0.5231 |
 | **DistilBERT (Fine-tuned, 3 epochs)** | 75.85% | 0.6748 | 65.14% | 0.5675 | 72.73% | 0.6454 | **0.1073** |
 
-*Takeaway:* DistilBERT achieves the best generalization (72.73% test accuracy, 0.6454 test macro F1) and lowest generalization gap. Logistic Regression provides a competitive 66.31% test accuracy in under 1 second. BiLSTM severely underfits given limited training samples per category (~72 resumes/class).
+*Takeaways:*
+- **Validation Macro-F1:** Logistic Regression: 0.5913, MLP: 0.6001, DistilBERT: 0.5675.
+- **Test Macro-F1:** Logistic Regression: 0.5959, MLP: 0.6181, DistilBERT: 0.6454.
+- Differences are within noise on about 370 validation resumes (~15 resumes per class across 24 classes).
+- The production model was selected by validation F1 (MLP at 0.6001).
+- DistilBERT achieved the best test numbers (0.6454 test macro-F1, 72.73% test accuracy) but was not selected on test metrics and was trained for only 3 epochs due to compute budgets.
+- BiLSTM underfits significantly (0.1966 test macro-F1, 25.13% test accuracy) at this sample size.
 
 ### 2. Semantic Matcher Retrieval Performance (15 Categories)
+
+> [!WARNING]
+> **Weak Labels & Circularity:** Ground truth labels are weak, title-derived category pairings. The evaluation metric is partly circular, measuring separation between occupational clusters rather than human recruiter qualification.
 
 | Model Architecture | Val MRR | Val nDCG@10 | Val Recall@5 | Val Recall@10 | Test MRR | Test nDCG@10 | Test Recall@5 | Test Recall@10 |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -134,7 +143,11 @@ Evaluated on 2,483 stratified resumes (Train: 1,739, Val: 370, Test: 374).
 | **Zero-Shot SBERT (all-MiniLM-L6-v2)** | 0.6377 | 0.4414 | 0.2107 | 0.3090 | 0.6311 | 0.4532 | 0.1964 | 0.3007 |
 | **Fine-Tuned Siamese SBERT (MNRL)** | **0.8567** | **0.6821** | **0.3286** | **0.4671** | **0.7798** | **0.7286** | **0.3755** | **0.5338** |
 
+*Takeaway:* Fine-tuned Siamese SBERT achieves **0.7798 Test MRR**, representing a **+14.87 point increase vs zero-shot** (0.7798 vs 0.6311) and **+14.65 points vs TF-IDF baseline** (0.7798 vs 0.6333). Note that labels are weak and title-derived, and the retrieval metric is partly circular. Broad domains such as BPO (test MRR 0.0326) and CONSULTANT (test MRR 0.2032) suffer from high cross-category overlap.
+
 ### Per-Category Reciprocal Rank (MRR)
+*Evaluated across 15 target categories; labels are weak, title-derived and metrics are partly circular.*
+
 | Category | Val N | Test N | TF-IDF Val | Zero-Shot Val | Fine-Tuned Val | TF-IDF Test | Zero-Shot Test | Fine-Tuned Test |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
 | ACCOUNTANT | 17 | 18 | 0.8693 | 1.0000 | 1.0000 | 0.9008 | 0.9352 | 1.0000 |
@@ -153,8 +166,8 @@ Evaluated on 2,483 stratified resumes (Train: 1,739, Val: 370, Test: 374).
 | SALES | 17 | 18 | 0.7819 | 0.8549 | 1.0000 | 0.8889 | 0.9722 | 1.0000 |
 | TEACHER | 16 | 15 | 0.8359 | 0.8646 | 0.9104 | 0.7634 | 0.7801 | 0.9667 |
 
-### 3. ATS Scoring Ablation Study
-Ablation of each of the 9 scoring components (tested across candidate-job pairs):
+### 3. ATS Scoring Ablation Study & Explainability
+Ablation of each of the 9 scoring components (tested across candidate-job pairs). Scores for unrelated pairs sit near ~50 because formatting and contact components award free points, and weights are transparent heuristics with no ground truth.
 
 | Component | Default Weight | Mean Original Score | Mean Ablated Score | Mean Score Delta (Δ) |
 | :--- | :---: | :---: | :---: | :---: |
@@ -168,9 +181,14 @@ Ablation of each of the 9 scoring components (tested across candidate-job pairs)
 | `readability` | 0.05 | 79.64 | 79.27 | **-0.37** |
 | `contact_completeness` | 0.05 | 79.64 | 79.36 | **-0.28** |
 
+### XAI Explainability & Faithfulness Test
+- **Explainer Architecture:** Leave-one-sentence-out (LOSO) for sentence-level contribution and TF-IDF + Logistic Regression linear model coefficients for classifier word importance. Neither LIME nor SHAP is used by the codebase.
+- **Faithfulness Benchmark:** Inconclusive (top-3 keyword removal caused a mean drop of 0.07 pts vs random-3 word removal drop of 0.11 pts across 20 evaluated pairs). The explanations are not validated.
+- **Scoring Latency:** Mean 55.63 ms, Median 47.45 ms, P95 73.42 ms.
+
 ### 4. Parsing & Extraction Accuracy
 - **Parsing Section Accuracy:** 100.0% precision and 100.0% recall across clean PDF, two-column PDF, table-based PDF, plain DOCX, styled DOCX, and scanned OCR PDF fixtures.
-- **Extraction Micro F1:** 0.8980 (Micro Precision: 81.48%, Micro Recall: 100.00%) with 0 trap violations on gold fixtures.
+- **Extraction Micro F1:** 0.8980 (Micro Precision: 81.48%, Micro Recall: 100.00%) with 0 trap violations on gold fixtures. NER fine-tuning was not implemented; extraction is taxonomy-based with disambiguation rules.
 - **Real-Text Yield (370 Resumes):** 95.95% experience section parsing yield, 74.86% education section parsing yield; mean extraction latency 4.45 ms.
 
 ---
@@ -178,12 +196,12 @@ Ablation of each of the 9 scoring components (tested across candidate-job pairs)
 ## Limitations
 
 We document the real constraints and trade-offs of this platform plainly:
-1. **No Resume NER Fine-Tuning:** Token-level entity extraction relies on an extensive curated skill taxonomy (2,800+ canonical terms) with context disambiguation rules rather than a custom token-classification model (e.g., token-level BERT-NER).
+1. **Resume NER Fine-Tuning Not Implemented:** Token-level entity extraction relies on an extensive curated skill taxonomy (2,800+ canonical terms) with context disambiguation rules rather than a custom token-classification model (e.g., token-level BERT-NER).
 2. **Scope Boundaries:** Interview-question generation, FastAPI REST deployment, Docker packaging, and cloud hosting are deliberately out of scope; the application is designed to operate locally.
-3. **Classifier Generalization & Data Scale:** TF-IDF Logistic Regression (66.31%), TF-IDF MLP (65.24%), and DistilBERT (72.73%) exhibit close validation performance due to dataset size (~370 validation samples spread across 24 categories). BiLSTM underfits (25.13%) at this data volume. DistilBERT was trained for 3 epochs only due to compute constraints.
-4. **Matcher Label Noise & Domain Variance:** Matcher ground truth uses title-derived category matching. Highly specific domains (CHEF, ACCOUNTANT, SALES) achieve MRR > 0.95, while broad domains (BPO, CONSULTANT) suffer from high semantic overlap with other business categories. For large categories, Recall@k is mathematically capped by k; reciprocal rank (MRR) is the primary metric.
-5. **Heuristic ATS Score Baseline:** No objective universal ATS ground-truth score exists in industry. Scores are computed from a transparent weighted heuristic. Unrelated resume-job pairs sit near ~50 points because standard resume hygiene (contact info, formatting, standard sections) provides floor points.
-6. **XAI Faithfulness Perturbation Behavior:** LIME-style keyword removal produces a modest score drop (-0.07) compared to random token perturbation (-0.11) because masking 3–5 tokens in a 500-word resume does not drastically alter global TF-IDF or dense vector norms.
+3. **Classifier Selection & Data Noise:** On validation macro-F1, Logistic Regression (0.5913), MLP (0.6001), and DistilBERT (0.5675) are statistically close on about 370 validation resumes (~15 per class across 24 classes). The production model was selected by validation F1 (MLP). DistilBERT achieved the highest test macro-F1 (0.6454) and test accuracy (72.73%), but was not selected on test metrics and was trained for only 3 epochs due to compute constraints. BiLSTM underfits (0.1966 test macro-F1, 25.13% test accuracy) at this data volume.
+4. **Matcher Weak Labels & Circularity:** Matcher ground truth uses title-derived category matching; labels are weak and the retrieval evaluation metric is partly circular. While fine-tuned SBERT achieved 0.7798 test MRR (+14.87 points vs zero-shot, +14.65 points vs TF-IDF), broad categories (BPO test MRR 0.0326, CONSULTANT test MRR 0.2032) perform poorly. For categories with >10 true positives, Recall@5 is mathematically capped below 50%; MRR is the primary evaluation metric.
+5. **Heuristic ATS Baseline & Free Points:** No objective universal ATS ground-truth score exists in industry. Weights are transparent heuristics. Scores for unrelated resume-job pairs sit near 50 (e.g., Data Scientist vs Executive Chef scores 55.5) because formatting (10%) and contact information (5%) award every resume free points regardless of job fit.
+6. **XAI Inconclusive & Unvalidated:** The explainer uses leave-one-sentence-out for sentence importance and TF-IDF+LR coefficients for word importance (LIME and SHAP are not used). The faithfulness test was inconclusive (top-3 keyword removal dropped scores by 0.07 pts vs 0.11 pts for random-3 word removal), and the explanations are not validated.
 7. **Optional GenAI Dependency:** Personalized rewriting suggestions depend on third-party cloud APIs (Gemini/Claude/OpenAI). When no key is provided, the platform gracefully switches to deterministic rule-based advice.
 8. **OCR Quality Dependency:** Tesseract OCR performance depends directly on image DPI and scan resolution. Scanned documents with non-standard fonts or low contrast may experience minor word corruption.
 9. **Single Stratified Split:** Models were evaluated on a deterministic 70/15/15 train/val/test split; k-fold cross-validation was not run due to training budget constraints.
@@ -194,3 +212,4 @@ We document the real constraints and trade-offs of this platform plainly:
 - **Zero Raw PII Logging:** Candidate names, phone numbers, email addresses, and full resume texts are never logged to console, disk logs, or error telemetry.
 - **Local Isolation:** Resumes are processed in volatile memory. No documents are uploaded to third-party endpoints unless the user explicitly enables GenAI suggestions.
 - **Air-Gapped Operation:** The platform runs fully functional with `HF_HUB_OFFLINE=1` using locally cached model weights.
+
