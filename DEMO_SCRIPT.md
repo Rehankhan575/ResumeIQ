@@ -36,9 +36,9 @@ An exact step-by-step walkthrough for demonstrating the AI-Powered Resume Screen
   - Point out the interface layout:
     - **Header Bar:** Wordmark "Resume Analyzer" with status badge ("Models loaded").
     - **Inline Settings Expander:** Below the header, click the `Settings` expander (displays "Save score history (opt-in)" checkbox and "Enable AI suggestions" checkbox).
-    - **Two-Card Ingestion Area:** Side-by-side cards:
-      - Left card: **Resume** (`Sample resume` selectbox with preselected `ds_clean.pdf`, plus file uploader).
-      - Right card: **Job Description** (`Sample JD` selectbox with preselected `jd_data_scientist.txt`, paste text area, and optional job title input).
+    - **Two-Card Ingestion Area:** Side-by-side cards with explicit mode segmented controls:
+      - Left card: **Resume** (`Resume mode` segmented control toggling between `Sample` and `Upload`, selectbox preselected to `ds_clean.pdf`, showing caption `Using: ds_clean.pdf`).
+      - Right card: **Job Description** (`JD mode` segmented control toggling between `Sample` and `Paste`, selectbox preselected to `jd_data_scientist.txt`, optional job title input, showing caption `Using: jd_data_scientist.txt`).
     - **Action Button:** Center `Analyze` button (`st.button("Analyze", type="primary")`).
 
 ---
@@ -56,10 +56,11 @@ An exact step-by-step walkthrough for demonstrating the AI-Powered Resume Screen
     - Formatting: `100%` fill (`10pt` weight)
     - Section Completeness: `100%` fill (`10pt` weight)
     - Experience Fit: `80%` fill (`10pt` weight)
-  - **Three Stat Tiles:**
+  - **Four Stat Tiles:**
+    - `Roles held`: `3`
     - `Experience`: `7.4 yr`
-    - `Skills Matched`: `4 of 4`
-    - `Top Category`: `INFORMATION-TECHNOLOGY` (subtitle: `100% confidence`)
+    - `Matched skills`: `4 of 4`
+    - `Top category`: `INFORMATION-TECHNOLOGY` (subtitle: `100% confidence`)
   - **Issues & Opportunities:** Lists prioritized improvements with estimated gain chips (e.g. `+15 pt`, `+10 pt`).
   - **Custom Tab Bar:** Click the **Suggestions** tab to view suggestion cards with provider badge (e.g. `[Rule-based Engine]` or `[Gemini]`), bullet rewrites, cover letter, and improvement plan.
 
@@ -73,10 +74,11 @@ An exact step-by-step walkthrough for demonstrating the AI-Powered Resume Screen
 - **Expected Results on Screen:**
   - **Score Ring Card:** Numerical score drops to **`56`** (exact total 55.50) with red grade chip **`F`** (A sharp **29.4 point drop**).
   - **Horizontal Component Breakdown:** Semantic match and keyword coverage bars plunge to zero.
-  - **Three Stat Tiles:**
+  - **Four Stat Tiles:**
+    - `Roles held`: `3`
     - `Experience`: `7.4 yr`
-    - `Skills Matched`: `0 of 6`
-    - `Top Category`: `CHEF`
+    - `Matched skills`: `0 of 6`
+    - `Top category`: `CHEF`
   - **Skill gap Tab:** Click the **Skill gap** tab to view **6 missing culinary skills**:
     - `culinary arts`, `kitchen sanitation`, `food safety`, `menu planning`, `haccp`, `inventory management`.
 - **Speaker Script:**
@@ -123,7 +125,11 @@ An exact step-by-step walkthrough for demonstrating the AI-Powered Resume Screen
     - **Why We Serve the MLP:** The served classifier is the MLP because the selection rule (val macro-F1) was fixed before the test set was opened; choosing DistilBERT because it won on test would be test-set selection; a fresh holdout would be needed to justify a switch.
   - **Siamese Matcher:**
     - Fine-tuned SBERT achieved **0.7798 Test MRR**, representing **+14.87 points vs zero-shot** (0.7798 vs 0.6311) and **+14.65 points vs TF-IDF baseline** (0.7798 vs 0.6333); Test nDCG@10 is **0.7286** (+27.54 points vs zero-shot).
+    - *Averaging method:* Overall metrics report query-level pooled (micro) averages across all queries; per-category metrics report within-category query means.
     - *Caveat:* Labels are weak, title-derived and the evaluation metric is partly circular. Broad domains like BPO (test MRR 0.0326) and Consultant (test MRR 0.2032) suffer from high overlap.
+  - **Scoring & Ablation:**
+    - Baseline matched score is 79.64. Removing semantic match causes a -3.53 pt drop, experience fit -2.26 pts, and section completeness -2.08 pts.
+    - Ablating quantified achievements yields a +7.37 pt change and formatting +1.25 pts. This positive delta is an expected mathematical consequence of weight renormalization when dropping a 0-scoring component on high-scoring resumes, not an indication that metrics harm resumes.
   - **Explainability (XAI):**
     - The explainer uses leave-one-sentence-out (LOSO) for sentence importance and TF-IDF+LR coefficients for word importance.
     - Word importance on LR is faithful to the linear model (verified by deletion) with a +0.3611 drop gap, and words picked by the LR also reduce the served model's probability (cross-model transfer) with a +0.4863 drop gap on the served MLP.

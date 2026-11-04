@@ -1009,17 +1009,25 @@ def _render_model_results_tab() -> None:
     c4_path = reports_dir / "classifier_4_model.csv"
     ci_path = reports_dir / "classifier_ci.csv"
     paired_path = reports_dir / "classifier_paired_comparison.csv"
+    metrics_json_path = metrics_dir / "classifier" / "metrics.json"
 
-    if not c4_path.exists() or not ci_path.exists():
+    if not metrics_json_path.exists() and not c4_path.exists():
         _render_missing("Results file missing: run scripts/collect_results.py")
     else:
         try:
-            df_c4 = pd.read_csv(c4_path)
-            df_ci = pd.read_csv(ci_path)
+            # Load raw metrics.json to ensure val macro-F1 and train-val gap match exactly
+            raw_metrics = {}
+            if metrics_json_path.exists():
+                with open(metrics_json_path, "r", encoding="utf-8") as f:
+                    raw_metrics = json.load(f)
+
+            df_c4 = pd.read_csv(c4_path) if c4_path.exists() else None
+            df_ci = pd.read_csv(ci_path) if ci_path.exists() else None
 
             ci_map = {}
-            for _, r in df_ci.iterrows():
-                ci_map[str(r["model"])] = r
+            if df_ci is not None:
+                for _, r in df_ci.iterrows():
+                    ci_map[str(r["model"])] = r
 
             readable_names = {
                 "tfidf_lr": "TF-IDF + LR",
@@ -1027,24 +1035,44 @@ def _render_model_results_tab() -> None:
                 "bilstm": "BiLSTM",
                 "distilbert": "DistilBERT (3 epochs)",
             }
+            model_keys = ["tfidf_lr", "tfidf_mlp", "bilstm", "distilbert"]
 
             rows_html = ""
-            for _, r in df_c4.iterrows():
-                m_key = str(r["model_key"])
+            for m_key in model_keys:
                 m_name = readable_names.get(m_key, m_key)
                 is_served = (m_key == "tfidf_mlp")
                 served_badge = ' <span class="ra-chip ra-chip-good" style="margin-left:6px;font-size:10px;padding:2px 6px">SERVED</span>' if is_served else ""
 
-                val_f1 = f"{r['val_macro_f1']:.4f}"
+                m_data = raw_metrics.get(m_key, {})
+                val_f1_val = m_data.get("val_macro_f1")
+                train_f1_val = m_data.get("train_macro_f1")
+
+                # Fallback to c4 dataframe if not in metrics.json
+                if val_f1_val is None and df_c4 is not None:
+                    row_c4 = df_c4[df_c4["model_key"] == m_key]
+                    if not row_c4.empty:
+                        val_f1_val = float(row_c4.iloc[0]["val_macro_f1"])
+                        train_f1_val = float(row_c4.iloc[0]["train_macro_f1"])
+
+                val_f1 = f"{val_f1_val:.4f}" if val_f1_val is not None else "—"
+
                 r_ci = ci_map.get(m_key)
                 if r_ci is not None:
                     test_f1_str = f"{float(r_ci['test_macro_f1']):.4f} [{float(r_ci['ci_95_lower']):.4f}, {float(r_ci['ci_95_upper']):.4f}]"
                     test_acc_str = f"{float(r_ci['test_accuracy'])*100:.2f}%"
+                elif m_data.get("test_macro_f1") is not None:
+                    test_f1_str = f"{m_data['test_macro_f1']:.4f}"
+                    test_acc_str = f"{m_data['test_accuracy']*100:.2f}%"
                 else:
-                    test_f1_str = f"{r['test_macro_f1']:.4f}"
-                    test_acc_str = f"{r['test_accuracy']*100:.2f}%"
+                    test_f1_str = "—"
+                    test_acc_str = "—"
 
-                gap_str = f"{r['gen_gap_f1']:+.4f}"
+                if train_f1_val is not None and val_f1_val is not None:
+                    gap_val = train_f1_val - val_f1_val
+                    gap_str = f"{gap_val:+.4f}"
+                else:
+                    gap_str = "—"
+
                 rows_html += f"<tr><td>{_escape(m_name)}{served_badge}</td><td>{val_f1}</td><td>{test_f1_str}</td><td>{test_acc_str}</td><td>{gap_str}</td></tr>"
 
             table1_html = f"""
@@ -1185,7 +1213,7 @@ def _render_model_results_tab() -> None:
                     st.markdown(mcat_table_html, unsafe_allow_html=True)
 
             st.markdown(
-                '<div class="ra-table-note">Matcher note: Weak title-derived labels, partly circular.</div>',
+                '<div class="ra-table-note">Matcher note: Overall metrics report query-level pooled (micro) averages across all queries; per-category metrics report within-category query means. Weak title-derived labels, partly circular.</div>',
                 unsafe_allow_html=True,
             )
         except Exception:

@@ -93,6 +93,18 @@ Evaluation is performed using standard Information Retrieval metrics across the 
 
 Tuning and checkpoint selection are performed strictly on the **VALIDATION** split (`classifier_val` and `jd_val`). The **TEST** split is touched only once at the end via `python scripts/train_matcher.py --final-eval`.
 
+### 4.1 Benchmark Results (3-Model Comparison)
+
+*Overall metrics report query-level pooled (micro) averages across all queries; per-category metrics report within-category query means.*
+
+| Model Architecture | Val MRR | Val nDCG@10 | Val Recall@5 | Val Recall@10 | Test MRR | Test nDCG@10 | Test Recall@5 | Test Recall@10 |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **TF-IDF Baseline** | 0.6121 | 0.4537 | 0.2209 | 0.3239 | 0.6333 | 0.4854 | 0.2337 | 0.3456 |
+| **Zero-Shot SBERT (all-MiniLM-L6-v2)** | 0.6377 | 0.4414 | 0.2107 | 0.3090 | 0.6311 | 0.4532 | 0.1964 | 0.3007 |
+| **Fine-Tuned Siamese SBERT (MNRL)** | **0.8567** | **0.6821** | **0.3286** | **0.4671** | **0.7798** | **0.7286** | **0.3755** | **0.5338** |
+
+*Takeaway:* Fine-tuned Siamese SBERT achieves **0.7798 Test MRR**, representing a **+14.87 point increase vs zero-shot** (0.7798 vs 0.6311) and **+14.65 points vs TF-IDF baseline** (0.7798 vs 0.6333). Note that labels are weak and title-derived, and the retrieval metric is partly circular. Broad domains such as BPO (test MRR 0.0326) and CONSULTANT (test MRR 0.2032) suffer from high cross-category overlap.
+
 ---
 
 ## 5. Granular Section Similarity & Fallback

@@ -387,6 +387,7 @@ def generate_reports() -> None:
         "Evaluated across 15 target categories using reciprocal rank and nDCG metrics against gold resume-JD category alignment.",
         "",
         "### Overall Matcher Performance (Validation & Test)",
+        "*Overall metrics report query-level pooled (micro) averages across all queries; per-category metrics report within-category query means.*",
         "",
         "| Model Architecture | Val MRR | Val nDCG@10 | Val Recall@5 | Val Recall@10 | Test MRR | Test nDCG@10 | Test Recall@5 | Test Recall@10 |",
         "| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |",
@@ -434,6 +435,8 @@ def generate_reports() -> None:
         )
 
     md_lines.extend([
+        "",
+        "> **Ablation Interpretation:** Removing Semantic Match causes a -3.53 pt drop, Section Completeness -2.08 pts, and Experience Fit -2.26 pts. Ablating Quantified Achievements causes a +7.37 pt delta and Formatting +1.25 pts; this positive sign is a mathematical consequence of weight renormalization when removing a 0-scoring component on high-scoring resumes (test resumes score 0% on quantified metrics, so redistributing their 10% weight across high-scoring components inflates the total score).",
         "",
         "### XAI Faithfulness & Latency Benchmarks",
         "",

@@ -56,7 +56,7 @@ Evaluated via paired bootstrap differences (1,000 resamples, seed 42) and paired
 ## 2. Siamese Resume-JD Matcher (15 Target Categories)
 
 > [!WARNING]
-> **Weak Labels & Circularity:** Ground truth labels are weak, title-derived category pairings. The evaluation metric is partly circular, measuring separation between occupational clusters rather than human recruiter qualification.
+> **Weak Labels & Circularity:** Ground truth labels are weak, title-derived category pairings. The evaluation metric is partly circular, measuring separation between occupational clusters rather than human recruiter qualification. Overall metrics report query-level pooled (micro) averages across all queries; per-category metrics report within-category query means.
 
 | Model Architecture | Val MRR | Val nDCG@10 | Val Recall@5 | Val Recall@10 | Test MRR | Test nDCG@10 | Test Recall@5 | Test Recall@10 |
 | :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -104,6 +104,8 @@ Ablation of each of the 9 scoring components. Scores for unrelated pairs sit nea
 | `action_verbs` | 0.05 | 79.64 | 79.21 | **-0.43** |
 | `readability` | 0.05 | 79.64 | 79.27 | **-0.37** |
 | `contact_completeness` | 0.05 | 79.64 | 79.36 | **-0.28** |
+
+*Note on signs:* Ablation drops one component and renormalizes remaining weights to 1.0. Positive deltas (+7.37 for `quantified_achievements`, +1.25 for `formatting`) are a mathematical consequence of weight renormalization when removing a 0-scoring component on high-scoring resumes (test resumes score 0% on quantified metrics and suffer formatting penalties, so redistributing their weight into ~88% components increases the total score). Negative deltas (-3.53 for `semantic_match`, -2.26 for `experience_fit`, -2.08 for `section_completeness`) confirm that removing strong positive contributors reduces candidate alignment.
 
 ### Explainability Architecture & Faithfulness Tests
 - **Methods:** Leave-one-sentence-out (LOSO) for sentence-level contribution and TF-IDF + Logistic Regression linear model coefficients for classifier word importance.

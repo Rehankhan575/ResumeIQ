@@ -95,12 +95,14 @@ Each component was systematically ablated, with the remaining 8 weights renormal
 | `semantic_match` | 0.25 | 79.64 | 76.11 | **-3.53** | Removing neural semantic match reduces candidate score alignment. |
 | `keyword_coverage` | 0.20 | 79.64 | 79.41 | **-0.23** | Minor drop when explicit taxonomy skills are unweighted. |
 | `section_completeness` | 0.10 | 79.64 | 77.56 | **-2.08** | Well-structured resumes drop in score without section presence bonus. |
-| `formatting` | 0.10 | 79.64 | 80.89 | **+1.25** | Removing formatting penalties (columns, tables) slightly inflates total. |
+| `formatting` | 0.10 | 79.64 | 80.89 | **+1.25** | Resumes with table/column penalties score below average; renormalizing away penalties slightly inflates total. |
 | `experience_fit` | 0.10 | 79.64 | 77.38 | **-2.26** | Candidates meeting seniority requirements lose points when fit is ignored. |
-| `quantified_achievements` | 0.10 | 79.64 | 87.01 | **+7.37** | Low bullet metric density penalizes resumes; removing it increases total. |
+| `quantified_achievements` | 0.10 | 79.64 | 87.01 | **+7.37** | Zero bullet metrics in test resumes (score 0.0); renormalizing 10% weight to high-scoring components mathematically raises total. |
 | `action_verbs` | 0.05 | 79.64 | 79.21 | **-0.43** | Modest calibration penalty for action verb density. |
 | `readability` | 0.05 | 79.64 | 79.27 | **-0.37** | Stable baseline contributor. |
 | `contact_completeness` | 0.05 | 79.64 | 79.36 | **-0.28** | Complete contact details provide steady positive baseline. |
+
+*Note on signs:* Ablation drops one component and renormalizes remaining weights to 1.0. Positive deltas (+7.37 for `quantified_achievements`, +1.25 for `formatting`) do not imply that metrics or formatting hurt resume quality; they are a direct mathematical artifact of weight renormalization when removing components where evaluation resumes scored near 0, which reallocates weight to components scoring ~88%. Negative deltas (-3.53 for `semantic_match`, -2.26 for `experience_fit`, -2.08 for `section_completeness`) confirm that removing strong positive contributors reduces candidate alignment.
 
 ### 4.3 XAI Faithfulness Benchmark (Feature Erasure)
 

@@ -293,4 +293,58 @@ def test_ui_model_results_tab_contents() -> None:
     assert "matched_pair_pass" not in all_md, "'matched_pair_pass' internal key must not be exposed"
 
 
+def test_ui_classifier_and_matcher_match_saved_metrics() -> None:
+    """Model results tab loads, classifier table has expected models/columns/metrics, and matcher test row matches saved test metrics."""
+    try:
+        from streamlit.testing.v1 import AppTest
+    except ImportError:
+        pytest.skip("streamlit.testing.v1 not available")
+
+    at = AppTest.from_file(UI_APP, default_timeout=60)
+    at.run(timeout=60)
+    buttons = [
+        b for b in at.button
+        if getattr(b, "key", "") == "analyze_btn" or "Analyze" in getattr(b, "label", "")
+    ]
+    assert buttons, "Analyze button not found"
+    buttons[0].click().run(timeout=60)
+
+    radios = [r for r in at.radio if getattr(r, "key", "") == "tab_radio"]
+    assert radios, "Tab switching radio not found"
+    radios[0].set_value("Model results").run(timeout=60)
+
+    all_md = " ".join(m.value for m in at.markdown)
+
+    # 1. Classifier table columns and models
+    assert "Val Macro F1" in all_md
+    assert "Test Macro F1" in all_md
+    assert "Test Accuracy" in all_md
+    assert "Train-Val Gap" in all_md
+    assert "TF-IDF + LR" in all_md
+    assert "TF-IDF + MLP" in all_md
+    assert "BiLSTM" in all_md
+    assert "DistilBERT" in all_md
+
+    # Check exact val macro-F1 values from metrics.json
+    assert "0.5913" in all_md
+    assert "0.6001" in all_md
+    assert "0.1860" in all_md
+    assert "0.5675" in all_md
+
+    # Check train-val gaps
+    assert "+0.3969" in all_md
+    assert "+0.3999" in all_md
+    assert "+0.5231" in all_md
+    assert "+0.1073" in all_md
+
+    # 2. Matcher table and fine-tuned test row metrics
+    assert "Fine-Tuned Siamese SBERT" in all_md
+    assert "0.8567" in all_md  # Val MRR
+    assert "0.7798" in all_md  # Test MRR
+    assert "0.7286" in all_md  # Test nDCG@10
+    assert "0.3755" in all_md  # Test Recall@5
+    assert "0.5338" in all_md  # Test Recall@10
+
+
+
 
