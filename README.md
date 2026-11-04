@@ -84,12 +84,26 @@ export TRANSFORMERS_OFFLINE=1
 
 ## How to Run
 
-### Interactive Streamlit Dashboard
-Launch the custom-styled dark theme analytics dashboard:
+### Production React Dashboard (Recommended)
+Launch the unified production demo serving both the FastAPI REST engine and the dark glassmorphism React dashboard:
+```bash
+./scripts/run_demo.sh
+```
+Open [http://localhost:8000](http://localhost:8000) in your browser.
+API documentation is interactively available at [http://localhost:8000/docs](http://localhost:8000/docs).
+
+### Streamlit Dashboard (Fallback)
+Launch the native Streamlit analytics dashboard:
 ```bash
 streamlit run app/ui/app.py
 ```
 Open [http://localhost:8501](http://localhost:8501) in your browser.
+
+### Automated End-to-End Verification Audit
+Run the live headless browser verification suite:
+```bash
+python scripts/e2e_check.py
+```
 
 ### Preflight Sanity Check
 Verify environment packages, hardware acceleration, taxonomy paths, model checkpoints, and offline operation:

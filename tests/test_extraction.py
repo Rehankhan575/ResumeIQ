@@ -468,3 +468,32 @@ def test_rn_not_extracted_as_react_native() -> None:
     assert "react native" in software_skills
 
 
+def test_jd_extraction_unstructured_and_requirements_heading() -> None:
+    """Verify JD extraction treats all skills as required when no recognizable Required/Preferred headings exist."""
+    extractor = get_skill_extractor()
+
+    # Case 1: JD with 'Requirements:' heading does not discard preceding text
+    jd_req_inline = (
+        "We are seeking a Python and SQL specialist to build machine learning models.\n"
+        "Requirements:\n"
+        "- Minimum 3+ years experience\n"
+        "- Bachelor's degree\n"
+    )
+    res1 = extractor.extract_jd_skills(jd_req_inline)
+    req1 = [s.lower() for s in res1["required_skills"]]
+    assert "python" in req1
+    assert "sql" in req1
+    assert "machine learning" in req1
+    assert res1["preferred_skills"] == []
+    assert res1["min_years"] == 3
+
+    # Case 2: Completely unstructured text
+    jd_unstructured = "We need an engineer experienced in Docker and Kubernetes."
+    res2 = extractor.extract_jd_skills(jd_unstructured)
+    req2 = [s.lower() for s in res2["required_skills"]]
+    assert "docker" in req2
+    assert "kubernetes" in req2
+    assert res2["preferred_skills"] == []
+
+
+

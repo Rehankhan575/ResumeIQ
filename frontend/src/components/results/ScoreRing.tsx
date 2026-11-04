@@ -32,17 +32,17 @@ export const ScoreRing: React.FC<ScoreRingProps> = ({
       case "A":
       case "A-":
       case "A+":
-        return "Excellent";
+        return "Strong Match";
       case "B":
       case "B+":
       case "B-":
-        return "Good";
+        return "Good Match";
       case "C":
       case "C+":
       case "C-":
-        return "Fair";
+        return "Moderate Match";
       default:
-        return "Needs work";
+        return "Needs Work";
     }
   };
 
@@ -113,7 +113,7 @@ export const ScoreRing: React.FC<ScoreRingProps> = ({
 
         {/* Verdict */}
         <span className="text-sm font-medium text-content-secondary mt-3">
-          {getVerdict(grade)} Fit
+          {getVerdict(grade)}
         </span>
       </div>
 
@@ -155,3 +155,4 @@ export const ScoreRing: React.FC<ScoreRingProps> = ({
     </div>
   );
 };
+

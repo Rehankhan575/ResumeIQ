@@ -70,3 +70,4 @@ export const ComponentBreakdown: React.FC<ComponentBreakdownProps> = ({ componen
     </div>
   );
 };
+

@@ -6,7 +6,7 @@ import { Lock, ShieldCheck, Database, HardDrive, Cpu } from "lucide-react";
 export const PrivacyView: React.FC = () => {
   const principles = [
     {
-      title: "100% In-Memory Pipeline",
+      title: "In-Memory Processing",
       icon: Cpu,
       desc: "Uploaded bytes (.pdf, .docx) are converted into transient byte arrays in RAM, evaluated through model forward passes, and purged immediately after response delivery.",
     },
@@ -31,10 +31,10 @@ export const PrivacyView: React.FC = () => {
     <div className="space-y-6 max-w-5xl mx-auto py-2">
       <div>
         <h2 className="text-2xl font-semibold tracking-heading text-content-primary">
-          Privacy Architecture & Candidate Protections
+          Privacy Architecture & Data Handling
         </h2>
         <p className="text-xs text-content-secondary mt-1">
-          Designed from the ground up for strict confidentiality. Your career history is confidential.
+          Designed from the ground up for strict confidentiality and local execution.
         </p>
       </div>
 
@@ -45,15 +45,15 @@ export const PrivacyView: React.FC = () => {
           </div>
           <div>
             <h4 className="text-sm font-semibold text-content-primary">
-              EEOC & GDPR Privacy Standard Compliance
+              In-Memory Local Processing
             </h4>
-            <p className="text-xs text-content-muted">
-              Zero cloud persistence, zero third-party telemetry, zero vendor training data sharing.
+            <p className="text-xs text-content-muted max-w-2xl mt-0.5">
+              Files are processed in memory on this machine and not stored by the app. If an optional LLM key is configured in .env, bullet text is sent to that provider with its provider label; otherwise rule-based heuristics generate suggestions.
             </p>
           </div>
         </div>
         <Badge variant="good" size="md">
-          Zero-Storage Verified
+          In-Memory Only
         </Badge>
       </div>
 

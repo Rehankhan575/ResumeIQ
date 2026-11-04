@@ -69,3 +69,4 @@ export const KeywordChips: React.FC<KeywordChipsProps> = ({
     </div>
   );
 };
+

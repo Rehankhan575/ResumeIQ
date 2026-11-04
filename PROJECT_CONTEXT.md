@@ -233,10 +233,20 @@ Core models defined in `app/schemas.py`:
 | 29 | 2026-11-04 | Modular extras: Multi-JD ranking, 70-skill URL-free courseware mapping, privacy-preserving bias audit, and opt-in SQLite history | Provides comprehensive resume optimization while preserving candidate privacy (no personal text in logs, bias labels, or SQLite) |
 | 30 | 2026-11-04 | `SCHEMA_VERSION` bumped to 1.3.0 (additive: `ScoreResult.warnings`) | Pipeline graceful degradation surfaces non-fatal stage warnings in result object without raising exceptions |
 | 31 | 2026-11-04 | Remove `rn` alias from `react native` in skills.csv | Prevents Registered Nurse false positives in medical resumes; taxonomy ambiguity rules only apply to canonical terms and skills sections |
+| 32 | 2026-11-05 | React frontend with Vite/Tailwind/FastAPI static serving; JD skill extraction fallback treats unsectioned skills as required | Delivers modern dark glassmorphism dashboard while preserving 15-pair scoring matrix to 0.01 and maintaining Streamlit as fallback |
 
 ---
 
 ## CHANGELOG
+
+### v1.2.0 — 2026-11-05
+- `frontend/`: built complete modern React + TypeScript + Tailwind CSS v3 dashboard ("ResumeIQ") with dark glassmorphism styling, ambient lighting, SVG score ring, component breakdown, issues list, keyword chips, multi-job ranking, skill gap recommendations, bias checks, and local opt-in score history
+- `frontend/src/components/views/ModelResultsView.tsx`: added empirical verification tab consuming `/api/results` and rendering Classifier Performance, Paired Bootstrap Tests, Matcher Retrieval Metrics, Scoring Ablation Deltas, and Explainability Faithfulness
+- `app/api/main.py`: added FastAPI REST endpoints (`/api/analyze` with additive `bias` and `skill_gap` fields, `/api/results`, `/api/rank`, `/api/samples`, `/health`) and mounted `frontend/dist` static SPA serving
+- `app/extraction/skills.py`: fixed JD skill extraction heading boundary pattern so that unsectioned JDs treat all taxonomy skills across the text as required without discarding preceding text; fixture matrix scores remain identical to 0.01
+- `scripts/run_demo.sh`: created one-command demo script setting segfault env vars, warming up models, and launching FastAPI on port 8000
+- `scripts/e2e_check.py`: created automated headless Chrome CDP end-to-end audit verifying all 7 user test cases and capturing 6 high-resolution screenshots in `docs/screenshots/react_*.png`
+- `tests/test_api.py` & `frontend/src/tests/ui.test.tsx`: added comprehensive integration and unit tests (9 backend API tests and 15 frontend Vitest tests all passing)
 
 ### v1.1.0 — 2026-11-04
 - `data/taxonomies/skills.csv`: removed `rn` alias from `react native` (line 1240) preventing Registered Nurse false positives in nursing and healthcare resumes (`nurse_scanned.pdf`) while preserving `react native` in technical contexts

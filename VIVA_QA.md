@@ -139,7 +139,7 @@ In the UI result hero, the score is decomposed into two orthogonal sub-scores:
 **Answer:** Cold-start model loading takes about 8 s (measured 8.31 s online, 7.95 s offline). Once warm, end-to-end processing takes 0.06 to 0.6 s per resume (measured 0.05–0.07 s for clean DOCX, 0.13–0.17 s for clean PDF, 0.20–0.59 s for table-based PDF). Scanned image PDFs take about 2.8 s (measured 2.70–2.88 s) because of Tesseract OCR rasterization at 300 DPI.
 
 ### Q25. How does the pipeline handle corrupted or oversized uploads?
-**Answer:** `app.pipeline.run_pipeline` enforces an upfront 5 MB size limit and checks MIME magic bytes. If a file is oversized or corrupted, it returns a structured `ScoreResult` with a descriptive message in `warnings`, ensuring the Streamlit UI or API never crashes with an unhandled exception.
+**Answer:** `app.pipeline.run_pipeline` enforces an upfront 5 MB size limit and checks MIME magic bytes. If a file is oversized or corrupted, it returns a structured `ScoreResult` with a descriptive message in `warnings`, ensuring the UI (React dashboard or Streamlit fallback) and API never crash with an unhandled exception.
 
 ### Q26. What is the single biggest engineering takeaway from this project?
 **Answer:** Deep learning model accuracy is only one piece of an effective hiring platform. Transparent heuristic scoring, robust multi-format document parsing, context-aware disambiguation, and strict privacy guards are what transform raw neural predictions into a reliable, fair, and actionable decision-support tool.

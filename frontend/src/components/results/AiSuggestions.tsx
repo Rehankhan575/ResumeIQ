@@ -78,3 +78,4 @@ export const AiSuggestions: React.FC<AiSuggestionsProps> = ({ suggestions }) => 
     </div>
   );
 };
+

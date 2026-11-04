@@ -98,3 +98,45 @@ def test_rank_multi_jds() -> None:
     assert "ranked" in data
     assert len(data["ranked"]) == 2
     assert data["ranked"][0]["jd_title"] == "Data Scientist"
+
+
+def test_analyze_includes_bias_and_skill_gap() -> None:
+    res = client.post(
+        "/api/analyze",
+        data={
+            "resume_choice": "ds_clean.pdf",
+            "jd_choice": "jd_data_scientist.txt",
+            "use_genai": "false",
+        },
+    )
+    assert res.status_code == 200
+    data = res.json()
+    assert "bias" in data
+    assert "skill_gap" in data
+    # ds_clean has 0 bias flags
+    assert data["bias"] == []
+    assert "matched" in data["skill_gap"]
+    assert "missing" in data["skill_gap"]
+
+
+def test_model_results_endpoint() -> None:
+    res = client.get("/api/results")
+    assert res.status_code == 200
+    data = res.json()
+    assert "classifier" in data
+    assert "matcher" in data
+    assert "ablation" in data
+    assert "xai" in data
+    # Check classifier models
+    models = data["classifier"]["models"]
+    assert len(models) == 4
+    keys = [m["key"] for m in models]
+    assert "tfidf_mlp" in keys
+    assert "bilstm" in keys
+    # Check served model
+    mlp = next(m for m in models if m["key"] == "tfidf_mlp")
+    assert mlp["served"] is True
+    # Check notes
+    assert "selection rule" in data["classifier"]["note"]
+
+

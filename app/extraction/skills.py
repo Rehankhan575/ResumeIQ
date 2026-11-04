@@ -478,12 +478,14 @@ class TaxonomySkillExtractor:
                 pass
 
         # Split into required vs preferred sections
+        # Recognizable headings must explicitly specify required/must have or preferred/desired
+        # and appear at line boundaries so that preceding text is not ignored.
         req_pattern = re.compile(
-            r"(?:required\s*(?:skills|qualifications|requirements)?|qualifications|requirements|must\s*have):?",
+            r"(?:^|\n)\s*(?:required(?:\s*(?:skills|qualifications|requirements))?|must\s*have)\s*[:\n]",
             re.IGNORECASE,
         )
         pref_pattern = re.compile(
-            r"(?:preferred\s*(?:skills|qualifications|requirements)?|nice\s*to\s*have|bonus|desired):?",
+            r"(?:^|\n)\s*(?:preferred(?:\s*(?:skills|qualifications|requirements))?|nice\s*to\s*have|bonus|desired)\s*[:\n]",
             re.IGNORECASE,
         )
 
@@ -510,6 +512,8 @@ class TaxonomySkillExtractor:
             pref_text = text[pref_match.end() :]
             preferred_skills = self.extract_canonical_skills(pref_text, section_name="skills")
         else:
+            # When a JD has no recognizable Required/Preferred headings,
+            # treat every taxonomy skill found anywhere in the JD as required.
             required_skills = self.extract_canonical_skills(text, section_name="skills")
 
         return {

@@ -20,34 +20,15 @@ export const HistoryView: React.FC = () => {
   const [records, setRecords] = useState<HistoryItem[]>(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY_RECORDS);
-      if (saved) return JSON.parse(saved);
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed)) return parsed;
+      }
     } catch {
       // Fallback
     }
-    // Default initial mock history items for visual review
-    return [
-      {
-        id: "rec-1",
-        timestamp: "2026-11-04 18:20",
-        jd_title: "Senior Data Scientist",
-        score: 84.88,
-        grade: "B",
-      },
-      {
-        id: "rec-2",
-        timestamp: "2026-11-04 17:45",
-        jd_title: "Full Stack Software Engineer",
-        score: 61.2,
-        grade: "C",
-      },
-      {
-        id: "rec-3",
-        timestamp: "2026-11-04 14:10",
-        jd_title: "Executive Chef",
-        score: 32.5,
-        grade: "F",
-      },
-    ];
+    // Clean empty default: zero seeded mock records
+    return [];
   });
 
   const handleToggleOptIn = (val: boolean) => {
@@ -141,9 +122,9 @@ export const HistoryView: React.FC = () => {
 
         {records.length === 0 ? (
           <div className="py-12 text-center text-xs text-content-muted space-y-2">
-            <p className="text-content-secondary">No evaluation records saved.</p>
+            <p className="text-content-secondary font-medium">No evaluation records saved.</p>
             <p className="text-[11px]">
-              Enable history and run analysis on the Analyze screen to record past diagnostic scores.
+              Enable history above and run an evaluation on the Analyze screen to record past diagnostic scores.
             </p>
           </div>
         ) : (

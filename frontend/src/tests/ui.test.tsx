@@ -3,6 +3,9 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import { ScoreRing } from "../components/results/ScoreRing";
 import { HighlightedResume } from "../components/results/HighlightedResume";
 import { ErrorBanner } from "../components/ui/ErrorBanner";
+import { HistoryView } from "../components/views/HistoryView";
+import { BiasCheckView } from "../components/views/BiasCheckView";
+import { SkillGapView } from "../components/views/SkillGapView";
 
 describe("ResumeIQ UI Verification Suite", () => {
   beforeEach(() => {
@@ -122,6 +125,86 @@ describe("ResumeIQ UI Verification Suite", () => {
 
       fireEvent.click(retryBtn);
       expect(onRetry).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  // 5. Verdict String Cleanliness (Item 7)
+  describe("ScoreRing Verdict String", () => {
+    it("renders 'Needs Work' for grade F without trailing Fit artifact", () => {
+      render(<ScoreRing score={55} grade="F" />);
+      expect(screen.getByText("Needs Work")).toBeInTheDocument();
+      expect(screen.queryByText(/Needs work Fit/i)).not.toBeInTheDocument();
+    });
+
+    it("renders 'Good Match' for grade B", () => {
+      render(<ScoreRing score={85} grade="B" />);
+      expect(screen.getByText("Good Match")).toBeInTheDocument();
+    });
+  });
+
+  // 6. History Clean State by Default (Item 5)
+  describe("HistoryView Clean Initialization", () => {
+    it("shows empty state when localStorage has no records", () => {
+      render(<HistoryView />);
+      expect(screen.getByText("No evaluation records saved.")).toBeInTheDocument();
+    });
+  });
+
+  // 7. Bias View Clean vs Flagged States (Item 2)
+  describe("BiasCheckView Dynamic States", () => {
+    it("shows clean neutrality verified state when findings are empty", () => {
+      render(<BiasCheckView findings={[]} />);
+      expect(screen.getByText("Profile Neutrality Verified")).toBeInTheDocument();
+      expect(screen.getByText("No Demographic or Bias Risks Detected")).toBeInTheDocument();
+      expect(screen.queryByText(/Audit Score/i)).not.toBeInTheDocument();
+    });
+
+    it("renders actionable findings when flags exist", () => {
+      const findings = [
+        {
+          type: "personal_info",
+          evidence_label: "Date of birth disclosed",
+          suggestion: "Remove date of birth to protect against potential age discrimination.",
+        },
+      ];
+      render(<BiasCheckView findings={findings} />);
+      expect(screen.getByText("Date of birth disclosed")).toBeInTheDocument();
+      expect(screen.getByText(/Remove date of birth/i)).toBeInTheDocument();
+    });
+  });
+
+  // 8. SkillGapView Real Requirements (Item 2)
+  describe("SkillGapView Real Competencies", () => {
+    it("renders matched requirements and missing skills without external URLs", () => {
+      const matched = ["python", "sql"];
+      const missing = ["docker"];
+      const recommendations = {
+        docker: [
+          {
+            title: "Applied Docker for Engineers",
+            provider: "Self-Directed",
+            level: "Intermediate",
+            estimated_hours: 15,
+          },
+        ],
+      };
+
+      const { container } = render(
+        <SkillGapView
+          matchedSkills={matched}
+          missingSkills={missing}
+          recommendations={recommendations}
+        />
+      );
+
+      expect(screen.getByText("python")).toBeInTheDocument();
+      expect(screen.getByText("sql")).toBeInTheDocument();
+      expect(screen.getAllByText("docker").length).toBeGreaterThanOrEqual(1);
+      expect(screen.getByText("Applied Docker for Engineers")).toBeInTheDocument();
+
+      // Zero external hyperlinks
+      const links = container.querySelectorAll("a");
+      expect(links.length).toBe(0);
     });
   });
 });

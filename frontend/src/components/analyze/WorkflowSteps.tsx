@@ -15,7 +15,7 @@ export const WorkflowSteps: React.FC = () => {
     {
       step: "03",
       title: "Improve",
-      desc: "Review prioritized bullet-level fixes, apply grounding-guarded rewrites, and re-score.",
+      desc: "Review prioritized bullet fixes and recommended edits.",
     },
   ];
 

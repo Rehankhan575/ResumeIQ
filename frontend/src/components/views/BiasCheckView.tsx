@@ -1,35 +1,30 @@
 import React from "react";
 import { Card } from "../ui/Card";
 import { Badge } from "../ui/Badge";
-import { ShieldAlert, ArrowRight } from "lucide-react";
+import { ShieldCheck, ShieldAlert, ArrowRight } from "lucide-react";
+import { BiasFinding } from "../../types/api";
 
-export const BiasCheckView: React.FC = () => {
-  const flags = [
-    {
-      category: "Ageist Proxy Term",
-      phrase: "Digital Native",
-      context: "Digital native with extensive cloud-native architecture experience",
-      recommendation: "Tech-savvy or Cloud-focused",
-      explanation: "Terms like 'digital native' can be construed as ageist screening proxies under EEOC guidelines.",
-      severity: "warn" as const,
-    },
-    {
-      category: "Gender-Coded Phrasing",
-      phrase: "Ninja / Rock star developer",
-      context: "Recognized as a rock star developer across cross-functional sprints",
-      recommendation: "High-performing engineer or Accomplished software developer",
-      explanation: "Heavily masculine-coded jargon reduces inclusivity and can trigger automated ATS screening penalties.",
-      severity: "warn" as const,
-    },
-    {
-      category: "Demographic Indicator",
-      phrase: "Graduation year: 2008",
-      context: "B.S. in Computer Science, 2008",
-      recommendation: "Omit graduation year (list degree and institution only)",
-      explanation: "Listing graduation years older than 10-15 years introduces implicit age bias risks during initial recruitment screenings.",
-      severity: "neutral" as const,
-    },
-  ];
+interface BiasCheckViewProps {
+  findings?: BiasFinding[];
+}
+
+export const BiasCheckView: React.FC<BiasCheckViewProps> = ({
+  findings = [],
+}) => {
+  const isClean = findings.length === 0;
+
+  const formatCategory = (cat: string) => {
+    switch (cat.toLowerCase()) {
+      case "personal_info":
+        return "Demographic Disclosure";
+      case "age_bias":
+        return "Age Bias Indicator";
+      case "gender_bias":
+        return "Gendered Terminology";
+      default:
+        return cat.replace("_", " ").toUpperCase();
+    }
+  };
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto py-2">
@@ -38,65 +33,84 @@ export const BiasCheckView: React.FC = () => {
           Fairness, Neutrality & Bias Audit
         </h2>
         <p className="text-xs text-content-secondary mt-1">
-          Automated scan for demographic proxies, gendered terminology, and bias-prone keywords that harm recruitment fairness.
+          Automated scan for demographic proxies, gendered terminology, and bias-prone indicators that harm recruitment neutrality.
         </p>
       </div>
 
       {/* Summary Banner */}
       <div className="p-4 rounded-xl bg-surface border border-border flex items-center justify-between gap-4">
         <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full bg-sand/10 border border-sand/20 flex items-center justify-center text-sand">
-            <ShieldAlert strokeWidth={1.5} className="w-4 h-4" />
+          <div
+            className={`w-9 h-9 rounded-full flex items-center justify-center ${
+              isClean
+                ? "bg-semantic-good-dim border border-semantic-good/20 text-semantic-good"
+                : "bg-semantic-warn-dim border border-semantic-warn/20 text-semantic-warn"
+            }`}
+          >
+            {isClean ? (
+              <ShieldCheck strokeWidth={1.5} className="w-5 h-5" />
+            ) : (
+              <ShieldAlert strokeWidth={1.5} className="w-5 h-5" />
+            )}
           </div>
           <div>
             <h4 className="text-xs font-semibold text-content-primary">
-              Neutrality Audit Completed
+              {isClean ? "Profile Neutrality Verified" : "Phrasing Improvements Identified"}
             </h4>
             <p className="text-[11px] text-content-muted">
-              {flags.length} potential phrasing improvements flagged. Zero candidate identity text stored.
+              {isClean
+                ? "Zero demographic proxies or bias indicators detected in parsed resume sections."
+                : `${findings.length} phrasing indicator${findings.length > 1 ? "s" : ""} flagged. Zero candidate text persisted.`}
             </p>
           </div>
         </div>
-        <Badge variant="sand" size="sm">
-          Audit Score: 94/100
+
+        <Badge variant={isClean ? "good" : "warn"} size="sm">
+          {isClean ? "Clean Profile" : `${findings.length} Finding${findings.length > 1 ? "s" : ""}`}
         </Badge>
       </div>
 
-      {/* Flagged Phrase Cards */}
-      <div className="space-y-3">
-        {flags.map((flag, idx) => (
-          <Card key={idx} surface="card" className="space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2">
+      {/* Flagged or Clean State */}
+      {isClean ? (
+        <Card glass={true} className="py-12 text-center space-y-2">
+          <div className="w-12 h-12 rounded-full bg-semantic-good-dim border border-semantic-good/20 flex items-center justify-center text-semantic-good mx-auto mb-3">
+            <ShieldCheck strokeWidth={1.5} className="w-6 h-6" />
+          </div>
+          <h3 className="text-sm font-semibold text-content-primary">
+            No Demographic or Bias Risks Detected
+          </h3>
+          <p className="text-xs text-content-muted max-w-md mx-auto leading-relaxed">
+            The analyzed profile avoids non-job-relevant personal information, graduation dates older than 15 years, and gendered phrasing.
+          </p>
+        </Card>
+      ) : (
+        <div className="space-y-3">
+          {findings.map((flag, idx) => (
+            <Card key={idx} surface="card" className="space-y-3">
+              <div className="flex items-center justify-between">
                 <span className="text-xs font-mono font-medium text-sand px-2 py-0.5 rounded bg-sand/10 border border-sand/20">
-                  {flag.category}
+                  {formatCategory(flag.type)}
                 </span>
-                <span className="text-xs font-medium text-content-primary line-through opacity-75">
-                  "{flag.phrase}"
+                <Badge variant="warn" size="sm">
+                  Action Recommended
+                </Badge>
+              </div>
+
+              <div className="p-3 rounded-lg bg-surface border border-border/70 text-xs flex flex-col gap-1.5">
+                <span className="font-mono text-content-secondary font-medium">
+                  {flag.evidence_label}
                 </span>
+                <div className="flex items-start gap-2 text-content-primary pt-1">
+                  <ArrowRight strokeWidth={1.5} className="w-3.5 h-3.5 text-sand shrink-0 mt-0.5" />
+                  <span className="text-xs text-content-secondary leading-relaxed">
+                    {flag.suggestion}
+                  </span>
+                </div>
               </div>
-              <Badge variant={flag.severity === "warn" ? "warn" : "neutral"} size="sm">
-                {flag.severity === "warn" ? "Action Recommended" : "Optional Polish"}
-              </Badge>
-            </div>
-
-            <div className="p-3 rounded-lg bg-surface border border-border/70 text-xs flex flex-col gap-2">
-              <div className="text-[11px] text-content-muted">
-                <span className="font-mono text-content-secondary">Detected In:</span> "{flag.context}"
-              </div>
-              <div className="flex items-center gap-2 font-medium text-content-primary">
-                <ArrowRight strokeWidth={1.5} className="w-3.5 h-3.5 text-sand shrink-0" />
-                <span className="text-sand font-mono text-[11px]">Recommended Replacement:</span>
-                <span className="text-xs">{flag.recommendation}</span>
-              </div>
-            </div>
-
-            <p className="text-[11px] text-content-muted leading-relaxed">
-              <span className="font-semibold text-content-secondary">Guidance:</span> {flag.explanation}
-            </p>
-          </Card>
-        ))}
-      </div>
+            </Card>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

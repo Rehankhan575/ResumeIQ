@@ -120,6 +120,12 @@ export const MOCK_FIXTURE_RESULT: ScoreResult = {
     genai_ms: 0.0,
   },
   warnings: [],
+  bias: [],
+  skill_gap: {
+    matched: ["machine learning", "python", "scikit-learn", "sql"],
+    missing: [],
+    recommendations: {},
+  },
 };
 
 export const MOCK_SAMPLES: SamplesResponse = {

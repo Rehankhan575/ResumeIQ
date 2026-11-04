@@ -49,3 +49,4 @@ export const TimingsCard: React.FC<TimingsCardProps> = ({ timings }) => {
     </div>
   );
 };
+

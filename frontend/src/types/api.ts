@@ -120,6 +120,25 @@ export interface ParsedResume {
   warnings: string[];
 }
 
+export interface BiasFinding {
+  type: string;
+  evidence_label: string;
+  suggestion: string;
+}
+
+export interface CourseRecommendation {
+  title: string;
+  provider: string;
+  level: string;
+  estimated_hours: number;
+}
+
+export interface SkillGapSummary {
+  matched: string[];
+  missing: string[];
+  recommendations: Record<string, CourseRecommendation[]>;
+}
+
 export interface ScoreResult {
   total: number;
   grade: string;
@@ -132,6 +151,8 @@ export interface ScoreResult {
   suggestions: Suggestion[];
   timings_ms: Record<string, number>;
   warnings: string[];
+  bias?: BiasFinding[];
+  skill_gap?: SkillGapSummary;
 }
 
 export interface SampleResume {
@@ -173,3 +194,82 @@ export interface HistoryItem {
   grade: string;
 }
 
+export interface ClassifierModelRow {
+  key: string;
+  model: string;
+  val_macro_f1: string;
+  test_macro_f1_ci: string;
+  test_accuracy: string;
+  train_val_gap: string;
+  served: boolean;
+}
+
+export interface PairedTestRow {
+  comparison: string;
+  metric: string;
+  diff: string;
+  ci_95: string;
+  p_value: string;
+}
+
+export interface MatcherModelRow {
+  key: string;
+  model: string;
+  val_mrr: string;
+  val_ndcg10: string;
+  val_recall5: string;
+  val_recall10: string;
+  test_mrr: string;
+  test_ndcg10: string;
+  test_recall5: string;
+  test_recall10: string;
+  served: boolean;
+}
+
+export interface MatcherCategoryRow {
+  category: string;
+  val_count: number;
+  test_count: number;
+  val_tfidf_mrr: string;
+  val_zs_mrr: string;
+  val_ft_mrr: string;
+  test_tfidf_mrr: string;
+  test_zs_mrr: string;
+  test_ft_mrr: string;
+}
+
+export interface AblationRow {
+  component: string;
+  original_weight: string;
+  mean_original: string;
+  mean_ablated: string;
+  mean_delta: string;
+}
+
+export interface XAiRow {
+  attribution_level: string;
+  method: string;
+  observed_drops: string;
+  verdict: string;
+}
+
+export interface ModelResultsResponse {
+  classifier: {
+    models: ClassifierModelRow[];
+    paired_tests: PairedTestRow[];
+    note: string;
+  };
+  matcher: {
+    models: MatcherModelRow[];
+    categories: MatcherCategoryRow[];
+    note: string;
+  };
+  ablation: {
+    components: AblationRow[];
+    note: string;
+  };
+  xai: {
+    rows: XAiRow[];
+    note: string;
+  };
+}

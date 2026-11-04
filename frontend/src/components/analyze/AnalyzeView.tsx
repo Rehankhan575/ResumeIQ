@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Hero } from "./Hero";
 import { DropZone } from "./DropZone";
 import { JobDescriptionCard } from "./JobDescriptionCard";
@@ -7,6 +7,7 @@ import { StatStrip } from "./StatStrip";
 import { Card } from "../ui/Card";
 import { Button } from "../ui/Button";
 import { MOCK_SAMPLES } from "../../mocks/fixtureData";
+import { fetchSamples } from "../../services/api";
 import { ArrowRight } from "lucide-react";
 
 interface AnalyzeViewProps {
@@ -18,26 +19,36 @@ export const AnalyzeView: React.FC<AnalyzeViewProps> = ({
   onAnalyze,
   isLoading = false,
 }) => {
+  const [samples, setSamples] = useState(MOCK_SAMPLES);
+  const [resumeMode, setResumeMode] = useState<"sample" | "upload">("sample");
+  const [jdMode, setJdMode] = useState<"sample" | "paste">("sample");
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [selectedSampleResume, setSelectedSampleResume] = useState<string>("ds_clean.pdf");
   const [selectedSampleJD, setSelectedSampleJD] = useState<string>("jd_data_scientist.txt");
+  const [jdText, setJdText] = useState<string>("");
 
-  const initialJD = MOCK_SAMPLES.jds.find((j) => j.filename === "jd_data_scientist.txt")?.full_text || "";
-  const [jdText, setJdText] = useState<string>(initialJD);
-
-  const handleSelectSampleJD = (filename: string) => {
-    setSelectedSampleJD(filename);
-    const found = MOCK_SAMPLES.jds.find((j) => j.filename === filename);
-    if (found) {
-      setJdText(found.full_text);
-    }
-  };
+  useEffect(() => {
+    fetchSamples()
+      .then((res) => {
+        if (res && res.resumes && res.jds) {
+          setSamples(res);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const handleAnalyzeClick = () => {
-    onAnalyze(selectedFile, selectedSampleResume, jdText, selectedSampleJD);
+    const file = resumeMode === "upload" ? selectedFile : null;
+    const resumeChoice = resumeMode === "sample" ? selectedSampleResume : "";
+    const text = jdMode === "paste" ? jdText : "";
+    const jdChoice = jdMode === "sample" ? selectedSampleJD : "";
+
+    onAnalyze(file, resumeChoice, text, jdChoice);
   };
 
-  const hasInput = Boolean(selectedFile || selectedSampleResume) && Boolean(jdText.trim() || selectedSampleJD);
+  const hasInput =
+    (resumeMode === "sample" ? Boolean(selectedSampleResume) : Boolean(selectedFile)) &&
+    (jdMode === "sample" ? Boolean(selectedSampleJD) : Boolean(jdText.trim()));
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto py-2">
@@ -47,10 +58,11 @@ export const AnalyzeView: React.FC<AnalyzeViewProps> = ({
         <div className="lg:col-span-5 flex flex-col justify-between pt-2">
           <Hero
             onAnalyzeSample={() => {
-              setSelectedFile(null);
+              setResumeMode("sample");
               setSelectedSampleResume("ds_clean.pdf");
-              handleSelectSampleJD("jd_data_scientist.txt");
-              onAnalyze(null, "ds_clean.pdf", initialJD, "jd_data_scientist.txt");
+              setJdMode("sample");
+              setSelectedSampleJD("jd_data_scientist.txt");
+              onAnalyze(null, "ds_clean.pdf", "", "jd_data_scientist.txt");
             }}
           />
         </div>
@@ -70,22 +82,26 @@ export const AnalyzeView: React.FC<AnalyzeViewProps> = ({
               </span>
             </div>
 
-            {/* Resume Upload / DropZone */}
+            {/* Resume Upload / DropZone with mode toggle */}
             <DropZone
+              mode={resumeMode}
+              onModeChange={setResumeMode}
               selectedFile={selectedFile}
               onSelectFile={setSelectedFile}
               selectedSample={selectedSampleResume}
               onSelectSample={setSelectedSampleResume}
-              samples={MOCK_SAMPLES.resumes}
+              samples={samples.resumes}
             />
 
-            {/* Job Description Textarea */}
+            {/* Job Description Card with mode toggle */}
             <JobDescriptionCard
+              mode={jdMode}
+              onModeChange={setJdMode}
               jdText={jdText}
               onChangeText={setJdText}
               selectedSample={selectedSampleJD}
-              onSelectSample={handleSelectSampleJD}
-              samples={MOCK_SAMPLES.jds}
+              onSelectSample={setSelectedSampleJD}
+              samples={samples.jds}
             />
 
             {/* Analyze Full-Width White Pill Button */}
@@ -108,17 +124,27 @@ export const AnalyzeView: React.FC<AnalyzeViewProps> = ({
 
       {/* Underneath: 3-Step Row */}
       <div className="space-y-3 pt-2">
-        <span className="text-xs font-mono uppercase tracking-wider text-content-muted block">
-          Evaluation Architecture
-        </span>
+        <div className="flex items-center justify-between px-1">
+          <span className="text-xs font-mono uppercase tracking-wider text-content-muted">
+            Evaluation Workflow
+          </span>
+          <span className="text-[11px] font-mono text-content-muted">
+            Deterministic Pipeline
+          </span>
+        </div>
         <WorkflowSteps />
       </div>
 
-      {/* Underneath: 3-Tile Stat Strip */}
+      {/* Real Project Stat Strip */}
       <div className="space-y-3 pt-2">
-        <span className="text-xs font-mono uppercase tracking-wider text-content-muted block">
-          Project Verification
-        </span>
+        <div className="flex items-center justify-between px-1">
+          <span className="text-xs font-mono uppercase tracking-wider text-content-muted">
+            Architecture Benchmarks
+          </span>
+          <span className="text-[11px] font-mono text-content-muted">
+            Production Specs
+          </span>
+        </div>
         <StatStrip />
       </div>
     </div>

@@ -41,3 +41,4 @@ export const CategoryPredictions: React.FC<CategoryPredictionsProps> = ({ catego
     </div>
   );
 };
+

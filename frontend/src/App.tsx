@@ -3,6 +3,7 @@ import { AppShell } from "./components/shell/AppShell";
 import { NavItemKey } from "./components/shell/Sidebar";
 import { AnalyzeView } from "./components/analyze/AnalyzeView";
 import { ResultsView } from "./components/results/ResultsView";
+import { ModelResultsView } from "./components/views/ModelResultsView";
 import { RankView } from "./components/views/RankView";
 import { SkillGapView } from "./components/views/SkillGapView";
 import { BiasCheckView } from "./components/views/BiasCheckView";
@@ -12,14 +13,16 @@ import { ErrorBanner } from "./components/ui/ErrorBanner";
 import { ResultsSkeleton } from "./components/ui/Skeleton";
 import { ScoreResult, HistoryItem } from "./types/api";
 import { MOCK_FIXTURE_RESULT } from "./mocks/fixtureData";
-import { analyzeResume } from "./services/api";
+import { analyzeResume, isMockMode } from "./services/api";
 
 const STORAGE_KEY_OPT_IN = "resumeiq_history_opt_in";
 const STORAGE_KEY_RECORDS = "resumeiq_history";
 
 export const App: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<NavItemKey>("analyze");
-  const [result, setResult] = useState<ScoreResult | null>(MOCK_FIXTURE_RESULT);
+  const [result, setResult] = useState<ScoreResult | null>(
+    isMockMode() ? MOCK_FIXTURE_RESULT : null
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
@@ -72,11 +75,15 @@ export const App: React.FC = () => {
         false
       );
       setResult(scoreResult);
-      const title = jdChoice ? jdChoice.replace("jd_", "").replace(".txt", "").replace("_", " ").toUpperCase() : "Target Job";
+      const title = jdChoice
+        ? jdChoice.replace("jd_", "").replace(".txt", "").replace("_", " ").toUpperCase()
+        : "Target Job";
       saveToHistoryIfOptedIn(scoreResult, title);
       setCurrentTab("results");
     } catch (err: any) {
-      setErrorMessage(err.message || "Failed to analyze resume. Please check server connectivity or try a sample.");
+      setErrorMessage(
+        err.message || "Failed to analyze resume. Please check server connectivity or try a sample."
+      );
     } finally {
       setIsLoading(false);
     }
@@ -86,7 +93,7 @@ export const App: React.FC = () => {
     <AppShell
       currentTab={currentTab}
       onSelectTab={setCurrentTab}
-      issuesCount={result?.issues?.length || 3}
+      issuesCount={result?.issues?.length || 0}
     >
       {/* Top Error Alert Banner if an API or file error occurred */}
       {errorMessage && (
@@ -117,11 +124,27 @@ export const App: React.FC = () => {
             />
           )}
 
+          {currentTab === "models" && <ModelResultsView />}
+
           {currentTab === "rank" && <RankView />}
 
-          {currentTab === "skills" && <SkillGapView />}
+          {currentTab === "skills" && (
+            <SkillGapView
+              matchedSkills={
+                result?.skill_gap?.matched ||
+                result?.match?.matched_skills ||
+                ["machine learning", "python", "scikit-learn", "sql"]
+              }
+              missingSkills={
+                result?.skill_gap?.missing || result?.missing_skills || []
+              }
+              recommendations={result?.skill_gap?.recommendations || {}}
+            />
+          )}
 
-          {currentTab === "bias" && <BiasCheckView />}
+          {currentTab === "bias" && (
+            <BiasCheckView findings={result?.bias || []} />
+          )}
 
           {currentTab === "history" && <HistoryView />}
 

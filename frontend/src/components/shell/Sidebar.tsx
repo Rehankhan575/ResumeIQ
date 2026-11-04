@@ -10,12 +10,14 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldCheck,
+  Cpu,
 } from "lucide-react";
 import { Badge } from "../ui/Badge";
 
 export type NavItemKey =
   | "analyze"
   | "results"
+  | "models"
   | "rank"
   | "skills"
   | "bias"
@@ -47,6 +49,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   const navItems: NavItemDef[] = [
     { key: "analyze", label: "Analyze", icon: FileSearch },
     { key: "results", label: "Results", icon: BarChart3, badge: issuesCount },
+    { key: "models", label: "Model results", icon: Cpu },
     { key: "rank", label: "Rank jobs", icon: Layers },
     { key: "skills", label: "Skill gap", icon: Compass },
     { key: "bias", label: "Bias check", icon: ShieldAlert },

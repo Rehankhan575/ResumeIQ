@@ -15,10 +15,16 @@ An exact step-by-step walkthrough for demonstrating the AI-Powered Resume Screen
    *Verify:* Confirm all 15 fixture-JD combinations pass with 0 failures (`All preflight checks passed.`). Cold-start time is ~8 s (measured 8.31s); warm inference is 0.05s–0.59s per resume.
 
 2. **Terminal 2 (Launch UI):**
-   ```bash
-   streamlit run app/ui/app.py
-   ```
-   *Verify:* Browser opens at `http://localhost:8501`. Dark obsidian theme (`#0e1117`), header bar, and two-card layout render cleanly.
+   - **Option A (Primary — Production React Dashboard):**
+     ```bash
+     ./scripts/run_demo.sh
+     ```
+     *Verify:* Server warms up models and opens on `http://localhost:8000`. Premium dark glassmorphism dashboard with sidebar navigation renders cleanly.
+   - **Option B (Legacy Streamlit Dashboard Fallback):**
+     ```bash
+     streamlit run app/ui/app.py
+     ```
+     *Verify:* Browser opens at `http://localhost:8501`. Dark obsidian theme (`#0e1117`), header bar, and two-card layout render cleanly.
 
 3. **Sample Fixture Files Ready (in `tests/fixtures/`):**
    - Resumes: `ds_clean.pdf`, `accountant_table.pdf`, `nurse_scanned.pdf`

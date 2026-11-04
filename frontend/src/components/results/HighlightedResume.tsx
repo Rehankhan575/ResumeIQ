@@ -155,3 +155,4 @@ export const HighlightedResume: React.FC<HighlightedResumeProps> = ({
     </div>
   );
 };
+
