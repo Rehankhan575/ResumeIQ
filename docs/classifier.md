@@ -50,12 +50,12 @@ Evaluated across 1,000 bootstrap resamples (seed 42) and paired McNemar tests on
 
 ### Findings & Caveats
 - **LR and MLP are indistinguishable on test** across both macro-F1 (diff +0.0222, 95% CI `[-0.0220, +0.0569]`, $p=0.3480$) and accuracy (diff -0.0107, 95% CI `[-0.0428, +0.0214]`, $p=0.5980$, McNemar $p=0.6265$).
-- **DistilBERT scores higher on test:**
+- **DistilBERT vs. LR:** Suggestive on test (macro-F1 p=0.036, accuracy McNemar p=0.0101) but not significant after Bonferroni correction across six tests (threshold about 0.008); only DistilBERT vs MLP accuracy (McNemar p=0.0081) clears it, barely.
   - vs. LR: macro-F1 +0.050 (95% CI `[+0.0056, +0.0931]`, $p=0.0360$) and accuracy +6.4 pts (+0.0642, 95% CI `[+0.0160, +0.1096]`, $p=0.0220$, McNemar $p=0.0101$).
   - vs. MLP: accuracy +7.5 pts (+0.0749, 95% CI `[+0.0241, +0.1257]`, $p=0.0100$, McNemar $p=0.0081$), but its macro-F1 gain over MLP (+0.0273, 95% CI `[-0.0250, +0.0901]`, $p=0.2800$) is not significant.
 - **Caveats stated in the same place:**
   - Six paired tests were conducted with no multiplicity correction.
-  - All comparisons rest on a single test split of 374 resumes (~15 samples per class across 24 classes).
+  - All comparisons rest on a single test split of 374 resumes across 24 classes (average ~15, smallest class 3, largest 18).
   - On validation, DistilBERT did NOT outperform (val macro-F1 0.5675 vs. MLP 0.6001), so validation and test disagree.
   - DistilBERT was trained for only 3 epochs due to compute limits; the BiLSTM underfits (0.1966 test macro-F1, 25.13% test accuracy).
 - **Production Model Selection:**

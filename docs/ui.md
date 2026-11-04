@@ -60,6 +60,35 @@ All tokens are defined in `app/ui/styles.css` as CSS variables on `:root` and ap
 
 ---
 
+## Input Precedence & Modes
+
+Both input cards provide explicit mode selection to prevent pasted or uploaded text from overriding selections silently:
+- **Resume Input**: Explicit toggle (`st.segmented_control` or horizontal `st.radio`) between `Sample` and `Upload`. The active mode determines the document source; the inactive widget is hidden and never read. A status label `Using: <name>` is displayed beneath the card. Max upload size is enforced at 5 MB (`server.maxUploadSize = 5` in `.streamlit/config.toml`).
+- **Job Description Input**: Explicit toggle between `Sample` and `Paste`. The active mode decides the JD source; the inactive widget is hidden and never evaluated. A status label `Using: <name>` is displayed beneath the card.
+
+---
+
+## Unmeasurable Components & Warning Chip
+
+When evaluating incomplete or non-standard job descriptions:
+- If a JD has no extractable required skills, `keyword_coverage` is excluded from scoring and the remaining component weights are renormalised to sum to 100%.
+- If a JD has no specified minimum years of experience (`min_years`), `experience_fit` is excluded and weights are renormalised.
+- A descriptive warning is appended to `ScoreResult.warnings`.
+- If the JD is shorter than 30 words, has 0 detectable skills, or has an unmeasurable warning, a warning chip is displayed prominently above the results:
+  `JD too short or no skills detected; keyword coverage not measured`
+
+---
+
+## Stat Summary Tiles
+
+Below the hero score ring and breakdown bars, four equal stat tiles present key summary metrics:
+1. **Experience**: Candidate's total years of experience (e.g. `7.4 yrs`), with sub-label `N roles` (or `1 role`).
+2. **Skills matched**: Count of overlapping skills vs. required skills (e.g. `12 / 16`), with sub-label `required skills in JD` (or `none detected in JD` if 0 required skills).
+3. **Top category**: Full predicted occupational category name (e.g. `DATA-SCIENCE`), with sub-label `NN% confidence`.
+4. **Processing time**: End-to-end pipeline execution time in seconds (e.g. `0.85s`), with sub-label `parse to score`.
+
+---
+
 ## Navigation & Tabs
 
 The UI provides 7 tabs styled with underline navigation (muted text, 2px teal active underline, zero pill backgrounds):
@@ -70,7 +99,11 @@ The UI provides 7 tabs styled with underline navigation (muted text, 2px teal ac
 4. **Skill gap**: Maps candidate missing skills to curated, URL-free courseware resources detailing title, provider, level, and estimated study hours.
 5. **Bias check**: Privacy-preserving demographic bias audit displaying flags for age indicators, marital status, and gendered wording using abstract category labels without personal text leakage.
 6. **History**: Opt-in historical score tracking backed by a local SQLite database storing only numeric scores, letter grades, and timestamps (zero resume text stored).
-7. **Model results**: Benchmark metric tables for Classifier, Matcher, and ATS Scorer with right-aligned tabular numbers, 11px uppercase headers, and transparent honesty disclosures.
+7. **Model results**: Rebuilt directly from `artifacts/reports/` and `artifacts/metrics/`:
+   - **Classifier**: 4-model performance table (TF-IDF + LR, TF-IDF + MLP with `Served` badge, BiLSTM, DistilBERT) showing validation macro-F1, test macro-F1 with 95% bootstrap CIs, test accuracy, and generalization gap. Paired-test statistical comparison table (McNemar $\chi^2$, bootstrap $p$-values, Bonferroni threshold caveats).
+   - **Matcher**: Retrieval metrics (Val/Test MRR, nDCG@10, Recall@5, Recall@10) across TF-IDF, Zero-Shot SBERT, and Fine-Tuned SBERT, with expandable per-category breakdown.
+   - **Scoring**: Component weight and sensitivity ablation table.
+   - **Explainability (XAI)**: ATS sentence-level deletion (inconclusive / unvalidated) and classifier word-level deletion (faithful to linear model with cross-model transfer to served MLP). Missing files display a fallback card: `Results file missing: run scripts/collect_results.py`. Never displays internal raw keys like `matched_pair_pass`.
 
 ---
 
@@ -80,10 +113,10 @@ The implemented Streamlit interface in `app/ui/app.py` organizes the workflow as
 
 | Component | P5 Prototype Spec | Implemented UI (`app/ui/app.py`) | Status |
 | :--- | :--- | :--- | :--- |
-| **Ingestion Controls** | Dedicated Streamlit Sidebar (`st.sidebar`) | Two-column card layout on main canvas (`col_resume`, `col_jd`) | **Deviation:** Main canvas side-by-side cards replace sidebar to optimize screen width for split comparison |
+| **Ingestion Controls** | Dedicated Streamlit Sidebar (`st.sidebar`) | Two-column card layout on main canvas (`col_resume`, `col_jd`) with explicit mode toggles | **Deviation:** Main canvas side-by-side cards replace sidebar to optimize screen width for split comparison |
 | **Settings Controls** | Popover or Sidebar widget | Inline expandable drawer (`st.expander("Settings", expanded=False)`) directly below header | **Deviation:** Inline expander below header preserves single-column vertical flow |
 | **Primary Action** | Button | Primary `Analyze` button (`st.button("Analyze", type="primary")`) | Aligned |
-| **Stat Summary Tiles** | 4 Tiles (e.g. including Latency) | 3 Stat Tiles (`Experience`, `Skills Matched`, `Top Category`) via `st.columns(3)` | **Deviation:** 3 tiles rendered; latency logged in execution toast/diagnostics |
+| **Stat Summary Tiles** | 4 Tiles (e.g. including Latency) | 4 Stat Tiles (`Experience`, `Skills matched`, `Top category`, `Processing time`) via `st.columns(4)` | Aligned |
 | **Score Breakdown** | Visual breakdown | Circular SVG score ring with grade chip + 9 horizontal progress bars | Aligned |
 | **Tab Navigation** | 7 Tabs | 7 custom styled tabs: `Highlights`, `Suggestions`, `Ranking`, `Skill gap`, `Bias check`, `History`, `Model results` | Aligned |
 

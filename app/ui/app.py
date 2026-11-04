@@ -34,6 +34,7 @@ import math
 import time
 from typing import Any, Dict, List, Optional
 
+import pandas as pd
 import streamlit as st
 
 FIXTURES_DIR = ROOT_DIR / "tests" / "fixtures"
@@ -193,6 +194,10 @@ def _run_analysis(
 ) -> None:
     """Run the pipeline and store result in session state."""
     from app.pipeline import run_pipeline
+    from app.parsing.parser import parse_document
+    from app.extraction.extractor import extract_entities
+
+    t0 = time.perf_counter()
     result = run_pipeline(
         file_bytes=file_bytes,
         filename=filename,
@@ -200,7 +205,20 @@ def _run_analysis(
         jd_title=jd_title,
         use_genai=use_genai,
     )
+    elapsed = time.perf_counter() - t0
+
+    # Attach parsed resume for stat tile experience and role counts
+    try:
+        parsed_doc = parse_document(file_bytes, filename)
+        extracted = extract_entities(parsed_doc)
+        result._parsed = extracted
+        st.session_state["parsed_resume"] = extracted
+    except Exception:
+        pass
+
     st.session_state["result"] = result
+    st.session_state["elapsed"] = elapsed
+    st.session_state["jd_text"] = jd_text
     st.session_state["active_tab"] = "Highlights"
 
     # Optional history recording
@@ -251,7 +269,7 @@ def _render_header() -> None:
 # ---------------------------------------------------------------------------
 
 def _render_input() -> None:
-    """Two-card input section: Resume + Job Description."""
+    """Two-card input section with explicit mode toggles: Resume + Job Description."""
     st.markdown('<div class="ra-section">', unsafe_allow_html=True)
 
     col_resume, col_jd = st.columns(2, gap="large")
@@ -260,79 +278,126 @@ def _render_input() -> None:
         st.markdown('<div class="ra-card">', unsafe_allow_html=True)
         st.markdown('<span class="ra-card-label">Resume</span>', unsafe_allow_html=True)
 
+        resume_mode = st.segmented_control(
+            "Resume mode",
+            options=["Sample", "Upload"],
+            default="Sample",
+            key="resume_mode",
+            label_visibility="collapsed",
+        )
+        if not resume_mode:
+            resume_mode = "Sample"
+
         # Preselect ds_clean.pdf for first-load demo
         default_idx = 0
         if "ds_clean.pdf" in SAMPLE_RESUMES:
             default_idx = SAMPLE_RESUMES.index("ds_clean.pdf")
 
-        resume_choice = st.selectbox(
-            "Sample resume",
-            options=["(upload your own)"] + SAMPLE_RESUMES,
-            index=default_idx + 1 if SAMPLE_RESUMES else 0,
-            label_visibility="collapsed",
-            key="resume_choice",
-        )
-        uploaded_resume = st.file_uploader(
-            "Or upload a PDF / DOCX / image",
-            type=["pdf", "docx", "png", "jpg", "jpeg"],
-            label_visibility="visible",
-            key="resume_upload",
-        )
+        if resume_mode == "Sample":
+            resume_choice = st.selectbox(
+                "Sample resume",
+                options=SAMPLE_RESUMES,
+                index=default_idx if SAMPLE_RESUMES else 0,
+                label_visibility="collapsed",
+                key="resume_choice",
+            )
+            uploaded_resume = None
+            using_resume = resume_choice or "None"
+        else:
+            resume_choice = None
+            uploaded_resume = st.file_uploader(
+                "Upload a PDF / DOCX / image",
+                type=["pdf", "docx", "png", "jpg", "jpeg"],
+                label_visibility="visible",
+                key="resume_upload",
+            )
+            using_resume = uploaded_resume.name if uploaded_resume is not None else "No file uploaded"
+
+        st.caption(f"Using: {using_resume}")
         st.markdown("</div>", unsafe_allow_html=True)
 
     with col_jd:
         st.markdown('<div class="ra-card">', unsafe_allow_html=True)
         st.markdown('<span class="ra-card-label">Job Description</span>', unsafe_allow_html=True)
 
+        jd_mode = st.segmented_control(
+            "JD mode",
+            options=["Sample", "Paste"],
+            default="Sample",
+            key="jd_mode",
+            label_visibility="collapsed",
+        )
+        if not jd_mode:
+            jd_mode = "Sample"
+
         default_jd_idx = 0
         if "jd_data_scientist.txt" in SAMPLE_JDS:
             default_jd_idx = SAMPLE_JDS.index("jd_data_scientist.txt")
 
-        jd_choice = st.selectbox(
-            "Sample JD",
-            options=["(paste below)"] + SAMPLE_JDS,
-            index=default_jd_idx + 1 if SAMPLE_JDS else 0,
-            label_visibility="collapsed",
-            key="jd_choice",
-        )
-        jd_pasted = st.text_area(
-            "Or paste job description text",
-            height=120,
-            label_visibility="visible",
-            key="jd_text_input",
-            placeholder="Paste job description text here…",
-        )
-        jd_title_input = st.text_input(
-            "Job title (optional)",
-            key="jd_title_input",
-            placeholder="e.g. Senior Data Scientist",
-        )
+        if jd_mode == "Sample":
+            jd_choice = st.selectbox(
+                "Sample JD",
+                options=SAMPLE_JDS,
+                index=default_jd_idx if SAMPLE_JDS else 0,
+                label_visibility="collapsed",
+                key="jd_choice",
+            )
+            jd_pasted = None
+            jd_title_input = ""
+            using_jd = jd_choice or "None"
+        else:
+            jd_choice = None
+            jd_pasted = st.text_area(
+                "Paste job description text",
+                height=120,
+                label_visibility="visible",
+                key="jd_text_input",
+                placeholder="Paste job description text here…",
+            )
+            jd_title_input = st.text_input(
+                "Job title (optional)",
+                key="jd_title_input",
+                placeholder="e.g. Senior Data Scientist",
+            )
+            if jd_title_input and jd_title_input.strip():
+                using_jd = jd_title_input.strip()
+            elif jd_pasted and jd_pasted.strip():
+                using_jd = "Pasted text"
+            else:
+                using_jd = "No JD entered"
+
+        st.caption(f"Using: {using_jd}")
         st.markdown("</div>", unsafe_allow_html=True)
 
     st.markdown("</div>", unsafe_allow_html=True)
 
-    # Resolve inputs
+    # Resolve inputs strictly decided by active mode toggle
     file_bytes: Optional[bytes] = None
     filename = ""
 
-    if uploaded_resume is not None:
-        file_bytes = uploaded_resume.read()
-        filename = uploaded_resume.name
-    elif resume_choice != "(upload your own)" and resume_choice:
-        p = FIXTURES_DIR / resume_choice
-        if p.exists():
-            file_bytes = p.read_bytes()
-            filename = resume_choice
+    if resume_mode == "Upload":
+        if uploaded_resume is not None:
+            file_bytes = uploaded_resume.read()
+            filename = uploaded_resume.name
+    else:
+        if resume_choice:
+            p = FIXTURES_DIR / resume_choice
+            if p.exists():
+                file_bytes = p.read_bytes()
+                filename = resume_choice
 
     jd_text = ""
-    if jd_pasted and jd_pasted.strip():
-        jd_text = jd_pasted.strip()
-    elif jd_choice != "(paste below)" and jd_choice:
-        p = FIXTURES_DIR / jd_choice
-        if p.exists():
-            jd_text = p.read_text(encoding="utf-8")
-
-    jd_title = jd_title_input.strip()
+    jd_title = ""
+    if jd_mode == "Paste":
+        if jd_pasted and jd_pasted.strip():
+            jd_text = jd_pasted.strip()
+        jd_title = jd_title_input.strip() if jd_title_input else ""
+    else:
+        if jd_choice:
+            p = FIXTURES_DIR / jd_choice
+            if p.exists():
+                jd_text = p.read_text(encoding="utf-8")
+                jd_title = jd_choice.replace("jd_", "").replace(".txt", "").replace("_", " ").title()
 
     # Analyze button
     analyze_clicked = st.button(
@@ -455,51 +520,77 @@ def _render_hero(result) -> None:
 
 def _render_stat_tiles(result) -> None:
     exp_years = 0.0
+    n_roles = 0
     matched = 0
     total_req = 0
     top_cat = "—"
     top_prob = 0.0
 
-    # Try to get from parsed (stored in result if available)
-    if hasattr(result, "_parsed"):
-        p = result._parsed
-        exp_years = p.total_years_experience
+    # 1. Experience & roles from parsed resume
+    parsed = getattr(result, "_parsed", None) or st.session_state.get("parsed_resume")
+    if parsed is not None:
+        exp_years = parsed.total_years_experience
+        n_roles = len(parsed.experience)
+    else:
+        exp_fit = result.components.get("experience_fit", 0.0)
+        exp_years = exp_fit * 5.0
 
-    # Skills matched
+    # 2. Skills matched
     if result.match:
         matched = len(result.match.matched_skills)
         total_req = matched + len(result.match.missing_skills)
 
-    # Top category
+    # 3. Top category (full name)
     if result.predicted_categories:
         top = result.predicted_categories[0]
         top_cat = top.category
         top_prob = top.probability
 
-    # Approximate experience from components (heuristic fallback)
-    exp_fit = result.components.get("experience_fit", 0.0)
+    # 4. Processing time
+    elapsed_sec = st.session_state.get("elapsed")
+    if elapsed_sec is None:
+        elapsed_sec = sum(result.timings_ms.values()) / 1000.0 if result.timings_ms else 0.0
 
     tiles = [
-        ("Experience", f"{exp_years:.1f} yr" if exp_years > 0 else f"{exp_fit:.0%}"),
-        ("Skills Matched", f"{matched} of {total_req}" if total_req > 0 else "—"),
-        ("Top Category", f"{top_cat[:18]}" if top_cat != "—" else "—"),
-    ]
-    subtitles = [
-        "",
-        "",
-        f"{top_prob:.0%} confidence" if top_prob > 0 else "",
+        (
+            "Experience",
+            f"{exp_years:.1f} yrs",
+            f"{n_roles} role" if n_roles == 1 else f"{n_roles} roles",
+        ),
+        (
+            "Skills matched",
+            f"{matched} / {total_req}",
+            "none detected in JD" if total_req == 0 else "required skills in JD",
+        ),
+        (
+            "Top category",
+            top_cat,
+            f"{int(round(top_prob * 100))}% confidence" if top_prob > 0 else "",
+        ),
+        (
+            "Processing time",
+            f"{elapsed_sec:.2f} s",
+            "parse to score",
+        ),
     ]
 
-    cols = st.columns(3, gap="large")
-    for col, (label, value), subtitle in zip(cols, tiles, subtitles):
+    cols = st.columns(4, gap="large")
+    for col, (label, value, subtitle) in zip(cols, tiles):
         with col:
-            sub_html = f'<div style="font-size:11px;color:var(--faint);font-family:var(--font-mono);margin-top:4px">{_escape(subtitle)}</div>' if subtitle else ""
-            st.markdown(f"""
+            sub_html = (
+                f'<div style="font-size:11px;color:var(--faint);font-family:var(--font-mono);margin-top:4px">{_escape(subtitle)}</div>'
+                if subtitle
+                else ""
+            )
+            st.markdown(
+                f"""
 <div class="ra-card">
   <span class="ra-card-label">{_escape(label)}</span>
   <div class="ra-stat-value">{_escape(value)}</div>
   {sub_html}
-</div>""", unsafe_allow_html=True)
+</div>""",
+                unsafe_allow_html=True,
+            )
 
 
 # ---------------------------------------------------------------------------
@@ -902,94 +993,319 @@ def _render_model_results_tab() -> None:
     st.markdown('<div class="ra-section">', unsafe_allow_html=True)
     st.markdown('<span class="ra-section-title">Model Results</span>', unsafe_allow_html=True)
 
-    # -- Classifier metrics --
-    clf_path = METRICS_DIR / "classifier" / "metrics.json"
-    if clf_path.exists():
+    reports_dir = ROOT_DIR / "artifacts" / "reports"
+    metrics_dir = ROOT_DIR / "artifacts" / "metrics"
+
+    def _render_missing(msg: str = "Results file missing: run scripts/collect_results.py") -> None:
+        st.markdown(
+            f'<div class="ra-card ra-empty-state"><span class="ra-empty-msg">{_escape(msg)}</span></div>',
+            unsafe_allow_html=True,
+        )
+
+    # -----------------------------------------------------------------------
+    # 1. Classifier section
+    # -----------------------------------------------------------------------
+    st.markdown('<span class="ra-card-label">Classifier</span>', unsafe_allow_html=True)
+    c4_path = reports_dir / "classifier_4_model.csv"
+    ci_path = reports_dir / "classifier_ci.csv"
+    paired_path = reports_dir / "classifier_paired_comparison.csv"
+
+    if not c4_path.exists() or not ci_path.exists():
+        _render_missing("Results file missing: run scripts/collect_results.py")
+    else:
         try:
-            clf_data = json.loads(clf_path.read_text())
-            st.markdown('<span class="ra-card-label">Classifier</span>', unsafe_allow_html=True)
+            df_c4 = pd.read_csv(c4_path)
+            df_ci = pd.read_csv(ci_path)
 
-            # Build table: model vs accuracy, macro_f1
+            ci_map = {}
+            for _, r in df_ci.iterrows():
+                ci_map[str(r["model"])] = r
+
+            readable_names = {
+                "tfidf_lr": "TF-IDF + LR",
+                "tfidf_mlp": "TF-IDF + MLP",
+                "bilstm": "BiLSTM",
+                "distilbert": "DistilBERT (3 epochs)",
+            }
+
             rows_html = ""
-            best_acc = max(v.get("accuracy", 0) for v in clf_data.values() if isinstance(v, dict)) if isinstance(clf_data, dict) else 0
-            for model_name, metrics in (clf_data.items() if isinstance(clf_data, dict) else []):
-                if not isinstance(metrics, dict):
-                    continue
-                acc = metrics.get("accuracy", metrics.get("val_accuracy", 0))
-                f1 = metrics.get("macro_f1", metrics.get("val_macro_f1", 0))
-                best_cls = "best" if abs(acc - best_acc) < 0.001 else ""
-                rows_html += f"<tr><td>{_escape(model_name)}</td><td class='{best_cls}'>{acc:.4f}</td><td>{f1:.4f}</td></tr>"
+            for _, r in df_c4.iterrows():
+                m_key = str(r["model_key"])
+                m_name = readable_names.get(m_key, m_key)
+                is_served = (m_key == "tfidf_mlp")
+                served_badge = ' <span class="ra-chip ra-chip-good" style="margin-left:6px;font-size:10px;padding:2px 6px">SERVED</span>' if is_served else ""
 
-            if rows_html:
-                st.markdown(f"""
+                val_f1 = f"{r['val_macro_f1']:.4f}"
+                r_ci = ci_map.get(m_key)
+                if r_ci is not None:
+                    test_f1_str = f"{float(r_ci['test_macro_f1']):.4f} [{float(r_ci['ci_95_lower']):.4f}, {float(r_ci['ci_95_upper']):.4f}]"
+                    test_acc_str = f"{float(r_ci['test_accuracy'])*100:.2f}%"
+                else:
+                    test_f1_str = f"{r['test_macro_f1']:.4f}"
+                    test_acc_str = f"{r['test_accuracy']*100:.2f}%"
+
+                gap_str = f"{r['gen_gap_f1']:+.4f}"
+                rows_html += f"<tr><td>{_escape(m_name)}{served_badge}</td><td>{val_f1}</td><td>{test_f1_str}</td><td>{test_acc_str}</td><td>{gap_str}</td></tr>"
+
+            table1_html = f"""
 <div class="ra-table-wrap">
 <table class="ra-table">
-<thead><tr><th style="text-align:left">Model</th><th>Accuracy</th><th>Macro F1</th></tr></thead>
+<thead>
+  <tr>
+    <th style="text-align:left">Model</th>
+    <th>Val Macro F1</th>
+    <th>Test Macro F1 (95% CI)</th>
+    <th>Test Accuracy</th>
+    <th>Train-Val Gap</th>
+  </tr>
+</thead>
 <tbody>{rows_html}</tbody>
 </table>
-</div>""", unsafe_allow_html=True)
-                st.markdown(
-                    '<div class="ra-table-note">'
-                    'LR and MLP are indistinguishable on test (macro-F1 and accuracy, paired tests). '
-                    'DistilBERT scores higher on test: vs LR macro-F1 +0.050 (95% CI [0.0056, 0.0931], p=0.036) and accuracy +6.4 pts (+0.0642, p=0.022); '
-                    'vs MLP accuracy +7.5 pts (+0.0749, p=0.010), but its macro-F1 gain over MLP (+0.0273, 95% CI [-0.0250, 0.0901], p=0.280) is not significant. '
-                    'Caveats: six paired tests with no multiplicity correction; one test split of 374 resumes; on validation DistilBERT did NOT outperform (val macro-F1 0.5675 vs MLP 0.6001), so validation and test disagree; DistilBERT trained only 3 epochs; the BiLSTM underfits. '
-                    'The served classifier is the MLP because the selection rule (val macro-F1) was fixed before the test set was opened; choosing DistilBERT because it won on test would be test-set selection; a fresh holdout would be needed to justify a switch.'
-                    '</div>',
-                    unsafe_allow_html=True,
+</div>"""
+            st.markdown(table1_html, unsafe_allow_html=True)
+
+            # Table 2: Paired tests
+            if paired_path.exists():
+                df_paired = pd.read_csv(paired_path)
+                p_rows_html = ""
+                for _, pr in df_paired.iterrows():
+                    metric_label = "Macro-F1" if pr["metric"] == "macro_f1" else "Accuracy"
+                    diff_val = f"{pr['diff']:+.4f}"
+                    ci_str = f"[{pr['ci_95_lower']:+.4f}, {pr['ci_95_upper']:+.4f}]"
+                    if pr["metric"] == "macro_f1":
+                        p_val_str = f"p = {pr['bootstrap_p']:.4f} (boot)"
+                    else:
+                        m_p = pr.get("mcnemar_p")
+                        p_val_str = f"p = {m_p:.4f} (McNemar)" if pd.notna(m_p) else f"p = {pr['bootstrap_p']:.4f}"
+                    p_rows_html += f"<tr><td>{_escape(pr['comparison'])}</td><td>{metric_label}</td><td>{diff_val}</td><td>{ci_str}</td><td>{p_val_str}</td></tr>"
+
+                table2_html = f"""
+<div class="ra-table-wrap" style="margin-top:16px">
+<table class="ra-table">
+<thead>
+  <tr>
+    <th style="text-align:left">Comparison</th>
+    <th>Metric</th>
+    <th>Diff (A − B)</th>
+    <th>95% CI</th>
+    <th>p-value</th>
+  </tr>
+</thead>
+<tbody>{p_rows_html}</tbody>
+</table>
+</div>"""
+                st.markdown(table2_html, unsafe_allow_html=True)
+
+            st.markdown(
+                '<div class="ra-table-note">'
+                'LR and MLP are indistinguishable on test (macro-F1 and accuracy, paired tests). '
+                'DistilBERT scores higher on test: vs LR macro-F1 +0.050 (95% CI [0.0056, 0.0931], p=0.036) and accuracy +6.4 pts (+0.0642, p=0.022); '
+                'vs MLP accuracy +7.5 pts (+0.0749, p=0.010), but its macro-F1 gain over MLP is not significant (p=0.280). '
+                'Suggestive on test (macro-F1 p=0.036, accuracy McNemar p=0.0101) but not significant after Bonferroni correction across six tests (threshold about 0.008); only DistilBERT vs MLP accuracy (McNemar p=0.0081) clears it, barely. '
+                'Validation and test disagree (DistilBERT val macro-F1 0.5675 vs MLP 0.6001); six paired tests with no multiplicity correction; one test split of 374 resumes (average ~15, smallest class 3, largest 18); DistilBERT trained only 3 epochs; the BiLSTM underfits. '
+                'The served classifier is the MLP because the selection rule (val macro-F1) was fixed on validation before the test set was opened; choosing DistilBERT because it won on test would be test-set selection; a fresh holdout would be needed to justify a switch.'
+                '</div>',
+                unsafe_allow_html=True,
+            )
+        except Exception:
+            _render_missing("Results file missing: run scripts/collect_results.py")
+
+    # -----------------------------------------------------------------------
+    # 2. Matcher section
+    # -----------------------------------------------------------------------
+    st.markdown('<span class="ra-card-label" style="margin-top:32px;display:block">Matcher</span>', unsafe_allow_html=True)
+    m_overall_path = reports_dir / "matcher_overall.csv"
+    m_cat_path = reports_dir / "matcher_per_category.csv"
+
+    if not m_overall_path.exists():
+        _render_missing("Results file missing: run scripts/collect_results.py")
+    else:
+        try:
+            df_mo = pd.read_csv(m_overall_path)
+            row_labels = {
+                "tfidf": "TF-IDF Baseline",
+                "zero_shot": "Zero-Shot SBERT",
+                "fine_tuned": "Fine-Tuned Siamese SBERT",
+            }
+            m_rows_html = ""
+            for _, r in df_mo.iterrows():
+                label = row_labels.get(str(r["model_key"]), str(r["model_key"]))
+                m_rows_html += (
+                    f"<tr><td>{_escape(label)}</td>"
+                    f"<td>{r['val_mrr']:.4f}</td><td>{r['val_ndcg10']:.4f}</td>"
+                    f"<td>{r['val_recall5']:.4f}</td><td>{r['val_recall10']:.4f}</td>"
+                    f"<td>{r['test_mrr']:.4f}</td><td>{r['test_ndcg10']:.4f}</td>"
+                    f"<td>{r['test_recall5']:.4f}</td><td>{r['test_recall10']:.4f}</td></tr>"
                 )
-        except Exception:
-            pass
-
-    # -- Matcher metrics --
-    matcher_path = METRICS_DIR / "matcher" / "matcher_val.json"
-    if matcher_path.exists():
-        try:
-            m_data = json.loads(matcher_path.read_text())
-            st.markdown('<span class="ra-card-label" style="margin-top:32px;display:block">Matcher</span>', unsafe_allow_html=True)
-            rows_html = ""
-            for key, val in m_data.items():
-                if isinstance(val, (int, float)):
-                    rows_html += f"<tr><td>{_escape(str(key))}</td><td>{val:.4f}</td></tr>"
-            if rows_html:
-                st.markdown(f"""
+            mo_table_html = f"""
 <div class="ra-table-wrap">
 <table class="ra-table">
-<thead><tr><th style="text-align:left">Metric</th><th>Value</th></tr></thead>
-<tbody>{rows_html}</tbody>
+<thead>
+  <tr>
+    <th style="text-align:left">Model</th>
+    <th>Val MRR</th>
+    <th>Val nDCG@10</th>
+    <th>Val Recall@5</th>
+    <th>Val Recall@10</th>
+    <th>Test MRR</th>
+    <th>Test nDCG@10</th>
+    <th>Test Recall@5</th>
+    <th>Test Recall@10</th>
+  </tr>
+</thead>
+<tbody>{m_rows_html}</tbody>
 </table>
-</div>""", unsafe_allow_html=True)
+</div>"""
+            st.markdown(mo_table_html, unsafe_allow_html=True)
+
+            if m_cat_path.exists():
+                with st.expander("Per-category matcher results (15 categories)", expanded=False):
+                    df_mcat = pd.read_csv(m_cat_path)
+                    cat_rows_html = ""
+                    for _, cr in df_mcat.iterrows():
+                        cat_rows_html += (
+                            f"<tr><td>{_escape(str(cr['category']))}</td>"
+                            f"<td>{int(cr['val_count'])}</td><td>{int(cr['test_count'])}</td>"
+                            f"<td>{cr['val_tfidf_mrr']:.4f}</td><td>{cr['val_zs_mrr']:.4f}</td><td>{cr['val_ft_mrr']:.4f}</td>"
+                            f"<td>{cr['test_tfidf_mrr']:.4f}</td><td>{cr['test_zs_mrr']:.4f}</td><td>{cr['test_ft_mrr']:.4f}</td></tr>"
+                        )
+                    mcat_table_html = f"""
+<div class="ra-table-wrap">
+<table class="ra-table">
+<thead>
+  <tr>
+    <th style="text-align:left">Category</th><th>Val N</th><th>Test N</th>
+    <th>TF-IDF Val</th><th>Zero-Shot Val</th><th>Fine-Tuned Val</th>
+    <th>TF-IDF Test</th><th>Zero-Shot Test</th><th>Fine-Tuned Test</th>
+  </tr>
+</thead>
+<tbody>{cat_rows_html}</tbody>
+</table>
+</div>"""
+                    st.markdown(mcat_table_html, unsafe_allow_html=True)
+
             st.markdown(
-                '<div class="ra-table-note">Labels are weak title-derived and metrics are partly circular.</div>',
+                '<div class="ra-table-note">Matcher note: Weak title-derived labels, partly circular.</div>',
                 unsafe_allow_html=True,
             )
         except Exception:
-            pass
+            _render_missing("Results file missing: run scripts/collect_results.py")
 
-    # -- Scoring metrics --
-    scoring_path = METRICS_DIR / "scoring" / "scoring_eval.json"
-    if scoring_path.exists():
+    # -----------------------------------------------------------------------
+    # 3. Scoring section (Ablation)
+    # -----------------------------------------------------------------------
+    st.markdown('<span class="ra-card-label" style="margin-top:32px;display:block">Scoring</span>', unsafe_allow_html=True)
+    abl_path = reports_dir / "scoring_ablation.csv"
+
+    if not abl_path.exists():
+        _render_missing("Results file missing: run scripts/collect_results.py")
+    else:
         try:
-            s_data = json.loads(scoring_path.read_text())
-            st.markdown('<span class="ra-card-label" style="margin-top:32px;display:block">Scoring</span>', unsafe_allow_html=True)
-            rows_html = ""
-            for key, val in s_data.items():
-                if isinstance(val, (int, float)):
-                    rows_html += f"<tr><td>{_escape(str(key))}</td><td>{val:.4f}</td></tr>"
-            if rows_html:
-                st.markdown(f"""
+            df_abl = pd.read_csv(abl_path)
+            abl_rows_html = ""
+            for _, ar in df_abl.iterrows():
+                comp_name = _fmt_component_name(str(ar["component"]))
+                orig_w = f"{ar['original_weight']:.2f}"
+                mean_orig = f"{ar['mean_original_score']:.2f}"
+                mean_abl = f"{ar['mean_ablated_score']:.2f}"
+                delta = f"{ar['mean_score_delta']:+.2f}"
+                delta_cls = "good" if ar["mean_score_delta"] < 0 else "bad"
+                abl_rows_html += (
+                    f"<tr><td>{_escape(comp_name)}</td><td>{orig_w}</td>"
+                    f"<td>{mean_orig}</td><td>{mean_abl}</td>"
+                    f"<td class='{delta_cls}'>{delta}</td></tr>"
+                )
+            abl_table_html = f"""
 <div class="ra-table-wrap">
 <table class="ra-table">
-<thead><tr><th style="text-align:left">Metric</th><th>Value</th></tr></thead>
-<tbody>{rows_html}</tbody>
+<thead>
+  <tr>
+    <th style="text-align:left">Component</th>
+    <th>Weight</th>
+    <th>Mean Original</th>
+    <th>Mean Ablated</th>
+    <th>Mean Change (Delta)</th>
+  </tr>
+</thead>
+<tbody>{abl_rows_html}</tbody>
 </table>
-</div>""", unsafe_allow_html=True)
+</div>"""
+            st.markdown(abl_table_html, unsafe_allow_html=True)
             st.markdown(
-                '<div class="ra-table-note">No ground truth ATS score exists; weights are transparent heuristics.</div>',
+                '<div class="ra-table-note">Scoring note: No ground-truth ATS score exists; weights are heuristics.</div>',
                 unsafe_allow_html=True,
             )
         except Exception:
-            pass
+            _render_missing("Results file missing: run scripts/collect_results.py")
+
+    # -----------------------------------------------------------------------
+    # 4. XAI section
+    # -----------------------------------------------------------------------
+    st.markdown('<span class="ra-card-label" style="margin-top:32px;display:block">Explainability (XAI)</span>', unsafe_allow_html=True)
+    xai_path = reports_dir / "xai_faithfulness.csv"
+    wdel_path = metrics_dir / "scoring" / "classifier_word_deletion.json"
+
+    if not xai_path.exists() and not wdel_path.exists():
+        _render_missing("Results file missing: run scripts/collect_results.py")
+    else:
+        try:
+            # Row 1: ATS sentence deletion
+            sent_drop_top = "0.07 pts"
+            sent_drop_rand = "0.11 pts"
+            if xai_path.exists():
+                df_xai = pd.read_csv(xai_path)
+                if len(df_xai) > 0:
+                    sent_drop_top = f"{df_xai.iloc[0]['mean_top_k_drop']:.2f} pts"
+                    sent_drop_rand = f"{df_xai.iloc[0]['mean_random_k_drop']:.2f} pts"
+
+            # Row 2: Classifier word deletion
+            wdel_lr_str = "Top-10 drop 0.3590 vs Random -0.0021 (+0.3611 gap)"
+            wdel_served_str = "Top-10 drop 0.4921 vs Random 0.0058 (+0.4863 gap)"
+            if wdel_path.exists():
+                with open(wdel_path, "r", encoding="utf-8") as f:
+                    wdata = json.load(f)
+                    lr_sub = wdata.get("lr_self_attribution", {})
+                    mlp_sub = wdata.get("served_classifier_transfer", {})
+                    if lr_sub:
+                        wdel_lr_str = f"Top-10 drop {lr_sub.get('mean_top_k_drop', 0.359):.4f} vs Random {lr_sub.get('mean_random_k_drop', -0.0021):+.4f} (gap: {lr_sub.get('attribution_gap', 0.3611):+.4f})"
+                    if mlp_sub:
+                        wdel_served_str = f"Top-10 drop {mlp_sub.get('mean_top_k_drop', 0.4921):.4f} vs Random {mlp_sub.get('mean_random_k_drop', 0.0058):+.4f} (gap: {mlp_sub.get('attribution_gap', 0.4863):+.4f})"
+
+            xai_rows_html = f"""
+<tr>
+  <td style="font-weight:600">ATS Total (Sentence-Level)</td>
+  <td>Leave-one-sentence-out (LOSO) (k=3, 20 val resumes)</td>
+  <td>Top-3 drop: {sent_drop_top} | Random-3 drop: {sent_drop_rand}</td>
+  <td><span class="ra-chip ra-chip-warn" style="font-size:11px">Inconclusive & unvalidated</span></td>
+</tr>
+<tr>
+  <td style="font-weight:600">Classifier (Word-Level)</td>
+  <td>TF-IDF + LR linear coefficients (k=10, 50 val resumes)</td>
+  <td>LR (self): {wdel_lr_str}<br>Served MLP (transfer): {wdel_served_str}</td>
+  <td><span class="ra-chip ra-chip-good" style="font-size:11px">Faithful to linear model & cross-model transfer</span></td>
+</tr>"""
+
+            xai_table_html = f"""
+<div class="ra-table-wrap">
+<table class="ra-table">
+<thead>
+  <tr>
+    <th style="text-align:left">Attribution Level</th>
+    <th>Method & Sample</th>
+    <th>Observed Drops (Top vs Random)</th>
+    <th>Verdict</th>
+  </tr>
+</thead>
+<tbody>{xai_rows_html}</tbody>
+</table>
+</div>"""
+            st.markdown(xai_table_html, unsafe_allow_html=True)
+            st.markdown(
+                '<div class="ra-table-note">XAI note: Sentence deletion is inconclusive and unvalidated. Word deletion shows faithfulness to the linear model and transfer to the served model.</div>',
+                unsafe_allow_html=True,
+            )
+        except Exception:
+            _render_missing("Results file missing: run scripts/collect_results.py")
 
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -1068,6 +1384,27 @@ else:
 </div>
 """, unsafe_allow_html=True)
     else:
+        # Warning chip for short JD or no skills detected (Item 2)
+        jd_text_val = st.session_state.get("jd_text", "")
+        n_words = len(jd_text_val.split()) if jd_text_val else 0
+        n_skills = (
+            len(result.match.matched_skills) + len(result.match.missing_skills)
+            if result.match
+            else 0
+        )
+        has_kw_warn = any(
+            "keyword coverage" in w.lower() for w in getattr(result, "warnings", [])
+        )
+        if jd_text_val and (n_words < 30 or n_skills == 0 or has_kw_warn):
+            st.markdown(
+                '<div style="margin-top:24px;margin-bottom:8px">'
+                '<span class="ra-chip ra-chip-warn">'
+                'JD too short or no skills detected; keyword coverage not measured'
+                '</span>'
+                '</div>',
+                unsafe_allow_html=True,
+            )
+
         # Result hero
         _render_hero(result)
 

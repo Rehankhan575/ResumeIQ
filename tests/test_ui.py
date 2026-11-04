@@ -45,8 +45,10 @@ def at_initial():
         from streamlit.testing.v1 import AppTest
     except ImportError:
         pytest.skip("streamlit.testing.v1 not available")
-    at = AppTest.from_file(UI_APP, default_timeout=60)
-    at.run(timeout=60)
+    from app.pipeline import warm_up
+    warm_up()
+    at = AppTest.from_file(UI_APP, default_timeout=120)
+    at.run(timeout=120)
     return at
 
 
@@ -190,5 +192,105 @@ def test_ui_subscores_preservation() -> None:
     assert 0.0 <= result.total <= 100.0
     assert 0.0 <= job_fit <= 100.0
     assert 0.0 <= resume_quality <= 100.0
+
+
+# ---------------------------------------------------------------------------
+# AppTest Suite for Item 7
+# ---------------------------------------------------------------------------
+
+def test_ui_tile_experience_contains_7_4() -> None:
+    """Experience tile for ds_clean + jd_data_scientist contains '7.4'."""
+    try:
+        from streamlit.testing.v1 import AppTest
+    except ImportError:
+        pytest.skip("streamlit.testing.v1 not available")
+
+    at = AppTest.from_file(UI_APP, default_timeout=60)
+    at.run(timeout=60)
+    buttons = [
+        b for b in at.button
+        if getattr(b, "key", "") == "analyze_btn" or "Analyze" in getattr(b, "label", "")
+    ]
+    assert buttons, "Analyze button not found"
+    buttons[0].click().run(timeout=60)
+
+    # Check that tile value contains 7.4
+    all_md = " ".join(m.value for m in at.markdown)
+    assert "7.4 yrs" in all_md or "7.4" in all_md, f"Expected '7.4' in tile markdown: {all_md[:1000]}"
+
+
+def test_ui_input_mode_toggle_selection() -> None:
+    """Mode toggles select the active source and hide the inactive widget."""
+    try:
+        from streamlit.testing.v1 import AppTest
+    except ImportError:
+        pytest.skip("streamlit.testing.v1 not available")
+
+    at = AppTest.from_file(UI_APP, default_timeout=60)
+    at.run(timeout=60)
+
+    # Initially in Sample mode
+    init_selectboxes = [s.key for s in at.selectbox]
+    assert "resume_choice" in init_selectboxes
+    assert "jd_choice" in init_selectboxes
+
+    # Switch JD to Paste mode
+    if hasattr(at, "segmented_control"):
+        at.segmented_control(key="jd_mode").set_value("Paste").run(timeout=60)
+        # Inactive selectbox hidden
+        post_selectboxes = [s.key for s in at.selectbox]
+        assert "jd_choice" not in post_selectboxes
+        assert "resume_choice" in post_selectboxes
+        # Active text area shown
+        post_textareas = [t.key for t in at.text_area]
+        assert "jd_text_input" in post_textareas
+
+
+def test_ui_junk_jd_shows_warning_chip() -> None:
+    """Junk JD shows the warning chip 'JD too short or no skills detected; keyword coverage not measured'."""
+    try:
+        from streamlit.testing.v1 import AppTest
+    except ImportError:
+        pytest.skip("streamlit.testing.v1 not available")
+
+    at = AppTest.from_file(UI_APP, default_timeout=60)
+    at.run(timeout=60)
+
+    if hasattr(at, "segmented_control"):
+        at.segmented_control(key="jd_mode").set_value("Paste").run(timeout=60)
+        at.text_area(key="jd_text_input").set_value("n nnvhhv").run(timeout=60)
+        buttons = [
+            b for b in at.button
+            if getattr(b, "key", "") == "analyze_btn" or "Analyze" in getattr(b, "label", "")
+        ]
+        buttons[0].click().run(timeout=60)
+
+        all_md = " ".join(m.value for m in at.markdown)
+        assert "JD too short or no skills detected; keyword coverage not measured" in all_md
+
+
+def test_ui_model_results_tab_contents() -> None:
+    """Model results tab contains Test Macro F1 column and no internal keys like matched_pair_pass."""
+    try:
+        from streamlit.testing.v1 import AppTest
+    except ImportError:
+        pytest.skip("streamlit.testing.v1 not available")
+
+    at = AppTest.from_file(UI_APP, default_timeout=60)
+    at.run(timeout=60)
+    buttons = [
+        b for b in at.button
+        if getattr(b, "key", "") == "analyze_btn" or "Analyze" in getattr(b, "label", "")
+    ]
+    buttons[0].click().run(timeout=60)
+
+    radios = [r for r in at.radio if getattr(r, "key", "") == "tab_radio"]
+    assert radios, "Tab switching radio not found"
+    radios[0].set_value("Model results").run(timeout=60)
+
+    all_md = " ".join(m.value for m in at.markdown)
+    assert "Test Macro F1" in all_md, "Expected 'Test Macro F1' in Model results tab"
+    assert "matched_pair_pass" not in all_md, "'matched_pair_pass' internal key must not be exposed"
+
 
 

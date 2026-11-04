@@ -419,7 +419,8 @@ def score_resume(
         :class:`ScoreResult` with total 0-100, letter grade (A-F), components,
         missing_skills, and issues sorted by estimated point gain.
     """
-    weights = getattr(settings, "score_weights", SCORE_WEIGHTS)
+    weights = dict(getattr(settings, "score_weights", SCORE_WEIGHTS))
+    scoring_warnings: List[str] = []
 
     # 1. Handle empty or corrupted resume gracefully
     if not parsed_resume or not parsed_resume.raw_text.strip():
@@ -446,7 +447,34 @@ def score_resume(
     match_result = match if match is not None else _get_matcher_result(parsed_resume, jd)
     semantic_score = match_result.score if jd is not None else 0.80
 
-    # 3. Keyword coverage & missing skills
+    # 3. Item 2: Check unmeasurable components & populate JD skills if missing
+    excluded_components: Set[str] = set()
+    if jd is not None:
+        if not jd.required_skills and jd.text.strip():
+            try:
+                from app.extras.ranking import _populate_jd_skills
+                jd = _populate_jd_skills(jd)
+            except Exception:
+                pass
+
+        if not jd.required_skills:
+            excluded_components.add("keyword_coverage")
+            scoring_warnings.append("Job description has no extractable required skills; keyword coverage not measured.")
+
+        min_years = jd.min_years if jd.min_years is not None else getattr(jd, "min_years_experience", None)
+        if min_years is None or min_years <= 0:
+            excluded_components.add("experience_fit")
+            scoring_warnings.append("Job description specifies no minimum years of experience; experience fit excluded from scoring.")
+
+    # Renormalise remaining weights if components are excluded
+    active_keys = [k for k in weights if k not in excluded_components]
+    sum_active = sum(weights[k] for k in active_keys)
+    if sum_active > 0 and excluded_components:
+        effective_weights = {k: (weights[k] / sum_active if k in active_keys else 0.0) for k in weights}
+    else:
+        effective_weights = weights
+
+    # 4. Keyword coverage & missing skills
     missing_skills: List[str] = []
     if jd is not None and jd.required_skills:
         resume_skills_lower = {s.lower() for s in parsed_resume.skills}
@@ -460,27 +488,27 @@ def score_resume(
                 missing_skills.append(req)
         coverage_score = len(matched_req) / len(jd.required_skills)
     else:
-        coverage_score = 1.0 if jd is not None else 0.85
+        coverage_score = 0.0 if (jd is not None and "keyword_coverage" in excluded_components) else (1.0 if jd is not None else 0.85)
 
-    # 4. Section completeness
+    # 5. Section completeness
     sec_score, sec_msgs = _score_section_completeness(parsed_resume)
 
-    # 5. Formatting
+    # 6. Formatting
     fmt_score, fmt_issues = score_formatting(parsed_resume.layout)
 
-    # 6. Experience fit
+    # 7. Experience fit
     exp_fit_score, exp_fit_msg = _score_experience_fit(parsed_resume, jd)
 
-    # 7. Quantified achievements
+    # 8. Quantified achievements
     quant_score, quant_msg = _score_quantified_achievements(parsed_resume)
 
-    # 8. Action verbs
+    # 9. Action verbs
     action_score, action_msg = _score_action_verbs(parsed_resume)
 
-    # 9. Readability
+    # 10. Readability
     read_score, read_msg = _score_readability(parsed_resume)
 
-    # 10. Contact completeness
+    # 11. Contact completeness
     contact_score, contact_msgs = _score_contact_completeness(parsed_resume)
 
     components: Dict[str, float] = {
@@ -495,17 +523,17 @@ def score_resume(
         "contact_completeness": round(contact_score, 4),
     }
 
-    # Total composite score: sum(weight * component_score) * 100
-    raw_total = sum(weights[k] * components[k] for k in weights) * 100.0
+    # Total composite score: sum(effective_weight * component_score) * 100
+    raw_total = sum(effective_weights[k] * components[k] for k in effective_weights) * 100.0
     total = round(max(0.0, min(100.0, raw_total)), 2)
     grade = _compute_grade(total)
 
-    # 11. Generate issues sorted by estimated point gain
+    # 12. Generate issues sorted by estimated point gain
     # gain = weight * (1 - component_score) * 100
     issues: List[Issue] = []
 
     def _calc_gain(comp_name: str) -> float:
-        w = weights.get(comp_name, 0.0)
+        w = effective_weights.get(comp_name, 0.0)
         c_val = components.get(comp_name, 1.0)
         return round(w * (1.0 - c_val) * 100.0, 2)
 
@@ -630,6 +658,7 @@ def score_resume(
         issues=issues,
         match=match_result,
         predicted_categories=cats,
+        warnings=scoring_warnings,
     )
 
 

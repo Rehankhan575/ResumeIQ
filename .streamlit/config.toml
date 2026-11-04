@@ -1,6 +1,7 @@
 [server]
 # Allow Streamlit to serve files from app/ui/static/ so fonts load offline
 enableStaticServing = true
+maxUploadSize = 5
 
 [browser]
 gatherUsageStats = false

@@ -240,3 +240,66 @@ def test_render_html_escapes_content() -> None:
     assert "&amp;" in html_output
     assert '<mark class="ats-highlight ats-highlight-positive"' in html_output
     assert '<mark class="ats-highlight ats-highlight-keyword_match"' in html_output
+
+
+# ---------------------------------------------------------------------------
+# 5. Unmeasurable Components Handling
+# ---------------------------------------------------------------------------
+
+def test_unmeasurable_components_fixture_matrix_unchanged() -> None:
+    """The 15 fixture pairs produce scores matching preflight benchmarks to within 0.01."""
+    from app.pipeline import run_pipeline
+
+    expected_benchmarks = {
+        ("accountant_table.pdf", "jd_chef.txt"): 53.41,
+        ("accountant_table.pdf", "jd_data_scientist.txt"): 50.86,
+        ("accountant_table.pdf", "jd_software_engineer.txt"): 50.18,
+        ("chef_plain.docx", "jd_chef.txt"): 80.29,
+        ("chef_plain.docx", "jd_data_scientist.txt"): 57.27,
+        ("chef_plain.docx", "jd_software_engineer.txt"): 57.45,
+        ("ds_clean.pdf", "jd_chef.txt"): 55.50,
+        ("ds_clean.pdf", "jd_data_scientist.txt"): 84.88,
+        ("ds_clean.pdf", "jd_software_engineer.txt"): 60.53,
+        ("nurse_scanned.pdf", "jd_chef.txt"): 55.84,
+        ("nurse_scanned.pdf", "jd_data_scientist.txt"): 55.16,
+        ("nurse_scanned.pdf", "jd_software_engineer.txt"): 53.58,
+        ("swe_two_column.pdf", "jd_chef.txt"): 49.88,
+        ("swe_two_column.pdf", "jd_data_scientist.txt"): 54.42,
+        ("swe_two_column.pdf", "jd_software_engineer.txt"): 73.75,
+    }
+
+    for (res_name, jd_name), expected_score in expected_benchmarks.items():
+        res_path = FIXTURES_DIR / res_name
+        jd_path = FIXTURES_DIR / jd_name
+        res_bytes = res_path.read_bytes()
+        jd_text = jd_path.read_text(encoding="utf-8")
+        out = run_pipeline(res_bytes, res_name, jd_text)
+        assert abs(out.total - expected_score) <= 0.01, (
+            f"Score mismatch for {res_name} + {jd_name}: got {out.total:.2f}, expected {expected_score:.2f}"
+        )
+
+
+def test_unmeasurable_components_junk_jd(sample_resume: ParsedResume) -> None:
+    """ds_clean vs junk JD 'n nnvhhv' scores at least 20 points below ds_clean vs jd_data_scientist."""
+    jd_good_path = FIXTURES_DIR / "jd_data_scientist.txt"
+    jd_good_text = jd_good_path.read_text(encoding="utf-8")
+    jd_good = JobDescription(
+        text=jd_good_text,
+        title="Data Scientist",
+        required_skills=["Python", "Machine Learning", "SQL", "Pandas"],
+        min_years=3.0,
+    )
+    score_good = score_resume(sample_resume, jd_good)
+
+    # Junk JD with no detectable skills and no min_years
+    jd_junk = JobDescription(text="n nnvhhv", title="Unknown")
+    score_junk = score_resume(sample_resume, jd_junk)
+
+    # Must score at least 20 points below good match
+    diff = score_good.total - score_junk.total
+    assert diff >= 20.0, f"Expected drop >= 20.0 pts, got {diff:.2f} (good={score_good.total}, junk={score_junk.total})"
+
+    # Unmeasurable component warnings must be populated
+    assert any("keyword coverage" in w.lower() for w in score_junk.warnings)
+    assert any("experience fit" in w.lower() for w in score_junk.warnings)
+
