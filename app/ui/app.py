@@ -51,13 +51,18 @@ st.set_page_config(
 )
 
 # ---------------------------------------------------------------------------
-# Inject styles.css
+# Inject styles.css & Dark Glass Theme
 # ---------------------------------------------------------------------------
 
 def _load_css() -> None:
+    from app.ui.theme import DARK_GLASS_CSS
+    from app.ui.components import render_ambient_background
+
+    st.markdown(f"<style>{DARK_GLASS_CSS}</style>", unsafe_allow_html=True)
     if STYLES_CSS.exists():
         css = STYLES_CSS.read_text(encoding="utf-8")
         st.markdown(f"<style>{css}</style>", unsafe_allow_html=True)
+    st.markdown(render_ambient_background(), unsafe_allow_html=True)
 
 
 _load_css()
@@ -267,28 +272,10 @@ with st.sidebar:
 # 1. Hero Section
 # ---------------------------------------------------------------------------
 
-st.title(APP_NAME)
-st.write(
-    "See how an applicant tracking system (ATS) scores your resume against a "
-    "job description, and exactly what to fix."
-)
+from app.ui.components import render_hero, render_step_cards
 
-col_h1, col_h2, col_h3 = st.columns(3)
-with col_h1:
-    with st.container(border=True):
-        st.markdown(
-            "**1. Choose:** Upload a resume and paste a job description, or try a sample."
-        )
-with col_h2:
-    with st.container(border=True):
-        st.markdown(
-            "**2. Analyze:** We read the resume, match it to the job and score it out of 100."
-        )
-with col_h3:
-    with st.container(border=True):
-        st.markdown(
-            "**3. Improve:** Fix the top issues, then run it again to see your score change."
-        )
+st.markdown(render_hero(), unsafe_allow_html=True)
+st.markdown(render_step_cards(), unsafe_allow_html=True)
 
 # ---------------------------------------------------------------------------
 # 2. Inputs Section

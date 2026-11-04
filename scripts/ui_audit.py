@@ -421,9 +421,11 @@ class CDPAuditor:
         # 1. First load / Initial viewport
         await self.evaluate(
             """(() => {
-                const title = document.querySelector('h1') || document.body;
-                title.scrollIntoView({ behavior: 'instant', block: 'start' });
                 window.scrollTo(0, 0);
+                const c1 = document.querySelector('[data-testid="stAppViewContainer"]');
+                if (c1) c1.scrollTo(0, 0);
+                const c2 = document.querySelector('.main');
+                if (c2) c2.scrollTo(0, 0);
             })()"""
         )
         await asyncio.sleep(0.5)

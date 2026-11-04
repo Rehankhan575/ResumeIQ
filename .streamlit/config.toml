@@ -12,11 +12,11 @@ magicEnabled = false
 level = "warning"
 
 [theme]
-base = "light"
-backgroundColor = "#FFFFFF"
-secondaryBackgroundColor = "#F3F5FA"
-primaryColor = "#4F46E5"
-textColor = "#111827"
+base = "dark"
+backgroundColor = "#07080B"
+secondaryBackgroundColor = "#0F1117"
+primaryColor = "#2DD4BF"
+textColor = "#F8FAFC"
 
 [client]
 toolbarMode = "minimal"
