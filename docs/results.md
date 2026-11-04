@@ -37,17 +37,19 @@ Evaluated via paired bootstrap differences (1,000 resamples, seed 42) and paired
 | **MLP vs. LR** | Macro-F1 | +0.0222 | -0.0220 | +0.0569 | 0.3480 | — | — |
 | **MLP vs. LR** | Accuracy | -0.0107 | -0.0428 | +0.0214 | 0.5980 | 0.2368 | 0.6265 |
 
-- **DistilBERT vs. LR:** DistilBERT outperforms Logistic Regression with statistical significance on both Macro-F1 (+0.0495, $p=0.0360$) and Accuracy (+0.0642, $p=0.0220$, McNemar $p=0.0101$).
-- **DistilBERT vs. MLP:** DistilBERT achieves a statistically significant accuracy advantage (+0.0749, $p=0.0100$, McNemar $p=0.0081$), but its Macro-F1 difference (+0.0273, 95% CI `[-0.0250, +0.0901]`, $p=0.2800$) spans zero, meaning the advantage on balanced category representation is within noise.
-- **MLP vs. LR:** Neither Macro-F1 (diff +0.0222, 95% CI `[-0.0220, +0.0569]`, $p=0.3480$) nor Accuracy (diff -0.0107, 95% CI `[-0.0428, +0.0214]`, $p=0.5980$, McNemar $p=0.6265$) shows any statistically significant difference.
-
-### Key Takeaways
-- **Validation Macro-F1:** Logistic Regression: 0.5913, MLP: 0.6001, DistilBERT: 0.5675.
-- **Test Macro-F1:** Logistic Regression: 0.5959, MLP: 0.6181, DistilBERT: 0.6454.
-- Differences are within noise on about 370 validation resumes (~15 samples per class across 24 classes).
-- The production model was selected by validation F1 (MLP at 0.6001).
-- DistilBERT achieved the highest test number (0.6454 test macro-F1, 72.73% test accuracy) but was not selected on test metrics and was trained for only 3 epochs due to compute constraints.
-- BiLSTM underfits significantly (0.1966 test macro-F1, 25.13% test accuracy) at this sample size.
+### Key Findings, Statistical Hypothesis Tests & Model Selection
+- **LR and MLP are indistinguishable on test** across paired tests for both macro-F1 (diff +0.0222, 95% CI `[-0.0220, +0.0569]`, $p=0.3480$) and accuracy (diff -0.0107, 95% CI `[-0.0428, +0.0214]`, $p=0.5980$, McNemar $\chi^2 = 0.2368, p=0.6265$).
+- **DistilBERT scores higher on test:**
+  - vs. LR: macro-F1 +0.050 (+0.0495, 95% CI `[+0.0056, +0.0931]`, $p=0.0360$) and accuracy +6.4 pts (+0.0642, 95% CI `[+0.0160, +0.1096]`, $p=0.0220$, McNemar $p=0.0101$).
+  - vs. MLP: accuracy +7.5 pts (+0.0749, 95% CI `[+0.0241, +0.1257]`, $p=0.0100$, McNemar $p=0.0081$), but its macro-F1 gain over MLP (+0.0273, 95% CI `[-0.0250, +0.0901]`, $p=0.2800$) is not statistically significant.
+- **Caveats stated in the same place:**
+  - Six paired hypothesis tests were evaluated with no multiplicity correction.
+  - All results derive from a single test split of 374 resumes (~15 samples per class across 24 classes).
+  - On validation, DistilBERT did NOT outperform (val macro-F1 0.5675 vs. MLP 0.6001), so validation and test disagree.
+  - DistilBERT trained for only 3 epochs due to compute constraints; the BiLSTM underfits (0.1966 test macro-F1, 25.13% test accuracy).
+- **Served Model Selection Rationale:**
+  - The served classifier is the MLP because the selection rule (val macro-F1) was fixed before the test set was opened.
+  - Choosing DistilBERT because it won on test would be test-set selection; a fresh holdout would be needed to justify a switch.
 
 ---
 
@@ -118,7 +120,7 @@ Ablation of each of the 9 scoring components. Scores for unrelated pairs sit nea
     - Top-10 LR words mean probability drop: **0.4921** (49.21 percentage points drop)
     - Random-10 non-stopwords mean probability drop: **0.0058** (0.58 percentage points drop)
     - Net attribution gap: **+0.4863** (48.63 percentage points degradation)
-    - Verdict: **faithful to the linear model (verified by deletion)** and transfers strongly to the served non-linear MLP classifier.
+    - Verdict: **words picked by the LR also reduce the served model's probability (cross-model transfer)**.
 - **Sub-Score Decomposition (UI Result Hero):** The composite ATS score is partitioned into two orthogonal sub-scores:
   - **Job fit** ($w=0.55$): weighted combination of `semantic_match` (0.25), `keyword_coverage` (0.20), and `experience_fit` (0.10) renormalized to 0–100.
   - **Resume quality** ($w=0.45$): weighted combination of the remaining 6 components (`section_completeness` 0.10, `formatting` 0.10, `quantified_achievements` 0.10, `action_verbs` 0.05, `readability` 0.05, `contact_completeness` 0.05) renormalized to 0–100.

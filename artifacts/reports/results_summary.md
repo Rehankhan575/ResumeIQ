@@ -15,11 +15,11 @@ Train split: 1,739 resumes; Val split: 370 resumes; Test split: 374 resumes.
 | **BiLSTM + Pretrained Embeddings** | 74.30% | 0.7091 | 23.51% | 0.1860 | 25.13% | 0.1966 | 0.5231 |
 | **DistilBERT (Fine-tuned, 3 epochs)** | 75.85% | 0.6748 | 65.14% | 0.5675 | 72.73% | 0.6454 | 0.1073 |
 
-> **Key Classifier Takeaways:**
-> - **DistilBERT** achieves the highest generalization accuracy (72.73% test accuracy, 0.6454 test macro F1) with the smallest generalization gap (0.1073).
-> - **TF-IDF + Logistic Regression** provides an ultra-fast competitive baseline (66.31% test accuracy, 0.5959 test macro F1) in under 1 second of training.
-> - **TF-IDF + MLP** suffers from severe memorization on unigram/bigram features (1.0000 train F1 vs 0.6001 val F1).
-> - **BiLSTM** underfits drastically (25.13% test accuracy) due to limited dataset scale (~1.7k train samples across 24 classes).
+> **Key Classifier Takeaways & Hypothesis Testing:**
+> - **LR and MLP are indistinguishable on test** (macro-F1 and accuracy, paired tests: macro-F1 diff +0.0222, p=0.348; accuracy diff -0.0107, p=0.598, McNemar p=0.6265).
+> - **DistilBERT scores higher on test:** vs LR macro-F1 +0.050 (95% CI [0.0056, 0.0931], p=0.036) and accuracy +6.4 pts (+0.0642, p=0.022, McNemar p=0.0101); vs MLP accuracy +7.5 pts (+0.0749, p=0.010, McNemar p=0.0081), but its macro-F1 gain over MLP (+0.0273, 95% CI [-0.0250, 0.0901], p=0.280) is not significant.
+> - **Caveats:** six paired tests with no multiplicity correction; one test split of 374 resumes; on validation DistilBERT did NOT outperform (val macro-F1 lower than the MLP: 0.5675 vs 0.6001), so validation and test disagree; DistilBERT trained only 3 epochs; the BiLSTM underfits (0.1966 test macro-F1, 25.13% test accuracy).
+> - **Served Classifier:** The served classifier is the MLP because the selection rule (val macro-F1) was fixed before the test set was opened; choosing DistilBERT because it won on test would be test-set selection; a fresh holdout would be needed to justify a switch.
 
 ## 2. Stage 4 Semantic Resume-JD Matching
 
@@ -77,9 +77,9 @@ Evaluated on paired and un-paired resumes with 9 distinct weighted score compone
 
 - **Evaluated Pairs:** 20
 - **Matched Pair Check:** PASSED
-- **Mean Top-k Keyword Perturbation Drop:** 0.0700
-- **Mean Random Keyword Perturbation Drop:** 0.1100
-- **LIME/Perturbation Faithfulness Check:** `False` (honest empirical observation: top keyword removal causes smaller score drop than random word drop due to broad TF-IDF term overlap in long text).
+- **Mean Top-k Sentence Erasure Drop:** 0.0700
+- **Mean Random Sentence Erasure Drop:** 0.1100
+- **Sentence Erasure Faithfulness Check:** `False` (honest empirical observation: top-3 sentence removal causes 0.07 pt drop vs 0.11 pt drop for random-3 sentences; ATS sentence explanations are inconclusive and unvalidated).
 - **Scoring Latency:** Mean 48.49 ms, Median 48.34 ms, P95 54.80 ms (Total compute time: 17.16 s).
 
 ## 4. Stage 1 & 2 Parsing and Extraction Verification

@@ -36,7 +36,31 @@ All models were tuned strictly on the validation set. The test set was touched *
 | **BiLSTM** | 0.7091 | 0.1860 | 0.1966 | 0.7430 | 0.2351 | 0.2513 | +0.5231 |
 | **DistilBERT** | 0.6748 | 0.5675 | **0.6454** | 0.7585 | **0.6514** | **0.7273** | **+0.1073** |
 
-*Note: Model selection by validation macro-F1 chose **TF-IDF + MLP** (0.6001) as the production checkpoint. On unseen test data, DistilBERT exhibited the highest overall generalization (0.6454 macro-F1, 72.7% accuracy) and the smallest overfitting gap (+0.1073).*
+### Paired Hypothesis Testing & Statistical Analysis
+Evaluated across 1,000 bootstrap resamples (seed 42) and paired McNemar tests on the 374 test set samples (`artifacts/reports/classifier_paired_comparison.csv`):
+
+| Comparison | Metric | Diff (A − B) | 95% CI Lower | 95% CI Upper | Bootstrap p-value | McNemar $\chi^2$ (df=1) | McNemar p-value |
+| :--- | :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| **DistilBERT vs. LR** | Macro-F1 | **+0.0495** | +0.0056 | +0.0931 | 0.0360 | — | — |
+| **DistilBERT vs. LR** | Accuracy | **+0.0642** | +0.0160 | +0.1096 | 0.0220 | 6.6125 | 0.0101 |
+| **DistilBERT vs. MLP** | Macro-F1 | +0.0273 | -0.0250 | +0.0901 | 0.2800 | — | — |
+| **DistilBERT vs. MLP** | Accuracy | **+0.0749** | +0.0241 | +0.1257 | 0.0100 | 7.0096 | 0.0081 |
+| **MLP vs. LR** | Macro-F1 | +0.0222 | -0.0220 | +0.0569 | 0.3480 | — | — |
+| **MLP vs. LR** | Accuracy | -0.0107 | -0.0428 | +0.0214 | 0.5980 | 0.2368 | 0.6265 |
+
+### Findings & Caveats
+- **LR and MLP are indistinguishable on test** across both macro-F1 (diff +0.0222, 95% CI `[-0.0220, +0.0569]`, $p=0.3480$) and accuracy (diff -0.0107, 95% CI `[-0.0428, +0.0214]`, $p=0.5980$, McNemar $p=0.6265$).
+- **DistilBERT scores higher on test:**
+  - vs. LR: macro-F1 +0.050 (95% CI `[+0.0056, +0.0931]`, $p=0.0360$) and accuracy +6.4 pts (+0.0642, 95% CI `[+0.0160, +0.1096]`, $p=0.0220$, McNemar $p=0.0101$).
+  - vs. MLP: accuracy +7.5 pts (+0.0749, 95% CI `[+0.0241, +0.1257]`, $p=0.0100$, McNemar $p=0.0081$), but its macro-F1 gain over MLP (+0.0273, 95% CI `[-0.0250, +0.0901]`, $p=0.2800$) is not significant.
+- **Caveats stated in the same place:**
+  - Six paired tests were conducted with no multiplicity correction.
+  - All comparisons rest on a single test split of 374 resumes (~15 samples per class across 24 classes).
+  - On validation, DistilBERT did NOT outperform (val macro-F1 0.5675 vs. MLP 0.6001), so validation and test disagree.
+  - DistilBERT was trained for only 3 epochs due to compute limits; the BiLSTM underfits (0.1966 test macro-F1, 25.13% test accuracy).
+- **Production Model Selection:**
+  - The served classifier is the MLP because the selection rule (val macro-F1) was fixed before the test set was opened.
+  - Choosing DistilBERT because it won on test would be test-set selection; a fresh holdout would be needed to justify a switch.
 
 ---
 

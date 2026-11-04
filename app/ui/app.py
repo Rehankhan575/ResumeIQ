@@ -929,7 +929,13 @@ def _render_model_results_tab() -> None:
 </table>
 </div>""", unsafe_allow_html=True)
                 st.markdown(
-                    '<div class="ra-table-note">LR, MLP and DistilBERT are statistically close on about 370 val resumes.</div>',
+                    '<div class="ra-table-note">'
+                    'LR and MLP are indistinguishable on test (macro-F1 and accuracy, paired tests). '
+                    'DistilBERT scores higher on test: vs LR macro-F1 +0.050 (95% CI [0.0056, 0.0931], p=0.036) and accuracy +6.4 pts (+0.0642, p=0.022); '
+                    'vs MLP accuracy +7.5 pts (+0.0749, p=0.010), but its macro-F1 gain over MLP (+0.0273, 95% CI [-0.0250, 0.0901], p=0.280) is not significant. '
+                    'Caveats: six paired tests with no multiplicity correction; one test split of 374 resumes; on validation DistilBERT did NOT outperform (val macro-F1 0.5675 vs MLP 0.6001), so validation and test disagree; DistilBERT trained only 3 epochs; the BiLSTM underfits. '
+                    'The served classifier is the MLP because the selection rule (val macro-F1) was fixed before the test set was opened; choosing DistilBERT because it won on test would be test-set selection; a fresh holdout would be needed to justify a switch.'
+                    '</div>',
                     unsafe_allow_html=True,
                 )
         except Exception:

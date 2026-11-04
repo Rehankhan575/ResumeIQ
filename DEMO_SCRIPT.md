@@ -114,17 +114,21 @@ An exact step-by-step walkthrough for demonstrating the AI-Powered Resume Screen
   1. Click the **Model results** tab.
   2. Review the three embedded benchmark tables:
 - **Key Talking Points:**
-  - **Classifier Comparison:**
+  - **Classifier Comparison & Selection:**
     - On validation macro-F1: Logistic Regression is **0.5913**, MLP is **0.6001**, DistilBERT is **0.5675**.
     - On test macro-F1: Logistic Regression is **0.5959**, MLP is **0.6181**, DistilBERT is **0.6454**.
-    - Differences are within noise on about 370 validation resumes (~15 per class across 24 classes).
-    - The production model was selected by validation F1 (MLP). DistilBERT achieved the highest test number (0.6454 macro-F1, 72.73% test accuracy) but was not selected on it and was trained for only 3 epochs due to compute limits. BiLSTM underfits (0.1966 test macro-F1, 25.13% test accuracy).
+    - **LR and MLP are indistinguishable on test** across paired tests for macro-F1 (diff +0.0222, $p=0.3480$) and accuracy (diff -0.0107, $p=0.5980$, McNemar $p=0.6265$).
+    - **DistilBERT scores higher on test:** vs. LR macro-F1 +0.050 (95% CI `[+0.0056, +0.0931]`, $p=0.0360$) and accuracy +6.4 pts (+0.0642, $p=0.0220$, McNemar $p=0.0101$); vs. MLP accuracy +7.5 pts (+0.0749, $p=0.0100$, McNemar $p=0.0081$), but its macro-F1 gain over MLP (+0.0273, 95% CI `[-0.0250, +0.0901]`, $p=0.2800$) is not significant.
+    - **Caveats:** Six paired tests with no multiplicity correction; one test split of 374 resumes (~15 per class across 24 classes); on validation DistilBERT did NOT outperform (val macro-F1 0.5675 vs. MLP 0.6001), so validation and test disagree; DistilBERT trained only 3 epochs; BiLSTM underfits (0.1966 test macro-F1, 25.13% test accuracy).
+    - **Why We Serve the MLP:** The served classifier is the MLP because the selection rule (val macro-F1) was fixed before the test set was opened; choosing DistilBERT because it won on test would be test-set selection; a fresh holdout would be needed to justify a switch.
   - **Siamese Matcher:**
     - Fine-tuned SBERT achieved **0.7798 Test MRR**, representing **+14.87 points vs zero-shot** (0.7798 vs 0.6311) and **+14.65 points vs TF-IDF baseline** (0.7798 vs 0.6333); Test nDCG@10 is **0.7286** (+27.54 points vs zero-shot).
     - *Caveat:* Labels are weak, title-derived and the evaluation metric is partly circular. Broad domains like BPO (test MRR 0.0326) and Consultant (test MRR 0.2032) suffer from high overlap.
   - **Explainability (XAI):**
     - The explainer uses leave-one-sentence-out (LOSO) for sentence importance and TF-IDF+LR coefficients for word importance.
-    - The faithfulness test was inconclusive (top-3 sentence removal dropped scores by 0.07 pts vs 0.11 pts for 3 random sentences on 20 validation resumes, k=3), and the explanations are not validated.
+    - Word importance on LR is faithful to the linear model (verified by deletion) with a +0.3611 drop gap, and words picked by the LR also reduce the served model's probability (cross-model transfer) with a +0.4863 drop gap on the served MLP.
+    - The composite ATS sentence faithfulness test was inconclusive (top-3 sentence removal dropped scores by 0.07 pts vs 0.11 pts for 3 random sentences on 20 validation resumes, k=3), and sentence explanations remain inconclusive and unvalidated.
+  - **Closing Line:** "In summary, the platform serves the TF-IDF + MLP classifier because our selection rule was locked on validation macro-F1 before unblinding test data; switching to DistilBERT purely because it scored higher on test would constitute test-set selection. With our Siamese matcher, explainability verified through feature deletion, and deterministic privacy guards, this system provides a rigorous, transparent recruitment decision tool."
 
 ---
 
