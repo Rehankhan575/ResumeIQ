@@ -26,8 +26,15 @@ Over **75% of job seekers** are eliminated by commercial Applicant Tracking Syst
 
 ## 📸 Application Screenshots
 
-### 1. ATS Evaluation & 9-Rubric Decomposition
-> Comprehensive diagnostic scorecard featuring the composite ATS grade, weighted rubric breakdown, prioritized point-gain action items, and real-time category inference.
+### 1. Interactive Dark-Glass Dashboard & Scorecard
+> Comprehensive diagnostic scorecard featuring the composite ATS score ring (85/100, Grade B), 9-Rubric ATS Decomposition, Prioritized Action Items with estimated point gains (+10.0 pts), Skill Extraction & Match, Classifier Inference, and Latency Metrics.
+
+![ResumeIQ Live Dashboard](docs/screenshots/dashboard_live_demo.jpg)
+
+---
+
+### 2. Full High-Res Results Bento Grid
+> Detailed analytical bento grid view showing the sub-scores (Job Match 95.9% vs Resume Quality 71.5%), 9-rubric weighted distribution, and live execution latency (< 3s).
 
 ![ResumeIQ Overview](docs/screenshots/react_analyze_84_9.png)
 
@@ -150,13 +157,16 @@ $$\text{ATS Score} = \sum_{i=1}^{9} w_i \times S_i$$
 
 ## 🔬 Dataset & Preprocessing
 
-* **Primary Corpus:** LiveCareer Resume Corpus containing **2,484 resumes** across **24 industry categories** (Information Technology, Engineering, Finance, Healthcare, Sales, etc.).
-* **Job Description Corpus:** Over 2,000 real-world tech and corporate job postings scraped from Kaggle, standardized for skill extraction.
-* **Data Splitting:** Stratified **80% Training (1,987 resumes)**, **10% Validation (248 resumes)**, and **10% Test (249 resumes)** to ensure zero category imbalance or evaluation leakage.
-* **Preprocessing Pipeline:**
-  * Regex-based PII scrubbing (anonymizing phone, email, and candidate identity during model training).
-  * Header leakage elimination (removing explicit category banners to prevent shortcut learning).
-  * Longest-match-first token scanning with 36 domain-specific disambiguation rules (e.g., distinguishing *Go* programming language from common verb *go*).
+* **Primary Corpus:** Curated LiveCareer Resume Corpus containing **2,484 resumes** across **24 diverse occupational domains** (Information Technology, Engineering, Banking, Healthcare, Sales, Legal, etc.).
+* **Job Description Corpus:** Over 2,000 real-world tech and corporate job descriptions collected from Kaggle, standardized for skill extraction and ranking.
+* **Splitting Strategy:** Deterministic **70/15/15 Stratified Group Split** (seed 42):
+  * **Training Split (70%):** 1,739 resumes
+  * **Validation Split (15%):** 370 resumes
+  * **Test Split (15%):** 374 resumes (held-out, completely unseen during training)
+* **Target Leakage Prevention & Sanitization:**
+  * Automated category token sanitization and explicit header banner stripping (e.g. removing "HR Manager Resume") prior to vectorization to prevent shortcut learning.
+  * Union-Find deduplication and TF-IDF cosine similarity $\ge 0.90$ grouping to ensure identical resumes never leak across train/val/test splits.
+  * Vectorizers and label encoders fit strictly on the 1,739 training resumes and applied as transforms on val/test splits.
 
 ---
 
@@ -164,14 +174,19 @@ $$\text{ATS Score} = \sum_{i=1}^{9} w_i \times S_i$$
 
 ### Resume Category Classifier (24 Occupational Classes)
 
-| Model Architecture | Features / Embeddings | Test Macro-F1 | Test Accuracy | CPU Latency | Parameters |
-| :--- | :--- | :---: | :---: | :---: | :---: |
-| **Logistic Regression (Baseline)** | TF-IDF (10,000 max n-grams) | 0.5841 | 63.85% | **0.8 ms** | 240K |
-| **TF-IDF + Multi-Layer Perceptron (MLP)** | TF-IDF (2-Layer: 512, 128, ReLU, Dropout) | 0.6120 | 66.26% | 3.2 ms | 5.2M |
-| **Bidirectional LSTM (BiLSTM)** | FastText 300-d Word Embeddings | 0.4912 | 54.21% | 28.5 ms | 1.8M |
-| **Fine-Tuned DistilBERT** *(Selected)* | Pretrained `distilbert-base-uncased` | **0.6240** | **67.87%** | **42.1 ms** | 66.3M |
+We systematically benchmarked four classification architectures across curriculum units (Linear, Feedforward, Recurrent, and Pretrained Transformers) evaluated on the 374 held-out test resumes with **Bootstrap 95% Confidence Intervals (1,000 resamples)**:
 
-> **Design Choice:** DistilBERT was selected for domain classification due to its bidirectional contextual attention over ambiguous multi-discipline technical terminology, while retaining a sub-50ms CPU execution time.
+| Model Architecture | Syllabus Unit | Test Macro-F1 (95% CI) | Test Accuracy | Train-Val Gap | Inference Latency |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| **TF-IDF + Logistic Regression** | Unit I (Linear) | 0.5959 `[0.5465, 0.6352]` | 66.31% | -0.0072 | **< 1 ms** |
+| **TF-IDF + 2-Layer MLP** *(Served)* | Unit I (Feedforward) | 0.6181 `[0.5606, 0.6587]` | 65.24% | -0.0088 | 3.2 ms |
+| **Bidirectional LSTM (BiLSTM)** | Unit III (Recurrent) | 0.1966 | 25.13% | +0.0384 | 28.5 ms |
+| **Fine-Tuned DistilBERT** (3 epochs) | Unit IV (Transformers) | **0.6454** `[0.5970, 0.6874]` | **72.73%** | +0.4075 | 42.1 ms |
+
+#### Paired Statistical Significance Tests (374 Test Resumes)
+* **DistilBERT vs. Logistic Regression:** Macro-F1 difference $+0.0495$ (95% CI `[+0.0056, +0.0931]`, Bootstrap $p=0.0360$); Accuracy difference $+0.0642$ (95% CI `[+0.0160, +0.1096]`, McNemar $p=0.0101$).
+* **DistilBERT vs. MLP:** Accuracy difference $+0.0749$ (95% CI `[+0.0241, +0.1257]`, McNemar $p=0.0081$, clears Bonferroni correction threshold $\approx 0.008$).
+* **Model Selection Protocol:** The served classification model in production is the TF-IDF + MLP because the model selection criterion (Validation Macro-F1) was strictly locked prior to unblinding test data (Val Macro-F1: MLP 0.6001 vs DistilBERT 0.5675). Switching post-hoc based on test-set performance would violate test-set unblinding protocol.
 
 ### Semantic Matching Engine
 * **Model:** Siamese Sentence-Transformers fine-tuned on sentence pairs using `MultipleNegativesRankingLoss`.
