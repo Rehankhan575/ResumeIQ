@@ -39,7 +39,7 @@ export async function analyzeResume(
   resumeChoice: string,
   jdText: string,
   jdChoice: string,
-  useGenai: boolean = false
+  useGenai: boolean = true
 ): Promise<ScoreResult> {
   if (isMockMode()) {
     return MOCK_FIXTURE_RESULT;

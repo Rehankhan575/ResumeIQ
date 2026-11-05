@@ -349,6 +349,31 @@ def generate_suggestions(
                     if len(bullets_to_rewrite) >= 2:
                         break
 
+    # Fallback to projects or bulleted raw text lines if no experience bullets found
+    if not bullets_to_rewrite:
+        for proj in getattr(parsed, "projects", []):
+            desc = getattr(proj, "description", "")
+            if desc:
+                for line in desc.splitlines():
+                    m = re.match(r"^\s*[-*•\d+.]\s*(.*)", line)
+                    cand = m.group(1).strip() if m else line.strip()
+                    if cand and len(cand.split()) >= 4:
+                        bullets_to_rewrite.append(cand)
+                        if len(bullets_to_rewrite) >= 3:
+                            break
+            if len(bullets_to_rewrite) >= 3:
+                break
+
+    if not bullets_to_rewrite and getattr(parsed, "raw_text", ""):
+        for line in parsed.raw_text.splitlines():
+            m = re.match(r"^\s*[-*•]\s*(.*)", line)
+            if m:
+                cand = m.group(1).strip()
+                if len(cand.split()) >= 4:
+                    bullets_to_rewrite.append(cand)
+                    if len(bullets_to_rewrite) >= 3:
+                        break
+
     if bullets_to_rewrite:
         rewritten_data = rewrite_bullets(bullets_to_rewrite, jd=jd_text)
         for item in rewritten_data:

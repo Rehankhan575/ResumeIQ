@@ -47,3 +47,4 @@ echo "------------------------------------------------------------------------"
 echo "Press Ctrl+C to stop the server."
 
 exec ./venv/bin/uvicorn app.api.main:app --host 127.0.0.1 --port 8000
+

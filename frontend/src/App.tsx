@@ -72,7 +72,7 @@ export const App: React.FC = () => {
         resumeChoice,
         jdText,
         jdChoice,
-        false
+        true
       );
       setResult(scoreResult);
       const title = jdChoice

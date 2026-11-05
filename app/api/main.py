@@ -137,7 +137,7 @@ async def analyze_resume(
     resume_choice: Optional[str] = Form(None),
     jd_text: Optional[str] = Form(None),
     jd_choice: Optional[str] = Form(None),
-    use_genai: bool = Form(False),
+    use_genai: bool = Form(True),
 ) -> AnalyzeResponse:
     """
     Analyze a resume against a job description.

@@ -54,6 +54,22 @@ def test_analyze_with_sample_fixtures() -> None:
     assert len(data["issues"]) > 0
 
 
+def test_analyze_with_use_genai_enabled() -> None:
+    res = client.post(
+        "/api/analyze",
+        data={
+            "resume_choice": "ds_clean.pdf",
+            "jd_choice": "jd_data_scientist.txt",
+            "use_genai": "true",
+        },
+    )
+    assert res.status_code == 200
+    data = res.json()
+    assert "suggestions" in data
+    assert len(data["suggestions"]) > 0
+    assert any(s["kind"] == "bullet_rewrite" for s in data["suggestions"])
+
+
 def test_analyze_rejects_unsupported_extension() -> None:
     res = client.post(
         "/api/analyze",
