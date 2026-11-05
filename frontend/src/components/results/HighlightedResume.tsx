@@ -8,11 +8,35 @@ interface HighlightedResumeProps {
 }
 
 // Fallback sample resume text snippet for fixture display
-const DEFAULT_RESUME_SNIPPET = `SENIOR DATA SCIENTIST & ML ENGINEER
+export const DEFAULT_RESUME_SNIPPET = `SENIOR DATA SCIENTIST & ML ENGINEER
 Expert in predictive modeling, distributed Machine Learning pipelines, and scalable statistical architectures.
 Core competencies include Python, Scikit-Learn, SQL, model deployment, and high-throughput data processing.
 Led predictive modeling and cross-functional ML workflows across enterprise cloud systems, delivering high reliability.
 Master of Science in Computer Science, specialized in Applied Intelligence and Neural Network Architectures.`;
+
+/**
+ * Snap arbitrary character offsets (from subword tokens or misaligned spans)
+ * to clean whole-word boundaries so words are never cut mid-token.
+ */
+function snapToWordBoundaries(text: string, start: number, end: number): [number, number] {
+  let s = Math.max(0, Math.min(start, text.length));
+  let e = Math.max(s, Math.min(end, text.length));
+  if (s === e) return [s, e];
+
+  const isWordChar = (char: string) => /[\w]/.test(char);
+
+  // Expand start backwards if inside a word
+  while (s > 0 && isWordChar(text[s - 1]) && isWordChar(text[s])) {
+    s--;
+  }
+
+  // Expand end forwards if inside a word
+  while (e < text.length && isWordChar(text[e - 1]) && isWordChar(text[e])) {
+    e++;
+  }
+
+  return [s, e];
+}
 
 export const HighlightedResume: React.FC<HighlightedResumeProps> = ({
   rawText = DEFAULT_RESUME_SNIPPET,
@@ -26,35 +50,77 @@ export const HighlightedResume: React.FC<HighlightedResumeProps> = ({
     y: number;
   } | null>(null);
 
+  const textToRender = rawText && rawText.trim() ? rawText : DEFAULT_RESUME_SNIPPET;
+
   // Parse text into React text nodes and highlighted span nodes safely without innerHTML
   const renderSafeSpans = () => {
     if (!highlights || highlights.length === 0) {
-      return <span>{rawText}</span>;
+      return <span>{textToRender}</span>;
     }
 
-    // Sort highlights by start offset and filter out overlaps
-    const sorted = [...highlights]
-      .filter((h) => h.start >= 0 && h.end <= rawText.length && h.start < h.end)
-      .sort((a, b) => a.start - b.start);
+    // Resolve and align spans to whole-word boundaries in textToRender
+    const preparedSpans: Array<{
+      start: number;
+      end: number;
+      weight: number;
+      type: string;
+      sourceText: string;
+    }> = [];
+
+    highlights.forEach((h) => {
+      if (h.type === "keyword_missing") return;
+
+      let s = h.start;
+      let e = h.end;
+
+      // If the slice does not match the intended highlight text, attempt whole-word lookup
+      if (h.text && h.text.trim()) {
+        const slice = textToRender.slice(s, e);
+        if (slice.toLowerCase() !== h.text.toLowerCase()) {
+          const escaped = h.text.trim().replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+          const wordRegex = new RegExp(`\\b${escaped}\\b`, "i");
+          const match = wordRegex.exec(textToRender);
+          if (match && match.index !== undefined) {
+            s = match.index;
+            e = match.index + match[0].length;
+          }
+        }
+      }
+
+      // Snap to whole-word boundaries
+      const [snappedStart, snappedEnd] = snapToWordBoundaries(textToRender, s, e);
+      if (snappedStart < snappedEnd && snappedStart >= 0 && snappedEnd <= textToRender.length) {
+        preparedSpans.push({
+          start: snappedStart,
+          end: snappedEnd,
+          weight: h.weight,
+          type: h.type,
+          sourceText: h.text || textToRender.slice(snappedStart, snappedEnd),
+        });
+      }
+    });
+
+    // Sort by start offset and filter out overlaps
+    const sorted = preparedSpans.sort((a, b) => a.start - b.start || b.end - a.end);
 
     const elements: React.ReactNode[] = [];
     let cursor = 0;
 
-    sorted.forEach((h, idx) => {
+    sorted.forEach((span, idx) => {
       // If there's an overlap with previous highlight, skip
-      if (h.start < cursor) return;
+      if (span.start < cursor) return;
 
-      // Plain text before highlight (React automatically safely escapes strings)
-      if (h.start > cursor) {
+      // Plain text before highlight
+      if (span.start > cursor) {
         elements.push(
-          <span key={`plain-${idx}`}>{rawText.slice(cursor, h.start)}</span>
+          <span key={`plain-${idx}`}>{textToRender.slice(cursor, span.start)}</span>
         );
       }
 
-      // Highlighted span
-      const highlightText = rawText.slice(h.start, h.end);
-      const isKeyword = h.type === "keyword_match";
-      const isNegative = h.type === "negative";
+      // Highlighted whole-word span
+      const highlightText = textToRender.slice(span.start, span.end);
+      const isKeyword = span.type === "keyword_match";
+      const isNegative = span.type === "negative";
 
       const underlineClass = isNegative
         ? "underline decoration-semantic-bad decoration-2 underline-offset-4 bg-semantic-bad-dim text-content-primary rounded-sm px-1 py-0.5"
@@ -69,9 +135,9 @@ export const HighlightedResume: React.FC<HighlightedResumeProps> = ({
           onMouseEnter={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             setActiveTooltip({
-              text: h.text || highlightText,
-              weight: h.weight,
-              type: h.type,
+              text: span.sourceText || highlightText,
+              weight: span.weight,
+              type: span.type,
               x: rect.left + rect.width / 2,
               y: rect.top - 8,
             });
@@ -82,13 +148,13 @@ export const HighlightedResume: React.FC<HighlightedResumeProps> = ({
         </span>
       );
 
-      cursor = h.end;
+      cursor = span.end;
     });
 
     // Remaining trailing plain text
-    if (cursor < rawText.length) {
+    if (cursor < textToRender.length) {
       elements.push(
-        <span key="plain-end">{rawText.slice(cursor)}</span>
+        <span key="plain-end">{textToRender.slice(cursor)}</span>
       );
     }
 
@@ -98,61 +164,64 @@ export const HighlightedResume: React.FC<HighlightedResumeProps> = ({
   return (
     <div className="flex flex-col gap-4">
       {/* Legend & Title Bar */}
-      <div className="flex flex-wrap items-center justify-between gap-3 pb-2 border-b border-border">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-border/80 gap-2">
         <div className="flex items-center gap-2">
-          <span className="text-xs font-mono uppercase tracking-wider text-content-muted">
+          <span className="text-xs font-mono uppercase tracking-wider text-content-primary font-semibold">
             Explainability Overlay
           </span>
-          <span className="text-[11px] font-mono text-content-muted">
-            Reader-Style Token Inspection
-          </span>
+          <span className="text-[11px] text-content-muted font-mono">Reader-Style Token Inspection</span>
         </div>
 
         {/* Legend */}
-        <div className="flex items-center gap-4 text-xs font-mono">
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-1 bg-sand rounded-full" />
-            <span className="text-content-secondary">Keyword Match</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-1 bg-semantic-good rounded-full" />
-            <span className="text-content-secondary">High Weight</span>
-          </div>
-          <div className="flex items-center gap-1.5">
-            <span className="w-2.5 h-1 bg-semantic-bad rounded-full" />
-            <span className="text-content-secondary">Penalty / Missing</span>
-          </div>
+        <div className="flex items-center gap-3 text-[11px] font-mono">
+          <span className="flex items-center gap-1.5 text-sand">
+            <span className="w-2.5 h-0.5 bg-sand rounded-full"></span>
+            Keyword Match
+          </span>
+          <span className="flex items-center gap-1.5 text-semantic-good">
+            <span className="w-2.5 h-0.5 bg-semantic-good rounded-full"></span>
+            High Weight
+          </span>
+          <span className="flex items-center gap-1.5 text-semantic-bad">
+            <span className="w-2.5 h-0.5 bg-semantic-bad rounded-full"></span>
+            Penalty / Missing
+          </span>
         </div>
       </div>
 
-      {/* Reader Panel */}
-      <div className="p-6 rounded-xl bg-surface border border-border leading-relaxed text-xs sm:text-sm font-mono text-content-secondary whitespace-pre-wrap selection:bg-sand/30 relative">
+      {/* Reader Container */}
+      <div className="p-5 rounded-xl bg-canvas border border-border/60 text-xs sm:text-[13px] leading-relaxed font-mono whitespace-pre-wrap break-words max-h-96 overflow-y-auto selection:bg-sand/20">
         {renderSafeSpans()}
+      </div>
+
+      {/* Security & Token Guarantee */}
+      <div className="flex items-center gap-1.5 text-[11px] text-content-muted">
+        <Info strokeWidth={1.5} className="w-3.5 h-3.5 text-content-muted" />
+        <span>Rendered through whole-word snapped tokens with strict zero-injection sanitization.</span>
       </div>
 
       {/* Floating Tooltip */}
       {activeTooltip && (
         <div
-          className="fixed z-50 transform -translate-x-1/2 -translate-y-full px-2.5 py-1.5 rounded-lg bg-surface-card border border-border shadow-xl text-xs font-mono pointer-events-none"
+          className="fixed z-50 transform -translate-x-1/2 -translate-y-full px-2.5 py-1.5 rounded-lg bg-surface border border-border text-[11px] font-mono shadow-glass pointer-events-none flex flex-col gap-0.5"
           style={{ left: `${activeTooltip.x}px`, top: `${activeTooltip.y}px` }}
         >
           <div className="flex items-center gap-2">
-            <span className="text-content-primary font-medium">{activeTooltip.text}</span>
-            <span className="text-[11px] text-sand font-mono">
-              w: {activeTooltip.weight.toFixed(2)}
+            <span className="text-sand font-semibold">{activeTooltip.text}</span>
+            <span
+              className={
+                activeTooltip.weight >= 0 ? "text-semantic-good" : "text-semantic-bad"
+              }
+            >
+              {activeTooltip.weight >= 0 ? "+" : ""}
+              {activeTooltip.weight.toFixed(4)}
             </span>
           </div>
+          <span className="text-[10px] text-content-muted uppercase">
+            {activeTooltip.type.replace("_", " ")}
+          </span>
         </div>
       )}
-
-      {/* Security Guarantee Note */}
-      <div className="flex items-center gap-2 text-[11px] text-content-muted">
-        <Info strokeWidth={1.5} className="w-3.5 h-3.5 text-content-muted shrink-0" />
-        <span>
-          Rendered through typed React virtual DOM nodes with strict zero-injection sanitation.
-        </span>
-      </div>
     </div>
   );
 };
-

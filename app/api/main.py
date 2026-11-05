@@ -58,6 +58,7 @@ class AnalyzeResponse(ScoreResult):
 
     bias: List[Dict[str, Any]] = Field(default_factory=list)
     skill_gap: Dict[str, Any] = Field(default_factory=dict)
+    resume_text: str = Field(default="")
 
 
 app = FastAPI(
@@ -257,6 +258,7 @@ async def analyze_resume(
     payload = result.model_dump()
     payload["bias"] = bias_findings
     payload["skill_gap"] = gap_summary
+    payload["resume_text"] = parsed_doc.raw_text if parsed_doc else ""
     return AnalyzeResponse(**payload)
 
 

@@ -121,6 +121,7 @@ export const App: React.FC = () => {
             <ResultsView
               result={result}
               onGoToAnalyze={() => setCurrentTab("analyze")}
+              rawResumeText={result?.resume_text}
             />
           )}
 

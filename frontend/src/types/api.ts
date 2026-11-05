@@ -153,6 +153,7 @@ export interface ScoreResult {
   warnings: string[];
   bias?: BiasFinding[];
   skill_gap?: SkillGapSummary;
+  resume_text?: string;
 }
 
 export interface SampleResume {

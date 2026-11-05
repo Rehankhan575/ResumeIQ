@@ -71,6 +71,28 @@ describe("ResumeIQ UI Verification Suite", () => {
       // Verify that the text itself is present as harmless literal text content
       expect(container.textContent).toContain('<script>alert("xss")</script>');
     });
+
+    it("snaps subword or mid-token offsets to whole-word boundaries", () => {
+      const text = "Expert in predictive modeling and Computer Science.";
+      // Suppose offset was [13, 16] ('dic' inside 'predictive')
+      const highlights = [
+        {
+          start: 13,
+          end: 16,
+          text: "dic",
+          weight: 0.5,
+          type: "positive" as const,
+        },
+      ];
+
+      const { container } = render(
+        <HighlightedResume rawText={text} highlights={highlights} />
+      );
+
+      // The highlighted element should contain the whole word 'predictive', not just 'dic'
+      const mark = container.querySelector(".underline");
+      expect(mark?.textContent).toBe("predictive");
+    });
   });
 
   // 3. History storing no resume text

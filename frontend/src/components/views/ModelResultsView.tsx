@@ -284,7 +284,7 @@ export const ModelResultsView: React.FC = () => {
             </h3>
           </div>
           <span className="text-[11px] font-mono text-content-muted">
-            9 Rubric Weight Delas
+            9 Rubric Weight Deltas
           </span>
         </div>
 

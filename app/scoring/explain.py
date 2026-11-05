@@ -108,6 +108,32 @@ def _split_into_sentences(text: str, max_sentences: int = 40) -> List[Tuple[int,
     return spans
 
 
+def _snap_to_word_boundary(text: str, start: int, end: int) -> Tuple[int, int]:
+    """Snap character offsets to clean whole-word boundaries."""
+    if not text:
+        return start, end
+    s = max(0, min(start, len(text)))
+    e = max(s, min(end, len(text)))
+    if s == e:
+        return s, e
+
+    # Expand left while preceding char is alphanumeric or underscore/hyphen
+    while s > 0 and (text[s - 1].isalnum() or text[s - 1] in "_-"):
+        s -= 1
+
+    # Expand right while current char is alphanumeric or underscore/hyphen
+    while e < len(text) and (text[e].isalnum() or text[e] in "_-"):
+        e += 1
+
+    # Strip leading/trailing hyphens or underscores
+    while s < e and text[s] in "-_":
+        s += 1
+    while e > s and text[e - 1] in "-_":
+        e -= 1
+
+    return s, e
+
+
 def compute_sentence_contributions(
     text: str,
     jd_text: str,
@@ -235,6 +261,7 @@ def compute_classifier_word_importance(
             # Locate all occurrences of this word in text
             for match in re.finditer(r"\b" + re.escape(word) + r"\b", text, re.IGNORECASE):
                 start, end = match.start(), match.end()
+                start, end = _snap_to_word_boundary(text, start, end)
                 matched_str = text[start:end]
                 highlights.append(
                     Highlight(
@@ -287,11 +314,12 @@ def compute_keyword_highlights(
     # 1. Matched skills in resume text
     for skill in matched_set:
         for match in re.finditer(r"\b" + re.escape(skill) + r"\b", text, re.IGNORECASE):
+            s_snap, e_snap = _snap_to_word_boundary(text, match.start(), match.end())
             highlights.append(
                 Highlight(
-                    start=match.start(),
-                    end=match.end(),
-                    text=match.group(),
+                    start=s_snap,
+                    end=e_snap,
+                    text=text[s_snap:e_snap],
                     weight=1.0,
                     type="keyword_match",
                 )
@@ -332,8 +360,9 @@ def render_html(highlights: List[Highlight], text: str) -> str:
     for h in highlights:
         if h.type == "keyword_missing":
             continue
-        if 0 <= h.start < h.end <= len(text) and text[h.start:h.end] == h.text:
-            valid_spans.append((h.start, h.end, h.text, h.weight, h.type))
+        s, e = _snap_to_word_boundary(text, h.start, h.end)
+        if 0 <= s < e <= len(text):
+            valid_spans.append((s, e, text[s:e], h.weight, h.type))
 
     if not valid_spans:
         return html.escape(text)
